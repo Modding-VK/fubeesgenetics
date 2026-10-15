@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.1.4-dev
+# Arquivos de distribuição de desenvolvimento — 0.1.5-dev
 
-- fubeesgenetics-mvp-0.1.4-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.1.5-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.1.4-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.1.5-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -25,3 +25,6 @@ A lógica da 0.1.2, validada pelo usuário com ITD, foi preservada.
 
 A 0.1.4 adiciona os reagentes à receita. Entrega de desenvolvimento na branch
 dev; sem PR ou promoção para main. Veja docs/RECIPE_0_1_4.md e VERSIONING.md.
+
+A 0.1.5 mantém molduras estáticas atrás dos itens e usa alinhamento de slots
+nativos; ver docs/HUD_SLOTS_0_1_5.md.

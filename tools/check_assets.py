@@ -91,10 +91,18 @@ def check_assets(root, fu_root):
     refs(ui)
     passed('S4 shipped object and interface paths resolve')
     gui = ui['gui']
-    for name,off,x in [('itemGrid',1,60),('itemGrid2',0,180),('outputItemGrid',2,300)]:
-        assert gui[name]['type']=='itemgrid' and gui[name]['slotOffset']==off and gui[name]['position']==[x,35]
-        assert gui[name]['dimensions']==[1,1]
-    passed('S5 native grids visual order and offsets')
+    for name,off,x,frame in [('itemGrid',1,60,'approvedFrame'),('itemGrid2',0,180,'inputFrame'),('outputItemGrid',2,300,'rejectedFrame')]:
+        assert gui[name]['type']=='itemgrid' and gui[name]['slotOffset']==off and gui[name]['position']==[x+3,38]
+        assert gui[name]['dimensions']==[1,1] and gui[name]['spacing']==[19,19]
+        assert gui[name]['backingImage']==''
+        assert not gui[name]['showBackingImageWhenFull'] and not gui[name]['showBackingImageWhenEmpty']
+        f=gui[frame]
+        assert f['type']=='image' and f['position']==[x,35] and f['mouseTransparent']
+        assert f['centered'] is False and f['trim'] is False
+        assert f['zlevel'] < gui[name]['zlevel'] and png_size(mod/f['file'].lstrip('/'))==(24,24)
+        # Native ItemSlot uses integer half-size 19//2; it must match the frame center.
+        assert [v+19//2 for v in gui[name]['position']]==[v+24//2 for v in f['position']]
+    passed('S5 static frames, native item centering and inventory offsets')
     for t in ['baseProduction','droneToughness','droneBreedRate','queenBreedRate','queenLifespan','mutationChance']:
         group = gui[t+'Modes']
         assert group['type']=='radioGroup' and group['callback']=='modeChanged'

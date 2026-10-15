@@ -632,52 +632,61 @@
       "type": "itemgrid",
       "slotOffset": 1,
       "position": [
-        60,
-        35
+        63,
+        38
       ],
       "dimensions": [
         1,
         1
       ],
       "spacing": [
-        24,
-        24
+        19,
+        19
       ],
-      "backingImage": "/interface/fubeesgenetics/geneticqueenfilter/approvedslot.png"
+      "backingImage": "",
+      "showBackingImageWhenFull": false,
+      "showBackingImageWhenEmpty": false,
+      "zlevel": 2
     },
     "itemGrid2": {
       "type": "itemgrid",
       "slotOffset": 0,
       "position": [
-        180,
-        35
+        183,
+        38
       ],
       "dimensions": [
         1,
         1
       ],
       "spacing": [
-        24,
-        24
+        19,
+        19
       ],
-      "backingImage": "/interface/fubeesgenetics/geneticqueenfilter/inputslot.png"
+      "backingImage": "",
+      "showBackingImageWhenFull": false,
+      "showBackingImageWhenEmpty": false,
+      "zlevel": 2
     },
     "outputItemGrid": {
       "type": "itemgrid",
       "slotOffset": 2,
       "position": [
-        300,
-        35
+        303,
+        38
       ],
       "dimensions": [
         1,
         1
       ],
       "spacing": [
-        24,
-        24
+        19,
+        19
       ],
-      "backingImage": "/interface/fubeesgenetics/geneticqueenfilter/rejectedslot.png"
+      "backingImage": "",
+      "showBackingImageWhenFull": false,
+      "showBackingImageWhenEmpty": false,
+      "zlevel": 2
     },
     "helpCanvas": {
       "type": "canvas",
@@ -702,6 +711,42 @@
         304
       ],
       "mouseTransparent": true
+    },
+    "approvedFrame": {
+      "type": "image",
+      "file": "/interface/fubeesgenetics/geneticqueenfilter/approvedslot.png",
+      "position": [
+        60,
+        35
+      ],
+      "centered": false,
+      "trim": false,
+      "mouseTransparent": true,
+      "zlevel": 1
+    },
+    "inputFrame": {
+      "type": "image",
+      "file": "/interface/fubeesgenetics/geneticqueenfilter/inputslot.png",
+      "position": [
+        180,
+        35
+      ],
+      "centered": false,
+      "trim": false,
+      "mouseTransparent": true,
+      "zlevel": 1
+    },
+    "rejectedFrame": {
+      "type": "image",
+      "file": "/interface/fubeesgenetics/geneticqueenfilter/rejectedslot.png",
+      "position": [
+        300,
+        35
+      ],
+      "centered": false,
+      "trim": false,
+      "mouseTransparent": true,
+      "zlevel": 1
     }
   },
   "helpTexts": {

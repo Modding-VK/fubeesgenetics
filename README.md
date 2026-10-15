@@ -6,7 +6,7 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.4-dev — reconstrução preparada para validação no jogo.**
+**0.1.5-dev — reconstrução preparada para validação no jogo.**
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -31,12 +31,15 @@ A expansão futura terá o nome **Abusive Bee Industry**, com título Workshop
 **[oSB][FU] Abusive Bee Industry**. O [planejamento](docs/ROADMAP.md) registra
 o rebranding e a futura máquina de troca de abelhas por recursos.
 
+A 0.1.5 separa as molduras estáticas dos slots nativos e centraliza os itens;
+veja [HUD_SLOTS_0_1_5](docs/HUD_SLOTS_0_1_5.md).
+
 ## Instalar e usar
 
-O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.4-dev.pak`**, um arquivo
+O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.5-dev.pak`**, um arquivo
 Starbound padrão. O nome é gerado com a versão do _metadata, seguindo
 `fubeesgenetics-mvp-<versão>.pak`. Para instalação manual, copie para
-`Starbound/mods/fubeesgenetics-mvp-0.1.4-dev.pak`. Instale FU e execute OpenStarbound com
+`Starbound/mods/fubeesgenetics-mvp-0.1.5-dev.pak`. Instale FU e execute OpenStarbound com
 essas fontes de mods, conforme a instalação definida pelo usuário.
 
 Na Steam Workshop, o conteúdo é distribuído como **`contents.pak`**: Steam

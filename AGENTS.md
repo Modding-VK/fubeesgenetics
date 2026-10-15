@@ -33,3 +33,11 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 - Recurso futuro: máquina que troca abelhas por recursos, com referências no
   Bee Refuge do FU e na mecânica de Terramart Shipments 3.5. Consultar ROADMAP.
 - A referência ao Terramart não estabelece, por si só, dependência técnica.
+
+# Slots da interface
+
+- Approved/Input/Rejected usam molduras estáticas independentes, com
+  mouseTransparent=true e camada inferior aos slots nativos. Não usar a
+  moldura do mod como backingImage que some ao preencher o slot.
+- Conservar dimensões/centralização nativas e offsets ITD 1/0/2. Consultar
+  docs/HUD_SLOTS_0_1_5.md antes de alterar posições ou assets dos slots.

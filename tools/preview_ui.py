@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 from pathlib import Path
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 UI = ROOT / 'FUBeesGenetics/interface/fubeesgenetics/geneticqueenfilter'
@@ -11,13 +12,20 @@ UI = ROOT / 'FUBeesGenetics/interface/fubeesgenetics/geneticqueenfilter'
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT / '.cache/hud-0.1.3.html')
+    parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     config = json.loads((UI / 'fubeesgenetics_geneticqueenfilter.config').read_text())
+    version = json.loads((ROOT / 'FUBeesGenetics/_metadata').read_text())['version']
+    if args.output is None:
+        args.output = ROOT / f'.cache/hud-{version}.html'
     images = {p.name: 'data:image/png;base64,' + base64.b64encode(p.read_bytes()).decode()
               for p in UI.glob('*.png')}
+    sizes = {p.name: list(struct.unpack('>II', p.read_bytes()[16:24])) for p in UI.glob('*.png')}
+    # Own inventory icon is an illustrative occupied-slot fixture, not a live item.
+    sample = ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/geneticqueenfilter/geneticqueenfiltericon.png'
+    images['sample-item.png'] = 'data:image/png;base64,' + base64.b64encode(sample.read_bytes()).decode()
     html = '''<!doctype html><html lang="en"><meta charset="utf-8">
-<title>Genetic Queen Filter — native assets review 0.1.3</title>
+<title>Genetic Queen Filter — native assets review __VERSION__</title>
 <style>
 *{box-sizing:border-box}body{margin:0;padding:24px;background:#161b23;color:#dce7f1;font:14px monospace}
 #review{width:1164px;height:996px;position:relative}#pane{width:388px;height:332px;
@@ -27,19 +35,23 @@ position:relative;transform:scale(3);transform-origin:top left;image-rendering:p
 background:transparent;color:#dce7f1;font:8px monospace;cursor:pointer;image-rendering:pixelated}
 .button>img{position:absolute;inset:0;width:100%;height:100%}.caption{position:relative}
 .radio{width:18px;height:18px}.reset{width:100px;height:20px}.close{width:12px;height:12px}
+.slot-demo{position:absolute;width:21px;height:21px;border:0;padding:0;background:transparent;cursor:pointer}
+.slot-demo>img{position:absolute;left:1px;bottom:1px;width:20px;height:20px}
 p{max-width:1164px;color:#aab9ca}a{color:#64d8ed}
 </style><div id="review"><div id="pane"></div></div>
 <p>Offline layout review using the shipped 388×332 assets, enlarged 3×. Browser text is
 an approximation of the in-game font. Example profile/values; controls only change this preview.</p>
+<p>Click slots to toggle an example inventory icon. Frames are separate static images.
+The example icon belongs to this mod; this page does not run the game.</p>
 <script>
 const config=__CONFIG__, images=__IMAGES__, pane=document.querySelector('#pane');
 const example={family:'Family: shrouded',subspecies:'Subspecies: Vocadahl',
 status:'Status: Waiting for input',lastResult:'Last result: Approved',
 baseProductionReference:'30',droneToughnessReference:'48',droneBreedRateReference:'27',
 queenBreedRateReference:'21',queenLifespanReference:'982',mutationChanceReference:'3.00%'};
-const sizes={'header.png':[388,34],'body.png':[388,286],'footer.png':[388,12],'dna.png':[20,20]};
+const sizes=__SIZES__;
 const image=(file)=>{let e=document.createElement('img');e.src=images[file.split('/').pop()];return e};
-function place(e,x,y,w,h){e.style.left=x+'px';e.style.bottom=y+'px';if(w)e.style.width=w+'px';if(h)e.style.height=h+'px';pane.append(e)}
+function place(e,x,y,w,h,z=0){e.style.left=x+'px';e.style.bottom=y+'px';e.style.zIndex=z;if(w)e.style.width=w+'px';if(h)e.style.height=h+'px';pane.append(e)}
 for(const [file,y] of [['header.png',298],['body.png',12],['footer.png',0]]){let [w,h]=sizes[file];place(image(file),0,y,w,h)}
 const radios={};
 for(const [name,w] of Object.entries(config.gui)){
@@ -51,9 +63,15 @@ for(const [name,w] of Object.entries(config.gui)){
   e.style.transform=w.hAnchor==='right'?'translate(-100%,50%)':w.hAnchor==='mid'?'translate(-50%,50%)':'translateY(50%)';
   place(e,x,y);
  }else if(w.type==='image'){
-  const file=w.file.split('/').pop();const [width,height]=sizes[file];place(image(file),x,y,width,height);
+  const file=w.file.split('/').pop();const [width,height]=sizes[file];
+  const e=image(file);e.id=name;place(e,x,y,width,height,w.zlevel??0);
  }else if(w.type==='itemgrid'){
-  place(image(w.backingImage),x,y,24,24);
+  const e=document.createElement('button');e.className='slot-demo';e.id=name;e.dataset.occupied='false';
+  e.setAttribute('aria-label',name+' example item');
+  const item=image('sample-item.png');item.style.display='none';e.append(item);
+  e.onclick=()=>{const full=e.dataset.occupied!=='true';e.dataset.occupied=String(full);item.style.display=full?'block':'none'};
+  // Native draggable area [-2,-2,19,19], child center (9,9).
+  place(e,x-2,y-2,21,21,w.zlevel??0);
  }else if(w.type==='button'){
   const e=document.createElement('button');e.className='button '+(name==='close'?'close':'reset');e.id=name;
   const bg=image(w.base);e.append(bg);if(w.caption){const t=document.createElement('span');t.className='caption';t.textContent=w.caption;e.append(t)}
@@ -74,7 +92,8 @@ for(const [name,w] of Object.entries(config.gui)){
 }
 window.layoutReady=true;
 </script></html>'''
-    html = html.replace('__CONFIG__', json.dumps(config)).replace('__IMAGES__', json.dumps(images))
+    html = (html.replace('__CONFIG__', json.dumps(config)).replace('__IMAGES__', json.dumps(images))
+            .replace('__SIZES__', json.dumps(sizes)).replace('__VERSION__', version))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html)
     print(args.output)

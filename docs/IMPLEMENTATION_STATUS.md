@@ -55,7 +55,7 @@ anexo integral v1.2 e a arte aprovada e validar o tema da GUI no jogo.
 
 ## Distribuição PAK e Steam Workshop
 
-Formato principal: fubeesgenetics-mvp-0.1.4-dev.pak (SBAsset6 padrão), gerado com o
+Formato principal: fubeesgenetics-mvp-0.1.5-dev.pak (SBAsset6 padrão), gerado com o
 asset_packer nativo OpenStarbound v0.1.15.1 para Starbound 1.4.4. O asset_unpacker
 nativo restaurou os 27 arquivos com assets byte a byte e metadata JSON equivalente.
 A cópia Workshop contents.pak é idêntica ao PAK manual; o conteúdo compactado
@@ -65,3 +65,11 @@ Instalação manual padrão Starbound/mods e fluxo Steam Workshop documentados e
 [WORKSHOP](WORKSHOP.md), conforme a configuração de carregamento informada pelo
 usuário. Verificação do formato não substitui carregamento no jogo. Nenhum
 runtime/tool/asset base do jogo foi incluído nos pacotes do addon.
+
+## Slots da interface — 0.1.5-dev
+
+Molduras são imagens independentes de 24×24, atrás de grids nativos. Os grids
+usam espaçamento 19×19, sem backingImage; o ItemSlot nativo usa tamanho 19×19
+na configuração padrão. Origens +3/+3 alinham os centros. Slots físicos e
+offsets ITD 1/0/2, Lua, modos e receita permanecem os mesmos. Validação offline
+e 91 grupos passaram; falta conferir vazio/ocupado e interação no jogo.

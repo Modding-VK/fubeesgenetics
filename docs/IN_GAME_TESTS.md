@@ -3,7 +3,7 @@
 Registrar build/commit OpenStarbound, versão FU, commit do addon, mods, data,
 resultado e trechos de starbound.log. Não marcar como executado por mocks.
 
-- [ ] Instalar fubeesgenetics-mvp-0.1.4-dev.pak em Starbound/mods e abrir via OpenStarbound,
+- [ ] Instalar fubeesgenetics-mvp-0.1.5-dev.pak em Starbound/mods e abrir via OpenStarbound,
   sem erros de assets/scripts/dependência. Não manter cópia descompactada ou
   assinatura Workshop duplicada. Testar também a instalação por assinatura
   Workshop quando publicada, com conteúdo contents.pak gerenciado pela Steam.
@@ -73,3 +73,11 @@ fora da garantia normal. Concluir todos os critérios de release da diretriz.
 
 Relato recebido: o usuário confirmou funcionamento perfeito dos seletores e
 ITD 100% funcional na 0.1.2-dev. Topologia e demais cenários não foram detalhados.
+
+## Reteste visual 0.1.5-dev
+
+- [ ] Approved/Input/Rejected: a mesma moldura permanece ao inserir/remover itens.
+- [ ] Queen/Young Queen, larva e itens comuns ficam centralizados, sem deslocar
+  para a borda superior/direita, com contagem e indicação de raridade nativas.
+- [ ] Tooltip, clique direito e Shift+Click funcionam em cada slot, inclusive vazio.
+- [ ] Perfil/modos existentes e fluxo ITD permanecem funcionais.
