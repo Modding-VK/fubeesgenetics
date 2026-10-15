@@ -22,11 +22,11 @@ end,itemConfig=function(item)
  return {config={maxStack=faults.maxStack or 1000},parameters={}}
 end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
-config={getParameter=function(name) if name=='slotCount' then return 24 end end}
+config={getParameter=function(name) if name=='slotCount' then return 16 end end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
 animator={setAnimationState=function(kind,state) assert(kind=='shipper');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
- assert(id==42 and s>=0 and s<24);return copy(slots[s])
+ assert(id==42 and s>=0 and s<16);return copy(slots[s])
 end,containerTakeNumItemsAt=function(id,s,n)
  takes=takes+1
  if faults.takeFailure==takes or not slots[s] or slots[s].count<n then return nil end
@@ -67,23 +67,30 @@ local function total(name)
  return n
 end
 local function fill()
- for s=0,23 do slots[s]=item('stone',1000,{slot=s}) end
+ for s=0,15 do slots[s]=item('stone',1000,{slot=s}) end
 end
 local groups=0
 local function test(label,fn) fresh();fn();groups=groups+1;print('PASS '..label) end
 
-test('E1 every one of the 105 real FU trades returns the exact recipe reward',function()
+test('E1 all 105 inputs follow FU rewards with Young Queens mapped to their adult resource',function()
  for _,path in ipairs(paths) do
   fresh();local recipe=fixture.tradeRecipes[path]
   slots[0]=item(recipe.input[1].item,recipe.input[1].count,{genome='unique',inspected=false})
   update(1)
   assert(total(recipe.input[1].item)==0,path)
-  assert(total(recipe.output.item)==recipe.output.count,path)
+  local expected=recipe.output
+  if recipe.input[1].item:match('_youngQueen$') then
+   local adultName=recipe.input[1].item:gsub('_youngQueen$','_queen')
+   for _,adult in pairs(fixture.tradeRecipes) do
+    if adult.input[1].item==adultName then expected=adult.output;break end
+   end
+  end
+  assert(total(expected.item)==expected.count,path)
   assert(not storage.exchangePending,path)
  end
 end)
 test('E2 non-bees and unsupported bee names untouched; later slots still sell',function()
- slots[0]=item('stone',99,{custom=true});slots[1]=item('bee_fake_queen');slots[19]=item('bee_honey_queen')
+ slots[0]=item('stone',99,{custom=true});slots[1]=item('bee_fake_queen');slots[15]=item('bee_honey_queen')
  local a,b=copy(slots[0]),copy(slots[1]);update(1)
  assert(same(slots[0],a) and same(slots[1],b) and total('coalore')==10 and takes==1)
 end)
@@ -175,9 +182,9 @@ test('E21 failed destruction recovery reports failure without retry duplication'
  slots[0]=item('bee_honey_queen');faults.putFailure=true;update(1);faults.spawnFailure=true
  die();die();assert(#drops==0 and #logs==1 and storage.exchangePending[1].count==10)
 end)
-test('E22 real FU automation registration exposes the same 24-slot container',function()
+test('E22 real FU automation registration exposes the same 16-slot container',function()
  assert(transferUtil.vars.inContainers[42] and transferUtil.vars.outContainers[42])
- assert(transferUtil.vars.containerId==42 and self.size==24)
+ assert(transferUtil.vars.containerId==42 and self.size==16)
 end)
 test('E23 a changed input snapshot aborts before any withdrawal',function()
  slots[0]=item('bee_honey_queen',1,{genome='before'})
@@ -204,17 +211,13 @@ test('E25 runtime rewards follow loaded FU recipes, not a duplicated price table
  fixture.tradeRecipes[path]=original
 end)
 test('E26 full-container trades can use remaining capacity in an existing output stack',function()
- fill();slots[0]=item('bee_honey_queen',2);slots[19]=item('coalore',990)
- update(1);assert(total('bee_honey_queen')==1 and slots[19].count==1000)
+ fill();slots[0]=item('bee_honey_queen',2);slots[15]=item('coalore',990)
+ update(1);assert(total('bee_honey_queen')==1 and slots[15].count==1000)
 end)
-test('E27 four added offsets process bees and survive a 20-slot save expansion',function()
- local oldInventory={};for i=0,19 do oldInventory[i]=item('stone',i+1,{oldSlot=i}) end
- fresh({},oldInventory)
- for i=0,19 do assert(same(slots[i],oldInventory[i])) end
- for i=20,23 do slots[i]=item('bee_honey_queen') end
+test('E27 all 16 retained offsets process bees, with no access to removed slots',function()
+ for i=0,15 do slots[i]=item('bee_honey_queen') end
  update(1)
- assert(total('coalore')==40 and total('bee_honey_queen')==0 and not storage.exchangePending)
- for i=0,19 do assert(same(slots[i],oldInventory[i])) end
+ assert(total('coalore')==160 and total('bee_honey_queen')==0 and not storage.exchangePending)
 end)
 test('E28 confirmed sales trigger one full FU shipment visual cycle',function()
  assert(animations[1]=='ready')
@@ -223,7 +226,7 @@ test('E28 confirmed sales trigger one full FU shipment visual cycle',function()
  update(2);assert(#animations==2) -- engine transitions ship -> closed after 2 seconds
  update(1.5);assert(animations[3]=='open')
  update(.4);assert(not self.shippingTimer)
- slots[23]=item('bee_honey_queen');update(1)
+ slots[15]=item('bee_honey_queen');update(1)
  assert(animations[4]=='ship' and total('coalore')==20)
 end)
 test('E29 ignored items, incomplete batches and failed takes never trigger a shipment',function()
@@ -236,5 +239,18 @@ test('E30 continuous sales do not restart the FU animation every tick',function(
  slots[0]=item('bee_honey_queen',20)
  update(1);update(1);update(1);update(1)
  assert(#animations==2 and animations[2]=='ship' and total('coalore')==40)
+end)
+test('E31 Young Queens inherit live adult reward patches and ignore larva Pixel rewards',function()
+ local adultPath='/recipes/bees/beerefuge/queens/honeyqueen.recipe'
+ local youngPath='/recipes/bees/beerefuge/larva/honeyqueen.recipe'
+ local adult,young=copy(fixture.tradeRecipes[adultPath]),copy(fixture.tradeRecipes[youngPath])
+ fixture.tradeRecipes[adultPath].output={item='titaniumbar',count=3,parameters={custom='adult'}}
+ fixture.tradeRecipes[youngPath].output={item='money',count=999}
+ fresh();slots[0]=item('bee_honey_youngQueen',2,{inspected=false,genome='anything'})
+ update(1);assert(total('titaniumbar')==3 and total('money')==0 and total('bee_honey_youngQueen')==1)
+ assert(slots[1].parameters.custom=='adult')
+ -- The independent copied output must not mutate the adult reward after delivery.
+ slots[0]=item('bee_honey_queen');update(1);assert(total('titaniumbar')==6)
+ fixture.tradeRecipes[adultPath],fixture.tradeRecipes[youngPath]=adult,young
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

@@ -20,7 +20,9 @@ sintéticos da recuperação não são usados como ancestrais remotos.
 
 | 0.2.1-dev | Interface nativa da Bee Exchange: 20 slots visíveis/centralizados, objeto e Take all | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/fec264835eeac70ea06147289c557799acffa9b9/dist/fubeesgenetics-mvp-0.2.1-dev.pak), [detalhes](BEE_EXCHANGE_UI_0_2_1.md); entrega em dev |
 
-| 0.2.2-dev | Bee Exchange com 24 slots e sprite Auto Refugee, placa em tom de mel | [PAK](../dist/fubeesgenetics-mvp-0.2.2-dev.pak), [detalhes](BEE_EXCHANGE_0_2_2.md); entrega em dev |
+| 0.2.2-dev | Bee Exchange com 24 slots e sprite Auto Refugee, placa em tom de mel | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/9556bbcf16a6194dbfdcf51474c058e9441aacab/dist/fubeesgenetics-mvp-0.2.2-dev.pak), [detalhes](BEE_EXCHANGE_0_2_2.md); entrega em dev |
+
+| 0.2.3-dev | Bee Exchange com 16 slots; Young Queens recebem os recursos adultos por espécie | [PAK](../dist/fubeesgenetics-mvp-0.2.3-dev.pak), [detalhes](BEE_EXCHANGE_0_2_3.md); entrega em dev |
 
 SHA-256 do PAK e ZIP Workshop de cada snapshot estão em dist/SHA256SUMS.
 Versões dev não representam aprovação de release ou publicação na Steam.

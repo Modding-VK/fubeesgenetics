@@ -114,3 +114,10 @@ Executar o [reteste 0.2.2](BEE_EXCHANGE_0_2_2.md#instalação-e-reteste):
 conservação de conteúdo do save, 24 slots, trocas nos novos offsets 20–23,
 ITD 0–23, sprite do FU e placa Auto Refugee sobre o chão, animação de envio/fechamento/
 reabertura e sons ao vender. Pendente no jogo.
+
+## Bee Exchange — 0.2.3-dev
+
+Seguir [reteste 0.2.3](BEE_EXCHANGE_0_2_3.md#reteste-no-jogo): esvaziar a fileira
+inferior antes da atualização, conferir 16 slots/ITD 0–15 e verificar que Young
+Queens Honey/Cybernetic rendem respectivamente 10 Coal/2 Titanium Bars. Drones
+continuam 5 por 7 Pixels. Teste de migração do save ainda pendente no jogo.

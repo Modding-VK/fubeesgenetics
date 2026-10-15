@@ -153,6 +153,15 @@ function init()
     self.trades[input.item] = {input = copy(input), output = {
       name = output.item, count = output.count, parameters = copy(output.parameters or {})}}
   end
+  -- Young Queens pay the same resource and amount as their adult species.
+  -- Resolve after loading every recipe: manifest order must not affect rewards.
+  for name, trade in pairs(self.trades) do
+    if name:match("_youngQueen$") then
+      local adult = assert(self.trades[(name:gsub("_youngQueen$", "_queen"))],
+        "Young Queen has no adult Bee Refuge trade: " .. name)
+      trade.output = copy(adult.output)
+    end
+  end
   for _, trade in pairs(self.trades) do
     assert(not self.trades[trade.output.name], "Recursive Bee Refuge trade refused")
   end

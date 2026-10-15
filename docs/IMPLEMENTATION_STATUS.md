@@ -106,3 +106,10 @@ A pedido do usuário, agora tem 24 slots (substituindo o limite anterior de 20),
 com a fileira inferior completa e offsets 0–23. Sprite, ícone e animações originais do Terramart 3.5 do FU,
 com placa Auto Refugee amarela alaranjada. Footprint físico preservado. 125 grupos passaram;
 validação de save/visual no jogo pendente. Ver [BEE_EXCHANGE_0_2_2](BEE_EXCHANGE_0_2_2.md).
+
+## Bee Exchange — 0.2.3-dev
+
+Reduzida para 16 slots, offsets 0–15; Young Queens recebem a recompensa da
+Queen adulta da mesma espécie. Drones, crafting e animação não mudam. 126 grupos
+locais passaram. Esvaziar offsets 16–23 antes de atualizar: o engine reduz o
+inventário e derruba itens excedentes no mundo. Ver [BEE_EXCHANGE_0_2_3](BEE_EXCHANGE_0_2_3.md).

@@ -31,7 +31,7 @@ def check_container_ui(root, native_root):
     from check_assets import png_size
     mod = root/'FUBeesGenetics'
     gui = json.loads((mod/'interface/fubeesgenetics/beeexchange/beeexchange.config').read_text())['gui']
-    vanilla = json.loads((native_root/'interface/chests/chest24.config').read_text())['gui']
+    vanilla = json.loads((native_root/'interface/chests/chest16.config').read_text())['gui']
     interface = asset_json((native_root/'interface.config').read_text())
     draggable = interface['itemDraggableArea']
     assert draggable == [-2,-2,19,19]
@@ -42,8 +42,9 @@ def check_container_ui(root, native_root):
     assert 'press' not in gui['clear'] and gui['close'] == vanilla['close']
     assert gui['count']['value'] == '<slots> SLOTS'
     assert gui['overlay']['mouseTransparent']
+    assert "itemGrid2" not in gui
     positions,indices = [],[]
-    for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,62],0),('itemGrid2',[8,1],[4,43],16)]:
+    for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,42],0)]:
         grid=gui[name]
         assert grid['dimensions']==dimensions and grid['position']==origin and grid['slotOffset']==offset
         assert grid['spacing']==[19,19]
@@ -58,13 +59,13 @@ def check_container_ui(root, native_root):
             x=origin[0]+i%dimensions[0]*19
             y=origin[1]+(dimensions[1]-1-i//dimensions[0])*19
             assert [x+child_size[0]//2,y+child_size[1]//2]==[x+size[0]//2,y+size[1]//2]
-            assert 0<=x<x+19<=166 and 43<=y<y+19<=140
+            assert 0<=x<x+19<=166 and 42<=y<y+19<=120
             positions.append((x,y));indices.append(offset+i)
-    assert len(set(positions))==24 and indices==list(range(24))
+    assert len(set(positions))==16 and indices==list(range(16))
     # No drawn cells overlap another cell or the object preview on the left.
     for i,(x,y) in enumerate(positions):
         for xx,yy in positions[i+1:]:
             assert x+19<=xx or xx+19<=x or y+19<=yy or yy+19<=y
         assert x>=60 or y+19<=84
     obj=json.loads((mod/'objects/bees/fubeesgenetics/beeexchange/beeexchange.object').read_text())
-    assert obj['hasWindowIcon'] and obj['slotCount']==24
+    assert obj['hasWindowIcon'] and obj['slotCount']==16
