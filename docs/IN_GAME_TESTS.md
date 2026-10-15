@@ -57,8 +57,18 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] Placement 5×4, chão/anchors, colisão fina sem parede invisível em transparências,
   espelhamento esquerda/direita por direção na colocação, preview e sprite estático.
 - [ ] Recuperar e integrar a arte final aprovada; conferir original integral v1.2;
-  aprovar mockup/layout GUI antes de release.
+  validar o tema GUI aprovado antes de release.
 
 Não repetir automaticamente spawn com efeito desconhecido por exceção: registrar
 estado/logs e diagnosticar antes de reload. Falha do engine na destruição fica
 fora da garantia normal. Concluir todos os critérios de release da diretriz.
+
+## Reteste visual 0.1.3-dev
+
+- [ ] Fundo, moldura, DNA, cabeçalho e status legíveis na escala usada pelo jogador.
+- [ ] Seletores nas seis linhas: normal/hover/selecionado; mudança permanece ao reabrir.
+- [ ] Reset, fechar, tooltips e três slots conservam suas áreas de interação.
+- [ ] Comparar o perfil/modos existentes antes/depois e repetir o fluxo ITD já validado.
+
+Relato recebido: o usuário confirmou funcionamento perfeito dos seletores e
+ITD 100% funcional na 0.1.2-dev. Topologia e demais cenários não foram detalhados.

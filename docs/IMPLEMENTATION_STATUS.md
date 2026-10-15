@@ -1,4 +1,4 @@
-# Estado da reconstrução — 2026-10-14
+# Estado do projeto — 2026-10-15
 
 Implementação local refeita; **build de desenvolvimento**, sem aprovação de release.
 Base e limitações documentais/artísticas: [RECOVERY](RECOVERY.md).
@@ -6,14 +6,14 @@ Requisitos mais recentes disponíveis: [v1.2 recuperada](MASTER_SPEC_V1_2_RECOVE
 
 | Fase | Entrega local | Gate de jogo |
 | --- | --- | --- |
-| 1 | Metadata, namespace, dependência FU | Carregamento pendente |
+| 1 | Metadata, namespace, dependência FU | Carregamento confirmado no log do usuário |
 | 2 | Adapter somente leitura, seis traits, formato/precedência/defaults | Specimens reais e probe pendentes |
 | 3 | Container real e grids nativos 1/0/2 | Cursor, stacks, Shift+Click pendentes |
 | 4 | Motor, baseline, AND, ignore, Reset, revalidação, rollback/escrow | GUI fechada, save e falhas físicas pendentes |
-| 5 | transferUtil original e registro ~1 Hz sem restrições | Rede ITD pendente |
-| 6 | GUI sem revisão, uma mutação, descarte de reads antigos e tooltips | Renderização e multiplayer pendentes |
+| 5 | transferUtil original e registro ~1 Hz sem restrições | Usuário confirmou ITD 100% funcional na 0.1.2; cenários não detalhados |
+| 6 | GUI sem revisão, uma mutação, descarte de reads antigos e tooltips | Seletores validados pelo usuário na 0.1.2; tema 0.1.3 e multiplayer pendentes |
 | 7 | IDs/quantidades/groups e patch condicional | Unlock permanente e crafting pendentes |
-| 8 | Arte recuperada 40×32 e ícone 20×20, espelhamento nativo | Modelo final aprovado não recuperado; aparência e layout GUI pendentes |
+| 8 | Arte recuperada 40×32 e ícone 20×20, espelhamento nativo | Modelo final aprovado não recuperado; aparência da máquina pendente; tema GUI aprovado e implementado |
 
 ## Evidência executada
 
@@ -27,7 +27,9 @@ Revisão fixada FU: 17868d86c9bb7bc00f92038fb78b48cebd1b41b8 (metadata 6.5.8).
 OpenStarbound auditado: 77f284b0f35b6b383cb149c1bd2295c8a1d00839.
 Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log da 0.1.1 confirma carregamento
 sem o erro anterior do Adapter; a captura mostra perfil preenchido e classificação.
-A correção dos seletores na 0.1.2 ainda requer reteste no jogo.
+O usuário confirmou funcionamento perfeito da 0.1.2 e ITD 100% funcional em sua
+instalação. O tema visual aprovado foi implementado na 0.1.3; falta reteste visual
+no jogo. Lua, objeto, receita, patch e geometria dos slots não foram alterados.
 
 ## Recuperação de item e exceções
 
@@ -47,13 +49,13 @@ conservação/atomicidade contra efeitos incertos, crash ou interrupção entre 
 Esse tratamento de exceção é explicitado, não uma garantia adicional do engine.
 
 Antes de release: executar [IN_GAME_TESTS](IN_GAME_TESTS.md), recuperar/comparar o
-anexo integral v1.2 e a arte aprovada e concluir aprovação do mockup/layout GUI.
+anexo integral v1.2 e a arte aprovada e validar o tema da GUI no jogo.
 
 ## Distribuição PAK e Steam Workshop
 
 Formato principal: fubeesgenetics-mvp.pak (SBAsset6 padrão), gerado com o
 asset_packer nativo OpenStarbound v0.1.15.1 para Starbound 1.4.4. O asset_unpacker
-nativo restaurou os 26 arquivos com assets byte a byte e metadata JSON equivalente.
+nativo restaurou os 27 arquivos com assets byte a byte e metadata JSON equivalente.
 A cópia Workshop contents.pak é idêntica ao PAK manual; o conteúdo compactado
 para entrega ao publisher está em fubeesgenetics-workshop-content.zip.
 

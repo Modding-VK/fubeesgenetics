@@ -6,7 +6,7 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.2-dev — reconstrução preparada para validação no jogo.**
+**0.1.3-dev — reconstrução preparada para validação no jogo.**
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -15,9 +15,10 @@ A [MasterSpec original](FUBeesGenetics_GeneticQueenFilter_MasterSpec.md) foi
 preservada. Leia também os [requisitos v1.2 recuperados](docs/MASTER_SPEC_V1_2_RECOVERED.md),
 a [procedência](docs/RECOVERY.md) e o [estado de implementação](docs/IMPLEMENTATION_STATUS.md).
 **O arquivo integral v1.2 e o sprite final aprovado não foram recuperados.**
-O mod mantém a arte do ZIP MVP, identificada como provisória.
+O sprite da máquina continua sendo o do ZIP MVP, identificado como provisório.
+A interface recebeu o tema aprovado inspirado no FU.
 
-Veja a [correção dos seletores e o reteste da versão 0.1.2](docs/RUNTIME_FIX_0_1_2.md)
+Veja o [tema da interface e o reteste da versão 0.1.3](docs/HUD_THEME_0_1_3.md)
 e o [histórico das versões](docs/VERSION_HISTORY.md).
 
 ## Instalar e usar
@@ -93,11 +94,12 @@ reais; bindings de inventário, promises, widgets e destruição são simulados.
 Não comprovam ITD, multiplayer, save de mundo, crafting ou renderização reais.
 O CI da entrega anterior passou no GitHub; a validação desta correção é registrada no PR.
 O empacotamento usa ferramentas nativas do Starbound/OpenStarbound e valida o
-PAK por desempacotamento: 26 arquivos restaurados, assets idênticos e metadata
+PAK por desempacotamento: 27 arquivos restaurados, assets idênticos e metadata
 JSON equivalente. Não precisa de uma cópia de packed.pak para empacotar o addon.
 A procedência das ferramentas usadas está em tools/pak_toolchain.json.
 
-O gerador preserva os pixels recuperados sem recorte, reescala ou quantização.
+O gerador preserva os pixels recuperados da máquina e do ícone. O tema da GUI
+é desenhado em resolução nativa a partir de artwork/ui-theme.json.
 `artwork/interface-layout.json` é a fonte da config da GUI; botões usam `pressed`,
 e tooltips individuais usam canvas sem captura de eventos ou bloqueio de slots.
 Cada pane aceita uma mutação pendente, descarta consultas anteriores ao comando
