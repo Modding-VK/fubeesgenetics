@@ -18,7 +18,7 @@ Requisitos mais recentes disponíveis: [v1.2 recuperada](MASTER_SPEC_V1_2_RECOVE
 ## Evidência executada
 
 `python3 tools/run_checks.py`: **91 grupos passaram** — Adapter 22, máquina 40,
-interface 20 e assets 9. Sintaxe Lua, metadata e hashes dos 12 arquivos FU
+interface 20 e assets 9. Sintaxe Lua, metadata e hashes dos 14 arquivos FU
 fixados também passaram. Bibliotecas FU são reais; bindings de inventário,
 mensagens/promises, widgets e destruição são simulados. Reload é reinit com
 storage preservado, não save de mundo. A cobertura inclui 35 families/70 subespécies.
@@ -29,7 +29,9 @@ Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log da 0.1.1 confirma carr
 sem o erro anterior do Adapter; a captura mostra perfil preenchido e classificação.
 O usuário confirmou funcionamento perfeito da 0.1.2 e ITD 100% funcional em sua
 instalação. O tema visual aprovado foi implementado na 0.1.3; falta reteste visual
-no jogo. Lua, objeto, receita, patch e geometria dos slots não foram alterados.
+no jogo. Na 0.1.3, Lua, objeto, receita, patch e geometria dos slots não foram alterados.
+Na 0.1.4-dev, a receita recebeu os três reagentes pedidos pelo usuário; a entrega
+fica em dev, sem PR ou promoção para main. Ver RECIPE_0_1_4 e VERSIONING.
 
 ## Recuperação de item e exceções
 

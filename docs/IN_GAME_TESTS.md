@@ -52,7 +52,8 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
   escala, fontes, todas as opções e Reset legíveis.
 - [ ] U1: obter/reobter Bee Station ensina blueprint permanentemente; retirar estação
   do inventário não apaga aprendizado; craft segue exigindo Bee Station/Functional.
-- [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar; manter
+- [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar,
+  10 liquidhealing, 5 liquidsulphuricacid e 2 unknowngene; manter
   blueprints de outros mods e ausência de rota Pixel Printer.
 - [ ] Placement 5×4, chão/anchors, colisão fina sem parede invisível em transparências,
   espelhamento esquerda/direita por direção na colocação, preview e sprite estático.

@@ -1,5 +1,9 @@
 # Armazenamento e publicação no GitHub
 
+**Fluxo vigente:** desenvolvimento em `dev`, produção em `main`. PRs e promoção
+somente com solicitação explícita do usuário. As instruções e tentativas antigas
+abaixo são histórico; siga [VERSIONING](VERSIONING.md) e o AGENTS.md atual.
+
 Destino atual: https://github.com/Modding-VK/fubeesgenetics.
 O repositório foi transferido para a organização Modding-VK, mantendo seu ID.
 O histórico local recovered-mvp é sintético, não deve ser

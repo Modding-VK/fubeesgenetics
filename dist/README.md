@@ -1,4 +1,4 @@
-# Arquivos de distribuição de desenvolvimento — 0.1.3-dev
+# Arquivos de distribuição de desenvolvimento — 0.1.4-dev
 
 - fubeesgenetics-mvp.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
@@ -22,3 +22,6 @@ entregas e links dos pacotes anteriores está em docs/VERSION_HISTORY.md.
 
 A 0.1.3 implanta o tema GUI aprovado; ver docs/HUD_THEME_0_1_3.md.
 A lógica da 0.1.2, validada pelo usuário com ITD, foi preservada.
+
+A 0.1.4 adiciona os reagentes à receita. Entrega de desenvolvimento na branch
+dev; sem PR ou promoção para main. Veja docs/RECIPE_0_1_4.md e VERSIONING.md.

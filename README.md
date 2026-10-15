@@ -6,7 +6,7 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.3-dev — reconstrução preparada para validação no jogo.**
+**0.1.4-dev — reconstrução preparada para validação no jogo.**
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -20,6 +20,12 @@ A interface recebeu o tema aprovado inspirado no FU.
 
 Veja o [tema da interface e o reteste da versão 0.1.3](docs/HUD_THEME_0_1_3.md)
 e o [histórico das versões](docs/VERSION_HISTORY.md).
+
+Desenvolvimento: `dev`. Produção: `main`. PRs e promoção somente com pedido
+explícito do usuário. Veja [VERSIONING](docs/VERSIONING.md).
+
+A receita da 0.1.4 acrescenta os três reagentes solicitados; veja
+[RECIPE_0_1_4](docs/RECIPE_0_1_4.md).
 
 ## Instalar e usar
 
@@ -42,7 +48,8 @@ a extensão .pak não torna sua interface compatível com o executável vanilla.
 1. Obtenha Bee Station para aprender o blueprint. Em saves existentes, recolha
    e obtenha a estação novamente. O aprendizado é permanente.
 2. Na aba Functional da Bee Station, fabrique com **2 AI Chips, 5 Laser Diodes,
-   5 Reinforced Glass e 10 Titanium Bars**. A máquina não é printable.
+   5 Reinforced Glass, 10 Titanium Bars, 10 Healing Water,
+   5 Sulphuric Acid e 2 Unknown Gene**. A máquina não é printable.
 3. Coloque no chão e use o Input central. A primeira válida estabelece baseline
    de todas as seis referências e segue para Approved, à esquerda.
 4. Configure `>=`, `<=` ou `—` por trait; os modos podem ser escolhidos antes
@@ -86,7 +93,7 @@ python3 tools/build_assets.py
 python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
 ```
 
-`--fetch` baixa as 12 fontes FU fixadas em `tools/upstream.json` e verifica seus
+`--fetch` baixa as 14 fontes FU fixadas em `tools/upstream.json` e verifica seus
 hashes Git. Para checkout FU local, use `--fu-root /caminho/FrackinUniverse`.
 O cache não é redistribuído. **91 grupos passaram**: Adapter 22, máquina 40,
 interface 20 e assets 9. São testes do código de produção com bibliotecas FU

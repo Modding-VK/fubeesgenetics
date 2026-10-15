@@ -13,6 +13,8 @@
     "items/generic/crafting/matterassembler/aichip.item": "f0b59e2d261b44ba3524486bc6df0cd85f6c5047",
     "items/generic/crafting/skathreinforcedglass.item": "34ac40bbff99d267387f2f071cdc659c2ebee7ec",
     "recipes/prototyper/resources/laserdiode.recipe": "99a347e00363a187e38fc8ec1aabc06bd8955697",
-    "recipes/madness/robotarms.recipe": "21ca1f4e66969e6639cc523d5335336d9ddde83e"
+    "recipes/madness/robotarms.recipe": "21ca1f4e66969e6639cc523d5335336d9ddde83e",
+    "items/generic/crafting/precursor/unknowngene.item": "f585b4160dcf5cb625f7c4af9d0020065bf5df18",
+    "items/liquids/liquidsulphuricacid.liqitem": "16af52179833726867300f435ec4b43e70201fd6"
   }
 }

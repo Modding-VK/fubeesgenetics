@@ -106,11 +106,12 @@ def check_assets(root, fu_root):
     assert set(ui['scriptWidgetCallbacks'])=={'modeChanged','resetProfile'}
     passed('S6 exclusive selectors, callbacks and pressed artwork')
     recipe = next(d for p,d in docs.items() if p.suffix=='.recipe')
-    assert {v['item']:v['count'] for v in recipe['input']} == {'aichip':2,'laserdiode':5,'skathreinforcedglass':5,'titaniumbar':10}
+    assert {v['item']:v['count'] for v in recipe['input']} == {'aichip':2,'laserdiode':5,'skathreinforcedglass':5,'titaniumbar':10,
+        'liquidhealing':10,'liquidsulphuricacid':5,'unknowngene':2}
     assert recipe['output']=={'item':ident,'count':1}
     assert set(recipe['groups'])=={'mod','beestation','tools','all','functional'}
-    for name in ['aichip','skathreinforcedglass']:
-        items = [asset_json(p.read_text()) for p in (fu_root/'items').rglob('*.item')]
+    for name in ['aichip','skathreinforcedglass','liquidsulphuricacid','unknowngene']:
+        items = [asset_json(p.read_text()) for p in (fu_root/'items').rglob('*') if p.suffix in {'.item','.liqitem'}]
         assert any(i['itemName']==name for i in items)
     passed('S7 recipe IDs quantities and station groups')
     patch = next(d for p,d in docs.items() if p.suffix=='.patch')
