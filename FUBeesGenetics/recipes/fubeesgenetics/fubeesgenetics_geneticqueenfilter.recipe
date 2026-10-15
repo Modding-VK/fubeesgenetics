@@ -1,0 +1,10 @@
+{
+  "input": [
+    {"item": "aichip", "count": 2},
+    {"item": "laserdiode", "count": 5},
+    {"item": "skathreinforcedglass", "count": 5},
+    {"item": "titaniumbar", "count": 10}
+  ],
+  "output": {"item": "fubeesgenetics_geneticqueenfilter", "count": 1},
+  "groups": ["mod", "beestation", "tools", "all", "functional"]
+}

@@ -1,0 +1,18 @@
+{
+  "repository": "sayterdarkwynd/FrackinUniverse",
+  "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+  "files": {
+    ".metadata": "05ec293c9be49e139269b5e9a23da95acbabc98c",
+    "bees/genomeLibrary.lua": "3e8db247bf988c443d522a7f8fb9c047dbaf424f",
+    "bees/beeData.config": "a4764cd86657724bb8719d348962913a95f46854",
+    "bees/bees/honey_queen.item": "4b5ccdee0a6fb6a91cbe39397d8350d540b82c19",
+    "bees/bees/honey_youngQueen.item": "6e9164cd0c7f22fdaa7a49e4b1f50d8eedf0c14f",
+    "bees/bees/honey_drone.item": "aea71be62e19b4528417fa3222a9f4f2dde50f9e",
+    "scripts/kheAA/transferUtil.lua": "053a286db64f0c4d2e63d7d9eb03e13e681483ee",
+    "objects/bees/beestation/beestation.object": "aa4d0e3c3ae9db3c412a432195c1b4e747bdff4e",
+    "items/generic/crafting/matterassembler/aichip.item": "f0b59e2d261b44ba3524486bc6df0cd85f6c5047",
+    "items/generic/crafting/skathreinforcedglass.item": "34ac40bbff99d267387f2f071cdc659c2ebee7ec",
+    "recipes/prototyper/resources/laserdiode.recipe": "99a347e00363a187e38fc8ec1aabc06bd8955697",
+    "recipes/madness/robotarms.recipe": "21ca1f4e66969e6639cc523d5335336d9ddde83e"
+  }
+}
