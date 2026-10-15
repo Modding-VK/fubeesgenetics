@@ -20,3 +20,13 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
   Basear commits publicados no HEAD remoto verificado e atualizar refs com lease.
 - Consultar `docs/VERSIONING.md` para a convenção adotada. Mudanças nessas regras
   exigem nova instrução do usuário, não inferência a partir de tarefas rotineiras.
+
+# Direção futura do projeto
+
+- Nome público planejado: Abusive Bee Industry. Título Workshop planejado:
+  [oSB][FU] Abusive Bee Industry, identificando OpenStarbound e Frackin Universe.
+- Essa mudança foi informada como futura; não renomear o pacote, metadata ou
+  IDs internos automaticamente a partir de uma tarefa de manutenção.
+- Recurso futuro: máquina que troca abelhas por recursos, com referências no
+  Bee Refuge do FU e na mecânica de Terramart Shipments 3.5. Consultar ROADMAP.
+- A referência ao Terramart não estabelece, por si só, dependência técnica.

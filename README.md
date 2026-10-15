@@ -27,6 +27,10 @@ explícito do usuário. Veja [VERSIONING](docs/VERSIONING.md).
 A receita da 0.1.4 acrescenta os três reagentes solicitados; veja
 [RECIPE_0_1_4](docs/RECIPE_0_1_4.md).
 
+A expansão futura terá o nome **Abusive Bee Industry**, com título Workshop
+**[oSB][FU] Abusive Bee Industry**. O [planejamento](docs/ROADMAP.md) registra
+o rebranding e a futura máquina de troca de abelhas por recursos.
+
 ## Instalar e usar
 
 O formato principal de distribuição é **`fubeesgenetics-mvp.pak`**, um arquivo
