@@ -1,0 +1,35 @@
+{
+  "frame": [
+    64,
+    80
+  ],
+  "visible_bounds": [
+    4,
+    28,
+    61,
+    80
+  ],
+  "visible_size": [
+    57,
+    52
+  ],
+  "transparent_top_rows": 28,
+  "glass_bounds_approx": [
+    17,
+    53,
+    48,
+    68
+  ],
+  "rod_bounds": [
+    31,
+    60,
+    35,
+    67
+  ],
+  "rod_shaft_width": 2,
+  "rod_mount_width": 4,
+  "partial_alpha_glass_pixels": 349,
+  "changed_pixels_only_in_sign_and_rod": 676,
+  "game_validation": false,
+  "pak_changed": false
+}
