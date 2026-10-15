@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Reproduce recovered native art and corrected GUI without resampling or redrawing."""
+"""Preserve recovered machine pixels and build the approved native HUD theme."""
 import json
 from pathlib import Path
 import shutil
+from ui_theme import build
 
 ROOT = Path(__file__).resolve().parents[1]
 OBJECT = ROOT/'FUBeesGenetics/objects/bees/fubeesgenetics/geneticqueenfilter'
@@ -14,8 +15,9 @@ def main():
     shutil.copyfile(ROOT/'artwork/machine-recovered.png', OBJECT/'geneticqueenfilter.png')
     shutil.copyfile(ROOT/'artwork/icon-recovered.png', OBJECT/'geneticqueenfiltericon.png')
     layout = json.loads((ROOT/'artwork/interface-layout.json').read_text())
+    build(ROOT, UI)
     (UI/'fubeesgenetics_geneticqueenfilter.config').write_text(json.dumps(layout,ensure_ascii=False,indent=2)+'\n')
-    print('Restored archived 40x32 sprite, 20x20 icon and corrected UI config; no pixel edits.')
+    print('Preserved machine/icon; built native 388x332 HUD, controls and UI config.')
 
 
 if __name__ == '__main__':

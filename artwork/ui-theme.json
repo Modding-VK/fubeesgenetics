@@ -1,0 +1,26 @@
+{
+  "name": "FU navy and metal",
+  "size": [388, 332],
+  "rowRules": [126, 148, 170, 192, 214, 236],
+  "palette": {
+    "edge": "#263b51",
+    "metalLight": "#d2d9df",
+    "metal": "#a4afb9",
+    "metalShade": "#64758a",
+    "panel": "#081c36",
+    "scanline": "#0a2240",
+    "header": "#102d51",
+    "blueLine": "#4678a8",
+    "circuit": "#264a6c",
+    "amber": "#f1cb5a",
+    "amberShade": "#b58a35",
+    "button": "#4d6075",
+    "buttonHover": "#677e94",
+    "buttonPressed": "#35485d",
+    "text": "#dce7f1",
+    "cyan": "#64d8ed",
+    "cyanLight": "#b5f3fa",
+    "approved": "#77d49a",
+    "rejected": "#ec8492"
+  }
+}

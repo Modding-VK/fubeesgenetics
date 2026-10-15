@@ -36,8 +36,12 @@ fila normal, quarto slot, consumo de energia ou reinterpretação de ignore.
 ## Formato de instalação/publicação
 
 PAK padrão SBAsset6 produzido e lido pelas ferramentas nativas OpenStarbound
-v0.1.15.1 para Starbound 1.4.4. Round-trip verificou 26 arquivos, assets idênticos
+v0.1.15.1 para Starbound 1.4.4. Round-trip verificou 27 arquivos, assets idênticos
 e metadata equivalente. Manual usa Starbound/mods/fubeesgenetics-mvp.pak;
 Workshop usa contents.pak idêntico, gerenciado pela Steam. As fontes e a pasta
 aberta continuam disponíveis para manutenção/Mod Uploader. Ver [WORKSHOP](WORKSHOP.md).
 Não houve mudança nas regras do motor nem declaração de compatibilidade vanilla.
+
+Tema GUI aprovado pelo usuário e implementado na 0.1.3-dev; ver
+[HUD_THEME_0_1_3](HUD_THEME_0_1_3.md). A confirmação do usuário sobre seletores
+e ITD na 0.1.2 complementa os testes simulados, sem validar todos os cenários.
