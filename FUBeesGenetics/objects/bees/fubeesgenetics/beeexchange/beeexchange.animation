@@ -1,194 +1,97 @@
 {
   "animatedParts": {
     "stateTypes": {
-      "shipper": {
+      "machine": {
         "default": "ready",
         "states": {
-          "error": {
-            "frames": 2,
-            "cycle": 0.2,
-            "mode": "loop"
-          },
           "ready": {
-            "frames": 2,
-            "cycle": 0.2,
+            "frames": 1,
+            "cycle": 1,
             "mode": "loop"
           },
-          "ship": {
-            "frames": 23,
-            "cycle": 2.0,
-            "mode": "transition",
-            "transition": "closed",
-            "properties": {
-              "immediateSoundRangeMultiplier": 0.5
-            },
-            "frameProperties": {
-              "immediateSound": [
-                "/sfx/objects/cropshipper_arm_up.ogg",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "/sfx/objects/cropshipper_box_lock2.ogg",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "/sfx/objects/cropshipper_arm_down.ogg",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "/sfx/objects/cropshipper_door_close.ogg",
-                "",
-                ""
-              ]
-            }
-          },
-          "closed": {
-            "frames": 2,
-            "cycle": 0.2,
-            "mode": "loop"
-          },
-          "open": {
-            "frames": 4,
-            "cycle": 0.4,
+          "work": {
+            "frames": 20,
+            "cycle": 1.25,
             "mode": "transition",
             "transition": "ready",
-            "properties": {
-              "immediateSoundRangeMultiplier": 0.5
-            },
             "frameProperties": {
               "immediateSound": [
-                "/sfx/objects/cropshipper_door_open.ogg",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "/sfx/tools/teleport_up.ogg",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 ""
               ]
             }
-          },
-          "toready": {
-            "frames": 3,
-            "cycle": 0.3,
-            "mode": "transition",
-            "transition": "ready"
-          },
-          "toerror": {
-            "frames": 3,
-            "cycle": 0.3,
-            "mode": "transition",
-            "transition": "error"
           }
         }
       }
     },
     "parts": {
-      "shipper": {
-        "properties": {
-          "centered": false
-        },
-        "partStates": {
-          "shipper": {
-            "error": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:error.<frame>"
-              }
-            },
-            "ready": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:ready.<frame>"
-              }
-            },
-            "ship": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:ship.<frame>"
-              }
-            },
-            "closed": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:closed.<frame>"
-              }
-            },
-            "open": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:open.<frame>"
-              }
-            },
-            "toready": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:toready.<frame>"
-              }
-            },
-            "toerror": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperkhe.png:toerror.<frame>"
-              }
-            }
-          }
-        }
-      },
-      "shipperfullbright": {
+      "specimen": {
         "properties": {
           "centered": false,
           "zLevel": 1,
-          "fullbright": true
+          "fullbright": false
         },
         "partStates": {
-          "shipper": {
-            "error": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:error.<frame>"
-              }
-            },
+          "machine": {
             "ready": {
               "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:ready.<frame>"
+                "image": "specimen.png:ready.1"
               }
             },
-            "ship": {
+            "work": {
               "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:ship.<frame>"
-              }
-            },
-            "closed": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:closed.<frame>"
-              }
-            },
-            "open": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:open.<frame>"
-              }
-            },
-            "toready": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:toready.<frame>"
-              }
-            },
-            "toerror": {
-              "properties": {
-                "image": "/objects/generic/cropshipper/cropshipperfullbright.png:toerror.<frame>"
+                "image": "specimen.png:work.<frame>"
               }
             }
           }
         }
       },
-      "refugeSign": {
+      "teleport": {
         "properties": {
           "centered": false,
           "zLevel": 2,
-          "image": "/objects/bees/fubeesgenetics/beeexchange/autorefugee-plaque.png"
+          "fullbright": true
+        },
+        "partStates": {
+          "machine": {
+            "ready": {
+              "properties": {
+                "image": "teleport.png:ready.1"
+              }
+            },
+            "work": {
+              "properties": {
+                "image": "teleport.png:work.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "base": {
+        "properties": {
+          "centered": false,
+          "zLevel": 0,
+          "image": "static.png"
         }
       }
     }
-  },
-  "sounds": {
-    "ship": [],
-    "ready": []
   }
 }

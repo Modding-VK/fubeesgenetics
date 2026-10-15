@@ -131,12 +131,11 @@ local function exchange(slot)
   return true
 end
 
--- Keep FU's complete ship/closed/open cycle. Simultaneous trades share one
--- visual shipment; incoming trades never restart the animation halfway through.
+-- Share one work cycle across simultaneous sales; never restart mid-teleport.
 local function animateSale()
   if self.shippingTimer then return end
-  self.shippingTimer, self.reopening = 0, false
-  animator.setAnimationState("shipper", "ship", true)
+  self.shippingTimer = 0
+  animator.setAnimationState("machine", "work", true)
 end
 
 function init()
@@ -166,17 +165,13 @@ function init()
     assert(not self.trades[trade.output.name], "Recursive Bee Refuge trade refused")
   end
   transferUtil.loadSelfContainer()
-  animator.setAnimationState("shipper", "ready")
+  animator.setAnimationState("machine", "ready")
 end
 
 function update(dt)
   if self.shippingTimer then
     self.shippingTimer = self.shippingTimer + dt
-    if self.shippingTimer >= 3.5 and not self.reopening then
-      animator.setAnimationState("shipper", "open", true)
-      self.reopening = true
-    end
-    if self.shippingTimer >= 3.9 then self.shippingTimer = nil end
+    if self.shippingTimer >= 1.25 then self.shippingTimer = nil end
   end
   self.timer = self.timer + dt
   if self.timer < 1 then return end

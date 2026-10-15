@@ -30,7 +30,8 @@
         "assets/packed/sfx/objects/cropshipper_door_open.ogg": "f0326831031d58f4f3660c42100e5aff5047c653",
         "assets/packed/interface/chests/chest16.config": "5f7760c0d9b59dd69b24616f518ed983f84e751f",
         "assets/packed/interface/chests/slots1to16.png": "d417c5daf9bed886655a3f1b0db9b461230e9c52",
-        "assets/packed/interface/chests/shine1to16.png": "276af0903fb6104ae86e7f7281bb25affe894c7e"
+        "assets/packed/interface/chests/shine1to16.png": "276af0903fb6104ae86e7f7281bb25affe894c7e",
+        "assets/packed/sfx/tools/teleport_up.ogg": "f26774316869ba59fbddef727f6524e9410a434c"
       }
     },
     {

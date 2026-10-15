@@ -148,10 +148,7 @@
       ],
       "imageLayers": [
         {
-          "image": "/objects/generic/cropshipper/cropshipperkhe.png:ready.1"
-        },
-        {
-          "image": "autorefugee-plaque.png"
+          "image": "static.png"
         }
       ]
     }

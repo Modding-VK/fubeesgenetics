@@ -24,7 +24,7 @@ end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
 config={getParameter=function(name) if name=='slotCount' then return 16 end end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
-animator={setAnimationState=function(kind,state) assert(kind=='shipper');animations[#animations+1]=state end}
+animator={setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
  assert(id==42 and s>=0 and s<16);return copy(slots[s])
 end,containerTakeNumItemsAt=function(id,s,n)
@@ -219,15 +219,14 @@ test('E27 all 16 retained offsets process bees, with no access to removed slots'
  update(1)
  assert(total('coalore')==160 and total('bee_honey_queen')==0 and not storage.exchangePending)
 end)
-test('E28 confirmed sales trigger one full FU shipment visual cycle',function()
+test('E28 confirmed sales trigger work and permit a new cycle after 1.25 seconds',function()
  assert(animations[1]=='ready')
  slots[0]=item('bee_honey_queen');slots[1]=item('bee_cybernetic_queen');update(1)
- assert(#animations==2 and animations[2]=='ship')
- update(2);assert(#animations==2) -- engine transitions ship -> closed after 2 seconds
- update(1.5);assert(animations[3]=='open')
- update(.4);assert(not self.shippingTimer)
+ assert(#animations==2 and animations[2]=='work')
+ update(.6);assert(#animations==2 and self.shippingTimer)
+ update(.65);assert(not self.shippingTimer)
  slots[15]=item('bee_honey_queen');update(1)
- assert(animations[4]=='ship' and total('coalore')==20)
+ assert(animations[3]=='work' and total('coalore')==20)
 end)
 test('E29 ignored items, incomplete batches and failed takes never trigger a shipment',function()
  slots[0]=item('stone');slots[1]=item('bee_honey_drone',4);update(1)
@@ -235,10 +234,10 @@ test('E29 ignored items, incomplete batches and failed takes never trigger a shi
  slots[0]=item('bee_honey_queen');faults.takeFailure=1;update(1)
  assert(#animations==1 and total('bee_honey_queen')==1)
 end)
-test('E30 continuous sales do not restart the FU animation every tick',function()
+test('E30 continuous sales do not restart an active teleport',function()
  slots[0]=item('bee_honey_queen',20)
  update(1);update(1);update(1);update(1)
- assert(#animations==2 and animations[2]=='ship' and total('coalore')==40)
+ assert(#animations==3 and animations[2]=='work' and animations[3]=='work' and total('coalore')==40)
 end)
 test('E31 Young Queens inherit live adult reward patches and ignore larva Pixel rewards',function()
  local adultPath='/recipes/bees/beerefuge/queens/honeyqueen.recipe'

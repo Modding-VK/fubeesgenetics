@@ -153,20 +153,18 @@ def check_assets(root, fu_root, native_root):
     orientation=exchange['orientations'][0]
     assert orientation['imagePosition']==[-8,0]
     assert set(map(tuple,orientation['spaces']))=={(x,y) for x in range(6) for y in range(5)}
-    assert orientation['imageLayers']==[
-        {'image':'/objects/generic/cropshipper/cropshipperkhe.png:ready.1'},
-        {'image':'autorefugee-plaque.png'}]
+    assert orientation['imageLayers']==[{'image':'static.png'}]
     animation=docs[mod/exchange['animation'].lstrip('/')]
     refs(animation)
-    original=asset_json((fu_root/'objects/generic/cropshipper/cropshipperkhe.animation').read_text())
-    assert animation['animatedParts']['stateTypes']==original['animatedParts']['stateTypes']
-    for name,part in original['animatedParts']['parts'].items():
-        expected=copy.deepcopy(part)
-        for state in expected['partStates']['shipper'].values():
-            state['properties']['image']='/objects/generic/cropshipper/'+state['properties']['image']
-        assert animation['animatedParts']['parts'][name]==expected
+    states=animation['animatedParts']['stateTypes']['machine']['states']
+    assert states['work']['frames']==20 and states['work']['cycle']==1.25
+    assert states['work']['transition']=='ready'
+    assert states['work']['frameProperties']['immediateSound'][8]=='/sfx/tools/teleport_up.ogg'
     assert exchange['animationPosition']==[-8,0]
-    assert animation['animatedParts']['parts']['refugeSign']['properties']['zLevel']==2
+    for name in ['specimen','teleport']:
+        assert png_size(exchange_path.parent/(name+'.png'))==(1344,80)
+    assert png_size(exchange_path.parent/'static.png')==(64,80)
+    assert animation['animatedParts']['parts']['teleport']['properties']['fullbright']
     refs(exchange)
     exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
     refs(exchange_ui)
