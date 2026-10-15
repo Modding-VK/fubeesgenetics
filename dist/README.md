@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.1-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.2-dev
 
-- fubeesgenetics-mvp-0.2.1-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.2-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.1-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.2-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -35,10 +35,14 @@ O usuário confirmou o funcionamento visual dos slots da 0.1.5; as mudanças
 visuais da 0.1.6 ainda precisam de conferência no jogo.
 
 A 0.2.0 acrescenta Bee Exchange: trocas automáticas do Bee Refuge, 20 slots,
-receita e desbloqueio pela Bee Station. São 121 grupos de testes locais;
+receita e desbloqueio pela Bee Station. São 125 grupos de testes locais;
 validação de crafting, mundo e ITD da nova máquina ainda pendente.
 Veja docs/BEE_EXCHANGE_0_2_0.md.
 
 A 0.2.1 usa interface nativa de container semelhante ao Terramart, com
 20 slots visíveis e alinhados, imagem da máquina e Take all.
 Veja docs/BEE_EXCHANGE_UI_0_2_1.md.
+
+A 0.2.2 amplia para 24 slots e usa o sprite/animações do Terramart do FU,
+com placa Auto Refugee amarela alaranjada. Instalação por substituição do PAK, sem refazer a máquina.
+Veja docs/BEE_EXCHANGE_0_2_2.md.

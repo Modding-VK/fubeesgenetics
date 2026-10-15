@@ -99,3 +99,10 @@ e 4 abaixo, todos com backingImage nativo e centro (9,9), objeto, título e
 Take all. Controlador/receita/ITD não mudam. 121 grupos locais e round-trip
 de 36 arquivos passaram; visual e interação no engine ainda pendentes.
 Ver [BEE_EXCHANGE_UI_0_2_1](BEE_EXCHANGE_UI_0_2_1.md).
+
+## Bee Exchange — 0.2.2-dev
+
+A pedido do usuário, agora tem 24 slots (substituindo o limite anterior de 20),
+com a fileira inferior completa e offsets 0–23. Sprite, ícone e animações originais do Terramart 3.5 do FU,
+com placa Auto Refugee amarela alaranjada. Footprint físico preservado. 125 grupos passaram;
+validação de save/visual no jogo pendente. Ver [BEE_EXCHANGE_0_2_2](BEE_EXCHANGE_0_2_2.md).

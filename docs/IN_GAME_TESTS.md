@@ -107,3 +107,10 @@ Validar [roteiro de interface](BEE_EXCHANGE_UI_0_2_1.md#instalação-e-reteste):
 20 slots marcados, vazio/ocupado, centro dos itens, contagem, tooltip, clique
 direito, Shift+Click e Take all. Repetir trocas automáticas e ITD.
 Esses checks ainda não foram executados no jogo.
+
+## Bee Exchange — 0.2.2-dev
+
+Executar o [reteste 0.2.2](BEE_EXCHANGE_0_2_2.md#instalação-e-reteste):
+conservação de conteúdo do save, 24 slots, trocas nos novos offsets 20–23,
+ITD 0–23, sprite do FU e placa Auto Refugee sobre o chão, animação de envio/fechamento/
+reabertura e sons ao vender. Pendente no jogo.

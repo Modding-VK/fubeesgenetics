@@ -10,7 +10,7 @@ local function same(a,b)
  for k in pairs(b) do if a[k]==nil then return false end end;return true
 end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
-local slots,faults,puts,takes,drops,logs
+local slots,faults,puts,takes,drops,logs,animations
 local paths={};for path in pairs(fixture.tradeRecipes) do paths[#paths+1]=path end;table.sort(paths)
 root={assetJson=function(path)
  if path==base..'trades.config' then return {recipes=paths} end
@@ -22,10 +22,11 @@ end,itemConfig=function(item)
  return {config={maxStack=faults.maxStack or 1000},parameters={}}
 end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
-config={getParameter=function(name) if name=='slotCount' then return 20 end end}
+config={getParameter=function(name) if name=='slotCount' then return 24 end end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
+animator={setAnimationState=function(kind,state) assert(kind=='shipper');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
- assert(id==42 and s>=0 and s<20);return copy(slots[s])
+ assert(id==42 and s>=0 and s<24);return copy(slots[s])
 end,containerTakeNumItemsAt=function(id,s,n)
  takes=takes+1
  if faults.takeFailure==takes or not slots[s] or slots[s].count<n then return nil end
@@ -55,7 +56,7 @@ require=function(path)
 end
 dofile(fixture.repoRoot..'/FUBeesGenetics'..base..'beeexchange.lua')
 local function fresh(saved,inventory)
- slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={}
+ slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={}
  transferUtil.vars=nil;init()
 end
 local function item(name,count,parameters) return {name=name,count=count or 1,parameters=parameters or {}} end
@@ -66,7 +67,7 @@ local function total(name)
  return n
 end
 local function fill()
- for s=0,19 do slots[s]=item('stone',1000,{slot=s}) end
+ for s=0,23 do slots[s]=item('stone',1000,{slot=s}) end
 end
 local groups=0
 local function test(label,fn) fresh();fn();groups=groups+1;print('PASS '..label) end
@@ -174,9 +175,9 @@ test('E21 failed destruction recovery reports failure without retry duplication'
  slots[0]=item('bee_honey_queen');faults.putFailure=true;update(1);faults.spawnFailure=true
  die();die();assert(#drops==0 and #logs==1 and storage.exchangePending[1].count==10)
 end)
-test('E22 real FU automation registration exposes the same 20-slot container',function()
+test('E22 real FU automation registration exposes the same 24-slot container',function()
  assert(transferUtil.vars.inContainers[42] and transferUtil.vars.outContainers[42])
- assert(transferUtil.vars.containerId==42 and self.size==20)
+ assert(transferUtil.vars.containerId==42 and self.size==24)
 end)
 test('E23 a changed input snapshot aborts before any withdrawal',function()
  slots[0]=item('bee_honey_queen',1,{genome='before'})
@@ -205,5 +206,35 @@ end)
 test('E26 full-container trades can use remaining capacity in an existing output stack',function()
  fill();slots[0]=item('bee_honey_queen',2);slots[19]=item('coalore',990)
  update(1);assert(total('bee_honey_queen')==1 and slots[19].count==1000)
+end)
+test('E27 four added offsets process bees and survive a 20-slot save expansion',function()
+ local oldInventory={};for i=0,19 do oldInventory[i]=item('stone',i+1,{oldSlot=i}) end
+ fresh({},oldInventory)
+ for i=0,19 do assert(same(slots[i],oldInventory[i])) end
+ for i=20,23 do slots[i]=item('bee_honey_queen') end
+ update(1)
+ assert(total('coalore')==40 and total('bee_honey_queen')==0 and not storage.exchangePending)
+ for i=0,19 do assert(same(slots[i],oldInventory[i])) end
+end)
+test('E28 confirmed sales trigger one full FU shipment visual cycle',function()
+ assert(animations[1]=='ready')
+ slots[0]=item('bee_honey_queen');slots[1]=item('bee_cybernetic_queen');update(1)
+ assert(#animations==2 and animations[2]=='ship')
+ update(2);assert(#animations==2) -- engine transitions ship -> closed after 2 seconds
+ update(1.5);assert(animations[3]=='open')
+ update(.4);assert(not self.shippingTimer)
+ slots[23]=item('bee_honey_queen');update(1)
+ assert(animations[4]=='ship' and total('coalore')==20)
+end)
+test('E29 ignored items, incomplete batches and failed takes never trigger a shipment',function()
+ slots[0]=item('stone');slots[1]=item('bee_honey_drone',4);update(1)
+ assert(#animations==1)
+ slots[0]=item('bee_honey_queen');faults.takeFailure=1;update(1)
+ assert(#animations==1 and total('bee_honey_queen')==1)
+end)
+test('E30 continuous sales do not restart the FU animation every tick',function()
+ slots[0]=item('bee_honey_queen',20)
+ update(1);update(1);update(1);update(1)
+ assert(#animations==2 and animations[2]=='ship' and total('coalore')==40)
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

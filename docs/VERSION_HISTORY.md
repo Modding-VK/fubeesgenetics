@@ -18,7 +18,9 @@ sintéticos da recuperação não são usados como ancestrais remotos.
 
 | 0.2.0-dev | Segunda máquina: Bee Exchange automática com as 105 trocas do Bee Refuge e 20 slots | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/522ab60c848583a9a66494bb4c54e4cd350a33a5/dist/fubeesgenetics-mvp-0.2.0-dev.pak), [detalhes](BEE_EXCHANGE_0_2_0.md); entrega em dev |
 
-| 0.2.1-dev | Interface nativa da Bee Exchange: 20 slots visíveis/centralizados, objeto e Take all | [PAK](../dist/fubeesgenetics-mvp-0.2.1-dev.pak), [detalhes](BEE_EXCHANGE_UI_0_2_1.md); entrega em dev |
+| 0.2.1-dev | Interface nativa da Bee Exchange: 20 slots visíveis/centralizados, objeto e Take all | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/fec264835eeac70ea06147289c557799acffa9b9/dist/fubeesgenetics-mvp-0.2.1-dev.pak), [detalhes](BEE_EXCHANGE_UI_0_2_1.md); entrega em dev |
+
+| 0.2.2-dev | Bee Exchange com 24 slots e sprite Auto Refugee, placa em tom de mel | [PAK](../dist/fubeesgenetics-mvp-0.2.2-dev.pak), [detalhes](BEE_EXCHANGE_0_2_2.md); entrega em dev |
 
 SHA-256 do PAK e ZIP Workshop de cada snapshot estão em dist/SHA256SUMS.
 Versões dev não representam aprovação de release ou publicação na Steam.

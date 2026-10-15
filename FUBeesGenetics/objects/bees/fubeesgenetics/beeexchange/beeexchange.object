@@ -8,16 +8,16 @@
   "rarity": "rare",
   "price": 8000,
   "printable": false,
-  "slotCount": 20,
+  "slotCount": 24,
   "hasWindowIcon": true,
-  "inventoryIcon": "beeexchangeicon.png",
+  "inventoryIcon": "/objects/generic/cropshipper/cropshippericon.png",
   "openFrameIndex": 0,
   "autoCloseCooldown": 3600,
   "frameCooldown": 1,
   "orientations": [
     {
       "imagePosition": [
-        0,
+        -8,
         0
       ],
       "frames": 1,
@@ -146,7 +146,14 @@
       "anchors": [
         "bottom"
       ],
-      "dualImage": "beeexchange.png"
+      "imageLayers": [
+        {
+          "image": "/objects/generic/cropshipper/cropshipperkhe.png:ready.1"
+        },
+        {
+          "image": "autorefugee-plaque.png"
+        }
+      ]
     }
   ],
   "scripts": [
@@ -167,5 +174,10 @@
     ]
   ],
   "genericDescription": "Bee Refuge trades, automatically. Queens give resources; Young Queens and groups of five Drones give Pixels.",
-  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated."
+  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated.",
+  "animation": "/objects/bees/fubeesgenetics/beeexchange/beeexchange.animation",
+  "animationPosition": [
+    -8,
+    0
+  ]
 }

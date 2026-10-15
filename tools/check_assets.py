@@ -54,7 +54,7 @@ def check_assets(root, fu_root, native_root):
         nonlocal count
         count += 1
         print('PASS '+label)
-    docs = {p:json.loads(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch'}}
+    docs = {p:json.loads(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
     assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange"}
     path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
@@ -86,7 +86,7 @@ def check_assets(root, fu_root, native_root):
             for child in value: refs(child)
         elif isinstance(value,str) and value.startswith('/') and not value.startswith('//'):
             target = value.split(':')[0].split('?')[0]
-            assert (mod/target.lstrip('/')).is_file() or (native_root/target.lstrip('/')).is_file(), target
+            assert (mod/target.lstrip('/')).is_file() or (native_root/target.lstrip('/')).is_file() or (fu_root/target.lstrip('/')).is_file(), target
     refs(obj)
     ui = json.loads((mod/obj['uiConfig'].lstrip('/')).read_text())
     refs(ui)
@@ -146,16 +146,34 @@ def check_assets(root, fu_root, native_root):
     exchange_path,exchange = next((p,d) for p,d in objects if d['objectName']=='fubeesgenetics_beeexchange')
     shipper=asset_json((fu_root/'objects/generic/cropshipper/cropshipper_kheAA2.object').read_text())
     assert shipper['shortdescription']=='Terramart Shipments 3.5'
-    assert exchange['objectType']=='container' and exchange['slotCount']==shipper['slotCount']//2==20
-    assert png_size(exchange_path.parent/exchange['orientations'][0]['dualImage'])==(48,40)
-    assert png_size(exchange_path.parent/exchange['inventoryIcon'])==(20,20)
+    assert exchange['objectType']=='container' and exchange['slotCount']==24 and shipper['slotCount']==40
+    assert png_size(exchange_path.parent/'autorefugee-plaque.png')==(64,80)
+    assert exchange['inventoryIcon']=='/objects/generic/cropshipper/cropshippericon.png'
+    assert png_size(native_root/exchange['inventoryIcon'].lstrip('/'))==(16,16)
+    orientation=exchange['orientations'][0]
+    assert orientation['imagePosition']==[-8,0]
+    assert set(map(tuple,orientation['spaces']))=={(x,y) for x in range(6) for y in range(5)}
+    assert orientation['imageLayers']==[
+        {'image':'/objects/generic/cropshipper/cropshipperkhe.png:ready.1'},
+        {'image':'autorefugee-plaque.png'}]
+    animation=docs[mod/exchange['animation'].lstrip('/')]
+    refs(animation)
+    original=asset_json((fu_root/'objects/generic/cropshipper/cropshipperkhe.animation').read_text())
+    assert animation['animatedParts']['stateTypes']==original['animatedParts']['stateTypes']
+    for name,part in original['animatedParts']['parts'].items():
+        expected=copy.deepcopy(part)
+        for state in expected['partStates']['shipper'].values():
+            state['properties']['image']='/objects/generic/cropshipper/'+state['properties']['image']
+        assert animation['animatedParts']['parts'][name]==expected
+    assert exchange['animationPosition']==[-8,0]
+    assert animation['animatedParts']['parts']['refugeSign']['properties']['zLevel']==2
     refs(exchange)
     exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
     refs(exchange_ui)
     grid=exchange_ui['gui']['itemGrid']
     assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
     assert not exchange['printable']
-    passed('S10 Bee Exchange half-size container and native grid assets')
+    passed('S10 Bee Exchange 24-slot container and native grid assets')
     exchange_recipe=next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']=='fubeesgenetics_beeexchange')
     assert exchange_recipe['input']==[{'item':'beerefuge','count':1},{'item':'cropshipper_kheAA2','count':1},{'item':'aichip','count':2}]
     assert exchange_recipe['groups']==recipe['groups']
@@ -171,5 +189,5 @@ def check_assets(root, fu_root, native_root):
     passed('S12 all 105 pinned Bee Refuge trades included, no codex trades')
     from check_container_ui import check_container_ui
     check_container_ui(root, native_root)
-    passed('S13 native chest layout, visible slots, exact centering and offsets 0-19')
+    passed('S13 native chest layout, visible slots, exact centering and offsets 0-23')
     print(f'Assets: {count} test groups passed (static checks).')

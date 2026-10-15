@@ -123,6 +123,8 @@
     "recipes/bees/beerefuge/queens/xenodaemonaequeen.recipe": "8247c89e3d35f262659dec145e8e1a42f2f9852a",
     "objects/bees/beerefuge/beerefuge.object": "9921259f853f873cc4a9c7ee301ff6b56258b4ea",
     "objects/generic/cropshipper/cropshipper_kheAA2.object": "0476ec6fb0ad8c89b09dedd5aa67de8b9bd069af",
-    "objects/generic/cropshipper/cropshipper_kheAA.lua": "673eca11ce93e5af2e1f65fb110415462b8548f2"
+    "objects/generic/cropshipper/cropshipper_kheAA.lua": "673eca11ce93e5af2e1f65fb110415462b8548f2",
+    "objects/generic/cropshipper/cropshipperkhe.png": "b7ada27b5478c6ee6b3296e5cb36b183a780ba8f",
+    "objects/generic/cropshipper/cropshipperkhe.animation": "30876f49345540e250bebfde929e508fa0f8faf1"
   }
 }

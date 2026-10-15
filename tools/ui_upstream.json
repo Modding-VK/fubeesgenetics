@@ -19,7 +19,15 @@
         "assets/packed/interface/xhover.png": "9cc5b719bea7f55b772595eafb6e0c975584d9b0",
         "assets/packed/interface/xpress.png": "53734714e55819178ef370022675127cc5f4bac5",
         "assets/packed/items/currency/money.png": "eee1d05c723584a963fc73d87f2cb00b1a9be96c",
-        "assets/packed/interface/inventory/itembordercommon.png": "3f566acef5a212b55c645ae2d7d0634b64859976"
+        "assets/packed/interface/inventory/itembordercommon.png": "3f566acef5a212b55c645ae2d7d0634b64859976",
+        "assets/packed/objects/generic/cropshipper/cropshippericon.png": "f4b03b8b6314d5a6fd554d73c2c885bbe429d109",
+        "assets/packed/objects/generic/cropshipper/cropshipperfullbright.png": "974f45afa82177afb8417ddbea7979addc2a2cc7",
+        "assets/packed/objects/generic/cropshipper/default.frames": "67b21ca4c1cebd1d6a57cc9d7a7b93b15f5b7776",
+        "assets/packed/sfx/objects/cropshipper_arm_up.ogg": "c42c8abc57c0ae21e5a15680ea844c88d531b2c5",
+        "assets/packed/sfx/objects/cropshipper_box_lock2.ogg": "bece911acb4aca0606a66c69ad496c73066b42ef",
+        "assets/packed/sfx/objects/cropshipper_arm_down.ogg": "c5872e513fedef71eb753c68f18136d6e1aa4eb6",
+        "assets/packed/sfx/objects/cropshipper_door_close.ogg": "a38719f4ef5158329ecba3d6771fba2e009226cc",
+        "assets/packed/sfx/objects/cropshipper_door_open.ogg": "f0326831031d58f4f3660c42100e5aff5047c653"
       }
     },
     {

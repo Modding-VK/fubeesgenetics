@@ -43,7 +43,7 @@ def check_container_ui(root, native_root):
     assert gui['count']['value'] == '<slots> SLOTS'
     assert gui['overlay']['mouseTransparent']
     positions,indices = [],[]
-    for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,62],0),('itemGrid2',[4,1],[42,43],16)]:
+    for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,62],0),('itemGrid2',[8,1],[4,43],16)]:
         grid=gui[name]
         assert grid['dimensions']==dimensions and grid['position']==origin and grid['slotOffset']==offset
         assert grid['spacing']==[19,19]
@@ -60,11 +60,11 @@ def check_container_ui(root, native_root):
             assert [x+child_size[0]//2,y+child_size[1]//2]==[x+size[0]//2,y+size[1]//2]
             assert 0<=x<x+19<=166 and 43<=y<y+19<=140
             positions.append((x,y));indices.append(offset+i)
-    assert len(set(positions))==20 and indices==list(range(20))
+    assert len(set(positions))==24 and indices==list(range(24))
     # No drawn cells overlap another cell or the object preview on the left.
     for i,(x,y) in enumerate(positions):
         for xx,yy in positions[i+1:]:
             assert x+19<=xx or xx+19<=x or y+19<=yy or yy+19<=y
         assert x>=60 or y+19<=84
     obj=json.loads((mod/'objects/bees/fubeesgenetics/beeexchange/beeexchange.object').read_text())
-    assert obj['hasWindowIcon'] and obj['slotCount']==20
+    assert obj['hasWindowIcon'] and obj['slotCount']==24
