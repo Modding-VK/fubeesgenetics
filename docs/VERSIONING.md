@@ -15,7 +15,9 @@ Branches antigas são preservadas como histórico; não são removidas por este 
 ## Desenvolvimento
 
 Cada pacote entregue tem uma versão identificável no _metadata e um commit com
-seus assets, PAK e dist/SHA256SUMS. Usar links por SHA nos downloads fornecidos ao
+seus assets, PAK e dist/SHA256SUMS. O PAK manual deve se chamar
+`fubeesgenetics-mvp-<versão>.pak`, usando a versão do _metadata. O PAK da
+Workshop continua contents.pak, com os mesmos bytes. Usar links por SHA nos downloads fornecidos ao
 usuário, conservando acesso às versões anteriores. Validar:
 
 ```sh

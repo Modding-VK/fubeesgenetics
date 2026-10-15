@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -81,9 +82,13 @@ def main():
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
     mod = ROOT / 'FUBeesGenetics'
+    version = json.loads((mod / '_metadata').read_text())['version']
+    if not isinstance(version, str) or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?', version):
+        parser.error('Metadata version must be a valid filename-safe version identifier.')
+    pak_name = f'fubeesgenetics-mvp-{version}.pak'
     with tempfile.TemporaryDirectory(prefix='fubees-pak-', dir=output) as temporary:
         staging = Path(temporary)
-        pak = staging / 'fubeesgenetics-mvp.pak'
+        pak = staging / pak_name
         subprocess.run([str(packer), str(mod), str(pak)], check=True)
         with pak.open('rb') as stream:
             if stream.read(8) != b'SBAsset6':
@@ -95,7 +100,7 @@ def main():
         report(output / pak.name, f'{count} files verified by native unpacker')
     workshop = output / 'fubeesgenetics-workshop'
     workshop.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(output / 'fubeesgenetics-mvp.pak', workshop / 'contents.pak')
+    shutil.copyfile(output / pak_name, workshop / 'contents.pak')
     build_zip(output / 'fubeesgenetics-workshop-content.zip', [('contents.pak', workshop / 'contents.pak')])
     paths = [p for p in ROOT.rglob('*') if p.is_file()
              and not {'.git', '.cache', '__pycache__'}.intersection(p.relative_to(ROOT).parts)

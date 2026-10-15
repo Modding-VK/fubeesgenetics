@@ -3,7 +3,7 @@
 Registrar build/commit OpenStarbound, versão FU, commit do addon, mods, data,
 resultado e trechos de starbound.log. Não marcar como executado por mocks.
 
-- [ ] Instalar fubeesgenetics-mvp.pak em Starbound/mods e abrir via OpenStarbound,
+- [ ] Instalar fubeesgenetics-mvp-0.1.4-dev.pak em Starbound/mods e abrir via OpenStarbound,
   sem erros de assets/scripts/dependência. Não manter cópia descompactada ou
   assinatura Workshop duplicada. Testar também a instalação por assinatura
   Workshop quando publicada, com conteúdo contents.pak gerenciado pela Steam.

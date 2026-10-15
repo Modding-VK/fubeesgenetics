@@ -33,9 +33,10 @@ o rebranding e a futura máquina de troca de abelhas por recursos.
 
 ## Instalar e usar
 
-O formato principal de distribuição é **`fubeesgenetics-mvp.pak`**, um arquivo
-Starbound padrão. Para instalação manual, copie para
-`Starbound/mods/fubeesgenetics-mvp.pak`. Instale FU e execute OpenStarbound com
+O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.4-dev.pak`**, um arquivo
+Starbound padrão. O nome é gerado com a versão do _metadata, seguindo
+`fubeesgenetics-mvp-<versão>.pak`. Para instalação manual, copie para
+`Starbound/mods/fubeesgenetics-mvp-0.1.4-dev.pak`. Instale FU e execute OpenStarbound com
 essas fontes de mods, conforme a instalação definida pelo usuário.
 
 Na Steam Workshop, o conteúdo é distribuído como **`contents.pak`**: Steam

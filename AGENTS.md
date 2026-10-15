@@ -14,6 +14,9 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 - Desenvolvimento usa versão `X.Y.Z-dev` no `_metadata`; a próxima promoção
   autorizada deve usar `X.Y.Z`, com tag anotada `vX.Y.Z` no commit de produção.
   Não criar tags de release para conteúdo ainda somente em `dev`.
+- O PAK de download manual deve incluir a versão do _metadata no nome:
+  fubeesgenetics-mvp-X.Y.Z-dev.pak (ou X.Y.Z em produção). Não fornecer
+  um PAK manual sem versão. O conteúdo Workshop continua contents.pak.
 - Antes de publicar uma tag de release, conferir que não existe, que corresponde
   ao metadata e ao commit aprovado da `main`, e registrar o hash do PAK.
 - Nunca usar os commits locais sintéticos da recuperação como ancestrais remotos.

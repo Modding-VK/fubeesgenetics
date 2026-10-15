@@ -55,7 +55,7 @@ anexo integral v1.2 e a arte aprovada e validar o tema da GUI no jogo.
 
 ## Distribuição PAK e Steam Workshop
 
-Formato principal: fubeesgenetics-mvp.pak (SBAsset6 padrão), gerado com o
+Formato principal: fubeesgenetics-mvp-0.1.4-dev.pak (SBAsset6 padrão), gerado com o
 asset_packer nativo OpenStarbound v0.1.15.1 para Starbound 1.4.4. O asset_unpacker
 nativo restaurou os 27 arquivos com assets byte a byte e metadata JSON equivalente.
 A cópia Workshop contents.pak é idêntica ao PAK manual; o conteúdo compactado
