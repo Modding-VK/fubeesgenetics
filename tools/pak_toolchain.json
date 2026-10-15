@@ -1,0 +1,18 @@
+{
+  "release": "OpenStarbound v0.1.15.1",
+  "format": "SBAsset6 (Starbound 1.4.4)",
+  "url": "https://github.com/OpenStarbound/OpenStarbound/releases/download/v0.1.15.1/OpenStarbound-Linux-Clang-Client.tar.lz",
+  "archive_sha256": "4c349762ed3edff5e77203a29600cf287815680e88725294d6bf1c27b2fd937c",
+  "verification": "Native pack and unpack; identical asset bytes and equivalent metadata JSON.",
+  "notes": "Native tools remain in ignored cache and are not redistributed. Other compatible native tools can be selected by CLI arguments.",
+  "linux_x86_64_tools": {
+    "asset_packer": {
+      "sha256": "8c2043062a02755eb2d645c9b8420d651f984da86fe27666b8a1267cebd03be7",
+      "version": "OpenStarbound Asset Packer v0.1.15.1 for v1.4.4 (linux x86_64) Source ID: e604e078e89310f1212dd20f5cd01bd59d25300b"
+    },
+    "asset_unpacker": {
+      "sha256": "ca6df934dd6dd4f29730c8053775ce5f109427c5feb92f8d15dda64ddf1d59f9",
+      "version": "OpenStarbound Asset Unpacker v0.1.15.1 for v1.4.4 (linux x86_64) Source ID: e604e078e89310f1212dd20f5cd01bd59d25300b"
+    }
+  }
+}

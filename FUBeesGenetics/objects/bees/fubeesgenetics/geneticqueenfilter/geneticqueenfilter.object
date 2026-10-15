@@ -1,0 +1,138 @@
+{
+  "objectName": "fubeesgenetics_geneticqueenfilter",
+  "objectType": "container",
+  "shortdescription": "Genetic Queen Filter",
+  "description": "Filters inspected Queens and Young Queens using configurable genetic criteria.",
+  "race": "generic",
+  "category": "storage",
+  "rarity": "rare",
+  "price": 1200,
+  "printable": false,
+  "slotCount": 3,
+  "hasWindowIcon": false,
+  "inventoryIcon": "geneticqueenfiltericon.png",
+  "openFrameIndex": 0,
+  "autoCloseCooldown": 3600,
+  "frameCooldown": 1,
+  "orientations": [
+    {
+      "image": "geneticqueenfilter.png",
+      "imagePosition": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "flipImages": false,
+      "spaces": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "anchors": [
+        "bottom"
+      ]
+    }
+  ],
+  "scripts": [
+    "/objects/bees/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.lua"
+  ],
+  "scriptDelta": 10,
+  "uiConfig": "/interface/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.config",
+  "inputNodes": [
+    [
+      0,
+      0
+    ]
+  ],
+  "outputNodes": [
+    [
+      4,
+      0
+    ]
+  ],
+  "humanDescription": "A machine that compares analyzed queen bees and sorts them by their genetic traits. Pretty clever.",
+  "apexDescription": "A selective genetics apparatus. It compares each specimen against precisely configured genetic parameters.",
+  "avianDescription": "A device for guiding generations of queens toward chosen traits. An unusual kind of artificial selection.",
+  "floranDescription": "Machine judgesss queen beesss. Strong genes go one way, bad genes go other way.",
+  "glitchDescription": "Analytical. This machine compares the genetic traits of queen bees against a stored reference profile.",
+  "hylotlDescription": "A precise instrument for selectively refining the traits of bee queens across generations.",
+  "novakidDescription": "This contraption sorts queen bees by their genes. Saves a whole lotta pickin' through 'em by hand.",
+  "genericDescription": "Stores a genetic reference and sorts inspected bee queens according to configurable traits."
+}
