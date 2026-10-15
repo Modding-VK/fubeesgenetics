@@ -1,0 +1,36 @@
+{
+  "frame_size": [
+    64,
+    80
+  ],
+  "work_frames": 20,
+  "work_cycle_seconds": 1.25,
+  "specimen_hold_seconds": 0.5,
+  "teleport_frames": 12,
+  "teleport_seconds": 0.75,
+  "specimen_size": [
+    6,
+    6
+  ],
+  "specimen_origin": [
+    30,
+    54
+  ],
+  "effect_bounds": [
+    28,
+    53,
+    39,
+    60
+  ],
+  "idle_has_insect": false,
+  "final_frame_matches_idle": true,
+  "base_glass_rod_and_sign_unchanged_outside_effect": true,
+  "part_order": [
+    "base",
+    "specimen",
+    "teleport"
+  ],
+  "game_tested": false,
+  "pak_changed": false,
+  "base_sha256": "44aee667ee0bf29993c76cc2e09eb371e2db4c26ceba928e3eaca90d96f73579"
+}

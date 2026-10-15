@@ -1,0 +1,37 @@
+{
+  "frameGrid": {
+    "size": [
+      64,
+      80
+    ],
+    "dimensions": [
+      21,
+      1
+    ],
+    "names": [
+      [
+        "ready.1",
+        "work.1",
+        "work.2",
+        "work.3",
+        "work.4",
+        "work.5",
+        "work.6",
+        "work.7",
+        "work.8",
+        "work.9",
+        "work.10",
+        "work.11",
+        "work.12",
+        "work.13",
+        "work.14",
+        "work.15",
+        "work.16",
+        "work.17",
+        "work.18",
+        "work.19",
+        "work.20"
+      ]
+    ]
+  }
+}

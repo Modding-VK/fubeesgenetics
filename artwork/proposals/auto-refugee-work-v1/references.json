@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/FerreiraJGB/Starbound",
+  "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+  "files": [
+    "monsters/bugs/butterbee/butterbee.png",
+    "stats/effects/beamout/beamout.animation",
+    "stats/effects/beamout/beamaway.statuseffect",
+    "animations/teleport/playerwarpout.png"
+  ],
+  "notes": "Native beamout: 12 frames, 0.75 seconds; blue/white silhouette, compression, vertical beam. Only the insect source is copied; the small effect is adapted."
+}

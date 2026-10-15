@@ -1,0 +1,97 @@
+{
+  "animatedParts": {
+    "stateTypes": {
+      "machine": {
+        "default": "ready",
+        "states": {
+          "ready": {
+            "frames": 1,
+            "cycle": 1,
+            "mode": "loop"
+          },
+          "work": {
+            "frames": 20,
+            "cycle": 1.25,
+            "mode": "transition",
+            "transition": "ready",
+            "frameProperties": {
+              "immediateSound": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "/sfx/tools/teleport_up.ogg",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          }
+        }
+      }
+    },
+    "parts": {
+      "specimen": {
+        "properties": {
+          "centered": false,
+          "zLevel": 1,
+          "fullbright": false
+        },
+        "partStates": {
+          "machine": {
+            "ready": {
+              "properties": {
+                "image": "specimen.png:ready.1"
+              }
+            },
+            "work": {
+              "properties": {
+                "image": "specimen.png:work.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "teleport": {
+        "properties": {
+          "centered": false,
+          "zLevel": 2,
+          "fullbright": true
+        },
+        "partStates": {
+          "machine": {
+            "ready": {
+              "properties": {
+                "image": "teleport.png:ready.1"
+              }
+            },
+            "work": {
+              "properties": {
+                "image": "teleport.png:work.<frame>"
+              }
+            }
+          }
+        }
+      },
+      "base": {
+        "properties": {
+          "centered": false,
+          "zLevel": 0,
+          "image": "static.png"
+        }
+      }
+    }
+  }
+}
