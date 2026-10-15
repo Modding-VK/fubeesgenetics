@@ -2,8 +2,8 @@
   "name": "FUBeesGenetics",
   "friendlyName": "FU Bees Genetics",
   "author": "ViniKoerich",
-  "version": "0.1.6-dev",
-  "description": "Genetic Queen Filter addon for Frackin' Universe. Configurable six-trait sorting of inspected Queens and Young Queens. Development build awaiting in-game validation.",
+  "version": "0.2.0-dev",
+  "description": "Genetic Queen Filter and automatic Bee Exchange for Frackin Universe. Development build awaiting in-game validation.",
   "requires": [
     "FrackinUniverse"
   ]

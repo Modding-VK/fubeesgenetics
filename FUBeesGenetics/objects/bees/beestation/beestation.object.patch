@@ -1,7 +1,24 @@
 [
   [
-    {"op": "test", "path": "/learnBlueprintsOnPickup", "inverse": true},
-    {"op": "add", "path": "/learnBlueprintsOnPickup", "value": []}
+    {
+      "op": "test",
+      "path": "/learnBlueprintsOnPickup",
+      "inverse": true
+    },
+    {
+      "op": "add",
+      "path": "/learnBlueprintsOnPickup",
+      "value": []
+    }
   ],
-  {"op": "add", "path": "/learnBlueprintsOnPickup/-", "value": "fubeesgenetics_geneticqueenfilter"}
+  {
+    "op": "add",
+    "path": "/learnBlueprintsOnPickup/-",
+    "value": "fubeesgenetics_geneticqueenfilter"
+  },
+  {
+    "op": "add",
+    "path": "/learnBlueprintsOnPickup/-",
+    "value": "fubeesgenetics_beeexchange"
+  }
 ]

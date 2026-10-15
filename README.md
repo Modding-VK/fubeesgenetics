@@ -6,7 +6,11 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.6-dev — reconstrução preparada para validação no jogo.**
+**0.2.0-dev — Bee Exchange implementada, aguardando validação no jogo.**
+
+A segunda máquina, **Bee Exchange**, troca abelhas automaticamente pelas
+recompensas do Bee Refuge. Tem 20 slots, metade do Terramart Shipments 3.5.
+Veja [funcionamento, receita e tabela](docs/BEE_EXCHANGE_0_2_0.md).
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -29,7 +33,7 @@ A receita da 0.1.4 acrescenta os três reagentes solicitados; veja
 
 A expansão futura terá o nome **Abusive Bee Industry**, com título Workshop
 **[oSB][FU] Abusive Bee Industry**. O [planejamento](docs/ROADMAP.md) registra
-o rebranding e a futura máquina de troca de abelhas por recursos.
+o rebranding futuro e a máquina de troca de abelhas por recursos.
 
 A 0.1.5 separa as molduras estáticas dos slots nativos e centraliza os itens;
 veja [HUD_SLOTS_0_1_5](docs/HUD_SLOTS_0_1_5.md). O usuário confirmou o resultado.
@@ -38,10 +42,10 @@ veja [HUD_LABELS_0_1_6](docs/HUD_LABELS_0_1_6.md).
 
 ## Instalar e usar
 
-O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.6-dev.pak`**, um arquivo
+O formato principal de distribuição é **`fubeesgenetics-mvp-0.2.0-dev.pak`**, um arquivo
 Starbound padrão. O nome é gerado com a versão do _metadata, seguindo
 `fubeesgenetics-mvp-<versão>.pak`. Para instalação manual, copie para
-`Starbound/mods/fubeesgenetics-mvp-0.1.6-dev.pak`. Instale FU e execute OpenStarbound com
+`Starbound/mods/fubeesgenetics-mvp-0.2.0-dev.pak`. Instale FU e execute OpenStarbound com
 essas fontes de mods, conforme a instalação definida pelo usuário.
 
 Na Steam Workshop, o conteúdo é distribuído como **`contents.pak`**: Steam
@@ -54,6 +58,8 @@ O ZIP do mod mantém a pasta descompactada para desenvolvimento/Mod Uploader;
 o ZIP de fontes contém o projeto. Veja [WORKSHOP](docs/WORKSHOP.md) para os
 fluxos de publicação e geração do PAK. O mod continua exigindo OpenStarbound;
 a extensão .pak não torna sua interface compatível com o executável vanilla.
+
+### Genetic Queen Filter
 
 1. Obtenha Bee Station para aprender o blueprint. Em saves existentes, recolha
    e obtenha a estação novamente. O aprendizado é permanente.
@@ -93,6 +99,27 @@ Para obter o objeto como administrador:
 /spawnitem fubeesgenetics_geneticqueenfilter
 ```
 
+## Bee Exchange
+
+Obtenha/recolha a **Bee Station** para aprender a receita. Na aba Functional,
+fabrique com **1 Bee Refuge + 1 Terramart Shipments 3.5 + 2 AI Chips**.
+
+Deposite Queens, Young Queens ou Drones em qualquer um dos 20 slots. A máquina
+faz as trocas a cada segundo, mesmo fechada, sem botões ou consumo de energia.
+Retire os recursos/Pixels do mesmo inventário. Drones exigem lotes de cinco da
+mesma espécie, inclusive em stacks com parâmetros diferentes. Os demais itens
+ficam intactos. Sem espaço para a recompensa inteira, as abelhas aguardam.
+
+Para automação, os offsets nativos vão de **0 a 19** e são compartilhados entre
+entrada e saída: filtre abelhas na inserção e recursos/Pixels na extração.
+Validação ITD real da nova máquina ainda pendente. Não é necessário resetar
+ou substituir o Genetic Queen Filter existente.
+
+```text
+/admin
+/spawnitem fubeesgenetics_beeexchange
+```
+
 ## Testes e ferramentas
 
 Requisitos: Python 3.9+ e Lua 5.4 (executável ou biblioteca compartilhada).
@@ -100,18 +127,19 @@ Requisitos: Python 3.9+ e Lua 5.4 (executável ou biblioteca compartilhada).
 ```sh
 python3 tools/run_checks.py --fetch
 python3 tools/build_assets.py
+python3 tools/build_beeexchange_assets.py
 python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
 ```
 
-`--fetch` baixa as 14 fontes FU fixadas em `tools/upstream.json` e verifica seus
+`--fetch` baixa as 122 fontes FU fixadas em `tools/upstream.json` e verifica seus
 hashes Git. Para checkout FU local, use `--fu-root /caminho/FrackinUniverse`.
-O cache não é redistribuído. **91 grupos passaram**: Adapter 22, máquina 40,
-interface 20 e assets 9. São testes do código de produção com bibliotecas FU
+O cache não é redistribuído. **120 grupos passaram**: Adapter 22, Queen Filter 40,
+interface 20, Bee Exchange 26 e assets 12. São testes do código de produção com bibliotecas FU
 reais; bindings de inventário, promises, widgets e destruição são simulados.
 Não comprovam ITD, multiplayer, save de mundo, crafting ou renderização reais.
 A validação de cada entrega é executada pelo CI em dev; PRs não são criados automaticamente.
 O empacotamento usa ferramentas nativas do Starbound/OpenStarbound e valida o
-PAK por desempacotamento: 29 arquivos restaurados, assets idênticos e metadata
+PAK por desempacotamento: 39 arquivos restaurados, assets idênticos e metadata
 JSON equivalente. Não precisa de uma cópia de packed.pak para empacotar o addon.
 A procedência das ferramentas usadas está em tools/pak_toolchain.json.
 

@@ -24,18 +24,15 @@ Objetivo fornecido pelo usuário: trocar abelhas por recursos, tomando como
 referência o Bee Refuge do Frackin Universe (mencionado como Bee Refugee na
 conversa), com a mecânica de referência do **Terramart Shipments 3.5**.
 
-As referências ainda não foram auditadas para essa funcionalidade. O fluxo
-exato e os parâmetros não foram especificados, portanto não definir valores
-ou regras como se já tivessem sido aprovados. Para preparar a implementação:
+Implementada na **0.2.0-dev**, com o nome provisório **Bee Exchange**.
+As fontes do FU foram auditadas no commit fixado em tools/upstream.json:
+105 receitas do Bee Refuge; Terramart Shipments 3.5 usa o ID cropshipper_kheAA2
+e 40 slots. A Bee Exchange usa 20 slots compartilhados e lê as receitas reais
+do FU em runtime. Crafting: 1 beerefuge + 1 cropshipper_kheAA2 + 2 aichip,
+na Bee Station, com desbloqueio ao obtê-la. Não há dependência adicional de mod.
 
-- Identificar o item/fontes exatos do Terramart Shipments 3.5 e estudar sua
-  mecânica junto à implementação do Bee Refuge do FU.
-- Definir abelhas aceitas, quantidades, recursos de retorno e eventuais tempos
-  ou limites de operação, conforme a proposta funcional a ser discutida.
-- Decidir se haverá integração direta ou lógica própria inspirada na referência.
-  Citar Terramart Shipments não cria por si só uma nova dependência obrigatória.
-- Planejar slots, interface e automação conforme o fluxo escolhido, preservando
-  o Genetic Queen Filter e a integração ITD já existentes.
+Ver [especificação, tabela e testes](BEE_EXCHANGE_0_2_0.md).
+A implementação não executa o rebranding planejado. Validação no jogo pendente.
 
 ## Fluxo de trabalho
 

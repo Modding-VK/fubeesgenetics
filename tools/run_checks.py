@@ -114,6 +114,7 @@ def main():
     tags["brokenname"] = {"bee": True, "queen": True}
     tags["bee_honey_fakequeen"] = {"bee": True}
     fixture = {"beeData": bee_data, "tags": tags, "fuRoot": str(fu_root), "repoRoot": str(ROOT),
+               "tradeRecipes": {"/"+p: asset_json((fu_root/p).read_text()) for p in MANIFEST["files"] if p.startswith("recipes/bees/beerefuge/")},
                "uiConfig": json.loads((ROOT / "FUBeesGenetics/interface/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.config").read_text())}
     with tempfile.TemporaryDirectory(prefix="fubeesgenetics-checks-") as directory:
         script = Path(directory) / "run.lua"
@@ -122,7 +123,7 @@ def main():
         script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                           + "dofile(" + lua(str(ROOT / "tests/adapter_test.lua")) + ")\n")
         run_lua(script)
-        for name in ["machine_test.lua", "interface_test.lua"]:
+        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua"]:
             script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)

@@ -56,8 +56,8 @@ def check_assets(root, fu_root):
         print('PASS '+label)
     docs = {p:json.loads(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
-    assert len(objects) == 1
-    path,obj = objects[0]
+    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange"}
+    path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
     passed('S1 JSON and true three-slot container')
@@ -114,7 +114,7 @@ def check_assets(root, fu_root):
         if isinstance(w,dict) and w.get('type')=='button': assert 'press' not in w and 'pressed' in w
     assert set(ui['scriptWidgetCallbacks'])=={'modeChanged','resetProfile'}
     passed('S6 exclusive selectors, callbacks and pressed artwork')
-    recipe = next(d for p,d in docs.items() if p.suffix=='.recipe')
+    recipe = next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']==ident)
     assert {v['item']:v['count'] for v in recipe['input']} == {'aichip':2,'laserdiode':5,'skathreinforcedglass':5,'titaniumbar':10,
         'liquidhealing':10,'liquidsulphuricacid':5,'unknowngene':2}
     assert recipe['output']=={'item':ident,'count':1}
@@ -126,7 +126,7 @@ def check_assets(root, fu_root):
     patch = next(d for p,d in docs.items() if p.suffix=='.patch')
     for before in [{}, {'learnBlueprintsOnPickup':['existing']},asset_json((fu_root/'objects/bees/beestation/beestation.object').read_text())]:
         after = apply_patch(before,patch)
-        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident]
+        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange']
         assert {k:v for k,v in after.items() if k!='learnBlueprintsOnPickup'} == {k:v for k,v in before.items() if k!='learnBlueprintsOnPickup'}
     passed('S8 conditional blueprint patch preserves existing entries')
     c=gui['helpCanvas']
@@ -143,4 +143,30 @@ def check_assets(root, fu_root):
         for name in ['itemGrid','itemGrid2','outputItemGrid']:
             x,y=gui[name]['position'];assert x2<=x or x1>=x+24 or y2<=y or y1>=y+24
     passed('S9 exact help text and mouse-transparent non-capturing canvas')
+    exchange_path,exchange = next((p,d) for p,d in objects if d['objectName']=='fubeesgenetics_beeexchange')
+    shipper=asset_json((fu_root/'objects/generic/cropshipper/cropshipper_kheAA2.object').read_text())
+    assert shipper['shortdescription']=='Terramart Shipments 3.5'
+    assert exchange['objectType']=='container' and exchange['slotCount']==shipper['slotCount']//2==20
+    assert png_size(exchange_path.parent/exchange['orientations'][0]['dualImage'])==(48,40)
+    assert png_size(exchange_path.parent/exchange['inventoryIcon'])==(20,20)
+    refs(exchange)
+    exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
+    refs(exchange_ui)
+    grid=exchange_ui['gui']['itemGrid']
+    assert grid['dimensions']==[5,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
+    assert not exchange['printable']
+    passed('S10 Bee Exchange half-size container and native grid assets')
+    exchange_recipe=next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']=='fubeesgenetics_beeexchange')
+    assert exchange_recipe['input']==[{'item':'beerefuge','count':1},{'item':'cropshipper_kheAA2','count':1},{'item':'aichip','count':2}]
+    assert exchange_recipe['groups']==recipe['groups']
+    assert exchange_recipe['output']['count']==1
+    refuge=asset_json((fu_root/'objects/bees/beerefuge/beerefuge.object').read_text())
+    assert refuge['objectName']=='beerefuge' and shipper['objectName']=='cropshipper_kheAA2'
+    passed('S11 exact Bee Refuge/Terramart/AI Chips recipe and shared unlock')
+    trade_manifest=docs[exchange_path.parent/'trades.config']
+    expected={str('/'+str(p.relative_to(fu_root))) for p in (fu_root/'recipes/bees/beerefuge').rglob('*.recipe')
+              if len((r:=asset_json(p.read_text()))['input'])==1 and r['input'][0]['item'].startswith('bee_')}
+    assert set(trade_manifest['recipes'])==expected and len(expected)==105
+    assert len(trade_manifest['recipes'])==len(set(trade_manifest['recipes']))
+    passed('S12 all 105 pinned Bee Refuge trades included, no codex trades')
     print(f'Assets: {count} test groups passed (static checks).')

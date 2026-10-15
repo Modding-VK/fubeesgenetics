@@ -92,3 +92,11 @@ Esse relato não detalha a execução de cada cenário acima.
 - [ ] Status e Last result abaixo da divisória, sem tocar a borda inferior.
 - [ ] Reset Profile centralizado no botão, incluindo hover/pressionado.
 - [ ] Perfil existente e slots preservados ao substituir o PAK, sem reset.
+
+## Segunda máquina — Bee Exchange 0.2.0-dev
+
+O roteiro de [BEE_EXCHANGE_0_2_0](BEE_EXCHANGE_0_2_0.md#reteste-no-jogo) cobre
+receita/desbloqueio, trocas, GUI fechada, lotes de cinco Drones, itens ignorados,
+inventário cheio, ITD, save/reload e destruição. Esses testes ainda não foram
+executados dentro do OpenStarbound; os 120 grupos automatizados usam bindings
+de engine simulados.

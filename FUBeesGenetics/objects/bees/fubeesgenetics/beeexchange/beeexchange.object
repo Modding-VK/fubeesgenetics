@@ -1,0 +1,171 @@
+{
+  "objectName": "fubeesgenetics_beeexchange",
+  "objectType": "container",
+  "shortdescription": "Bee Exchange",
+  "description": "Automatically exchanges Queens, Young Queens and Drones at Bee Refuge rates. Other items are left untouched.",
+  "race": "generic",
+  "category": "storage",
+  "rarity": "rare",
+  "price": 8000,
+  "printable": false,
+  "slotCount": 20,
+  "hasWindowIcon": false,
+  "inventoryIcon": "beeexchangeicon.png",
+  "openFrameIndex": 0,
+  "autoCloseCooldown": 3600,
+  "frameCooldown": 1,
+  "orientations": [
+    {
+      "imagePosition": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "spaces": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "anchors": [
+        "bottom"
+      ],
+      "dualImage": "beeexchange.png"
+    }
+  ],
+  "scripts": [
+    "/objects/bees/fubeesgenetics/beeexchange/beeexchange.lua"
+  ],
+  "scriptDelta": 10,
+  "uiConfig": "/interface/fubeesgenetics/beeexchange/beeexchange.config",
+  "inputNodes": [
+    [
+      0,
+      0
+    ]
+  ],
+  "outputNodes": [
+    [
+      5,
+      0
+    ]
+  ],
+  "genericDescription": "Bee Refuge trades, automatically. Queens give resources; Young Queens and groups of five Drones give Pixels.",
+  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated."
+}

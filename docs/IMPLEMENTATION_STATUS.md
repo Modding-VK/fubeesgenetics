@@ -83,3 +83,11 @@ colunas mais espaçadas acomodam os nomes completos. Status e Last result
 descem 3 pixels; Reset Profile recebe centralização explícita e offset vertical
 de -1 pixel. Os slots, receita e scripts Lua são idênticos à 0.1.5.
 Ver [HUD_LABELS_0_1_6](HUD_LABELS_0_1_6.md). Reteste visual no jogo pendente.
+
+## Segunda máquina — Bee Exchange 0.2.0-dev
+
+Implementada com 20 slots, as 105 receitas do Bee Refuge lidas do FU em runtime,
+trocas automáticas e crafting/desbloqueio na Bee Station. A suíte atual tem
+120 grupos locais e PAK validado por round-trip de 39 arquivos. O Queen Filter
+permanece igual à 0.1.6-dev. Ver [BEE_EXCHANGE_0_2_0](BEE_EXCHANGE_0_2_0.md)
+para tabela, limites de recuperação e reteste manual. Validação no jogo pendente.
