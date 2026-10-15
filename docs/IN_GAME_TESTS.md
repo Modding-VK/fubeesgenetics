@@ -52,7 +52,7 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar; manter
   blueprints de outros mods e ausência de rota Pixel Printer.
 - [ ] Placement 5×4, chão/anchors, colisão fina sem parede invisível em transparências,
-  orientação única e sprite estático.
+  espelhamento esquerda/direita por direção na colocação, preview e sprite estático.
 - [ ] Recuperar e integrar a arte final aprovada; conferir original integral v1.2;
   aprovar mockup/layout GUI antes de release.
 

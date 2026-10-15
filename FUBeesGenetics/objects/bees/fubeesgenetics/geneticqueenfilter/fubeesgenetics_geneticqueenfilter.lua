@@ -109,8 +109,27 @@ local function spawnRecovery(item)
   return ok and confirmedDrop(id)
 end
 
+-- OpenStarbound 0.1.14 returns the input descriptor even after a complete put.
+-- Confirm that case against the exact synchronous slot delta before any rollback.
+local function putAt(item, slot)
+  local normalize = fubeesgenetics_beegeneticadapter.normalize
+  local before = normalize(world.containerItemAt(entity.id(), slot))
+  local leftover = world.containerPutItemsAt(entity.id(), item, slot)
+  if not leftover then return nil end
+  local after = normalize(world.containerItemAt(entity.id(), slot))
+  local unit = normalize(item)
+  local function matches(value)
+    return value and value.name == unit.name and same(value.parameters, unit.parameters)
+  end
+  if unit and after and matches(after) and (not before or matches(before))
+    and after.count == (before and before.count or 0) + unit.count then
+    return nil
+  end
+  return leftover
+end
+
 local function rollback(item)
-  local leftover = world.containerPutItemsAt(entity.id(), item, INPUT)
+  local leftover = putAt(item, INPUT)
   if not leftover then
     sb.logWarn("[FUBeesGenetics] Failed transfer rolled back to Input.")
     return
@@ -120,7 +139,7 @@ local function rollback(item)
     return
   end
   if not self.recoveryUncertain then
-    leftover = world.containerPutItemsAt(entity.id(), leftover, INPUT)
+    leftover = putAt(leftover, INPUT)
     if not leftover then
       sb.logWarn("[FUBeesGenetics] Spawn failed; final rollback to Input succeeded.")
       return
@@ -135,7 +154,7 @@ local function recover()
   if self.recoveryUncertain then return end
   local item = storage.recoveryEscrow
   if not world.containerItemAt(entity.id(), INPUT) then
-    local leftover = world.containerPutItemsAt(entity.id(), item, INPUT)
+    local leftover = putAt(item, INPUT)
     if not leftover then
       storage.recoveryEscrow = nil
       sb.logWarn("[FUBeesGenetics] Escrow restored to Input.")
@@ -179,11 +198,11 @@ local function process()
     rollback(unit); refreshStatus(); return
   end
 
-  local leftover = world.containerPutItemsAt(entity.id(), unit, destination)
+  local leftover = putAt(unit, destination)
   if leftover then
     rollback(leftover); refreshStatus(); return
   end
-  -- The API's nil-leftover contract confirms insertion. Commit only now.
+  -- Insertion confirmed by nil leftover or the exact legacy-engine slot delta.
   if destination == APPROVED then
     storage.profile, storage.references = nextProfile, nextReferences
   end

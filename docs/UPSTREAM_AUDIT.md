@@ -78,3 +78,14 @@ executáveis e as versões estão em tools/pak_toolchain.json. Elas ficam no cac
 não são redistribuídas. StarPackedAssetSource.cpp usa cabeçalho SBAsset6 e guarda
 metadata no índice; por isso o unpacker pode reformatar _metadata mantendo seus
 valores. Os demais 25 arquivos foram comparados byte a byte após desempacotar.
+
+## Runtime instalado e correção 0.1.1
+
+O log posterior identifica OpenStarbound 0.1.14, revisão
+cd2d804f6feaa4c588df822f01eb5504ebd4ba55, e FU 6.5.8. A auditoria inicial
+modelou incorretamente root disponível ao carregar scripts e seguiu o contrato
+documentado de nil-leftover sem conferir a implementação instalada. A correção
+e as diferenças verificadas estão em [RUNTIME_FIX_0_1_1](RUNTIME_FIX_0_1_1.md).
+Nesse engine, callbacks são ligados após carregar os scripts, e putItemsAt pode
+retornar o argumento mesmo após sucesso; a confirmação agora também admite o
+delta exato do slot. Isso substitui as suposições anteriores para essa versão.

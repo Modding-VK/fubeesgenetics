@@ -27,6 +27,26 @@ A instalação por assinatura não precisa de cópia manual para Starbound/mods.
 Se OpenStarbound for uma instalação separada com outras fontes configuradas,
 confirmar no starbound.log quais diretórios e itens foram carregados.
 
+### Addon local com FU pela Workshop no OpenStarbound 0.1.14
+
+A verificação de dependências dos mods locais ocorre antes da descoberta UGC.
+Se FU está somente na Workshop, disponibilize sua pasta de item específica já
+na primeira carga, preservando os demais campos de win/sbinit.config. Exemplo
+para a biblioteca informada pelo usuário:
+
+```json
+"assetDirectories": [
+  "../assets/",
+  "../mods/",
+  "M:/SteamLibrary/steamapps/workshop/content/211820/729480149/",
+  "M:/SteamLibrary/steamapps/common/Starbound/mods/"
+]
+```
+
+Adapte a unidade à instalação. Não use apenas a raiz 211820: o scanner não
+percorre recursivamente cada contents.pak. Não remova requires para contornar
+a dependência. Quando ambos estiverem na Workshop, serão descobertos juntos.
+
 ## Publicar
 
 **Mod Uploader:** selecionar a pasta aberta FUBeesGenetics/ do ZIP do mod ou do

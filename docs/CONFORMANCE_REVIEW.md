@@ -21,7 +21,7 @@ recuperados; não se declara equivalência byte a byte com o projeto anterior.
 | Craft e unlock não destrutivo | Receita correta, patch preserva blueprints, printable=false | S2/S7/S8 |
 | Arte estática/orientação/footprint | Pixels originais do ZIP 40×32/20×20; final aprovada não recuperada | S2/S3; pendência artística explícita |
 
-**85 grupos passaram nesta reconstrução.** Nenhuma simulação comprova multiplayer,
+**88 grupos passaram nesta reconstrução.** Nenhuma simulação comprova multiplayer,
 ITD, crafting, destruição ou persistência no runtime. Mocks não verificam fontes,
 colisão, visual, event handling nativo ou construção de items pelo engine.
 

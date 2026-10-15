@@ -13,11 +13,11 @@ Requisitos mais recentes disponíveis: [v1.2 recuperada](MASTER_SPEC_V1_2_RECOVE
 | 5 | transferUtil original e registro ~1 Hz sem restrições | Rede ITD pendente |
 | 6 | GUI sem revisão, uma mutação, descarte de reads antigos e tooltips | Renderização e multiplayer pendentes |
 | 7 | IDs/quantidades/groups e patch condicional | Unlock permanente e crafting pendentes |
-| 8 | Arte recuperada 40×32 e ícone 20×20, uma orientação | Modelo final aprovado não recuperado; aparência e layout GUI pendentes |
+| 8 | Arte recuperada 40×32 e ícone 20×20, espelhamento nativo | Modelo final aprovado não recuperado; aparência e layout GUI pendentes |
 
 ## Evidência executada
 
-`python3 tools/run_checks.py`: **85 grupos passaram** — Adapter 22, máquina 37,
+`python3 tools/run_checks.py`: **88 grupos passaram** — Adapter 22, máquina 40,
 interface 17 e assets 9. Sintaxe Lua, metadata e hashes dos 12 arquivos FU
 fixados também passaram. Bibliotecas FU são reais; bindings de inventário,
 mensagens/promises, widgets e destruição são simulados. Reload é reinit com
@@ -25,7 +25,8 @@ storage preservado, não save de mundo. A cobertura inclui 35 families/70 subesp
 
 Revisão fixada FU: 17868d86c9bb7bc00f92038fb78b48cebd1b41b8 (metadata 6.5.8).
 OpenStarbound auditado: 77f284b0f35b6b383cb149c1bd2295c8a1d00839.
-Jogo/build instalada: indisponível. Actions: workflow preparado, sem execução remota.
+Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log confirma carregamento
+do addon e erro na inicialização do Adapter; a correção ainda requer reteste no jogo.
 
 ## Recuperação de item e exceções
 

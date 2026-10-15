@@ -6,7 +6,7 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.0-dev — reconstrução preparada para validação no jogo.**
+**0.1.1-dev — reconstrução preparada para validação no jogo.**
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -16,6 +16,8 @@ preservada. Leia também os [requisitos v1.2 recuperados](docs/MASTER_SPEC_V1_2_
 a [procedência](docs/RECOVERY.md) e o [estado de implementação](docs/IMPLEMENTATION_STATUS.md).
 **O arquivo integral v1.2 e o sprite final aprovado não foram recuperados.**
 O mod mantém a arte do ZIP MVP, identificada como provisória.
+
+Veja as [correções e o reteste da versão 0.1.1](docs/RUNTIME_FIX_0_1_1.md).
 
 ## Instalar e usar
 
@@ -84,11 +86,11 @@ python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /
 
 `--fetch` baixa as 12 fontes FU fixadas em `tools/upstream.json` e verifica seus
 hashes Git. Para checkout FU local, use `--fu-root /caminho/FrackinUniverse`.
-O cache não é redistribuído. **85 grupos passaram**: Adapter 22, máquina 37,
+O cache não é redistribuído. **88 grupos passaram**: Adapter 22, máquina 40,
 interface 17 e assets 9. São testes do código de produção com bibliotecas FU
 reais; bindings de inventário, promises, widgets e destruição são simulados.
 Não comprovam ITD, multiplayer, save de mundo, crafting ou renderização reais.
-O workflow CI foi preparado; não houve execução no GitHub nesta recuperação.
+O CI da entrega anterior passou no GitHub; a validação desta correção é registrada no PR.
 O empacotamento usa ferramentas nativas do Starbound/OpenStarbound e valida o
 PAK por desempacotamento: 26 arquivos restaurados, assets idênticos e metadata
 JSON equivalente. Não precisa de uma cópia de packed.pak para empacotar o addon.
