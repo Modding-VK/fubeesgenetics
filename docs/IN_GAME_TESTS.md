@@ -42,6 +42,9 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] M1–M7: duas GUIs, last-write-wins natural, sem contador/locks; mudanças
   convergem após refresh. Uma mutação pendente por pane; resposta de read anterior
   deve ser descartada mesmo quando chega após a resposta do comando.
+- [ ] Seletores: nas seis linhas, clicar >=, <= e ignore; aguardar atualização,
+  fechar/reabrir a interface e save/reload para confirmar modos persistidos.
+  Alterar modo sem processar item não deve mudar as referências genéticas.
 - [ ] G10/G11: quebrar com pane aberta encerra consultas/comandos; atualizar radios
   programaticamente não envia novo setMode.
 - [ ] Tooltips: quatro textos individuais em headers/controles e referências,

@@ -1,0 +1,16 @@
+# Histórico das entregas de desenvolvimento
+
+Cada versão preserva sua identificação no _metadata. Os links por SHA apontam
+para snapshots imutáveis, incluindo o PAK exato de cada entrega. Correções entram
+por novas branches, commits e pull requests; não sobrescrever tags existentes,
+reescrever main ou usar force push. Os commits locais da reconstrução sintética
+não são usados como ancestrais dos commits publicados.
+
+| Versão | Mudança | Código/PAK preservados |
+| --- | --- | --- |
+| 0.1.0-dev | Reconstrução inicial e distribuição PAK | [Snapshot](https://github.com/Modding-VK/fubeesgenetics/tree/484516b85f6e2b055e2d3b4240ee365032495888), [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/484516b85f6e2b055e2d3b4240ee365032495888/dist/fubeesgenetics-mvp.pak), [PR 1](https://github.com/Modding-VK/fubeesgenetics/pull/1) |
+| 0.1.1-dev | Inicialização do Adapter, espelhamento e transferências no OpenStarbound 0.1.14 | [Snapshot](https://github.com/Modding-VK/fubeesgenetics/tree/b5cc9caa47a2d91be3322b56757828210514c2ec), [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/b5cc9caa47a2d91be3322b56757828210514c2ec/dist/fubeesgenetics-mvp.pak), [PR 2](https://github.com/Modding-VK/fubeesgenetics/pull/2) |
+| 0.1.2-dev | Identificação correta dos callbacks dos seletores | [Detalhes e reteste](RUNTIME_FIX_0_1_2.md); PAK em dist no snapshot desta versão |
+
+SHA-256 do PAK e ZIP Workshop de cada snapshot estão em dist/SHA256SUMS.
+Versões dev não representam aprovação de release ou publicação na Steam.

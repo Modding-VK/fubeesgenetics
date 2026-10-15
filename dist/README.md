@@ -1,4 +1,4 @@
-# Arquivos de distribuição de desenvolvimento — 0.1.1-dev
+# Arquivos de distribuição de desenvolvimento — 0.1.2-dev
 
 - fubeesgenetics-mvp.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
@@ -16,3 +16,6 @@ Nenhuma publicação Steam ou aprovação de release é afirmada.
 
 Correções: inicialização do Adapter, espelhamento nativo esquerda/direita e
 confirmação de transferências no OpenStarbound 0.1.14. Ver docs/RUNTIME_FIX_0_1_1.md.
+
+A 0.1.2 corrige os seletores; ver docs/RUNTIME_FIX_0_1_2.md. O histórico das
+entregas e links dos pacotes anteriores está em docs/VERSION_HISTORY.md.
