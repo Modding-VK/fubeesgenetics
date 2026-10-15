@@ -16,7 +16,7 @@ COLORS = {'blue':(49,166,255,255),'pale':(155,212,255,255),'white':(254,255,255,
 
 def build():
     base=Image.open(STATIC).convert('RGBA')
-    bug=Image.open(BUG).convert('RGBA').resize((6,6),Image.Resampling.NEAREST)
+    bug=Image.open(BUG).convert('RGBA').transpose(Image.Transpose.ROTATE_270).resize((6,6),Image.Resampling.NEAREST)
     assert base.size==(64,80) and bug.size==(6,6)
     empty=Image.new('RGBA',(64,80),(0,0,0,0))
     specimen=empty.copy();specimen.alpha_composite(bug,(30,54))
@@ -134,7 +134,7 @@ window.showFrame=(i)=>{playing=false;document.querySelector('#loop').checked=fal
             if box:assert AREA[0]<=box[0]<=box[2]<=AREA[2] and AREA[1]<=box[1]<=box[3]<=AREA[3]
     assert len(names)==21 and len(set(names))==21
     report={'frame_size':[64,80],'work_frames':20,'work_cycle_seconds':1.25,'specimen_hold_seconds':0.5,
-            'teleport_frames':12,'teleport_seconds':0.75,'specimen_size':[6,6],'specimen_origin':[30,54],
+            'teleport_frames':12,'teleport_seconds':0.75,'specimen_rotation_clockwise_degrees':90,'specimen_size':[6,6],'specimen_origin':[30,54],
             'effect_bounds':list(AREA),'idle_has_insect':False,'final_frame_matches_idle':True,
             'base_glass_rod_and_sign_unchanged_outside_effect':True,'part_order':['base','specimen','teleport'],
             'game_tested':False,'pak_changed':False,'base_sha256':hashlib.sha256(STATIC.read_bytes()).hexdigest()}

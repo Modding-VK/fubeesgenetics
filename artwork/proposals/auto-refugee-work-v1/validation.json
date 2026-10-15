@@ -8,6 +8,7 @@
   "specimen_hold_seconds": 0.5,
   "teleport_frames": 12,
   "teleport_seconds": 0.75,
+  "specimen_rotation_clockwise_degrees": 90,
   "specimen_size": [
     6,
     6
