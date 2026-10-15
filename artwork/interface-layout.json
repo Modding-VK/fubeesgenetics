@@ -244,7 +244,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "baseProductionModes"
+          }
         },
         {
           "id": 1,
@@ -252,7 +255,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "baseProductionModes"
+          }
         },
         {
           "id": 2,
@@ -260,7 +266,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "baseProductionModes"
+          }
         }
       ]
     },
@@ -306,7 +315,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "droneToughnessModes"
+          }
         },
         {
           "id": 1,
@@ -314,7 +326,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "droneToughnessModes"
+          }
         },
         {
           "id": 2,
@@ -322,7 +337,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "droneToughnessModes"
+          }
         }
       ]
     },
@@ -368,7 +386,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "droneBreedRateModes"
+          }
         },
         {
           "id": 1,
@@ -376,7 +397,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "droneBreedRateModes"
+          }
         },
         {
           "id": 2,
@@ -384,7 +408,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "droneBreedRateModes"
+          }
         }
       ]
     },
@@ -430,7 +457,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "queenBreedRateModes"
+          }
         },
         {
           "id": 1,
@@ -438,7 +468,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "queenBreedRateModes"
+          }
         },
         {
           "id": 2,
@@ -446,7 +479,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "queenBreedRateModes"
+          }
         }
       ]
     },
@@ -492,7 +528,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "queenLifespanModes"
+          }
         },
         {
           "id": 1,
@@ -500,7 +539,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "queenLifespanModes"
+          }
         },
         {
           "id": 2,
@@ -508,7 +550,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "queenLifespanModes"
+          }
         }
       ]
     },
@@ -554,7 +599,10 @@
             0,
             0
           ],
-          "selected": true
+          "selected": true,
+          "data": {
+            "modeGroup": "mutationChanceModes"
+          }
         },
         {
           "id": 1,
@@ -562,7 +610,10 @@
             36,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "mutationChanceModes"
+          }
         },
         {
           "id": 2,
@@ -570,7 +621,10 @@
             72,
             0
           ],
-          "selected": false
+          "selected": false,
+          "data": {
+            "modeGroup": "mutationChanceModes"
+          }
         }
       ]
     },

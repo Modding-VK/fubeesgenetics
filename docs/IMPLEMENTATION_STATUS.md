@@ -17,16 +17,17 @@ Requisitos mais recentes disponíveis: [v1.2 recuperada](MASTER_SPEC_V1_2_RECOVE
 
 ## Evidência executada
 
-`python3 tools/run_checks.py`: **88 grupos passaram** — Adapter 22, máquina 40,
-interface 17 e assets 9. Sintaxe Lua, metadata e hashes dos 12 arquivos FU
+`python3 tools/run_checks.py`: **91 grupos passaram** — Adapter 22, máquina 40,
+interface 20 e assets 9. Sintaxe Lua, metadata e hashes dos 12 arquivos FU
 fixados também passaram. Bibliotecas FU são reais; bindings de inventário,
 mensagens/promises, widgets e destruição são simulados. Reload é reinit com
 storage preservado, não save de mundo. A cobertura inclui 35 families/70 subespécies.
 
 Revisão fixada FU: 17868d86c9bb7bc00f92038fb78b48cebd1b41b8 (metadata 6.5.8).
 OpenStarbound auditado: 77f284b0f35b6b383cb149c1bd2295c8a1d00839.
-Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log confirma carregamento
-do addon e erro na inicialização do Adapter; a correção ainda requer reteste no jogo.
+Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log da 0.1.1 confirma carregamento
+sem o erro anterior do Adapter; a captura mostra perfil preenchido e classificação.
+A correção dos seletores na 0.1.2 ainda requer reteste no jogo.
 
 ## Recuperação de item e exceções
 

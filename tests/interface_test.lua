@@ -12,6 +12,17 @@ end
 local function ui(destroyed)
  local u={texts={},selected={},requests={},env={},mouse={-100,-100},helpDraws={},destroyed=destroyed}
  local e=u.env;setmetatable(e,{__index=_G})
+ -- WidgetParser names children by numeric ID; ButtonGroup passes that child.
+ function u:click(group,id)
+  local w=assert(fixture.uiConfig.gui[group])
+  for _,b in ipairs(w.buttons) do if b.id==id then
+   if self.selected[group]~=id then
+    self.selected[group]=id;e.modeChanged(tostring(id),b.data)
+   end
+   return
+  end end
+  error('No radio option '..tostring(id))
+ end
  e.config={getParameter=function(k) return fixture.uiConfig[k] end}
  local c={}
  function c:clear() u.helpDraws={} end
@@ -20,7 +31,7 @@ local function ui(destroyed)
  function c:drawText(text,positioning,size,color) u.helpDraws[#u.helpDraws+1]={text=text,positioning=positioning,size=size,color=color} end
  e.pane={containerEntityId=function() return 42 end,dismiss=function() u.dismissed=true end}
  e.widget={setText=function(n,t) u.texts[n]=t end,getSelectedOption=function(n) return u.selected[n] end,
-  setSelectedOption=function(n,id) u.selected[n]=id;e.modeChanged(n) end,
+  setSelectedOption=function(n,id) u:click(n,id) end,
   bindCanvas=function(n) assert(n=='helpCanvas');return c end}
  e.world={entityExists=function() return not u.destroyed end,sendEntityMessage=function(id,name,...)
   assert(id==42 and not u.destroyed);local p={name=name,args={...},done=false,ok=true}
@@ -120,5 +131,37 @@ test('U17 modes work before baseline; failed command resumes passive polling',fu
  local u=ui();u.requests[1]:resolve(state('gte',false));u.env.update(0)
  u.selected.baseProductionModes=2;u.env.modeChanged('baseProductionModes');assert(#u.requests==2)
  u.requests[2]:resolve(nil,false);u.env.update(0);assert(#u.requests==3 and not u.env.self.pendingCommand)
+end)
+test('U18 numeric child callback identifies each row for every comparator',function()
+ for _,trait in ipairs(traits) do for id,mode in pairs({[0]='gte',[1]='lte',[2]='ignore'}) do
+  local u=ui();u.requests[1]:resolve(state(id==0 and 'lte' or 'gte'));u.env.update(0)
+  u:click(trait..'Modes',id)
+  assert(#u.requests==2,'Numeric child callback did not send a command for '..trait)
+  local p=u.requests[2]
+  assert(p.name=='fubeesgenetics.gqf.setMode' and p.args[1]==trait and p.args[2]==mode)
+  local reply=state(id==0 and 'lte' or 'gte');reply.traits[trait].mode=mode
+  p:resolve(reply);u.env.update(0);assert(u.selected[trait..'Modes']==id)
+  for _,other in ipairs(traits) do if other~=trait then
+   assert(u.selected[other..'Modes']==(id==0 and 1 or 0))
+  end end
+  u.requests[3]:resolve(reply);u.env.update(.5)
+  assert(u.selected[trait..'Modes']==id and #u.requests==4)
+ end end
+end)
+test('U19 malformed child metadata cannot issue a mode command',function()
+ local u=boot()
+ for _,data in ipairs({false,'bad',{}, {modeGroup='fake'},{modeGroup=1}}) do u.env.modeChanged('1',data) end
+ u.env.modeChanged('2');assert(#u.requests==1)
+end)
+test('U20 numeric child command survives stale reads and stays selected after reopen',function()
+ local u=boot();u.env.update(.5);local stale=u.requests[2]
+ u:click('mutationChanceModes',2);assert(#u.requests==3)
+ local confirmed=state();confirmed.traits.mutationChance.mode='ignore'
+ u.requests[3]:resolve(confirmed);u.env.update(0)
+ stale:resolve(state());u.env.update(0);assert(u.selected.mutationChanceModes==2)
+ u.env.update(.5);u.requests[4]:resolve(confirmed);u.env.update(0)
+ assert(u.selected.mutationChanceModes==2)
+ local reopened=ui();reopened.requests[1]:resolve(confirmed);reopened.env.update(0)
+ assert(reopened.selected.mutationChanceModes==2 and #reopened.requests==1)
 end)
 print('Interface: '..count..' test groups passed (engine bindings mocked).')

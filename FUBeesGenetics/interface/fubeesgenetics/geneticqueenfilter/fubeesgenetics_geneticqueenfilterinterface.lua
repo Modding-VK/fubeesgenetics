@@ -131,14 +131,16 @@ function update(dt)
   end
 end
 
-function modeChanged(widgetName)
+function modeChanged(widgetName, widgetData)
   if self.rendering or not alive() then return end
-  local trait = self.traitByWidget[widgetName]
+  -- Native radio callbacks identify the numeric child, not its parent group.
+  local groupName = type(widgetData) == "table" and widgetData.modeGroup or widgetName
+  local trait = self.traitByWidget[groupName]
   if not trait then return end
-  local selected = widget.getSelectedOption(widgetName)
+  local selected = widget.getSelectedOption(groupName)
   -- Restore the confirmed selection until the server replies with authority.
   self.rendering = true
-  widget.setSelectedOption(widgetName, self.state and modeToId[self.state.traits[trait].mode] or 0)
+  widget.setSelectedOption(groupName, self.state and modeToId[self.state.traits[trait].mode] or 0)
   self.rendering = false
   if self.state and idToMode[selected] then
     command("fubeesgenetics.gqf.setMode", trait, idToMode[selected])

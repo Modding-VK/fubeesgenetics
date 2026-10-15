@@ -92,6 +92,7 @@ def check_assets(root, fu_root):
         group = gui[t+'Modes']
         assert group['type']=='radioGroup' and group['callback']=='modeChanged'
         assert [b['id'] for b in group['buttons']] == [0,1,2]
+        assert all(b.get('data') == {'modeGroup':t+'Modes'} for b in group['buttons'])
         assert sum(bool(b.get('selected')) for b in group['buttons']) == 1
     for w in gui.values():
         if isinstance(w,dict) and w.get('type')=='button': assert 'press' not in w and 'pressed' in w
