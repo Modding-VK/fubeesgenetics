@@ -84,15 +84,24 @@ def theme_assets(root):
     # One header, one table, no decorative controls or text in the background.
     frame.line(10, 33, w-11, 33, p['blueLine'])
     frame.line(10, 34, w-11, 34, p['circuit'])
-    frame.rect(14, 82, w-15, 98, p['blueLine'])
-    frame.rect(15, 83, w-16, 97, p['header'])
-    for y in range(84, 98, 2):
+    frame.rect(14, 77, w-15, 102, p['blueLine'])
+    frame.rect(15, 78, w-16, 101, p['header'])
+    for y in range(79, 102, 2):
         frame.line(16, y, w-17, y, p['scanline'])
     for y in spec['rowRules']:
         frame.line(18, y, w-19, y, p['circuit'])
     frame.line(18, 301, w-19, 301, p['circuit'])
     result = {'header.png': frame.png(0, 34), 'body.png': frame.png(34, 286),
               'footer.png': frame.png(320, 12)}
+
+    # Explicit pixel arrows avoid reliance on Unicode glyphs in game fonts.
+    for name, down in [('arrowup', False), ('arrowdown', True)]:
+        arrow = Surface(7, 7)
+        for y in range(7):
+            for x in range(7):
+                if (y <= 3 and abs(x-3) <= y) or (y >= 3 and 2 <= x <= 4):
+                    arrow.pixel(x, 6-y if down else y, p['cyan'])
+        result[name+'.png'] = arrow.png()
 
     for name, fill in [('reset', p['button']), ('resethover', p['buttonHover']),
                        ('resetpress', p['buttonPressed'])]:

@@ -55,9 +55,9 @@ anexo integral v1.2 e a arte aprovada e validar o tema da GUI no jogo.
 
 ## Distribuição PAK e Steam Workshop
 
-Formato principal: fubeesgenetics-mvp-0.1.5-dev.pak (SBAsset6 padrão), gerado com o
+Formato principal: fubeesgenetics-mvp-0.1.6-dev.pak (SBAsset6 padrão), gerado com o
 asset_packer nativo OpenStarbound v0.1.15.1 para Starbound 1.4.4. O asset_unpacker
-nativo restaurou os 27 arquivos com assets byte a byte e metadata JSON equivalente.
+nativo restaurou os 29 arquivos com assets byte a byte e metadata JSON equivalente.
 A cópia Workshop contents.pak é idêntica ao PAK manual; o conteúdo compactado
 para entrega ao publisher está em fubeesgenetics-workshop-content.zip.
 
@@ -72,4 +72,14 @@ Molduras são imagens independentes de 24×24, atrás de grids nativos. Os grids
 usam espaçamento 19×19, sem backingImage; o ItemSlot nativo usa tamanho 19×19
 na configuração padrão. Origens +3/+3 alinham os centros. Slots físicos e
 offsets ITD 1/0/2, Lua, modos e receita permanecem os mesmos. Validação offline
-e 91 grupos passaram; falta conferir vazio/ocupado e interação no jogo.
+e 91 grupos passaram. O usuário confirmou que as alterações da 0.1.5
+funcionaram perfeitamente; o relato não enumera cada cenário de interação.
+
+## Textos e espaçamento da interface — 0.1.6-dev
+
+Setas nativas de 7×7 para cima/baixo acompanham os nomes Equal or higher e
+Equal or lower; Indifferent substitui o traço. Cabeçalhos em duas linhas e
+colunas mais espaçadas acomodam os nomes completos. Status e Last result
+descem 3 pixels; Reset Profile recebe centralização explícita e offset vertical
+de -1 pixel. Os slots, receita e scripts Lua são idênticos à 0.1.5.
+Ver [HUD_LABELS_0_1_6](HUD_LABELS_0_1_6.md). Reteste visual no jogo pendente.

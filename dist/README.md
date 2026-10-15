@@ -1,16 +1,16 @@
-# Arquivos de distribuição de desenvolvimento — 0.1.5-dev
+# Arquivos de distribuição de desenvolvimento — 0.1.6-dev
 
-- fubeesgenetics-mvp-0.1.5-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.1.6-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.1.5-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.1.6-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
-(27 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
+(29 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
 a diretriz v1.2 disponível é consolidada do histórico, não o anexo integral.
 Nenhuma publicação Steam ou aprovação de release é afirmada.
 
@@ -28,3 +28,8 @@ dev; sem PR ou promoção para main. Veja docs/RECIPE_0_1_4.md e VERSIONING.md.
 
 A 0.1.5 mantém molduras estáticas atrás dos itens e usa alinhamento de slots
 nativos; ver docs/HUD_SLOTS_0_1_5.md.
+
+A 0.1.6 usa setas e os nomes Equal or higher / Equal or lower / Indifferent,
+ajusta o rodapé e centraliza Reset Profile; ver docs/HUD_LABELS_0_1_6.md.
+O usuário confirmou o funcionamento visual dos slots da 0.1.5; as mudanças
+visuais da 0.1.6 ainda precisam de conferência no jogo.

@@ -6,7 +6,7 @@ Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
 container real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com perfil adaptativo e comparadores configuráveis.
 
-**0.1.5-dev — reconstrução preparada para validação no jogo.**
+**0.1.6-dev — reconstrução preparada para validação no jogo.**
 A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
 phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
 registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
@@ -32,14 +32,16 @@ A expansão futura terá o nome **Abusive Bee Industry**, com título Workshop
 o rebranding e a futura máquina de troca de abelhas por recursos.
 
 A 0.1.5 separa as molduras estáticas dos slots nativos e centraliza os itens;
-veja [HUD_SLOTS_0_1_5](docs/HUD_SLOTS_0_1_5.md).
+veja [HUD_SLOTS_0_1_5](docs/HUD_SLOTS_0_1_5.md). O usuário confirmou o resultado.
+A 0.1.6 acrescenta setas e nomes aos comparadores e ajusta o rodapé/Reset;
+veja [HUD_LABELS_0_1_6](docs/HUD_LABELS_0_1_6.md).
 
 ## Instalar e usar
 
-O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.5-dev.pak`**, um arquivo
+O formato principal de distribuição é **`fubeesgenetics-mvp-0.1.6-dev.pak`**, um arquivo
 Starbound padrão. O nome é gerado com a versão do _metadata, seguindo
 `fubeesgenetics-mvp-<versão>.pak`. Para instalação manual, copie para
-`Starbound/mods/fubeesgenetics-mvp-0.1.5-dev.pak`. Instale FU e execute OpenStarbound com
+`Starbound/mods/fubeesgenetics-mvp-0.1.6-dev.pak`. Instale FU e execute OpenStarbound com
 essas fontes de mods, conforme a instalação definida pelo usuário.
 
 Na Steam Workshop, o conteúdo é distribuído como **`contents.pak`**: Steam
@@ -60,9 +62,9 @@ a extensão .pak não torna sua interface compatível com o executável vanilla.
    5 Sulphuric Acid e 2 Unknown Gene**. A máquina não é printable.
 3. Coloque no chão e use o Input central. A primeira válida estabelece baseline
    de todas as seis referências e segue para Approved, à esquerda.
-4. Configure `>=`, `<=` ou `—` por trait; os modos podem ser escolhidos antes
+4. Configure **Equal or higher**, **Equal or lower** ou **Indifferent** por trait; os modos podem ser escolhidos antes
    da baseline. Todos os critérios ativos precisam passar; igualdade é aceita.
-   Ignore congela a referência antiga, inclusive ao reativar o trait.
+   Indifferent congela a referência antiga, inclusive ao reativar o trait.
 5. Retire Approved/Rejected. Qualquer conteúdo em qualquer saída bloqueia o
    próximo ciclo, mesmo que seja uma stack compatível.
 6. Reset Profile limpa perfil/referências e último resultado, preservando
@@ -107,9 +109,9 @@ O cache não é redistribuído. **91 grupos passaram**: Adapter 22, máquina 40,
 interface 20 e assets 9. São testes do código de produção com bibliotecas FU
 reais; bindings de inventário, promises, widgets e destruição são simulados.
 Não comprovam ITD, multiplayer, save de mundo, crafting ou renderização reais.
-O CI da entrega anterior passou no GitHub; a validação desta correção é registrada no PR.
+A validação de cada entrega é executada pelo CI em dev; PRs não são criados automaticamente.
 O empacotamento usa ferramentas nativas do Starbound/OpenStarbound e valida o
-PAK por desempacotamento: 27 arquivos restaurados, assets idênticos e metadata
+PAK por desempacotamento: 29 arquivos restaurados, assets idênticos e metadata
 JSON equivalente. Não precisa de uma cópia de packed.pak para empacotar o addon.
 A procedência das ferramentas usadas está em tools/pak_toolchain.json.
 

@@ -33,7 +33,7 @@ position:relative;transform:scale(3);transform-origin:top left;image-rendering:p
 #pane>*{position:absolute}img{image-rendering:pixelated;pointer-events:none}
 .label{white-space:pre;line-height:1;pointer-events:none}.button{border:0;padding:0;
 background:transparent;color:#dce7f1;font:8px monospace;cursor:pointer;image-rendering:pixelated}
-.button>img{position:absolute;inset:0;width:100%;height:100%}.caption{position:relative}
+.button>img{position:absolute;inset:0;width:100%;height:100%}.caption{position:absolute;line-height:1;white-space:pre;transform:translate(-50%,-50%)}
 .radio{width:18px;height:18px}.reset{width:100px;height:20px}.close{width:12px;height:12px}
 .slot-demo{position:absolute;width:21px;height:21px;border:0;padding:0;background:transparent;cursor:pointer}
 .slot-demo>img{position:absolute;left:1px;bottom:1px;width:20px;height:20px}
@@ -60,7 +60,11 @@ for(const [name,w] of Object.entries(config.gui)){
  if(w.type==='label'){
   const e=document.createElement('span');e.className='label';e.id=name;e.textContent=example[name]??w.value;
   e.style.fontSize=(w.fontSize??8)+'px';e.style.color=w.color??'#dce7f1';
-  e.style.transform=w.hAnchor==='right'?'translate(-100%,50%)':w.hAnchor==='mid'?'translate(-50%,50%)':'translateY(50%)';
+  e.style.lineHeight=w.lineSpacing??1.3;
+  const tx=w.hAnchor==='right'?'-100%':w.hAnchor==='mid'?'-50%':'0';
+  const ty=w.vAnchor==='top'?'100%':w.vAnchor==='mid'?'50%':'0';
+  e.style.textAlign=w.hAnchor==='mid'?'center':w.hAnchor==='right'?'right':'left';
+  e.style.transform=`translate(${tx},${ty})`;
   place(e,x,y);
  }else if(w.type==='image'){
   const file=w.file.split('/').pop();const [width,height]=sizes[file];
@@ -74,7 +78,8 @@ for(const [name,w] of Object.entries(config.gui)){
   place(e,x-2,y-2,21,21,w.zlevel??0);
  }else if(w.type==='button'){
   const e=document.createElement('button');e.className='button '+(name==='close'?'close':'reset');e.id=name;
-  const bg=image(w.base);e.append(bg);if(w.caption){const t=document.createElement('span');t.className='caption';t.textContent=w.caption;e.append(t)}
+  const bg=image(w.base);e.append(bg);if(w.caption){const t=document.createElement('span');t.className='caption';t.textContent=w.caption;
+   const [dx,dy]=w.textOffset??[0,0];t.style.left=`calc(50% + ${dx}px)`;t.style.top=`calc(50% - ${dy}px)`;t.style.fontSize=(w.fontSize??8)+'px';e.append(t)}
   const show=f=>bg.src=images[f.split('/').pop()];e.onmouseenter=()=>show(w.hover);e.onmouseleave=()=>show(w.base);
   e.onmousedown=()=>show(w.pressed??w.base);e.onmouseup=()=>show(w.hover);
   if(name==='resetProfile')e.onclick=()=>{for(const id of Object.keys(example))document.getElementById(id).textContent=id==='family'?'Family: —':id==='subspecies'?'Subspecies: —':id==='status'?'Status: Waiting for input':id==='lastResult'?'Last result: —':'—'};

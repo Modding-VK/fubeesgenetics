@@ -13,7 +13,9 @@ sintéticos da recuperação não são usados como ancestrais remotos.
 | 0.1.2-dev | Identificação correta dos callbacks dos seletores | [Snapshot](https://github.com/Modding-VK/fubeesgenetics/tree/8eec9f102077d634b31405d0548eeb4dced04c8a), [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/8eec9f102077d634b31405d0548eeb4dced04c8a/dist/fubeesgenetics-mvp.pak), [PR 3](https://github.com/Modding-VK/fubeesgenetics/pull/3) |
 | 0.1.3-dev | Tema nativo de interface inspirado no FU, aprovado pelo usuário | [Snapshot](https://github.com/Modding-VK/fubeesgenetics/tree/d46ddbce53dc72b45d62eee24e6f78dd733787cd), [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/d46ddbce53dc72b45d62eee24e6f78dd733787cd/dist/fubeesgenetics-mvp.pak), [PR 4](https://github.com/Modding-VK/fubeesgenetics/pull/4) |
 | 0.1.4-dev | Soma Healing Water, Sulphuric Acid e Unknown Gene à receita; inicia fluxo dev/main | [PAK versionado](https://github.com/Modding-VK/fubeesgenetics/raw/32ebf50d462484a9c0abc6b3aa5d9d82bb3a74f4/dist/fubeesgenetics-mvp-0.1.4-dev.pak), [receita](RECIPE_0_1_4.md); entrega em dev |
-| 0.1.5-dev | Molduras estáticas e itens centralizados nos slots padrão | [Detalhes](HUD_SLOTS_0_1_5.md); entrega em dev |
+| 0.1.5-dev | Molduras estáticas e itens centralizados nos slots padrão | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/679c14a96d28e00223ebaa00bc6eccb2ee61c374/dist/fubeesgenetics-mvp-0.1.5-dev.pak), [detalhes](HUD_SLOTS_0_1_5.md); entrega em dev |
+
+| 0.1.6-dev | Setas, nomes dos comparadores, rodapé e texto de Reset Profile | [Detalhes](HUD_LABELS_0_1_6.md); entrega em dev |
 
 SHA-256 do PAK e ZIP Workshop de cada snapshot estão em dist/SHA256SUMS.
 Versões dev não representam aprovação de release ou publicação na Steam.

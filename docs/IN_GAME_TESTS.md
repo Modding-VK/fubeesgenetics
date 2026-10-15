@@ -3,7 +3,7 @@
 Registrar build/commit OpenStarbound, versão FU, commit do addon, mods, data,
 resultado e trechos de starbound.log. Não marcar como executado por mocks.
 
-- [ ] Instalar fubeesgenetics-mvp-0.1.5-dev.pak em Starbound/mods e abrir via OpenStarbound,
+- [ ] Instalar fubeesgenetics-mvp-0.1.6-dev.pak em Starbound/mods e abrir via OpenStarbound,
   sem erros de assets/scripts/dependência. Não manter cópia descompactada ou
   assinatura Workshop duplicada. Testar também a instalação por assinatura
   Workshop quando publicada, com conteúdo contents.pak gerenciado pela Steam.
@@ -42,7 +42,7 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] M1–M7: duas GUIs, last-write-wins natural, sem contador/locks; mudanças
   convergem após refresh. Uma mutação pendente por pane; resposta de read anterior
   deve ser descartada mesmo quando chega após a resposta do comando.
-- [ ] Seletores: nas seis linhas, clicar >=, <= e ignore; aguardar atualização,
+- [ ] Seletores: nas seis linhas, clicar Equal or higher, Equal or lower e Indifferent; aguardar atualização,
   fechar/reabrir a interface e save/reload para confirmar modos persistidos.
   Alterar modo sem processar item não deve mudar as referências genéticas.
 - [ ] G10/G11: quebrar com pane aberta encerra consultas/comandos; atualizar radios
@@ -81,3 +81,14 @@ ITD 100% funcional na 0.1.2-dev. Topologia e demais cenários não foram detalha
   para a borda superior/direita, com contagem e indicação de raridade nativas.
 - [ ] Tooltip, clique direito e Shift+Click funcionam em cada slot, inclusive vazio.
 - [ ] Perfil/modos existentes e fluxo ITD permanecem funcionais.
+
+## Reteste visual 0.1.6-dev
+
+O usuário confirmou que as alterações da 0.1.5 funcionaram perfeitamente.
+Esse relato não detalha a execução de cada cenário acima.
+
+- [ ] Setas para cima/baixo e os três nomes completos legíveis e sem colisão.
+- [ ] Nas seis linhas, as três opções continuam selecionáveis e persistem.
+- [ ] Status e Last result abaixo da divisória, sem tocar a borda inferior.
+- [ ] Reset Profile centralizado no botão, incluindo hover/pressionado.
+- [ ] Perfil existente e slots preservados ao substituir o PAK, sem reset.

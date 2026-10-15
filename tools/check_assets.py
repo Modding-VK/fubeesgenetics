@@ -72,7 +72,8 @@ def check_assets(root, fu_root):
     for p in mod.rglob('*.png'): png_size(p)
     ui_dir = mod/'interface/fubeesgenetics/geneticqueenfilter'
     native_sizes = {'header.png':(388,34), 'body.png':(388,286), 'footer.png':(388,12),
-                    'dna.png':(20,20), 'close.png':(12,12), 'closehover.png':(12,12)}
+                    'dna.png':(20,20), 'close.png':(12,12), 'closehover.png':(12,12),
+                    'arrowup.png':(7,7), 'arrowdown.png':(7,7)}
     native_sizes.update({name+'.png':(24,24) for name in ['approvedslot','inputslot','rejectedslot']})
     native_sizes.update({name+'.png':(18,18) for name in ['radio','radiohover','radiochecked','radiocheckedhover']})
     native_sizes.update({name+'.png':(100,20) for name in ['reset','resethover','resetpress']})
