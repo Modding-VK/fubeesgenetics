@@ -42,7 +42,7 @@ world={
    if not same(a,b) then return copy(item) end
    slots[s].count=slots[s].count+item.count
   else slots[s]=copy(item) end
-  return nil
+  return faults.legacyPutReturn and copy(item) or nil
  end,
  spawnItem=function(item)
   spawnCalls=spawnCalls+1
@@ -60,7 +60,10 @@ require=function(p)
  assert(p=='/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua')
  dofile(fixture.repoRoot..'/FUBeesGenetics'..p)
 end
+local engineRoot = root
+root = nil
 dofile(fixture.repoRoot..'/FUBeesGenetics/objects/bees/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.lua')
+root = engineRoot
 local originalRead=fubeesgenetics_beegeneticadapter.read
 fubeesgenetics_beegeneticadapter.read=function(x) adapterReads=adapterReads+1;return originalRead(x) end
 local function fresh(saved)
@@ -267,5 +270,21 @@ end)
 test('M37 invalid drop return is not accepted as successful recovery',function()
  fresh({recoveryEscrow=bee()});slots[0]={name='stone',count=1,parameters={}};faults.spawnInvalid=true;update(1)
  assert(storage.recoveryEscrow and storage.operationalStatus=='RECOVERY_HOLD' and #drops==0)
+end)
+test('M38 OpenStarbound 0.1.14 full put return does not duplicate or roll back',function()
+ fresh();faults.legacyPutReturn=true;slots[0]=bee();slots[0].count=3;update(1)
+ assert(storage.profile and storage.lastResult=='PROFILE_INITIALIZED')
+ assert(slots[0].count==2 and slots[1].count==1 and not storage.recoveryEscrow and #drops==0)
+ fresh();faults.legacyPutReturn=true;tick({name='stone',count=1,parameters={}})
+ assert(slots[2] and not slots[0] and storage.lastResult=='REJECTED_INVALID_ITEM' and #drops==0)
+end)
+test('M39 legacy full put return confirms rollback into an existing input stack',function()
+ fresh();faults.legacyPutReturn=true;faults.failOutput=true;slots[0]=bee();slots[0].count=3
+ update(1);assert(slots[0].count==3 and not slots[1] and not storage.profile and #drops==0 and not storage.recoveryEscrow)
+end)
+test('M40 legacy full put return clears recovered escrow exactly once',function()
+ fresh({recoveryEscrow=bee()});faults.legacyPutReturn=true;update(1)
+ assert(slots[0].count==1 and not storage.recoveryEscrow and #drops==0 and not storage.profile)
+ update(1);assert(not slots[0] and slots[1].count==1 and storage.profile and #drops==0)
 end)
 print('Machine: '..count..' test groups passed (engine bindings mocked).')

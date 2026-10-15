@@ -16,13 +16,11 @@
   "frameCooldown": 1,
   "orientations": [
     {
-      "image": "geneticqueenfilter.png",
       "imagePosition": [
         0,
         0
       ],
       "frames": 1,
-      "flipImages": false,
       "spaces": [
         [
           0,
@@ -107,7 +105,8 @@
       ],
       "anchors": [
         "bottom"
-      ]
+      ],
+      "dualImage": "geneticqueenfilter.png"
     }
   ],
   "scripts": [

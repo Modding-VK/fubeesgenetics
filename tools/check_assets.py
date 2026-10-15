@@ -63,12 +63,12 @@ def check_assets(root, fu_root):
     passed('S1 JSON and true three-slot container')
     orientation, = obj['orientations']
     assert obj['printable'] is False and orientation['anchors'] == ['bottom']
-    assert orientation['frames'] == 1 and orientation['flipImages'] is False
+    assert orientation['frames'] == 1 and 'image' not in orientation and 'flipImages' not in orientation
     assert set(map(tuple,orientation['spaces'])) == {(x,y) for x in range(5) for y in range(4)}
-    assert png_size(path.parent/orientation['image']) == (40,32)
+    assert png_size(path.parent/orientation['dualImage']) == (40,32)
     assert png_size(path.parent/obj['inventoryIcon']) == (20,20)
     assert not {'animation','lightColor','consumeFuel','kheAA_slotLimits'} & obj.keys()
-    passed('S2 static footprint, icon, non-printable and single orientation')
+    passed('S2 static footprint, icon, non-printable and native dualImage facing')
     for p in mod.rglob('*.png'): png_size(p)
     passed('S3 PNG CRC and decompressed image sizes')
     def refs(value):

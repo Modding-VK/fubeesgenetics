@@ -2,7 +2,8 @@
 require "/bees/genomeLibrary.lua"
 
 local genomeLibrary = genelib
-local beeData = root.assetJson("/bees/beeData.config")
+-- Engine callbacks (including root) are attached after top-level scripts load.
+local beeData
 -- OpenStarbound's require loads into the script context and returns no values.
 -- Export a namespaced table, following FU's genelib/transferUtil convention.
 fubeesgenetics_beegeneticadapter = {}
@@ -66,6 +67,7 @@ function adapter.read(item)
     return failure("INVALID_GENOME")
   end
 
+  beeData = beeData or root.assetJson("/bees/beeData.config")
   local family = familyFromName(item.name)
   local subtypes = family and beeData.stats[family]
   if type(subtypes) ~= "table" then return failure("UNKNOWN_FAMILY") end

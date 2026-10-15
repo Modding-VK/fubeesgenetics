@@ -30,6 +30,8 @@ root = {
   end
 }
 
+local engineRoot = root
+root = nil
 local originalRequire = require
 require = function(path)
   if path == "/bees/genomeLibrary.lua" then
@@ -43,6 +45,7 @@ require = function(path)
 end
 equal(require("/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua"), nil,
   "engine require returns no values")
+root = engineRoot
 local adapter = fubeesgenetics_beegeneticadapter
 assert(type(adapter) == "table" and type(adapter.read) == "function", "namespaced export")
 
