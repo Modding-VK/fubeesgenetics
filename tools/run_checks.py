@@ -94,6 +94,8 @@ def main():
         actual = hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest()
         if actual != expected:
             raise RuntimeError(f"Upstream blob mismatch: {path} ({actual} != {expected})")
+    from check_container_ui import load_references
+    native_root = load_references(ROOT, args.fetch)
     metadata = json.loads((ROOT / "FUBeesGenetics/_metadata").read_text())
     dependency = asset_json((fu_root / ".metadata").read_text())["name"]
     assert metadata["name"] == "FUBeesGenetics"
@@ -128,7 +130,7 @@ def main():
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)
     from check_assets import check_assets
-    check_assets(ROOT, fu_root)
+    check_assets(ROOT, fu_root, native_root)
     print("Lua syntax, metadata and upstream blob integrity: PASS", flush=True)
 
 

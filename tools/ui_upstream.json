@@ -1,0 +1,38 @@
+{
+  "sources": [
+    {
+      "cache_directory": "starbound",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "files": {
+        "assets/packed/interface.config": "5053ee1780d32810bceb88eec113626efc769329",
+        "assets/packed/interface/chests/chest24.config": "13883957b8fa36f0f2c266f0315d32dba02c9bb9",
+        "assets/packed/interface/chests/chest40.config": "1ee7fb1eb89587ae72ddc9c55f62a6650e93180d",
+        "assets/packed/interface/chests/chestheader.png": "379ea77fba4a23a78c440338e4ba57e5c75f86b0",
+        "assets/packed/interface/chests/slots17to24.png": "f9bc909533b0e75b3b1363e8d8bc481ee8a77ce5",
+        "assets/packed/interface/chests/chestfooter.png": "a7111b510f752aa7e983d71f368219503f2cc742",
+        "assets/packed/interface/chests/shine17to24.png": "ec861555112166a7a4454add8abb664259a8a66d",
+        "assets/packed/interface/inventory/empty.png": "818cd257e27fab2675f48a1c4da2060093385b74",
+        "assets/packed/interface/button.png": "ba27ca496e09ffa2a62326f836300a4b7978f9da",
+        "assets/packed/interface/buttonhover.png": "88488a29832ee06dbf57a7b5616b1a039bcce77f",
+        "assets/packed/interface/x.png": "9501446812a83c3bb2843a09891c6ff30cc6dfdc",
+        "assets/packed/interface/xhover.png": "9cc5b719bea7f55b772595eafb6e0c975584d9b0",
+        "assets/packed/interface/xpress.png": "53734714e55819178ef370022675127cc5f4bac5",
+        "assets/packed/items/currency/money.png": "eee1d05c723584a963fc73d87f2cb00b1a9be96c",
+        "assets/packed/interface/inventory/itembordercommon.png": "3f566acef5a212b55c645ae2d7d0634b64859976"
+      }
+    },
+    {
+      "cache_directory": "openstarbound",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "files": {
+        "source/windowing/StarWidgetParsing.cpp": "88260dcfde7b5d75397d27bee6fa7f13957156ba",
+        "source/windowing/StarItemGridWidget.cpp": "be1cc426a9289c7ede25287071664ec20995d647",
+        "source/windowing/StarItemSlotWidget.cpp": "0a19ff27b891812efd427b978c1ca78e2cf0dd3c",
+        "source/frontend/StarContainerInterface.cpp": "6336099e280eaba9e8731bb6d78b61614e53da44",
+        "source/game/objects/StarContainerObject.cpp": "8a3d0f4118fecb447537b1d96a62b587a437dc5c"
+      }
+    }
+  ]
+}

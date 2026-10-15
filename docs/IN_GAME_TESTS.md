@@ -100,3 +100,10 @@ receita/desbloqueio, trocas, GUI fechada, lotes de cinco Drones, itens ignorados
 inventário cheio, ITD, save/reload e destruição. Esses testes ainda não foram
 executados dentro do OpenStarbound; os 120 grupos automatizados usam bindings
 de engine simulados.
+
+## Bee Exchange — interface 0.2.1-dev
+
+Validar [roteiro de interface](BEE_EXCHANGE_UI_0_2_1.md#instalação-e-reteste):
+20 slots marcados, vazio/ocupado, centro dos itens, contagem, tooltip, clique
+direito, Shift+Click e Take all. Repetir trocas automáticas e ITD.
+Esses checks ainda não foram executados no jogo.

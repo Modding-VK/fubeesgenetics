@@ -9,7 +9,7 @@
   "price": 8000,
   "printable": false,
   "slotCount": 20,
-  "hasWindowIcon": false,
+  "hasWindowIcon": true,
   "inventoryIcon": "beeexchangeicon.png",
   "openFrameIndex": 0,
   "autoCloseCooldown": 3600,

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Draw the Bee Exchange sprite and compact native container pane."""
+"""Draw the Bee Exchange sprite and inventory icon; UI uses native container assets."""
 from pathlib import Path
 from ui_theme import Surface
 ROOT = Path(__file__).resolve().parents[1]
 OBJECT = ROOT/'FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange'
-UI = ROOT/'FUBeesGenetics/interface/fubeesgenetics/beeexchange'
 
 
 def build():
@@ -34,14 +33,7 @@ def build():
     for x in [5,8]:icon.rect(x,7,x,13,'d7af49')
     for y in range(7,14):icon.pixel(11+min(y-7,13-y),y,'74c7c0')
     (OBJECT/'beeexchangeicon.png').write_bytes(icon.png())
-    pane=Surface(260,180)
-    pane.rect(0,0,259,179,'131c25',5);pane.rect(1,1,258,178,'718594',4)
-    pane.rect(3,3,256,176,'283e50',3);pane.rect(5,5,254,174,'172936',2)
-    pane.rect(7,29,252,30,'c5a64f');pane.rect(7,144,252,145,'466b82')
-    # Plain native grid; its backing and icons share the engine's 19px geometry.
-    for name,top,height in [('header',0,30),('body',30,138),('footer',168,12)]:
-        (UI/(name+'.png')).write_bytes(pane.png(top,height))
-    print('Built Bee Exchange 48x40 sprite, 20x20 icon and 260x180 pane.')
+    print('Built Bee Exchange 48x40 sprite and 20x20 icon; UI uses native container assets.')
 
 
 if __name__ == '__main__':

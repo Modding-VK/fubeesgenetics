@@ -46,7 +46,7 @@ def apply_patch(document, operations):
     return result
 
 
-def check_assets(root, fu_root):
+def check_assets(root, fu_root, native_root):
     from run_checks import asset_json
     mod = root/'FUBeesGenetics'
     count = 0
@@ -86,7 +86,7 @@ def check_assets(root, fu_root):
             for child in value: refs(child)
         elif isinstance(value,str) and value.startswith('/') and not value.startswith('//'):
             target = value.split(':')[0].split('?')[0]
-            assert (mod/target.lstrip('/')).is_file(), target
+            assert (mod/target.lstrip('/')).is_file() or (native_root/target.lstrip('/')).is_file(), target
     refs(obj)
     ui = json.loads((mod/obj['uiConfig'].lstrip('/')).read_text())
     refs(ui)
@@ -153,7 +153,7 @@ def check_assets(root, fu_root):
     exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
     refs(exchange_ui)
     grid=exchange_ui['gui']['itemGrid']
-    assert grid['dimensions']==[5,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
+    assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
     assert not exchange['printable']
     passed('S10 Bee Exchange half-size container and native grid assets')
     exchange_recipe=next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']=='fubeesgenetics_beeexchange')
@@ -169,4 +169,7 @@ def check_assets(root, fu_root):
     assert set(trade_manifest['recipes'])==expected and len(expected)==105
     assert len(trade_manifest['recipes'])==len(set(trade_manifest['recipes']))
     passed('S12 all 105 pinned Bee Refuge trades included, no codex trades')
+    from check_container_ui import check_container_ui
+    check_container_ui(root, native_root)
+    passed('S13 native chest layout, visible slots, exact centering and offsets 0-19')
     print(f'Assets: {count} test groups passed (static checks).')

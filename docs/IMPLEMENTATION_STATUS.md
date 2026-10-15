@@ -91,3 +91,11 @@ trocas automáticas e crafting/desbloqueio na Bee Station. A suíte atual tem
 120 grupos locais e PAK validado por round-trip de 39 arquivos. O Queen Filter
 permanece igual à 0.1.6-dev. Ver [BEE_EXCHANGE_0_2_0](BEE_EXCHANGE_0_2_0.md)
 para tabela, limites de recuperação e reteste manual. Validação no jogo pendente.
+
+## Bee Exchange — interface 0.2.1-dev
+
+Interface baseada no container nativo usado pelo Terramart: 16 slots à direita
+e 4 abaixo, todos com backingImage nativo e centro (9,9), objeto, título e
+Take all. Controlador/receita/ITD não mudam. 121 grupos locais e round-trip
+de 36 arquivos passaram; visual e interação no engine ainda pendentes.
+Ver [BEE_EXCHANGE_UI_0_2_1](BEE_EXCHANGE_UI_0_2_1.md).

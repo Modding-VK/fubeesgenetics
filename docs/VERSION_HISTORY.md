@@ -16,7 +16,9 @@ sintéticos da recuperação não são usados como ancestrais remotos.
 | 0.1.5-dev | Molduras estáticas e itens centralizados nos slots padrão | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/679c14a96d28e00223ebaa00bc6eccb2ee61c374/dist/fubeesgenetics-mvp-0.1.5-dev.pak), [detalhes](HUD_SLOTS_0_1_5.md); entrega em dev |
 | 0.1.6-dev | Setas, nomes dos comparadores, rodapé e texto de Reset Profile | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/7a4ebfc102f00fc552a44e8676b753dfbb065da2/dist/fubeesgenetics-mvp-0.1.6-dev.pak), [detalhes](HUD_LABELS_0_1_6.md); entrega em dev |
 
-| 0.2.0-dev | Segunda máquina: Bee Exchange automática com as 105 trocas do Bee Refuge e 20 slots | [PAK](../dist/fubeesgenetics-mvp-0.2.0-dev.pak), [detalhes](BEE_EXCHANGE_0_2_0.md); entrega em dev |
+| 0.2.0-dev | Segunda máquina: Bee Exchange automática com as 105 trocas do Bee Refuge e 20 slots | [PAK](https://github.com/Modding-VK/fubeesgenetics/raw/522ab60c848583a9a66494bb4c54e4cd350a33a5/dist/fubeesgenetics-mvp-0.2.0-dev.pak), [detalhes](BEE_EXCHANGE_0_2_0.md); entrega em dev |
+
+| 0.2.1-dev | Interface nativa da Bee Exchange: 20 slots visíveis/centralizados, objeto e Take all | [PAK](../dist/fubeesgenetics-mvp-0.2.1-dev.pak), [detalhes](BEE_EXCHANGE_UI_0_2_1.md); entrega em dev |
 
 SHA-256 do PAK e ZIP Workshop de cada snapshot estão em dist/SHA256SUMS.
 Versões dev não representam aprovação de release ou publicação na Steam.
