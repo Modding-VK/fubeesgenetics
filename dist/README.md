@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.9-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.10-dev
 
-- fubeesgenetics-mvp-0.2.9-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.10-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.9-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.10-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -80,3 +80,8 @@ A 0.2.9 usa placa amarela no ícone do inventário, prefixo Glitch Analytical e
 I/O com chave de liga/desliga equivalente ao Terramart 3.5. Input superior: chave;
 input inferior e output: rede ITD. Sem fio na chave, a venda é automática.
 Refaça conexões existentes conforme os novos papéis dos nodes.
+
+A 0.2.10 substitui a madeira do ícone por vidro azul com transparência, reflexo
+e haste vazia. A integração com Improved Containers 2.11 ainda está pendente
+do código do mod; a interface privada atual continua ativa nesta entrega.
+Não considerar esta versão uma integração completa com Improved Containers.

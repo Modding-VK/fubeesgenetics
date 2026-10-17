@@ -290,4 +290,25 @@ test('E36 switching off finishes owed delivery without selling newly arrived bee
  slots[1]=item('bee_honey_queen');update(1)
  assert(not storage.exchangePending and total('coalore')==10 and total('bee_honey_queen')==1 and takes==1)
 end)
+test('E37 externally sorted slots preserve genes and native exchange behavior',function()
+ faults.logicConnected=true
+ slots[0]=item('bee_honey_queen',1,{genome='keep'})
+ slots[1]=item('stone',8,{custom='untouched'})
+ update(1);assert(takes==0)
+ -- A native storage GUI can reorganize descriptors between controller ticks.
+ slots[15],slots[0]=slots[0],nil
+ slots[0],slots[1]=slots[1],nil
+ faults.logicHigh=true;update(1)
+ assert(total('coalore')==10 and total('stone')==8 and slots[0].parameters.custom=='untouched')
+end)
+test('E38 external stacking and take-all preserve exact drone batches',function()
+ slots[0]=item('bee_honey_drone',4,{genome='A'});update(1)
+ assert(takes==0)
+ slots[15]=item('bee_honey_drone',2,{genome='B'});update(1)
+ assert(total('money')==7 and total('bee_honey_drone')==1)
+ local taken=copy(slots);slots={};update(1)
+ assert(next(slots)==nil and not storage.exchangePending)
+ local pixels=0;for _,v in pairs(taken) do if v.name=='money' then pixels=pixels+v.count end end
+ assert(pixels==7)
+end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')
