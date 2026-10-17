@@ -1,0 +1,22 @@
+[h1]Bee Abusive Industry[/h1]
+Genetic queen filtering and automated bee trading for your industrial apiary.
+By Goblin Man.
+
+[b]Requires OpenStarbound and Frackin Universe.[/b]
+This addon uses OpenStarbound's scripted container interfaces. The vanilla Starbound executable is not supported.
+
+[h2]Genetic Queen Filter[/h2]
+Sort inspected Queens and Young Queens using six genetic traits. Choose Equal or higher, Equal or lower or Indifferent per trait. The compact interface keeps the reference profile visible; Approved and Rejected outputs support FU item networks and ITD.
+
+[h2]Auto Refugee[/h2]
+Trade bees automatically using the Bee Refuge rewards from FU. Sixteen shared slots support Queens, Young Queens and batches of five drones of the same species. Includes readable directional sprites, teleport animation, an on/off logic input and FU/ITD item connections. Improved Containers 2.11 integration is optional.
+
+[h2]Crafting and updates[/h2]
+Pick up a Bee Station to learn the recipes. Craft both machines at the Bee Station, Functional tab. Use only one copy of this addon. When updating manually, replace the old PAK with the game closed; existing machine IDs and Filter profiles are preserved.
+
+[h2]Credits[/h2]
+Cybernetic Queen texture, bee definitions and systems: Frackin Universe team, sayterdarkwynd and contributors. The Queen icon is cropped/scaled with nearest-neighbor on an orange background. FU material is credited under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+Source: https://github.com/sayterdarkwynd/FrackinUniverse/tree/17868d86c9bb7bc00f92038fb78b48cebd1b41b8
+Starbound/Terramart assets belong to Chucklefish and their respective contributors. This addon does not imply endorsement by FU or Chucklefish.
+
+Project: https://github.com/Modding-VK/fubeesgenetics

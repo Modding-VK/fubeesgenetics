@@ -6,21 +6,21 @@ O addon usa PAK padrão Starbound 1.4.4 (SBAsset6); não exige instalador própr
 Seu runtime continua sendo OpenStarbound com FU, por causa da interface scriptável.
 
 O nome do PAK manual inclui automaticamente a versão do _metadata, no formato
-`fubeesgenetics-mvp-<versão>.pak`. Exemplo da candidata atual: 0.2.18. O arquivo instalado
+`bee-abusive-industry-<versão>.pak`. Exemplo da candidata: 0.2.18. O arquivo instalado
 pela Workshop mantém o nome padrão contents.pak.
 
 ## Arquivos entregues
 
 | Arquivo | Finalidade |
 | --- | --- |
-| fubeesgenetics-mvp-0.2.18.pak | Instalação manual em Starbound/mods |
-| fubeesgenetics-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
-| fubeesgenetics-mvp-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
-| fubeesgenetics-mvp-source.zip | Projeto completo com ferramentas/testes/documentação |
+| bee-abusive-industry-0.2.18.pak | Instalação manual em Starbound/mods |
+| bee-abusive-industry-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
+| bee-abusive-industry-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
+| bee-abusive-industry-source.zip | Projeto completo com ferramentas/testes/documentação |
 
 ## Instalação
 
-Manual: copiar fubeesgenetics-mvp-0.2.18.pak para Starbound/mods e iniciar pelo
+Manual: copiar bee-abusive-industry-0.2.18.pak para Starbound/mods e iniciar pelo
 OpenStarbound configurado para carregar essa instalação, com FU disponível.
 Não instalar junto uma pasta FUBeesGenetics antiga ou cópia Workshop do addon.
 
@@ -51,6 +51,18 @@ Adapte a unidade à instalação. Não use apenas a raiz 211820: o scanner não
 percorre recursivamente cada contents.pak. Não remova requires para contornar
 a dependência. Quando ambos estiverem na Workshop, serão descobertos juntos.
 
+## Identidade e material de publicação
+
+Título: **[oSB][FU] Bee Abusive Industry**. Autor exibido: **Goblin Man**.
+O campo author do _metadata muda o texto no OpenStarbound; não consulta nem
+vincula o perfil Steam. A conta logada no uploader será a proprietária do item.
+
+Ícone da lista: metadata.icon referencia a Cybernetic Queen do FU e usa diretivas
+nativas para fundo laranja. Não é a imagem da Workshop nem o ícone dos itens.
+Imagem de apresentação: artwork/branding/workshop-preview.png (512×512).
+Texto pronto para a página: artwork/workshop/description.bbcode.txt.
+Definição de título/dependência: artwork/workshop/publication.json.
+
 ## Publicar
 
 **Mod Uploader:** selecionar a pasta aberta FUBeesGenetics/ do ZIP do mod ou do
@@ -59,7 +71,7 @@ pasta contendo apenas contents.pak nesse uploader: ele esperaria assets abertos
 e poderia criar um PAK contendo outro PAK. Esse fluxo é diferente de um publisher
 que aceite conteúdo pré-empacotado.
 
-**Conteúdo pré-empacotado:** extrair fubeesgenetics-workshop-content.zip para uma
+**Conteúdo pré-empacotado:** extrair bee-abusive-industry-workshop-content.zip para uma
 pasta de conteúdo que terá somente contents.pak. Usar essa pasta no fluxo de
 upload escolhido que envie arquivos prontos, por exemplo workshop_build_item
 com VDF corretamente configurado. AppID Starbound: 211820. publishedfileid=0
@@ -92,7 +104,7 @@ sem uma pasta FUBeesGenetics extra dentro do PAK.
 
 Ferramentas usadas nesta entrega: OpenStarbound v0.1.15.1 para Starbound 1.4.4,
 Source ID e hashes registrados em [pak_toolchain.json](../tools/pak_toolchain.json).
-Foram restaurados 52 arquivos: 51 assets byte a byte e metadata JSON equivalente.
+Foram restaurados 53 arquivos: 52 assets byte a byte e metadata JSON equivalente.
 Isso valida empacotamento e paths; não executa o mod no jogo.
 
 ## Fontes primárias

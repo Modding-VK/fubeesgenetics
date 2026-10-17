@@ -125,6 +125,9 @@
     "objects/generic/cropshipper/cropshipper_kheAA2.object": "0476ec6fb0ad8c89b09dedd5aa67de8b9bd069af",
     "objects/generic/cropshipper/cropshipper_kheAA.lua": "673eca11ce93e5af2e1f65fb110415462b8548f2",
     "objects/generic/cropshipper/cropshipperkhe.png": "b7ada27b5478c6ee6b3296e5cb36b183a780ba8f",
-    "objects/generic/cropshipper/cropshipperkhe.animation": "30876f49345540e250bebfde929e508fa0f8faf1"
+    "objects/generic/cropshipper/cropshipperkhe.animation": "30876f49345540e250bebfde929e508fa0f8faf1",
+    "bees/bees/cybernetic.png": "b517bb9fb2ba25c910703a4b36bf05b237c8a576",
+    "bees/bees/default.frames": "8670a5864fdf483f0eba7df168b2d343c040ddb6",
+    "bees/bees/cybernetic_queen.item": "ebfe084b105bd7578d0b0c8f2c9ad01055619b8f"
   }
 }

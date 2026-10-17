@@ -25,7 +25,7 @@ Ver [procedimento GitHub](GITHUB_PUBLICATION.md).
 
 Cada pacote entregue tem uma versão identificável no _metadata e um commit com
 seus assets, PAK e dist/SHA256SUMS. O PAK manual deve se chamar
-`fubeesgenetics-mvp-<versão>.pak`, usando a versão do _metadata. O PAK da
+`bee-abusive-industry-<versão>.pak`, usando a versão do _metadata. O PAK da
 Workshop continua contents.pak, com os mesmos bytes. Usar links por SHA nos downloads fornecidos ao
 usuário, conservando acesso às versões anteriores. Validar:
 
@@ -61,3 +61,7 @@ A main existente contém 0.1.3-dev por causa do fluxo anterior. Ela é mantida
 intacta, inclusive seu identificador histórico. A convenção estável será aplicada
 na próxima promoção explicitamente solicitada; não renomear versões nem criar
 uma release retroativa para simular uma validação que não ocorreu.
+
+O rebranding autorizado usa bee-abusive-industry nos novos arquivos públicos.
+Os nomes antigos fubeesgenetics-mvp e os links por SHA são preservados como
+histórico; o name interno e os IDs do mod continuam FUBeesGenetics.

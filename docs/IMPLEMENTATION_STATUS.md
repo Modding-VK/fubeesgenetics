@@ -1,28 +1,15 @@
 # Estado do projeto — 2026-10-17
 
 
-## Candidata à produção — 0.2.18
+## Candidata atual — 0.2.18
 
-O mantenedor confirmou que todas as alterações estão validadas e prontas e
-solicitou o Pull Request. A candidata foi preparada a partir da dev
-6de1050114e865e119a434698c25b4ec4ed67b13 em release/0.2.18. A main permanece
-inalterada enquanto o PR aguarda revisão e merge autorizado; nenhuma tag,
-release GitHub ou publicação Steam foi efetuada.
+Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
+ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
+iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
+nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
+não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
 
-Os 135 grupos básicos passaram e o PAK estável foi conferido por pack/unpack
-de 52 arquivos. Scripts e assets de produção, exceto metadata, são idênticos
-à dev validada. Os 13 testes opcionais IC não foram repetidos neste ambiente;
-seu histórico de execução permanece nos registros anteriores. A confirmação
-manual do mantenedor não equivale a uma execução automatizada desses casos.
-Ver [notas da candidata](RELEASE_0_2_18.md).
-
-## Registros anteriores à validação do mantenedor
-
-Os estados pendentes e contagens abaixo são registros históricos da preparação;
-para a situação atual, prevalece a confirmação acima. Ela não recupera o anexo
-integral v1.2 ou a arte antiga que já estavam documentados como indisponíveis.
-
-## Situação atual — 0.2.18-dev
+## Registro da build funcional validada — 0.2.18-dev
 
 A 0.2.18 centraliza Reset Profile entre as barras (margens 11/11) e baixa
 as listras para a faixa metálica inferior. Ver [detalhes](HUD_ALIGNMENT_0_2_18.md).

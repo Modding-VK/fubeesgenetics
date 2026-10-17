@@ -1,9 +1,10 @@
 # Validação no OpenStarbound
 
-O mantenedor confirmou todas as alterações validadas e prontas ao solicitar
-o PR da 0.2.18. As listas abaixo preservam os cenários históricos; não foram
-marcadas individualmente porque o relato não enumera cada execução.
-Ver [notas da candidata](RELEASE_0_2_18.md).
+O mantenedor confirmou todas as alterações funcionais anteriores validadas.
+A identidade pública foi atualizada: conferir nome [oSB][FU] Bee Abusive Industry,
+autor Goblin Man, ícone Cybernetic Queen em fundo laranja e homepage na lista.
+Os registros abaixo preservam os cenários anteriores sem inferir execução
+individual de cada checkbox a partir da confirmação geral.
 
 ## Estado atual e reteste 0.2.14-dev
 

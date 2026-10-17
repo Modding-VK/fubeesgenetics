@@ -9,15 +9,17 @@ gerar um PAK não autoriza, por si só, promover para main.
 ## Estado atual
 
 - Repositório: https://github.com/Modding-VK/fubeesgenetics.
-- Mantenedor confirmou todas as alterações validadas e solicitou o PR.
-- Candidata 0.2.18 preparada em release/0.2.18, a partir da dev
-  6de1050114e865e119a434698c25b4ec4ed67b13 (0.2.18-dev).
-- A branch auxiliar de release conserva a convenção: dev usa -dev; a candidata
-  destinada à main usa versão estável. Não altera a política de autorização.
-- Main permanece em 54afbe59309ca6481fc4f835f07f92706e5a14b9 até merge autorizado.
-- Não foram criados merge, tag estável, release GitHub ou publicação Steam.
-- Validação: 135 grupos básicos, versão estável e pack/unpack nativo de 52 arquivos.
-  Os 13 casos IC opcionais não foram repetidos neste ambiente.
+- Candidata estável 0.2.18 em release/0.2.18, PR #5 aberto para main.
+- Identidade integrada da dev cc30138dd2d7b0a713d0722829374118eae0957d (0.2.19-dev).
+  Base preservada: `6de1050114e865e119a434698c25b4ec4ed67b13` (0.2.18-dev).
+  [Pacote](../dist/bee-abusive-industry-0.2.18.pak) e
+  [identidade e prontidão](RELEASE_READINESS.md).
+- Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
+- PR #5 já solicitado e aberto: release/0.2.18 → main. Candidata atualizada
+  com a identidade pública. Não houve merge, tag estável ou publicação Steam.
+- Nome público, autor, ícone e pacote foram atualizados; IDs/scripts iguais.
+- Validação local: 135 grupos básicos e pack/unpack nativo de 53 arquivos.
+  Os 13 testes IC opcionais não foram repetidos neste ambiente. O CI valida o push.
 
 ## Procedimento vigente
 

@@ -55,8 +55,12 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.17-dev | Logo centralizado, título laranja no topo e descrição curta | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/10935100979aae7a8c4e2cdd48b089260db01505/dist/fubeesgenetics-mvp-0.2.17-dev.pak), [detalhes](HUD_HEADER_0_2_17.md) |
 | 0.2.18-dev | Reset Profile centralizado entre barras e listras na faixa metálica | [PAK](../dist/fubeesgenetics-mvp-0.2.18-dev.pak), [detalhes](HUD_ALIGNMENT_0_2_18.md) |
 
-## Candidata à produção
-
-| Versão | Escopo | Pacote e validação |
+| Versão | Mudança | Pacote e detalhes |
 | --- | --- | --- |
-| 0.2.18 | Auto Refugee, receita e interface compacta do Filter, validadas pelo mantenedor | [PAK](../dist/fubeesgenetics-mvp-0.2.18.pak), [notas](RELEASE_0_2_18.md); PR solicitado, merge pendente |
+| 0.2.19-dev | Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19-dev.pak), [prontidão](RELEASE_READINESS.md) |
+
+## Candidata estável em revisão
+
+| Versão | Mudança | Pacote |
+| --- | --- | --- |
+| 0.2.18 | Identidade Bee Abusive Industry, Goblin Man e ícone laranja, aplicados antes da publicação | [PAK candidato](../dist/bee-abusive-industry-0.2.18.pak), [prontidão](RELEASE_READINESS.md); PR #5 aberto |

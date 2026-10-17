@@ -1,4 +1,4 @@
-# Candidata à produção — 0.2.18
+# Bee Abusive Industry — candidata 0.2.18
 
 O mantenedor confirmou todas as alterações validadas e prontas e solicitou
 Pull Request. A candidata parte da dev 6de1050114e865e119a434698c25b4ec4ed67b13,
@@ -25,12 +25,12 @@ a dev conserva seu identificador e histórico. Não foi executado merge.
 - Os 13 casos IC opcionais não foram repetidos: o PAK original não está neste
   ambiente. Os registros anteriores de execução permanecem preservados.
 - check_version.py --release --tag v0.2.18 passa sem criar tags.
-- PAK SBAsset6 estável empacotado/extraído com ferramentas nativas: 52 arquivos,
+- PAK SBAsset6 estável empacotado/extraído com ferramentas nativas: 53 arquivos,
   assets idênticos e metadata JSON equivalente. Workshop contents.pak é idêntico.
-- Todos os arquivos de produção, exceto _metadata, são byte a byte iguais à dev
-  validada. Scripts, IDs, inventários, receitas e sprites não mudaram nesta preparação.
+- Scripts e arquivos de gameplay são byte a byte iguais à dev validada;
+  metadata e créditos de apresentação foram atualizados. Scripts, IDs, inventários, receitas e sprites não mudaram nesta preparação.
 
-Instalar fubeesgenetics-mvp-0.2.18.pak com o jogo fechado, substituindo o PAK
+Instalar bee-abusive-industry-0.2.18.pak com o jogo fechado, substituindo o PAK
 anterior. Usar OpenStarbound com FU e apenas uma cópia do addon. Não precisa
 resetar o perfil do Filter ou reconstruir máquinas. PAKs antigos preservados.
 
@@ -41,3 +41,14 @@ estável, release GitHub ou publicação Steam foi criada. A tag anotada v0.2.18
 fica reservada à operação posterior autorizada, no commit efetivo de produção.
 As limitações históricas de recuperação do Analyzer continuam documentadas;
 a confirmação do mantenedor não reconstrói anexos/arquivos indisponíveis.
+
+## Identidade adicionada antes da publicação
+
+Nome: [oSB][FU] Bee Abusive Industry. Autor: Goblin Man. Homepage do projeto
+ativada. Ícone: Cybernetic Queen do FU sobre laranja, em tamanho nativo 14×14.
+A identidade vem da dev cc30138dd2d7b0a713d0722829374118eae0957d (0.2.19-dev),
+integrada preservando os dois históricos. A candidata conserva 0.2.18 por ainda
+não ter sido publicada. Não altera IDs, nomes técnicos, scripts ou inventários.
+
+Preview 512×512 e descrição BBCode preparados para Workshop. Créditos/licença
+incluídos; o novo ícone precisa de conferência visual no jogo. Ver RELEASE_READINESS.

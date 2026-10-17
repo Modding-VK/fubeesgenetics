@@ -1,31 +1,30 @@
-# FU Bees Genetics
+# Bee Abusive Industry
 
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão 0.2.18 — candidata à produção, aguardando revisão e merge do PR.**
+**Candidata à produção: 0.2.18. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.18.pak?raw=true) ·
-[Alterações da versão](docs/RELEASE_0_2_18.md) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.18.pak?raw=true) ·
+[Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
-A 0.2.18 centraliza Reset Profile entre as duas barras e mantém as listras
-inferiores inteiramente na faixa metálica. O logo, título laranja e descrição
-clara da 0.2.17 estão preservados.
+A 0.2.19 aplica o nome **[oSB][FU] Bee Abusive Industry**, autor **Goblin Man**,
+ícone Cybernetic Queen em fundo laranja e link do projeto na lista de mods.
+Os IDs internos permanecem iguais. A interface validada da 0.2.18 está preservada.
 O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.16
 permanecem iguais.
 A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
-O mantenedor confirmou que todas as alterações estão validadas e prontas e
-solicitou o Pull Request. A candidata 0.2.18 preserva os scripts/assets da
-0.2.18-dev validada; somente o metadata muda nos assets de produção.
-A dev permanece com sufixo -dev. Não houve merge, tag ou publicação Steam.
+O mantenedor confirmou todas as alterações anteriores validadas e prontas.
+O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
+A candidata estável permanece em revisão no PR #5; main não foi promovida.
 
 ## Instalação
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `fubeesgenetics-mvp-0.2.18.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.18.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -103,9 +102,9 @@ As regras acordadas no chat **Bee Analyzer** valem para as duas máquinas:
 - Tags estáveis `vX.Y.Z` ficam reservadas às promoções autorizadas.
 
 Veja [VERSIONING](docs/VERSIONING.md), [operação GitHub](docs/GITHUB_PUBLICATION.md)
-e [AGENTS.md](AGENTS.md). O nome futuro **Bee Abusive Industry** e o título
-Workshop **[oSB][FU] Bee Abusive Industry** continuam planejados; metadata e IDs
-atuais permanecem iguais. [Planejamento](docs/ROADMAP.md).
+e [AGENTS.md](AGENTS.md). O nome público **Bee Abusive Industry** e o título
+Workshop **[oSB][FU] Bee Abusive Industry** já foram aplicados. O name técnico
+e os IDs permanecem iguais. [Identidade e planejamento](docs/ROADMAP.md).
 
 ## Testes e ferramentas
 
@@ -121,12 +120,12 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.18 passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
+Nesta candidata passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
 não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
 Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**52 arquivos**, com bytes idênticos e metadata JSON equivalente.
+**53 arquivos**, com bytes idênticos e metadata JSON equivalente.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).

@@ -1,20 +1,32 @@
-# Candidata à produção — 0.2.18
+# Candidata atual — [oSB][FU] Bee Abusive Industry 0.2.18
 
-- fubeesgenetics-mvp-0.2.18.pak: PAK nativo para instalação manual.
-- fubeesgenetics-workshop-content.zip: o mesmo PAK como contents.pak.
-- SHA256SUMS: hashes atuais; outros PAKs nesta pasta preservam versões anteriores.
+- bee-abusive-industry-0.2.18.pak: pacote manual atual, com autor Goblin Man e ícone Cybernetic Queen laranja.
+- bee-abusive-industry-workshop-content.zip: os mesmos bytes como contents.pak.
+- SHA256SUMS: hashes atuais. Outros pacotes são versões históricas; instalar apenas um.
 
-O mantenedor confirmou as alterações validadas e solicitou o PR. Este pacote
-foi preparado em release/0.2.18, a partir de dev 6de1050114e865e119a434698c25b4ec4ed67b13.
-Scripts e demais assets do mod são idênticos à 0.2.18-dev validada; só o metadata
-foi ajustado. 135 grupos básicos e pack/unpack de 52 arquivos passaram.
+Candidata do PR #5, com a identidade aplicada na dev cc30138dd2d7b0a713d0722829374118eae0957d.
+53 arquivos conferidos por pack/unpack; 135 grupos básicos passaram. Falta conferir
+a nova identidade no jogo e concluir merge/tag/upload nas respectivas operações autorizadas.
+Nenhum merge, tag estável, release GitHub ou upload Steam foi efetuado.
 
-Instalar apenas uma versão por vez em Starbound/mods, com o jogo fechado.
-Executar OpenStarbound com FU. Não precisa resetar perfil ou reconstruir máquinas.
-Não houve merge em main, tag estável, release GitHub ou upload Steam.
-Ver docs/RELEASE_0_2_18.md.
+## Registros anteriores
 
-## Histórico das builds de desenvolvimento
+# Distribuição atual — Bee Abusive Industry 0.2.19-dev
+
+- bee-abusive-industry-0.2.19-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
+- SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
+
+Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
+O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
+não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.
+
+135 grupos básicos passaram e 53 arquivos foram conferidos por pack/unpack.
+Os 13 casos IC opcionais não foram repetidos neste ambiente. O mantenedor já
+validou a funcionalidade anterior; conferir o novo ícone na lista do OpenStarbound.
+Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
+
+## Registros anteriores
 
 # Arquivos de distribuição de desenvolvimento — 0.2.18-dev
 

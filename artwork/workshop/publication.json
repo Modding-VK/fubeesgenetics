@@ -1,0 +1,16 @@
+{
+  "appid": 211820,
+  "title": "[oSB][FU] Bee Abusive Industry",
+  "author_display": "Goblin Man",
+  "preview": "artwork/branding/workshop-preview.png",
+  "description": "artwork/workshop/description.bbcode.txt",
+  "required_workshop_items": [
+    "729480149"
+  ],
+  "optional_workshop_items": [
+    "729427606"
+  ],
+  "runtime": "OpenStarbound",
+  "publishedfileid": null,
+  "source_internal_name": "FUBeesGenetics"
+}
