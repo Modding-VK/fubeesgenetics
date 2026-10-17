@@ -31,7 +31,7 @@ import json
 (d/'display.frames').write_text(json.dumps({'frameGrid':{'size':[64,80],'dimensions':[22,1],'names':[names]}},indent=2)+'\n')
 a=json.loads((d/'beeexchange.animation').read_text());a['animatedParts']['stateTypes']['machine']['states']['ready']['frames']=2;a['animatedParts']['stateTypes']['machine']['states']['ready']['cycle']=0.2
 for part in ['specimen','teleport']:a['animatedParts']['parts'][part]['partStates']['machine']['ready']['properties']['image']=part+'.png:ready.1'
-a['animatedParts']['parts']['display']={'properties':{'centered':False,'zLevel':3,'fullbright':True},'partStates':{'machine':{state:{'properties':{'image':'display.png:'+state+'.<frame>'}} for state in ['ready','work']}}}
+a['animatedParts']['parts']['display']={'properties':{'centered':False,'zLevel':3,'fullbright':True},'partStates':{'machine':{state:{'properties':{'image':'display<facingSuffix>.png:'+state+'.<frame>'}} for state in ['ready','work']}}}
 (d/'beeexchange.animation').write_text(json.dumps(a,indent=2)+'\n')
 # Preview with native glow and unchanged insect/teleport layers.
 sp=Image.open(d/'specimen.png').convert('RGBA');fx=Image.open(d/'teleport.png').convert('RGBA');frames=[]
@@ -39,4 +39,47 @@ for i in range(22):
  f=base.copy();j=0 if i<2 else i-1
  for layer in [sp,fx]:f.alpha_composite(layer.crop((j*64,0,(j+1)*64,80)))
  f.alpha_composite(sheet.crop((i*64,0,(i+1)*64,80)));bg=Image.new('RGBA',(64,80),'#344451');bg.alpha_composite(f);frames.append(bg.convert('RGB').resize((384,480),Image.Resampling.NEAREST))
-out=r/'artwork/implemented';frames[0].save(out/'beeexchange-0.2.6.png');seq=[frames[i%2] for i in range(10)]+frames[2:]+[frames[i%2] for i in range(10)];seq[0].save(out/'beeexchange-0.2.6.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)
+out=r/'artwork/implemented';frames[0].save(out/'beeexchange-0.2.7.png');seq=[frames[i%2] for i in range(10)]+frames[2:]+[frames[i%2] for i in range(10)];seq[0].save(out/'beeexchange-0.2.7.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)
+
+# Engine mirrors objects facing left. Compensate only lettering and display glyphs
+# in dedicated runtime textures, while the casing/LEDs/insect mirror normally.
+left_base=base.copy()
+for word_box in [(31,32,46,37),(25,38,52,43)]:
+ left_base.paste(base.crop(word_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT),word_box)
+left_base.save(d/'static-left.png')
+left_display=sheet.copy()
+for i in range(22):
+ glyph_box=(i*64+28,71,i*64+44,75)
+ left_display.paste(sheet.crop(glyph_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT),glyph_box)
+for i in range(22):
+ # After the engine's whole-frame flip, the display glyph has its original
+ # orientation inside the reflected display housing, for every animation frame.
+ original_box=(i*64+28,71,i*64+44,75)
+ assert left_display.crop(original_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT).tobytes()==sheet.crop(original_box).tobytes()
+left_display.save(d/'display-left.png')
+(d/'display-left.frames').write_bytes((d/'display.frames').read_bytes())
+# Placement uses already oriented, fully lit ready images; it does not run Lua.
+right_placement=base.copy();right_placement.alpha_composite(sheet.crop((0,0,64,80)))
+left_placement=left_base.copy();left_placement.alpha_composite(left_display.crop((0,0,64,80)))
+left_placement=left_placement.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+right_placement.save(d/'placement-right.png');left_placement.save(d/'placement-left.png')
+# Exact native renderer compensation: full 64px canvas mirrors around x=32px.
+assert left_placement.tobytes()!=right_placement.transpose(Image.Transpose.FLIP_LEFT_RIGHT).tobytes()
+for word_box in [(31,32,46,37),(25,38,52,43)]:
+ left_box=(64-word_box[2],word_box[1],64-word_box[0],word_box[3])
+ assert left_placement.crop(left_box).tobytes()==right_placement.crop(word_box).tobytes()
+# Review both directions and all work frames with the same layer order as the engine.
+review=[]
+for i in range(22):
+ pair=Image.new('RGBA',(128,80),'#344451')
+ for is_left in [False,True]:
+  f=(left_base if is_left else base).copy();j=0 if i<2 else i-1
+  for layer in [sp,fx]:f.alpha_composite(layer.crop((j*64,0,(j+1)*64,80)))
+  atlas=left_display if is_left else sheet
+  f.alpha_composite(atlas.crop((i*64,0,(i+1)*64,80)))
+  if is_left:f=f.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+  pair.alpha_composite(f,(0 if is_left else 64,0))
+ review.append(pair.convert('RGB').resize((768,480),Image.Resampling.NEAREST))
+review[0].save(out/'beeexchange-0.2.7-directions.png')
+seq=[review[i%2] for i in range(10)]+review[2:]+[review[i%2] for i in range(10)]
+seq[0].save(out/'beeexchange-0.2.7-directions.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)

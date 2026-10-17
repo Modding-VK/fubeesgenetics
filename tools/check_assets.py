@@ -153,9 +153,22 @@ def check_assets(root, fu_root, native_root):
     orientation=exchange['orientations'][0]
     assert orientation['imagePosition']==[-8,0]
     assert set(map(tuple,orientation['spaces']))=={(x,y) for x in range(6) for y in range(5)}
-    assert orientation['imageLayers']==[{'image':'static.png'}]
+    assert orientation['imageLayers']==[{'image':'placement-right.png'}]
+    assert 'direction' not in orientation  # preserve stored legacy facing at index zero
+    assert len(exchange['orientations'])==3 and exchange['animationCenterLine']==4
+    for index,direction in [(1,'right'),(2,'left')]:
+        facing=exchange['orientations'][index]
+        assert facing['direction']==direction and not facing.get('flipImages',False)
+        assert facing['imageLayers']==[{'image':'placement-'+direction+'.png'}]
+        assert facing['spaces']==orientation['spaces'] and facing['imagePosition']==[-8,0]
+        assert png_size(exchange_path.parent/('placement-'+direction+'.png'))==(64,80)
+    assert png_size(exchange_path.parent/'static-left.png')==(64,80)
+    assert png_size(exchange_path.parent/'display-left.png')==(1408,80)
+    assert json.loads((exchange_path.parent/'display-left.frames').read_text())==json.loads((exchange_path.parent/'display.frames').read_text())
     animation=docs[mod/exchange['animation'].lstrip('/')]
     refs(animation)
+    assert animation['globalTagDefaults']['facingSuffix']==''
+    assert animation['animatedParts']['parts']['base']['properties']['image']=='static<facingSuffix>.png'
     states=animation['animatedParts']['stateTypes']['machine']['states']
     assert states['work']['frames']==20 and states['work']['cycle']==1.25
     assert states['work']['transition']=='ready'
@@ -168,6 +181,8 @@ def check_assets(root, fu_root, native_root):
     assert states['ready']['frames']==2 and states['ready']['cycle']==0.2
     display=animation['animatedParts']['parts']['display']
     assert display['properties']['fullbright'] and display['properties']['zLevel']==3
+    for state in ['ready','work']:
+        assert display['partStates']['machine'][state]['properties']['image']=='display<facingSuffix>.png:'+state+'.<frame>'
     assert png_size(exchange_path.parent/'display.png')==(1408,80)
     display_names=json.loads((exchange_path.parent/'display.frames').read_text())['frameGrid']['names'][0]
     assert display_names==['ready.1','ready.2']+['work.'+str(i) for i in range(1,21)]

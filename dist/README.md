@@ -1,16 +1,16 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.6-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.7-dev
 
-- fubeesgenetics-mvp-0.2.6-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.7-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.6-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.7-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
-(42 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
+(47 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
 a diretriz v1.2 disponível é consolidada do histórico, não o anexo integral.
 Nenhuma publicação Steam ou aprovação de release é afirmada.
 
@@ -65,3 +65,8 @@ relatado usava menos de cinco ou espécies misturadas.
 A 0.2.6 substitui a carcaça FU pela original vanilla do Terramart, sem as marcas
 de dano remanescentes. Restaura ambos os LEDs laterais vanilla, com dimensões,
 posições e fullbright originais; não redesenha nem desloca os LEDs.
+
+A 0.2.7 cadastra orientações esquerda/direita para a prévia de placement e
+usa variantes de placa/display que compensam o espelhamento automático do
+engine. Texto e símbolos ficam legíveis nos dois lados, em ready e work.
+127 grupos locais passaram; validação de placement dentro do jogo pendente.

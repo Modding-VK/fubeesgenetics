@@ -31,3 +31,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.5-dev | Display nativo, carcaça reparada, LED superior e inspeções raciais | [PAK](../dist/fubeesgenetics-mvp-0.2.5-dev.pak), [detalhes](BEE_EXCHANGE_0_2_5.md) |
 
 | 0.2.6-dev | Carcaça vanilla sem dano e ambos os LEDs laterais originais | [PAK](../dist/fubeesgenetics-mvp-0.2.6-dev.pak), [detalhes](BEE_EXCHANGE_0_2_6.md) |
+
+| 0.2.7-dev | Placement direcional e placa/display legíveis dos dois lados | [PAK](../dist/fubeesgenetics-mvp-0.2.7-dev.pak), [detalhes](BEE_EXCHANGE_0_2_7.md) |

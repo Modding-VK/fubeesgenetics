@@ -140,6 +140,9 @@ end
 
 function init()
   self = {timer = 0, cursor = 0, trades = {}, size = config.getParameter("slotCount")}
+  -- Keep the engine's native left flip, correcting lettering/display with the
+  -- dedicated atlas. Neutral legacy orientation keeps its saved facing too.
+  animator.setGlobalTag("facingSuffix", object.direction() == -1 and "-left" or "")
   self.defaultMaxStack = root.assetJson("/items/defaultParameters.config").defaultMaxStack
   for _, path in ipairs(root.assetJson(BASE .. "trades.config").recipes) do
     local recipe = root.assetJson(path)

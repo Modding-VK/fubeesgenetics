@@ -10,7 +10,9 @@ local function same(a,b)
  for k in pairs(b) do if a[k]==nil then return false end end;return true
 end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
-local slots,faults,puts,takes,drops,logs,animations
+local slots,faults,puts,takes,drops,logs,animations,tags
+local facing=1
+object={direction=function() return facing end}
 local paths={};for path in pairs(fixture.tradeRecipes) do paths[#paths+1]=path end;table.sort(paths)
 root={assetJson=function(path)
  if path==base..'trades.config' then return {recipes=paths} end
@@ -24,7 +26,7 @@ end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
 config={getParameter=function(name) if name=='slotCount' then return 16 end end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
-animator={setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
+animator={setGlobalTag=function(name,value) tags[name]=value end,setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
  assert(id==42 and s>=0 and s<16);return copy(slots[s])
 end,containerTakeNumItemsAt=function(id,s,n)
@@ -56,7 +58,7 @@ require=function(path)
 end
 dofile(fixture.repoRoot..'/FUBeesGenetics'..base..'beeexchange.lua')
 local function fresh(saved,inventory)
- slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={}
+ slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={};tags={}
  transferUtil.vars=nil;init()
 end
 local function item(name,count,parameters) return {name=name,count=count or 1,parameters=parameters or {}} end
@@ -251,5 +253,14 @@ test('E31 Young Queens inherit live adult reward patches and ignore larva Pixel 
  -- The independent copied output must not mutate the adult reward after delivery.
  slots[0]=item('bee_honey_queen');update(1);assert(total('titaniumbar')==6)
  fixture.tradeRecipes[adultPath],fixture.tradeRecipes[youngPath]=adult,young
+end)
+test('E32 direction tags select readable runtime textures on placement and reload',function()
+ assert(tags.facingSuffix=='')
+ facing=-1;fresh();assert(tags.facingSuffix=='-left')
+ slots[0]=item('bee_honey_drone',5);update(1)
+ assert(total('money')==7 and animations[2]=='work' and tags.facingSuffix=='-left')
+ local saved,inventory=copy(storage),copy(slots)
+ fresh(saved,inventory);assert(tags.facingSuffix=='-left' and total('money')==7)
+ facing=1;fresh();assert(tags.facingSuffix=='')
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

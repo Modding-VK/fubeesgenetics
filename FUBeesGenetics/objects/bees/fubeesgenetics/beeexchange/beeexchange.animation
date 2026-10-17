@@ -89,7 +89,7 @@
         "properties": {
           "centered": false,
           "zLevel": 0,
-          "image": "static.png"
+          "image": "static<facingSuffix>.png"
         }
       },
       "display": {
@@ -102,17 +102,20 @@
           "machine": {
             "ready": {
               "properties": {
-                "image": "display.png:ready.<frame>"
+                "image": "display<facingSuffix>.png:ready.<frame>"
               }
             },
             "work": {
               "properties": {
-                "image": "display.png:work.<frame>"
+                "image": "display<facingSuffix>.png:work.<frame>"
               }
             }
           }
         }
       }
     }
+  },
+  "globalTagDefaults": {
+    "facingSuffix": ""
   }
 }

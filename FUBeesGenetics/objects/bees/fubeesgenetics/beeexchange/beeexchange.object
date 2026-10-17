@@ -148,9 +148,285 @@
       ],
       "imageLayers": [
         {
-          "image": "static.png"
+          "image": "placement-right.png"
         }
       ]
+    },
+    {
+      "imagePosition": [
+        -8,
+        0
+      ],
+      "frames": 1,
+      "spaces": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "anchors": [
+        "bottom"
+      ],
+      "imageLayers": [
+        {
+          "image": "placement-right.png"
+        }
+      ],
+      "direction": "right"
+    },
+    {
+      "imagePosition": [
+        -8,
+        0
+      ],
+      "frames": 1,
+      "spaces": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "anchors": [
+        "bottom"
+      ],
+      "imageLayers": [
+        {
+          "image": "placement-left.png"
+        }
+      ],
+      "direction": "left"
     }
   ],
   "scripts": [
@@ -182,5 +458,6 @@
   "floranDescription": "Beesss vanish, treasuresss appear! Machine wantsss five matching dronesss.",
   "glitchDescription": "Informative. Queens yield species-specific resources. Five drones of the same species yield Pixels.",
   "hylotlDescription": "A glass chamber automates the refuge exchange. Queens provide resources; five drones of one species provide Pixels.",
-  "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal."
+  "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal.",
+  "animationCenterLine": 4
 }
