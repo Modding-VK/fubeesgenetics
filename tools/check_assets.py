@@ -165,6 +165,15 @@ def check_assets(root, fu_root, native_root):
         assert png_size(exchange_path.parent/(name+'.png'))==(1344,80)
     assert png_size(exchange_path.parent/'static.png')==(64,80)
     assert animation['animatedParts']['parts']['teleport']['properties']['fullbright']
+    assert states['ready']['frames']==2 and states['ready']['cycle']==0.2
+    display=animation['animatedParts']['parts']['display']
+    assert display['properties']['fullbright'] and display['properties']['zLevel']==3
+    assert png_size(exchange_path.parent/'display.png')==(1408,80)
+    display_names=json.loads((exchange_path.parent/'display.frames').read_text())['frameGrid']['names'][0]
+    assert display_names==['ready.1','ready.2']+['work.'+str(i) for i in range(1,21)]
+    for race in ['human','apex','avian','floran','glitch','hylotl','novakid','generic']:
+        assert exchange[race+'Description'].strip()
+
     refs(exchange)
     exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
     refs(exchange_ui)

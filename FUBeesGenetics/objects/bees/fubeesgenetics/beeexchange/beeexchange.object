@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_beeexchange",
   "objectType": "container",
   "shortdescription": "Bee Exchange",
-  "description": "Automatically exchanges Queens, Young Queens and Drones at Bee Refuge rates. Other items are left untouched.",
+  "description": "Automatically exchanges Queens and Young Queens for resources. Five Drones of the same species give Pixels. Other items are left untouched.",
   "race": "generic",
   "category": "storage",
   "rarity": "rare",
@@ -171,10 +171,16 @@
     ]
   ],
   "genericDescription": "Bee Refuge trades, automatically. Queens and Young Queens give the same species resource; groups of five Drones give Pixels.",
-  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated.",
+  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated. It takes five matching drones for a payout.",
   "animation": "/objects/bees/fubeesgenetics/beeexchange/beeexchange.animation",
   "animationPosition": [
     -8,
     0
-  ]
+  ],
+  "apexDescription": "An automated exchange with species-specific rates. Queens yield resources; batches of five matching drones yield Pixels.",
+  "avianDescription": "A small glass chamber that sends bees to the refuge. Five drones of one kind are exchanged together.",
+  "floranDescription": "Beesss vanish, treasuresss appear! Machine wantsss five matching dronesss.",
+  "glitchDescription": "Informative. Queens yield species-specific resources. Five drones of the same species yield Pixels.",
+  "hylotlDescription": "A glass chamber automates the refuge exchange. Queens provide resources; five drones of one species provide Pixels.",
+  "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal."
 }

@@ -5,8 +5,8 @@
         "default": "ready",
         "states": {
           "ready": {
-            "frames": 1,
-            "cycle": 1,
+            "frames": 2,
+            "cycle": 0.2,
             "mode": "loop"
           },
           "work": {
@@ -90,6 +90,27 @@
           "centered": false,
           "zLevel": 0,
           "image": "static.png"
+        }
+      },
+      "display": {
+        "properties": {
+          "centered": false,
+          "zLevel": 3,
+          "fullbright": true
+        },
+        "partStates": {
+          "machine": {
+            "ready": {
+              "properties": {
+                "image": "display.png:ready.<frame>"
+              }
+            },
+            "work": {
+              "properties": {
+                "image": "display.png:work.<frame>"
+              }
+            }
+          }
         }
       }
     }

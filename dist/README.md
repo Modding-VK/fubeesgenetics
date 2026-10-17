@@ -1,16 +1,16 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.4-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.5-dev
 
-- fubeesgenetics-mvp-0.2.4-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.5-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.4-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.5-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
-(40 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
+(42 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
 a diretriz v1.2 disponível é consolidada do histórico, não o anexo integral.
 Nenhuma publicação Steam ou aprovação de release é afirmada.
 
@@ -55,3 +55,9 @@ A 0.2.4 aplica a caixa de vidro e haste aprovadas, com inseto girado 90°
 no sentido horário e animação de teleporte em work. Ciclo de 1,25 s, som nativo
 e retorno à caixa vazia. Mantém 16 slots e as mesmas trocas/receita.
 126 grupos locais passaram; conferência no jogo pendente.
+
+A 0.2.5 restaura display fullbright azul em ready e seta amarela em work,
+carcaça com paleta nativa e sem marcas de dano, LED na lateral superior e
+inspeções das sete raças básicas. A descrição esclarece o lote de cinco drones
+da mesma espécie. Não houve defeito reproduzido na venda dos drones: o teste
+relatado usava menos de cinco ou espécies misturadas.
