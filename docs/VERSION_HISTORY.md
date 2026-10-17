@@ -29,3 +29,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 
 | 0.2.4-dev | Caixa de vidro e teleporte do inseto | [PAK](../dist/fubeesgenetics-mvp-0.2.4-dev.pak), [detalhes](BEE_EXCHANGE_0_2_4.md) |
 | 0.2.5-dev | Display nativo, carcaça reparada, LED superior e inspeções raciais | [PAK](../dist/fubeesgenetics-mvp-0.2.5-dev.pak), [detalhes](BEE_EXCHANGE_0_2_5.md) |
+
+| 0.2.6-dev | Carcaça vanilla sem dano e ambos os LEDs laterais originais | [PAK](../dist/fubeesgenetics-mvp-0.2.6-dev.pak), [detalhes](BEE_EXCHANGE_0_2_6.md) |
