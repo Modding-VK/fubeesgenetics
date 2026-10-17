@@ -2,8 +2,8 @@
   "name": "FUBeesGenetics",
   "friendlyName": "FU Bees Genetics",
   "author": "ViniKoerich",
-  "version": "0.2.18-dev",
-  "description": "Genetic Queen Filter and automatic Bee Exchange for Frackin Universe. Development build awaiting in-game validation.",
+  "version": "0.2.18",
+  "description": "Genetic Queen Filter and automatic Bee Exchange for Frackin Universe.",
   "requires": [
     "FrackinUniverse"
   ],

@@ -3,10 +3,10 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão atual de desenvolvimento: 0.2.18-dev.**
+**Versão 0.2.18 — candidata à produção, aguardando revisão e merge do PR.**
 
-[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.18-dev.pak?raw=true) ·
-[Alterações da versão](docs/HUD_ALIGNMENT_0_2_18.md) ·
+[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.18.pak?raw=true) ·
+[Alterações da versão](docs/RELEASE_0_2_18.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
 A 0.2.18 centraliza Reset Profile entre as duas barras e mantém as listras
@@ -16,15 +16,16 @@ O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.1
 permanecem iguais.
 A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
-O usuário confirmou a correção da textura da Auto Refugee na 0.2.13. A 0.2.14
-corrige a exceção ao abrir sua interface; essa abertura e a integração completa
-com Improved Containers ainda precisam de confirmação dentro do jogo.
+O mantenedor confirmou que todas as alterações estão validadas e prontas e
+solicitou o Pull Request. A candidata 0.2.18 preserva os scripts/assets da
+0.2.18-dev validada; somente o metadata muda nos assets de produção.
+A dev permanece com sufixo -dev. Não houve merge, tag ou publicação Steam.
 
 ## Instalação
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `fubeesgenetics-mvp-0.2.18-dev.pak`. Mantenha apenas uma cópia do addon.
+   `fubeesgenetics-mvp-0.2.18.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -113,7 +114,7 @@ Os geradores de sprites usam Pillow. O empacotamento usa as ferramentas nativas
 Starbound/OpenStarbound fixadas em [pak_toolchain.json](tools/pak_toolchain.json).
 
 ```sh
-python3 tools/check_version.py --development
+python3 tools/check_version.py --release --tag v0.2.18
 python3 tools/run_checks.py --fetch
 # Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
 python3 tools/run_checks.py --ic-root .cache/improved-containers

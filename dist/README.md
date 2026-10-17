@@ -1,3 +1,21 @@
+# Candidata à produção — 0.2.18
+
+- fubeesgenetics-mvp-0.2.18.pak: PAK nativo para instalação manual.
+- fubeesgenetics-workshop-content.zip: o mesmo PAK como contents.pak.
+- SHA256SUMS: hashes atuais; outros PAKs nesta pasta preservam versões anteriores.
+
+O mantenedor confirmou as alterações validadas e solicitou o PR. Este pacote
+foi preparado em release/0.2.18, a partir de dev 6de1050114e865e119a434698c25b4ec4ed67b13.
+Scripts e demais assets do mod são idênticos à 0.2.18-dev validada; só o metadata
+foi ajustado. 135 grupos básicos e pack/unpack de 52 arquivos passaram.
+
+Instalar apenas uma versão por vez em Starbound/mods, com o jogo fechado.
+Executar OpenStarbound com FU. Não precisa resetar perfil ou reconstruir máquinas.
+Não houve merge em main, tag estável, release GitHub ou upload Steam.
+Ver docs/RELEASE_0_2_18.md.
+
+## Histórico das builds de desenvolvimento
+
 # Arquivos de distribuição de desenvolvimento — 0.2.18-dev
 
 - fubeesgenetics-mvp-0.2.18-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.

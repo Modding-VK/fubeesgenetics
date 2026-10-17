@@ -54,3 +54,9 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.16-dev | Filter compacto, referências centralizadas e slots próximos | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/e2314b4063201da968d933fd6547c6e2e9255eb8/dist/fubeesgenetics-mvp-0.2.16-dev.pak), [detalhes](HUD_COMPACT_0_2_16.md) |
 | 0.2.17-dev | Logo centralizado, título laranja no topo e descrição curta | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/10935100979aae7a8c4e2cdd48b089260db01505/dist/fubeesgenetics-mvp-0.2.17-dev.pak), [detalhes](HUD_HEADER_0_2_17.md) |
 | 0.2.18-dev | Reset Profile centralizado entre barras e listras na faixa metálica | [PAK](../dist/fubeesgenetics-mvp-0.2.18-dev.pak), [detalhes](HUD_ALIGNMENT_0_2_18.md) |
+
+## Candidata à produção
+
+| Versão | Escopo | Pacote e validação |
+| --- | --- | --- |
+| 0.2.18 | Auto Refugee, receita e interface compacta do Filter, validadas pelo mantenedor | [PAK](../dist/fubeesgenetics-mvp-0.2.18.pak), [notas](RELEASE_0_2_18.md); PR solicitado, merge pendente |
