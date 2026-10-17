@@ -95,8 +95,8 @@ As regras acordadas no chat **Bee Analyzer** valem para as duas máquinas:
 - Tags estáveis `vX.Y.Z` ficam reservadas às promoções autorizadas.
 
 Veja [VERSIONING](docs/VERSIONING.md), [operação GitHub](docs/GITHUB_PUBLICATION.md)
-e [AGENTS.md](AGENTS.md). O nome futuro **Abusive Bee Industry** e o título
-Workshop **[oSB][FU] Abusive Bee Industry** continuam planejados; metadata e IDs
+e [AGENTS.md](AGENTS.md). O nome futuro **Bee Abusive Industry** e o título
+Workshop **[oSB][FU] Bee Abusive Industry** continuam planejados; metadata e IDs
 atuais permanecem iguais. [Planejamento](docs/ROADMAP.md).
 
 ## Testes e ferramentas

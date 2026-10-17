@@ -1,12 +1,12 @@
-# Planejamento de expansão — Abusive Bee Industry
+# Planejamento de expansão — Bee Abusive Industry
 
 Direção futura informada pelo usuário em 2026-10-15. Este documento registra
 a intenção; não executa o rebranding nem implementa as máquinas planejadas.
 
 ## Identidade futura
 
-- Nome do mod: **Abusive Bee Industry**.
-- Título previsto na Steam Workshop: **[oSB][FU] Abusive Bee Industry**.
+- Nome do mod: **Bee Abusive Industry**.
+- Título previsto na Steam Workshop: **[oSB][FU] Bee Abusive Industry**.
 - [oSB] identifica OpenStarbound e [FU] identifica Frackin Universe.
 - A mudança amplia a identidade do projeto para novos recursos ligados à
   indústria de abelhas; o Genetic Queen Filter permanece uma de suas máquinas.

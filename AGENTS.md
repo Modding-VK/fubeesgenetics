@@ -26,8 +26,8 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 
 # Direção futura do projeto
 
-- Nome público planejado: Abusive Bee Industry. Título Workshop planejado:
-  [oSB][FU] Abusive Bee Industry, identificando OpenStarbound e Frackin Universe.
+- Nome público planejado: Bee Abusive Industry. Título Workshop planejado:
+  [oSB][FU] Bee Abusive Industry, identificando OpenStarbound e Frackin Universe.
 - Essa mudança foi informada como futura; não renomear o pacote, metadata ou
   IDs internos automaticamente a partir de uma tarefa de manutenção.
 - Recurso futuro: máquina que troca abelhas por recursos, com referências no
