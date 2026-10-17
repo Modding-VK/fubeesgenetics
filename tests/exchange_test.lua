@@ -17,6 +17,7 @@ object={direction=function() return facing end,
  getInputNodeLevel=function(n) assert(n==0);return faults.logicHigh or false end}
 local paths={};for path in pairs(fixture.tradeRecipes) do paths[#paths+1]=path end;table.sort(paths)
 root={assetJson=function(path)
+ if path=='/interface/chests/chest16.config' then return copy(fixture.nativeContainerUi) end
  if path==base..'trades.config' then return {recipes=paths} end
  if path=='/items/defaultParameters.config' then return {defaultMaxStack=1000} end
  assert(fixture.tradeRecipes[path],path);return copy(fixture.tradeRecipes[path])
@@ -58,7 +59,13 @@ require=function(path)
  if path=='/scripts/util.lua' then util={};return end
  assert(path=='/scripts/kheAA/transferUtil.lua');dofile(fixture.fuRoot..path)
 end
-dofile(fixture.repoRoot..'/FUBeesGenetics'..base..'beeexchange.lua')
+-- Match native startup: all modules load before engine callbacks are bound.
+local bindings={}
+for _,name in ipairs({'root','config','entity','object','animator','world','sb'}) do
+ bindings[name]=_G[name];_G[name]=nil
+end
+for _,path in ipairs(fixture.exchangeConfig.scripts) do dofile(fixture.repoRoot..'/FUBeesGenetics'..path) end
+for name,value in pairs(bindings) do _G[name]=value end
 local function fresh(saved,inventory)
  slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={};tags={}
  transferUtil.vars=nil;init()
@@ -316,5 +323,18 @@ test('E39 facing tracks direction changes and repairs overwritten animator tags'
  facing=-1;update(0);assert(tags.facingSuffix=='-left')
  tags.facingSuffix='';update(.01);assert(tags.facingSuffix=='-left')
  facing=1;update(0);assert(tags.facingSuffix=='')
+end)
+test('E40 item aging module loads before root callbacks without IC',function()
+ local previousRoot,previousRequire=root,require
+ root=nil
+ require=function(path)
+  if path=='/scripts/items/rotting.lua' then dofile(fixture.nativeRoot..path)
+  else previousRequire(path) end
+ end
+ dofile(fixture.repoRoot..'/FUBeesGenetics'..base..'storageaging.lua')
+ root=previousRoot
+ local objectItem=item('fubeesgenetics_beeexchange')
+ assert(same(ageItem(copy(objectItem),1),objectItem))
+ require=previousRequire
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

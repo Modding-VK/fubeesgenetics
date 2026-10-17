@@ -116,7 +116,7 @@ def main():
     tags["bee_unknown_queen"] = {"bee": True, "queen": True}
     tags["brokenname"] = {"bee": True, "queen": True}
     tags["bee_honey_fakequeen"] = {"bee": True}
-    fixture = {"exchangeConfig": json.loads((ROOT / "FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object").read_text()), "beeData": bee_data, "tags": tags, "fuRoot": str(fu_root), "repoRoot": str(ROOT),
+    fixture = {"nativeRoot": str(native_root), "nativeContainerUi": json.loads((native_root / "interface/chests/chest16.config").read_text()), "exchangeConfig": json.loads((ROOT / "FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object").read_text()), "beeData": bee_data, "tags": tags, "fuRoot": str(fu_root), "repoRoot": str(ROOT),
                "tradeRecipes": {"/"+p: asset_json((fu_root/p).read_text()) for p in MANIFEST["files"] if p.startswith("recipes/bees/beerefuge/")},
                "uiConfig": json.loads((ROOT / "FUBeesGenetics/interface/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.config").read_text())}
     with tempfile.TemporaryDirectory(prefix="fubeesgenetics-checks-") as directory:

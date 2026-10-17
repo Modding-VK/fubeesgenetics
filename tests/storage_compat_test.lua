@@ -87,7 +87,14 @@ local function scenario(withIC,params)
   end
  end
  setupRequire(env)
+ -- Native LuaRoot::createContext loads every script BEFORE binding root/config/
+ -- object/animator callbacks. Engine APIs are unavailable during module loading.
+ local bindings={}
+ for _,name in ipairs({'root','config','entity','object','script','message','sb','animator','world'}) do
+  bindings[name]=env[name];env[name]=nil
+ end
  for _,path in ipairs(cfg.scripts) do assert(loadfile(fixture.repoRoot..'/FUBeesGenetics'..path,'t',env))() end
+ for name,value in pairs(bindings) do env[name]=value end
  env.init()
  ctx.cfg=cfg
  function ctx.count(n) local c=0;for _,v in pairs(slots) do if v.name==n then c=c+v.count end end;return c end
@@ -179,7 +186,8 @@ test('IC dropOnBreak keeps ordinary engine drop path',function()
  assert(#s.drops==0 and s.count('stone')==1) -- engine owns the ordinary object/content drops
 end)
 test('installed IC aging executes on packed perishable items',function()
- local s=scenario(true);s.env.require(base..'storageaging.lua')
+ local s=scenario(true);local root=s.env.root;s.env.root=nil
+ s.env.require(base..'storageaging.lua');s.env.root=root
  local obj=item(s.cfg.objectName,1,{content={[1]=item('food',1,{timeToRot=20})}})
  local aged=s.env.ageItem(obj,5);assert(aged.parameters.content[1].parameters.timeToRot==15)
 end)
