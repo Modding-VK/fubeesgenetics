@@ -45,3 +45,7 @@ Não houve mudança nas regras do motor nem declaração de compatibilidade vani
 Tema GUI aprovado pelo usuário e implementado na 0.1.3-dev; ver
 [HUD_THEME_0_1_3](HUD_THEME_0_1_3.md). A confirmação do usuário sobre seletores
 e ITD na 0.1.2 complementa os testes simulados, sem validar todos os cenários.
+
+A 0.1.4-dev acrescenta os reagentes por instrução posterior explícita do usuário,
+preservando os quatro ingredientes anteriores. Esse ajuste prevalece sobre os
+quantitativos originais da diretriz; ver [RECIPE_0_1_4](RECIPE_0_1_4.md).

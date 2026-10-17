@@ -1,0 +1,27 @@
+{
+  "input": [
+    {
+      "item": "beerefuge",
+      "count": 1
+    },
+    {
+      "item": "cropshipper_kheAA2",
+      "count": 1
+    },
+    {
+      "item": "aichip",
+      "count": 2
+    }
+  ],
+  "output": {
+    "item": "fubeesgenetics_beeexchange",
+    "count": 1
+  },
+  "groups": [
+    "mod",
+    "beestation",
+    "tools",
+    "all",
+    "functional"
+  ]
+}

@@ -17,7 +17,7 @@ def main():
     layout = json.loads((ROOT/'artwork/interface-layout.json').read_text())
     build(ROOT, UI)
     (UI/'fubeesgenetics_geneticqueenfilter.config').write_text(json.dumps(layout,ensure_ascii=False,indent=2)+'\n')
-    print('Preserved machine/icon; built native 388x332 HUD, controls and UI config.')
+    print('Preserved machine/icon; built native HUD, controls and UI config.')
 
 
 if __name__ == '__main__':

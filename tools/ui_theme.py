@@ -69,8 +69,9 @@ def theme_assets(root):
             frame.rect(x, y, x+2, y+2, p['amber'])
     frame.rect(w-62, 1, w-12, 4, p['amberShade'])
     frame.line(w-60, 1, w-12, 1, p['amber'])
-    frame.line(w-126, h-5, w-122, h-9, p['amber'])
-    frame.line(w-122, h-5, w-118, h-9, p['amber'])
+    # Keep both parallel accents entirely on the bottom metal rail (rows h-6..h-2).
+    frame.line(w-126, h-2, w-122, h-6, p['amber'])
+    frame.line(w-122, h-2, w-118, h-6, p['amber'])
     for y in [18, 153, h-21]:
         for x in [2, w-4]:
             frame.rect(x, y, x+1, y+2, p['edge'])
@@ -84,15 +85,24 @@ def theme_assets(root):
     # One header, one table, no decorative controls or text in the background.
     frame.line(10, 33, w-11, 33, p['blueLine'])
     frame.line(10, 34, w-11, 34, p['circuit'])
-    frame.rect(14, 82, w-15, 98, p['blueLine'])
-    frame.rect(15, 83, w-16, 97, p['header'])
-    for y in range(84, 98, 2):
+    frame.rect(14, 77, w-15, 105, p['blueLine'])
+    frame.rect(15, 78, w-16, 104, p['header'])
+    for y in range(79, 105, 2):
         frame.line(16, y, w-17, y, p['scanline'])
     for y in spec['rowRules']:
         frame.line(18, y, w-19, y, p['circuit'])
     frame.line(18, 301, w-19, 301, p['circuit'])
     result = {'header.png': frame.png(0, 34), 'body.png': frame.png(34, 286),
               'footer.png': frame.png(320, 12)}
+
+    # Explicit pixel arrows avoid reliance on Unicode glyphs in game fonts.
+    for name, down in [('arrowup', False), ('arrowdown', True)]:
+        arrow = Surface(7, 7)
+        for y in range(7):
+            for x in range(7):
+                if (y <= 3 and abs(x-3) <= y) or (y >= 3 and 2 <= x <= 4):
+                    arrow.pixel(x, 6-y if down else y, p['cyan'])
+        result[name+'.png'] = arrow.png()
 
     for name, fill in [('reset', p['button']), ('resethover', p['buttonHover']),
                        ('resetpress', p['buttonPressed'])]:

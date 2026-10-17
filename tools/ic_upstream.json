@@ -1,0 +1,13 @@
+{
+  "name": "Improved Containers",
+  "version": "2.11",
+  "steamContentId": "729427606",
+  "pak_sha256": "e8ea0743d564050efe2fedb4c9e738b773de8d00cdfc3f6ce5e1f4da0bc614ea",
+  "files": {
+    "scripts/v6/improvedcontainer.lua": "b876e5be930794b7dd4e58957c0a0ec82dcfc17ed195f5bca627de208b802f3b",
+    "scripts/v6/improvedcontainergui.lua": "6b7ecde1330a6aa5386487c44bb07f65f30b10bc0bd513b6a1e9e61ffca59e3a",
+    "scripts/v6/improvedcontainersorting.lua": "f0f2328c3681744b32c713948980bad1560d4a38fed6b3fcf48d151497d801f9",
+    "scripts/v6/improvedcontainerrotting.lua": "35d4f5c88ad94f380694768c9466286697ecb6359ab97c7eeb3e896e79375a22",
+    "interface/chests/chest16.config.patch": "e20fce676dae0150403b92ec24e7a064b9469f840350e658e1063b2b641b74c0"
+  }
+}

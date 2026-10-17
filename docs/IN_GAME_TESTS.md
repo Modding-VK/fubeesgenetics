@@ -1,9 +1,34 @@
-# Validação no OpenStarbound — todos os itens pendentes
+# Validação no OpenStarbound
+
+O mantenedor confirmou todas as alterações validadas e prontas ao solicitar
+o PR da 0.2.18. As listas abaixo preservam os cenários históricos; não foram
+marcadas individualmente porque o relato não enumera cada execução.
+Ver [notas da candidata](RELEASE_0_2_18.md).
+
+## Estado atual e reteste 0.2.14-dev
+
+O usuário validou a correção das texturas na 0.2.13. Isso não confirma a abertura
+da janela ou todos os cenários IC/ITD; não marcar esses casos por testes simulados.
+
+- [ ] Abrir a máquina existente com 0.2.14 sem JsonException object-to-string.
+- [ ] Conferir placa/display legíveis nos dois lados após abrir, fechar e reload.
+- [ ] Conferir ícone com placa amarela e vidro, ambos os LEDs e teleporte.
+- [ ] Com IC 2.11: buscar, renomear, ordenar e quick-stack sem vender abelhas
+  durante a organização e sem devolver drones/Pixels duplicados.
+- [ ] Quebrar/recolocar com IC: conteúdo e nome preservados, recompensas
+  pendentes recuperadas uma única vez; conferir também dropOnBreak.
+- [ ] Sem IC: janela nativa, trocas e recuperação de conteúdo continuam válidas.
+- [ ] Chave superior: sem fio/on/off; rede de itens no input inferior e output;
+  conferir instruções nas inspeções raciais e offsets 0–15.
+- [ ] Queens/Young Queens com mesmo recurso por espécie; cinco drones da mesma
+  espécie por sete Pixels, inclusive genéticas diferentes; demais itens intactos.
+
+## Roteiro completo e histórico
 
 Registrar build/commit OpenStarbound, versão FU, commit do addon, mods, data,
 resultado e trechos de starbound.log. Não marcar como executado por mocks.
 
-- [ ] Instalar fubeesgenetics-mvp.pak em Starbound/mods e abrir via OpenStarbound,
+- [ ] Instalar fubeesgenetics-mvp-0.2.14-dev.pak em Starbound/mods e abrir via OpenStarbound,
   sem erros de assets/scripts/dependência. Não manter cópia descompactada ou
   assinatura Workshop duplicada. Testar também a instalação por assinatura
   Workshop quando publicada, com conteúdo contents.pak gerenciado pela Steam.
@@ -42,7 +67,7 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] M1–M7: duas GUIs, last-write-wins natural, sem contador/locks; mudanças
   convergem após refresh. Uma mutação pendente por pane; resposta de read anterior
   deve ser descartada mesmo quando chega após a resposta do comando.
-- [ ] Seletores: nas seis linhas, clicar >=, <= e ignore; aguardar atualização,
+- [ ] Seletores: nas seis linhas, clicar Equal or higher, Equal or lower e Indifferent; aguardar atualização,
   fechar/reabrir a interface e save/reload para confirmar modos persistidos.
   Alterar modo sem processar item não deve mudar as referências genéticas.
 - [ ] G10/G11: quebrar com pane aberta encerra consultas/comandos; atualizar radios
@@ -52,7 +77,8 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
   escala, fontes, todas as opções e Reset legíveis.
 - [ ] U1: obter/reobter Bee Station ensina blueprint permanentemente; retirar estação
   do inventário não apaga aprendizado; craft segue exigindo Bee Station/Functional.
-- [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar; manter
+- [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar,
+  10 liquidhealing, 5 liquidsulphuricacid e 2 unknowngene; manter
   blueprints de outros mods e ausência de rota Pixel Printer.
 - [ ] Placement 5×4, chão/anchors, colisão fina sem parede invisível em transparências,
   espelhamento esquerda/direita por direção na colocação, preview e sprite estático.
@@ -72,3 +98,82 @@ fora da garantia normal. Concluir todos os critérios de release da diretriz.
 
 Relato recebido: o usuário confirmou funcionamento perfeito dos seletores e
 ITD 100% funcional na 0.1.2-dev. Topologia e demais cenários não foram detalhados.
+
+## Reteste visual 0.1.5-dev
+
+- [ ] Approved/Input/Rejected: a mesma moldura permanece ao inserir/remover itens.
+- [ ] Queen/Young Queen, larva e itens comuns ficam centralizados, sem deslocar
+  para a borda superior/direita, com contagem e indicação de raridade nativas.
+- [ ] Tooltip, clique direito e Shift+Click funcionam em cada slot, inclusive vazio.
+- [ ] Perfil/modos existentes e fluxo ITD permanecem funcionais.
+
+## Reteste visual 0.1.6-dev
+
+O usuário confirmou que as alterações da 0.1.5 funcionaram perfeitamente.
+Esse relato não detalha a execução de cada cenário acima.
+
+- [ ] Setas para cima/baixo e os três nomes completos legíveis e sem colisão.
+- [ ] Nas seis linhas, as três opções continuam selecionáveis e persistem.
+- [ ] Status e Last result abaixo da divisória, sem tocar a borda inferior.
+- [ ] Reset Profile centralizado no botão, incluindo hover/pressionado.
+- [ ] Perfil existente e slots preservados ao substituir o PAK, sem reset.
+
+## Segunda máquina — Bee Exchange 0.2.0-dev
+
+O roteiro de [BEE_EXCHANGE_0_2_0](BEE_EXCHANGE_0_2_0.md#reteste-no-jogo) cobre
+receita/desbloqueio, trocas, GUI fechada, lotes de cinco Drones, itens ignorados,
+inventário cheio, ITD, save/reload e destruição. Esses testes ainda não foram
+executados dentro do OpenStarbound; os 120 grupos automatizados usam bindings
+de engine simulados.
+
+## Bee Exchange — interface 0.2.1-dev
+
+Validar [roteiro de interface](BEE_EXCHANGE_UI_0_2_1.md#instalação-e-reteste):
+20 slots marcados, vazio/ocupado, centro dos itens, contagem, tooltip, clique
+direito, Shift+Click e Take all. Repetir trocas automáticas e ITD.
+Esses checks ainda não foram executados no jogo.
+
+## Bee Exchange — 0.2.2-dev
+
+Executar o [reteste 0.2.2](BEE_EXCHANGE_0_2_2.md#instalação-e-reteste):
+conservação de conteúdo do save, 24 slots, trocas nos novos offsets 20–23,
+ITD 0–23, sprite do FU e placa Auto Refugee sobre o chão, animação de envio/fechamento/
+reabertura e sons ao vender. Pendente no jogo.
+
+## Bee Exchange — 0.2.3-dev
+
+Seguir [reteste 0.2.3](BEE_EXCHANGE_0_2_3.md#reteste-no-jogo): esvaziar a fileira
+inferior antes da atualização, conferir 16 slots/ITD 0–15 e verificar que Young
+Queens Honey/Cybernetic rendem respectivamente 10 Coal/2 Titanium Bars. Drones
+continuam 5 por 7 Pixels. Teste de migração do save ainda pendente no jogo.
+
+## Reteste visual do Filter — 0.2.16-dev
+
+- [ ] Janela 304×332 legível na escala usada, sem cortes nos nomes ou textos.
+- [ ] Referências curtas, longas, zero e porcentagem centralizadas sob REFERENCE.
+- [ ] Textos/setas de comparação com margem do contorno superior e inferior.
+- [ ] Molduras Approved/Input/Rejected centradas em x=96/152/208; itens, raridade,
+  contagem, tooltips e cliques continuam nativos ao preencher/esvaziar.
+- [ ] Tooltips das referências e três comparadores cabem na janela nas seis linhas.
+- [ ] Modos e perfil persistem; fluxo ITD continua nos offsets 1/0/2.
+
+Substituir apenas o PAK com o jogo fechado; não precisa resetar o perfil ou
+refazer máquinas. A Auto Refugee não recebeu mudanças nesta atualização.
+
+## Reteste do cabeçalho do Filter — 0.2.17-dev
+
+- [ ] Logo com margens iguais entre o contorno superior interno e a divisória.
+- [ ] Título laranja alinhado ao topo do logo; descrição clara abaixo sem colisão.
+- [ ] Conferir a fonte real nas escalas de GUI usadas, com fechar acessível.
+- [ ] Reabrir o Filter existente sem reset e confirmar que perfil/modos persistem.
+
+O usuário confirmou melhora significativa do layout compacto da 0.2.16.
+Esta entrega só altera metadata e configuração visual do cabeçalho.
+
+## Reteste de alinhamento do Filter — 0.2.18-dev
+
+- [ ] Reset Profile com margens iguais entre a divisória do título e a barra STAT.
+- [ ] Normal/hover/pressionado do botão seguem alinhados, com texto centralizado.
+- [ ] Listras inferiores paralelas, inteiras na faixa metálica, sem cruzar a linha azul.
+
+Substituir o PAK com o jogo fechado; não precisa resetar perfil ou refazer máquinas.
