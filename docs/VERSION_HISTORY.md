@@ -41,3 +41,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.10-dev | Ícone com vidro; investigação de storage documentada, integração IC pendente | [PAK](../dist/fubeesgenetics-mvp-0.2.10-dev.pak), [detalhes](BEE_EXCHANGE_0_2_10.md) |
 
 | 0.2.11-dev | Inspeções explicam nodes e integração opcional com IC 2.11 | [PAK](../dist/fubeesgenetics-mvp-0.2.11-dev.pak), [detalhes](BEE_EXCHANGE_0_2_11.md) |
+
+| 0.2.12-dev | Ressincroniza placa/display com a direção após init e durante locks IC | [PAK](../dist/fubeesgenetics-mvp-0.2.12-dev.pak), [detalhes](BEE_EXCHANGE_0_2_12.md) |

@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.11-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.12-dev
 
-- fubeesgenetics-mvp-0.2.11-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.12-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.11-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.12-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -91,3 +91,8 @@ pelo usuário: janela nativa, ordenar/empilhar/buscar/renomear e conteúdo ao qu
 com pausa das vendas durante as operações e recuperação das recompensas pendentes.
 Inspeções raciais agora explicam os nodes. 143 grupos locais passaram, incluindo
 10 que executam o Lua real do IC com bindings simulados; teste no jogo pendente.
+
+A 0.2.12 ressincroniza a textura direcional a cada update, inclusive durante
+travas IC e com a chave desligada. Corrige o caminho que deixava placa/display
+espelhados se a direção mudasse ou a tag visual fosse perdida após init.
+145 grupos locais passaram; PNGs aprovados preservados byte a byte.

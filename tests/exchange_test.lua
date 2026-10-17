@@ -311,4 +311,10 @@ test('E38 external stacking and take-all preserve exact drone batches',function(
  local pixels=0;for _,v in pairs(taken) do if v.name=='money' then pixels=pixels+v.count end end
  assert(pixels==7)
 end)
+test('E39 facing tracks direction changes and repairs overwritten animator tags',function()
+ assert(tags.facingSuffix=='')
+ facing=-1;update(0);assert(tags.facingSuffix=='-left')
+ tags.facingSuffix='';update(.01);assert(tags.facingSuffix=='-left')
+ facing=1;update(0);assert(tags.facingSuffix=='')
+end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

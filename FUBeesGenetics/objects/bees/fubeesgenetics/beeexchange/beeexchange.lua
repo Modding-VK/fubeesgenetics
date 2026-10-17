@@ -138,11 +138,15 @@ local function animateSale()
   animator.setAnimationState("machine", "work", true)
 end
 
+local function syncFacing()
+  -- Placement and restored objects can resolve direction after init. Reassert
+  -- the atlas tag before any early return, including IC locks and on/off gates.
+  animator.setGlobalTag("facingSuffix", object.direction() == -1 and "-left" or "")
+end
+
 function init()
   self = {timer = 0, cursor = 0, trades = {}, size = config.getParameter("slotCount")}
-  -- Keep the engine's native left flip, correcting lettering/display with the
-  -- dedicated atlas. Neutral legacy orientation keeps its saved facing too.
-  animator.setGlobalTag("facingSuffix", object.direction() == -1 and "-left" or "")
+  syncFacing()
   self.defaultMaxStack = root.assetJson("/items/defaultParameters.config").defaultMaxStack
   for _, path in ipairs(root.assetJson(BASE .. "trades.config").recipes) do
     local recipe = root.assetJson(path)
@@ -172,6 +176,7 @@ function init()
 end
 
 function update(dt)
+  syncFacing()
   if self.shippingTimer then
     self.shippingTimer = self.shippingTimer + dt
     if self.shippingTimer >= 1.25 then self.shippingTimer = nil end

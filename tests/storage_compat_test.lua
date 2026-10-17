@@ -17,7 +17,7 @@ local function scenario(withIC,params)
  local env=setmetatable({}, {__index=_G})
  local cfg=copy(fixture.exchangeConfig);for k,v in pairs(params or {}) do cfg[k]=copy(v) end
  local slots,drops,handlers,queue,playerItems={},{},{},{},{}
- local ctx={env=env,slots=slots,drops=drops,handlers=handlers,playerItems=playerItems,putFailure=false}
+ local ctx={env=env,slots=slots,drops=drops,handlers=handlers,playerItems=playerItems,putFailure=false,facing=1,tags={}}
  env.storage={}
  local function json(path)
   if path=='/interface/chests/chest16.config' then return copy(withIC and fixture.icUi or fixture.nativeUi) end
@@ -36,13 +36,13 @@ local function scenario(withIC,params)
  env.root={assetJson=json,itemConfig=itemConfig,itemType=function() return 'generic' end,itemTags=function() return {} end}
  env.config={getParameter=function(k,default) local v=cfg[k];if v==nil then return default end;return copy(v) end}
  env.entity={id=function() return 42 end,entityType=function() return 'object' end,position=function() return {10,20} end}
- env.object={name=function() return cfg.objectName end,direction=function() return 1 end,
+ env.object={name=function() return cfg.objectName end,direction=function() return ctx.facing end,
   setConfigParameter=function(k,v) cfg[k]=copy(v) end,
   isInputNodeConnected=function() return ctx.off or false end,getInputNodeLevel=function() return false end}
  env.script={setUpdateDelta=function(v) ctx.delta=v end}
  env.message={setHandler=function(k,fn) handlers[k]=fn end}
  env.sb={logInfo=function() end,logWarn=function() end,logError=function() end,printJson=function() return '' end}
- env.animator={setAnimationState=function() end,setGlobalTag=function() end}
+ env.animator={setAnimationState=function() end,setGlobalTag=function(k,v) ctx.tags[k]=v end}
  local function contents() local t={};for i=0,15 do if slots[i] then t[i+1]=copy(slots[i]) end end;return t end
  env.world={containerSize=function() return 16 end,containerItems=contents,
   containerItemAt=function(_,i) return copy(slots[i]) end,
@@ -189,5 +189,14 @@ test('removing optional IC clears only its overrides and restores packed items',
  assert(not s.cfg.smashOnBreak and not s.cfg.fubeesgeneticsIC and s.cfg.uiConfig=='/interface/chests/chest16.config')
  assert(s.slots[7].count==9 and s.slots[7].parameters.custom=='packed')
  s.env.update(1);assert(s.count('stone')==9)
+end)
+test('facing remains correct through IC lock, tag resets and content restoration',function()
+ local s=scenario(true,{content={[4]=item('stone',2)},playerInteract=true})
+ assert(s.tags.facingSuffix=='')
+ s.facing=-1;s.handlers['fubeesgenetics.storageLock']();s.env.update(.1)
+ assert(s.tags.facingSuffix=='-left' and s.env.ic.locked>0)
+ assert(s.slots[3].count==2)
+ s.tags.facingSuffix='';s.env.update(.1);assert(s.tags.facingSuffix=='-left')
+ s.facing=1;s.env.update(.1);assert(s.tags.facingSuffix=='')
 end)
 print('Improved Containers: '..groups..' integration groups passed (uploaded real Lua; simulated engine/UI bindings).')
