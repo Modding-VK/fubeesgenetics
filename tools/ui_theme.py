@@ -69,8 +69,9 @@ def theme_assets(root):
             frame.rect(x, y, x+2, y+2, p['amber'])
     frame.rect(w-62, 1, w-12, 4, p['amberShade'])
     frame.line(w-60, 1, w-12, 1, p['amber'])
-    frame.line(w-126, h-5, w-122, h-9, p['amber'])
-    frame.line(w-122, h-5, w-118, h-9, p['amber'])
+    # Keep both parallel accents entirely on the bottom metal rail (rows h-6..h-2).
+    frame.line(w-126, h-2, w-122, h-6, p['amber'])
+    frame.line(w-122, h-2, w-118, h-6, p['amber'])
     for y in [18, 153, h-21]:
         for x in [2, w-4]:
             frame.rect(x, y, x+1, y+2, p['edge'])

@@ -164,3 +164,11 @@ refazer máquinas. A Auto Refugee não recebeu mudanças nesta atualização.
 
 O usuário confirmou melhora significativa do layout compacto da 0.2.16.
 Esta entrega só altera metadata e configuração visual do cabeçalho.
+
+## Reteste de alinhamento do Filter — 0.2.18-dev
+
+- [ ] Reset Profile com margens iguais entre a divisória do título e a barra STAT.
+- [ ] Normal/hover/pressionado do botão seguem alinhados, com texto centralizado.
+- [ ] Listras inferiores paralelas, inteiras na faixa metálica, sem cruzar a linha azul.
+
+Substituir o PAK com o jogo fechado; não precisa resetar perfil ou refazer máquinas.

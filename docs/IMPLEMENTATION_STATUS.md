@@ -1,10 +1,12 @@
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.17-dev
+## Situação atual — 0.2.18-dev
 
-A 0.2.17 centraliza o logo no cabeçalho e alinha o título laranja ao seu topo,
-com descrição curta em cor clara abaixo. Ver [detalhes](HUD_HEADER_0_2_17.md).
+A 0.2.18 centraliza Reset Profile entre as barras (margens 11/11) e baixa
+as listras para a faixa metálica inferior. Ver [detalhes](HUD_ALIGNMENT_0_2_18.md).
+O cabeçalho com logo centralizado, título laranja e descrição da 0.2.17
+está preservado.
 A compactação 304×332, coluna de referências centralizada, slots próximos e
 tooltips da 0.2.16 permanecem iguais. O usuário confirmou melhora significativa
 no layout compacto; o novo cabeçalho ainda precisa de conferência no jogo.

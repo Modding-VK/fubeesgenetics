@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.17-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.18-dev
 
-- fubeesgenetics-mvp-0.2.17-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.18-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.17-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.18-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -121,3 +121,7 @@ A 0.2.17 centraliza o logo entre contorno e divisória, alinha o nome laranja ao
 topo do logo e acrescenta “Sort queens by genetic traits.” em cor clara.
 135 grupos básicos e pack/unpack nativo de 52 arquivos passaram.
 Veja docs/HUD_HEADER_0_2_17.md.
+
+A 0.2.18 centraliza Reset Profile entre a divisória superior e a barra STAT,
+com margens iguais de 11 pixels. As duas listras foram baixadas 3 pixels para
+ficarem na faixa metálica inferior. Ver docs/HUD_ALIGNMENT_0_2_18.md.
