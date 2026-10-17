@@ -1,4 +1,25 @@
-# Estado do projeto — 2026-10-15
+# Estado do projeto — 2026-10-17
+
+
+## Situação atual — 0.2.14-dev
+
+Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do
+Analyzer e do ITD nas versões anteriores e validou as correções da textura da
+Bee Exchange na 0.2.13. A abertura da janela na 0.2.14 e a integração completa
+com Improved Containers 2.11 ainda aguardam confirmação no jogo.
+
+A Bee Exchange tem 16 slots, recompensas adultas para Young Queens, drones em
+lotes de cinco por espécie, vidro/teleporte, texturas direcionais legíveis, ícone
+próprio, I/O e chave on/off. Inspeções raciais explicam os nodes. A integração IC
+é opcional e preserva recompensas pendentes e conteúdo ao quebrar/recolocar.
+
+Na 0.2.14 passaram 135 grupos básicos + 13 com o Lua original do IC, com bindings
+simulados. O pacote de 52 arquivos foi conferido por pack/unpack nativo.
+Isso não conclui os gates de jogo, multiplayer ou publicação Steam.
+Ver [correção da GUI](BEE_EXCHANGE_0_2_14.md) e [reteste](IN_GAME_TESTS.md).
+Os registros abaixo preservam a evolução das entregas anteriores; suas contagens
+são históricas. As limitações da arte recuperada do Analyzer não se aplicam aos
+sprites novos da Bee Exchange.
 
 Implementação local refeita; **build de desenvolvimento**, sem aprovação de release.
 Base e limitações documentais/artísticas: [RECOVERY](RECOVERY.md).

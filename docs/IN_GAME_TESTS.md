@@ -1,9 +1,29 @@
-# Validação no OpenStarbound — todos os itens pendentes
+# Validação no OpenStarbound
+
+## Estado atual e reteste 0.2.14-dev
+
+O usuário validou a correção das texturas na 0.2.13. Isso não confirma a abertura
+da janela ou todos os cenários IC/ITD; não marcar esses casos por testes simulados.
+
+- [ ] Abrir a máquina existente com 0.2.14 sem JsonException object-to-string.
+- [ ] Conferir placa/display legíveis nos dois lados após abrir, fechar e reload.
+- [ ] Conferir ícone com placa amarela e vidro, ambos os LEDs e teleporte.
+- [ ] Com IC 2.11: buscar, renomear, ordenar e quick-stack sem vender abelhas
+  durante a organização e sem devolver drones/Pixels duplicados.
+- [ ] Quebrar/recolocar com IC: conteúdo e nome preservados, recompensas
+  pendentes recuperadas uma única vez; conferir também dropOnBreak.
+- [ ] Sem IC: janela nativa, trocas e recuperação de conteúdo continuam válidas.
+- [ ] Chave superior: sem fio/on/off; rede de itens no input inferior e output;
+  conferir instruções nas inspeções raciais e offsets 0–15.
+- [ ] Queens/Young Queens com mesmo recurso por espécie; cinco drones da mesma
+  espécie por sete Pixels, inclusive genéticas diferentes; demais itens intactos.
+
+## Roteiro completo e histórico
 
 Registrar build/commit OpenStarbound, versão FU, commit do addon, mods, data,
 resultado e trechos de starbound.log. Não marcar como executado por mocks.
 
-- [ ] Instalar fubeesgenetics-mvp-0.1.6-dev.pak em Starbound/mods e abrir via OpenStarbound,
+- [ ] Instalar fubeesgenetics-mvp-0.2.14-dev.pak em Starbound/mods e abrir via OpenStarbound,
   sem erros de assets/scripts/dependência. Não manter cópia descompactada ou
   assinatura Workshop duplicada. Testar também a instalação por assinatura
   Workshop quando publicada, com conteúdo contents.pak gerenciado pela Steam.

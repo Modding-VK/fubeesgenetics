@@ -12,6 +12,15 @@ main sem pedido explícito do usuário. CI de push valida a branch e não cria P
 Sem force push, rebase de histórico compartilhado ou substituição de tags.
 Branches antigas são preservadas como histórico; não são removidas por este fluxo.
 
+## Coordenação entre chats
+
+O fluxo foi conferido novamente no chat Bee Analyzer em 2026-10-17. Ele vale
+para as duas máquinas e para as atualizações solicitadas no chat Automatic Seller.
+Antes de publicar, comparar a branch local com o HEAD remoto para preservar o
+trabalho do outro chat. Mudanças de documentação não exigem uma nova versão de
+PAK; nesse caso, conservar metadata, pacote e hashes da entrega existente.
+Ver [procedimento GitHub](GITHUB_PUBLICATION.md).
+
 ## Desenvolvimento
 
 Cada pacote entregue tem uma versão identificável no _metadata e um commit com

@@ -1,4 +1,47 @@
-# Armazenamento e publicação no GitHub
+# Operação do repositório no GitHub
+
+Revisão de 2026-10-17: conferidas as instruções do mantenedor no chat
+**Bee Analyzer**, também aplicáveis ao chat Automatic Seller. Elas coincidem
+com AGENTS.md e VERSIONING.md: dev para desenvolvimento; main para produção;
+PR e promoção somente mediante pedido explícito. Atualizar o repositório ou
+gerar um PAK não autoriza, por si só, promover para main.
+
+## Estado atual
+
+- Repositório: https://github.com/Modding-VK/fubeesgenetics.
+- Código e PAK atuais: **0.2.14-dev**, commit de entrega
+  `175aa42bf7c79ce729179b383d6811b0f7c02452`, armazenados em dev.
+- Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
+- Não há nova release, tag estável, PR ou publicação Steam nesta atualização.
+- A revisão documental posterior à entrega não muda o metadata nem os bytes do PAK.
+- Validação da entrega: 148 grupos locais e pack/unpack nativo de 52 arquivos.
+  O resultado do CI remoto não foi afirmado nesta revisão.
+
+## Procedimento vigente
+
+1. Conferir AGENTS.md, VERSIONING.md, estado local e HEAD remoto antes de escrever.
+   Para clones limitados à main, buscar a ref dev explicitamente:
+   `git fetch origin refs/heads/dev:refs/remotes/origin/dev`.
+2. Trabalhar em dev a partir do histórico remoto, preservando alterações locais
+   e trabalho de outros chats. Se o remoto avançar, integrar com o histórico
+   existente; não usar reset/force push nem rebase de commits publicados.
+3. Validar as alterações pertinentes. Para uma nova entrega, conferir versão
+   `-dev`, gerar o PAK versionado com pack/unpack nativo e atualizar SHA256SUMS.
+   Para documentação, manter o pacote existente e conferir links/versões/hashes.
+4. Criar commit e push normal para dev. Preservar pacotes anteriores e fornecer
+   downloads por SHA imutável. Não criar PR ou atualizar main automaticamente.
+5. Confirmar a ref remota e informar o que foi verificado localmente, no CI e
+   dentro do jogo, distinguindo esses resultados.
+
+A convenção completa está em [VERSIONING](VERSIONING.md). O nome público futuro
+não altera automaticamente metadata, IDs ou nomes de pacotes atuais.
+
+## Registros históricos
+
+Os registros abaixo explicam a recuperação e os problemas de autenticação
+anteriores. Não são procedimentos para refazer o checkout atual.
+
+# Histórico anterior de armazenamento e publicação
 
 **Fluxo vigente:** desenvolvimento em `dev`, produção em `main`. PRs e promoção
 somente com solicitação explícita do usuário. As instruções e tentativas antigas
