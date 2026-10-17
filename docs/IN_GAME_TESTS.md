@@ -1,5 +1,11 @@
 # Validação no OpenStarbound
 
+O mantenedor confirmou todas as alterações funcionais anteriores validadas.
+A identidade pública foi atualizada: conferir nome [oSB][FU] Bee Abusive Industry,
+autor Goblin Man, ícone Cybernetic Queen em fundo laranja e homepage na lista.
+Os registros abaixo preservam os cenários anteriores sem inferir execução
+individual de cada checkbox a partir da confirmação geral.
+
 ## Estado atual e reteste 0.2.14-dev
 
 O usuário validou a correção das texturas na 0.2.13. Isso não confirma a abertura

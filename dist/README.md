@@ -1,3 +1,20 @@
+# Distribuição atual — Bee Abusive Industry 0.2.19-dev
+
+- bee-abusive-industry-0.2.19-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
+- SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
+
+Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
+O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
+não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.
+
+135 grupos básicos passaram e 53 arquivos foram conferidos por pack/unpack.
+Os 13 casos IC opcionais não foram repetidos neste ambiente. O mantenedor já
+validou a funcionalidade anterior; conferir o novo ícone na lista do OpenStarbound.
+Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
+
+## Registros anteriores
+
 # Arquivos de distribuição de desenvolvimento — 0.2.18-dev
 
 - fubeesgenetics-mvp-0.2.18-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.

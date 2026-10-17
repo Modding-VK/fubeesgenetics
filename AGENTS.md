@@ -15,7 +15,7 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
   autorizada deve usar `X.Y.Z`, com tag anotada `vX.Y.Z` no commit de produção.
   Não criar tags de release para conteúdo ainda somente em `dev`.
 - O PAK de download manual deve incluir a versão do _metadata no nome:
-  fubeesgenetics-mvp-X.Y.Z-dev.pak (ou X.Y.Z em produção). Não fornecer
+  bee-abusive-industry-X.Y.Z-dev.pak (ou X.Y.Z em produção). Não fornecer
   um PAK manual sem versão. O conteúdo Workshop continua contents.pak.
 - Antes de publicar uma tag de release, conferir que não existe, que corresponde
   ao metadata e ao commit aprovado da `main`, e registrar o hash do PAK.
@@ -24,15 +24,19 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 - Consultar `docs/VERSIONING.md` para a convenção adotada. Mudanças nessas regras
   exigem nova instrução do usuário, não inferência a partir de tarefas rotineiras.
 
-# Direção futura do projeto
+# Identidade pública
 
-- Nome público planejado: Bee Abusive Industry. Título Workshop planejado:
-  [oSB][FU] Bee Abusive Industry, identificando OpenStarbound e Frackin Universe.
-- Essa mudança foi informada como futura; não renomear o pacote, metadata ou
-  IDs internos automaticamente a partir de uma tarefa de manutenção.
-- Recurso futuro: máquina que troca abelhas por recursos, com referências no
-  Bee Refuge do FU e na mecânica de Terramart Shipments 3.5. Consultar ROADMAP.
-- A referência ao Terramart não estabelece, por si só, dependência técnica.
+- O usuário solicitou executar o rebranding: nome público Bee Abusive Industry;
+  título Workshop e friendlyName: [oSB][FU] Bee Abusive Industry.
+- Autor exibido no metadata: Goblin Man. É texto de apresentação, não autenticação
+  Steam. O proprietário da Workshop é a conta Steam usada no upload.
+- Novos PAKs manuais usam bee-abusive-industry-<metadata.version>.pak; contents.pak
+  continua sendo o arquivo Workshop. Manter os pacotes/links antigos no histórico.
+- Preservar name técnico FUBeesGenetics, IDs, namespaces e saves; não renomear
+  o repositório automaticamente. O nome público é independente desses campos.
+- Ícone da lista: Cybernetic Queen do FU em fundo laranja, por diretivas nativas;
+  conservar créditos e a referência FU fixada. Não redesenhar a textura original.
+- Auto Refugee já está implementada; consultar ROADMAP e RELEASE_READINESS.
 
 # Slots da interface
 

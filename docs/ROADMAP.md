@@ -1,22 +1,21 @@
-# Planejamento de expansão — Bee Abusive Industry
+# Bee Abusive Industry — identidade e expansão
 
-Direção futura informada pelo usuário em 2026-10-15. Este documento registra
-a intenção; não executa o rebranding nem implementa as máquinas planejadas.
+Identidade originalmente planejada e agora solicitada para execução.
+O rebranding público está aplicado na 0.2.19-dev e na preparação da candidata.
 
-## Identidade futura
+## Identidade aplicada
 
 - Nome do mod: **Bee Abusive Industry**.
-- Título previsto na Steam Workshop: **[oSB][FU] Bee Abusive Industry**.
+- Título na Steam Workshop e no OpenStarbound: **[oSB][FU] Bee Abusive Industry**.
 - [oSB] identifica OpenStarbound e [FU] identifica Frackin Universe.
 - A mudança amplia a identidade do projeto para novos recursos ligados à
   indústria de abelhas; o Genetic Queen Filter permanece uma de suas máquinas.
 
-Na entrega atual 0.2.14-dev, nomes públicos, metadata, IDs de objetos/itens,
-namespace, nome do PAK e URL do repositório permanecem os existentes. Quando
-o rebranding for solicitado para execução, separar nome público de IDs usados
-por saves, receitas e integrações; conservar compatibilidade ou planejar uma
-migração explícita. Os prefixos da Workshop identificam requisitos ao público
-e não substituem a declaração técnica das dependências.
+Autor de apresentação: Goblin Man. O metadata mantém name=FUBeesGenetics para
+compatibilidade com dependências e saves. IDs, namespaces, código das máquinas e
+URL do repositório não foram renomeados. PAKs novos usam bee-abusive-industry.
+O ícone usa a Cybernetic Queen do FU, em fundo laranja, com créditos preservados.
+O rebranding não muda a conta proprietária da Workshop nem publica o item.
 
 ## Máquina implementada — abelhas por recursos
 
@@ -32,9 +31,9 @@ do FU em runtime. Crafting: 1 beerefuge + 1 cropshipper_kheAA2 + 2 aichip,
 na Bee Station, com desbloqueio ao obtê-la. Não há dependência adicional de mod.
 
 Ver [especificação, tabela e testes](BEE_EXCHANGE_0_2_0.md).
-A implementação não executa o rebranding planejado. A textura foi validada na
-0.2.13; a GUI corrigida na 0.2.14 e a integração IC ainda aguardam confirmação
-no jogo. Ver [estado atual](IMPLEMENTATION_STATUS.md).
+O mantenedor confirmou todas as alterações anteriores validadas e prontas.
+O novo ícone de apresentação ainda precisa de conferência visual no jogo.
+Ver [estado e prontidão](RELEASE_READINESS.md).
 
 ## Fluxo de trabalho
 

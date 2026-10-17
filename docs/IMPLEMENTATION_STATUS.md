@@ -1,7 +1,15 @@
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.18-dev
+## Situação atual — 0.2.19-dev
+
+Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
+ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
+iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
+nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
+não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
+
+## Registro da build funcional validada — 0.2.18-dev
 
 A 0.2.18 centraliza Reset Profile entre as barras (margens 11/11) e baixa
 as listras para a faixa metálica inferior. Ver [detalhes](HUD_ALIGNMENT_0_2_18.md).

@@ -87,6 +87,7 @@ def check_assets(root, fu_root, native_root):
         elif isinstance(value,str) and value.startswith('/') and not value.startswith('//'):
             target = value.split(':')[0].split('?')[0]
             assert (mod/target.lstrip('/')).is_file() or (native_root/target.lstrip('/')).is_file() or (fu_root/target.lstrip('/')).is_file(), target
+    refs(json.loads((mod/'_metadata').read_text()))
     refs(obj)
     ui = json.loads((mod/obj['uiConfig'].lstrip('/')).read_text())
     refs(ui)
