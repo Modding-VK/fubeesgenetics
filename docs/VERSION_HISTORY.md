@@ -51,4 +51,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | Versão | Mudança | Código/PAK preservados |
 | --- | --- | --- |
 | 0.2.15-dev | Nome padrão Auto Refugee no item e na janela | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/1035754fbe9fde087c9343ae9e2b015ccd8ed4f2/dist/fubeesgenetics-mvp-0.2.15-dev.pak), [detalhes](BEE_EXCHANGE_0_2_15.md) |
-| 0.2.16-dev | Filter compacto, referências centralizadas e slots próximos | [PAK](../dist/fubeesgenetics-mvp-0.2.16-dev.pak), [detalhes](HUD_COMPACT_0_2_16.md) |
+| 0.2.16-dev | Filter compacto, referências centralizadas e slots próximos | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/e2314b4063201da968d933fd6547c6e2e9255eb8/dist/fubeesgenetics-mvp-0.2.16-dev.pak), [detalhes](HUD_COMPACT_0_2_16.md) |
+| 0.2.17-dev | Logo centralizado, título laranja no topo e descrição curta | [PAK](../dist/fubeesgenetics-mvp-0.2.17-dev.pak), [detalhes](HUD_HEADER_0_2_17.md) |

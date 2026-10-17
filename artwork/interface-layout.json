@@ -29,11 +29,13 @@
       "value": "Genetic Queen Filter",
       "position": [
         42,
-        313
+        322
       ],
       "hAnchor": "left",
       "fontSize": 10,
-      "color": "#dce7f1"
+      "color": "#ff9b3d",
+      "vAnchor": "top",
+      "lineSpacing": 1.0
     },
     "section": {
       "type": "label",
@@ -718,9 +720,11 @@
       "file": "/interface/fubeesgenetics/geneticqueenfilter/dna.png",
       "position": [
         14,
-        304
+        302
       ],
-      "mouseTransparent": true
+      "mouseTransparent": true,
+      "centered": false,
+      "trim": false
     },
     "approvedFrame": {
       "type": "image",
@@ -779,6 +783,19 @@
       "centered": false,
       "trim": false,
       "mouseTransparent": true
+    },
+    "description": {
+      "type": "label",
+      "value": "Sort queens by genetic traits.",
+      "position": [
+        42,
+        309
+      ],
+      "hAnchor": "left",
+      "vAnchor": "top",
+      "fontSize": 7,
+      "lineSpacing": 1.0,
+      "color": "#dce7f1"
     }
   },
   "helpTexts": {

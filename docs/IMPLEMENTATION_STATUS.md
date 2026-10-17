@@ -1,11 +1,13 @@
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.16-dev
+## Situação atual — 0.2.17-dev
 
-A 0.2.16 compacta o Filter para 304×332, centraliza a coluna de valores,
-aproxima os slots e baixa os elementos do cabeçalho em 3 pixels. Tooltips
-usam os limites reais da pane. Ver [detalhes](HUD_COMPACT_0_2_16.md).
+A 0.2.17 centraliza o logo no cabeçalho e alinha o título laranja ao seu topo,
+com descrição curta em cor clara abaixo. Ver [detalhes](HUD_HEADER_0_2_17.md).
+A compactação 304×332, coluna de referências centralizada, slots próximos e
+tooltips da 0.2.16 permanecem iguais. O usuário confirmou melhora significativa
+no layout compacto; o novo cabeçalho ainda precisa de conferência no jogo.
 A correção do nome Auto Refugee da 0.2.15 está preservada.
 
 Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do

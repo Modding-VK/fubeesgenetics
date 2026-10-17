@@ -154,3 +154,13 @@ continuam 5 por 7 Pixels. Teste de migração do save ainda pendente no jogo.
 
 Substituir apenas o PAK com o jogo fechado; não precisa resetar o perfil ou
 refazer máquinas. A Auto Refugee não recebeu mudanças nesta atualização.
+
+## Reteste do cabeçalho do Filter — 0.2.17-dev
+
+- [ ] Logo com margens iguais entre o contorno superior interno e a divisória.
+- [ ] Título laranja alinhado ao topo do logo; descrição clara abaixo sem colisão.
+- [ ] Conferir a fonte real nas escalas de GUI usadas, com fechar acessível.
+- [ ] Reabrir o Filter existente sem reset e confirmar que perfil/modos persistem.
+
+O usuário confirmou melhora significativa do layout compacto da 0.2.16.
+Esta entrega só altera metadata e configuração visual do cabeçalho.

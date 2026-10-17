@@ -9,13 +9,13 @@ gerar um PAK não autoriza, por si só, promover para main.
 ## Estado atual
 
 - Repositório: https://github.com/Modding-VK/fubeesgenetics.
-- Código e PAK atuais: **0.2.16-dev**, armazenados em dev.
-  Base preservada: `97a47fd6cea6369697ca3981c2f9e090da00ff35` (0.2.15-dev).
-  [Pacote](../dist/fubeesgenetics-mvp-0.2.16-dev.pak) e
-  [compactação da HUD](HUD_COMPACT_0_2_16.md).
+- Código e PAK atuais: **0.2.17-dev**, armazenados em dev.
+  Base preservada: `e2314b4063201da968d933fd6547c6e2e9255eb8` (0.2.16-dev).
+  [Pacote](../dist/fubeesgenetics-mvp-0.2.17-dev.pak) e
+  [cabeçalho da HUD](HUD_HEADER_0_2_17.md).
 - Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
 - Não há nova release, tag estável, PR ou publicação Steam nesta atualização.
-- A 0.2.16 inclui apenas a compactação visual do Filter e o ajuste de seus tooltips.
+- A 0.2.17 inclui apenas o cabeçalho visual do Filter; scripts e inventários iguais.
 - Validação local: 135 grupos básicos e pack/unpack nativo de 52 arquivos.
   Os 13 testes IC opcionais não foram repetidos neste ambiente. O CI valida o push.
 

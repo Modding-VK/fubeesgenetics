@@ -3,14 +3,16 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão atual de desenvolvimento: 0.2.16-dev.**
+**Versão atual de desenvolvimento: 0.2.17-dev.**
 
-[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.16-dev.pak?raw=true) ·
-[Alterações da versão](docs/HUD_COMPACT_0_2_16.md) ·
+[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.17-dev.pak?raw=true) ·
+[Alterações da versão](docs/HUD_HEADER_0_2_17.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
-A 0.2.16 compacta o Filter para **304×332**, centraliza os valores de referência,
-aproxima os slots e dá margem aos textos e setas do cabeçalho.
+A 0.2.17 centraliza o logo no cabeçalho, alinha o título laranja ao seu topo e
+acrescenta a descrição clara “Sort queens by genetic traits.” abaixo do nome.
+O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.16
+permanecem iguais.
 A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
 O usuário confirmou a correção da textura da Auto Refugee na 0.2.13. A 0.2.14
@@ -21,7 +23,7 @@ com Improved Containers ainda precisam de confirmação dentro do jogo.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `fubeesgenetics-mvp-0.2.16-dev.pak`. Mantenha apenas uma cópia do addon.
+   `fubeesgenetics-mvp-0.2.17-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -117,7 +119,7 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.16 passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
+Na 0.2.17 passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
 não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
 Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem

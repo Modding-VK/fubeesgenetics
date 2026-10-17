@@ -6,21 +6,21 @@ O addon usa PAK padrão Starbound 1.4.4 (SBAsset6); não exige instalador própr
 Seu runtime continua sendo OpenStarbound com FU, por causa da interface scriptável.
 
 O nome do PAK manual inclui automaticamente a versão do _metadata, no formato
-`fubeesgenetics-mvp-<versão>.pak`. Exemplo atual: 0.2.16-dev. O arquivo instalado
+`fubeesgenetics-mvp-<versão>.pak`. Exemplo atual: 0.2.17-dev. O arquivo instalado
 pela Workshop mantém o nome padrão contents.pak.
 
 ## Arquivos entregues
 
 | Arquivo | Finalidade |
 | --- | --- |
-| fubeesgenetics-mvp-0.2.16-dev.pak | Instalação manual em Starbound/mods |
+| fubeesgenetics-mvp-0.2.17-dev.pak | Instalação manual em Starbound/mods |
 | fubeesgenetics-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
 | fubeesgenetics-mvp-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
 | fubeesgenetics-mvp-source.zip | Projeto completo com ferramentas/testes/documentação |
 
 ## Instalação
 
-Manual: copiar fubeesgenetics-mvp-0.2.16-dev.pak para Starbound/mods e iniciar pelo
+Manual: copiar fubeesgenetics-mvp-0.2.17-dev.pak para Starbound/mods e iniciar pelo
 OpenStarbound configurado para carregar essa instalação, com FU disponível.
 Não instalar junto uma pasta FUBeesGenetics antiga ou cópia Workshop do addon.
 
