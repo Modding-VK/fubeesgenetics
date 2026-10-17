@@ -1,7 +1,7 @@
 {
   "objectName": "fubeesgenetics_beeexchange",
   "objectType": "container",
-  "shortdescription": "Bee Exchange",
+  "shortdescription": "Auto Refugee",
   "description": "Automatically exchanges Queens and Young Queens for resources. Five matching Drones give Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
   "race": "generic",
   "category": "storage",

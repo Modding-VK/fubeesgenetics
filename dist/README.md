@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.14-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.15-dev
 
-- fubeesgenetics-mvp-0.2.14-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.15-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.14-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.15-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -106,3 +106,7 @@ A 0.2.14 corrige Cannot convert from object to string ao abrir: uiConfig
 permanece um caminho de arquivo, e a ponte IC usa patch condicional da janela
 compartilhada, ativando sua trava apenas no Bee Exchange. Repara overrides salvos
 sem recriar a máquina. 148 grupos locais passaram; conferência no jogo pendente.
+
+A 0.2.15 corrige o nome exibido na interface e no item para Auto Refugee.
+IDs, inventários, sprites e lógica permanecem iguais. 148 grupos locais passaram;
+52 arquivos conferidos por pack/unpack nativo.
