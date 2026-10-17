@@ -45,3 +45,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.12-dev | Ressincroniza placa/display com a direção após init e durante locks IC | [PAK](../dist/fubeesgenetics-mvp-0.2.12-dev.pak), [detalhes](BEE_EXCHANGE_0_2_12.md) |
 
 | 0.2.13-dev | Corrige bootstrap dos adaptadores IC para inicializar scripts e texturas | [PAK](../dist/fubeesgenetics-mvp-0.2.13-dev.pak), [detalhes](BEE_EXCHANGE_0_2_13.md) |
+
+| 0.2.14-dev | Corrige uiConfig e abertura da GUI; ponte IC condicional por tipo de objeto | [PAK](../dist/fubeesgenetics-mvp-0.2.14-dev.pak), [detalhes](BEE_EXCHANGE_0_2_14.md) |

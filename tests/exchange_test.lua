@@ -12,7 +12,9 @@ end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
 local slots,faults,puts,takes,drops,logs,animations,tags
 local facing=1
+local objectParameters={}
 object={direction=function() return facing end,
+ setConfigParameter=function(k,v) objectParameters[k]=copy(v) end,
  isInputNodeConnected=function(n) assert(n==0);return faults.logicConnected or false end,
  getInputNodeLevel=function(n) assert(n==0);return faults.logicHigh or false end}
 local paths={};for path in pairs(fixture.tradeRecipes) do paths[#paths+1]=path end;table.sort(paths)
@@ -27,7 +29,7 @@ end,itemConfig=function(item)
  return {config={maxStack=faults.maxStack or 1000},parameters={}}
 end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
-config={getParameter=function(name) return copy(fixture.exchangeConfig[name]) end}
+config={getParameter=function(name) return copy(objectParameters[name]~=nil and objectParameters[name] or fixture.exchangeConfig[name]) end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
 animator={setGlobalTag=function(name,value) tags[name]=value end,setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
@@ -68,7 +70,7 @@ for _,path in ipairs(fixture.exchangeConfig.scripts) do dofile(fixture.repoRoot.
 for name,value in pairs(bindings) do _G[name]=value end
 local function fresh(saved,inventory)
  slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={};tags={}
- transferUtil.vars=nil;init()
+ objectParameters={};transferUtil.vars=nil;init()
 end
 local function item(name,count,parameters) return {name=name,count=count or 1,parameters=parameters or {}} end
 local function total(name)

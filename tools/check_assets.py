@@ -123,7 +123,7 @@ def check_assets(root, fu_root, native_root):
         items = [asset_json(p.read_text()) for p in (fu_root/'items').rglob('*') if p.suffix in {'.item','.liqitem'}]
         assert any(i['itemName']==name for i in items)
     passed('S7 recipe IDs quantities and station groups')
-    patch = next(d for p,d in docs.items() if p.suffix=='.patch')
+    patch = next(d for p,d in docs.items() if p.name=='beestation.object.patch')
     for before in [{}, {'learnBlueprintsOnPickup':['existing']},asset_json((fu_root/'objects/bees/beestation/beestation.object').read_text())]:
         after = apply_patch(before,patch)
         assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange']

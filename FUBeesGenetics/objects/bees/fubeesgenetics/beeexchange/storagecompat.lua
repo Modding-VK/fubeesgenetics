@@ -38,6 +38,9 @@ local function compatDie()
 end
 
 compatInit = function()
+  -- ContainerObject requires a string asset path. Repair persisted table values
+  -- from older builds before the player can open an existing machine.
+  object.setConfigParameter("uiConfig", "/interface/chests/chest16.config")
   if not hasProvider() then
     update, die = exchangeUpdate, exchangeDie
     fallbackInit()
@@ -60,11 +63,6 @@ compatInit = function()
     return true
   end)
   message.setHandler("lock", function() ic.locked = 2 end)
-  local ui = root.assetJson("/interface/chests/chest16.config")
-  ui.scripts = ui.scripts or {}
-  local bridge = "/objects/bees/fubeesgenetics/beeexchange/storagegui.lua"
-  for _, path in ipairs(ui.scripts) do if path == bridge then return end end
-  table.insert(ui.scripts, bridge)
-  object.setConfigParameter("uiConfig", ui)
+
 end
 init = compatInit

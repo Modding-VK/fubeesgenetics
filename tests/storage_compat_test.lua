@@ -17,7 +17,7 @@ local function scenario(withIC,params)
  local env=setmetatable({}, {__index=_G})
  local cfg=copy(fixture.exchangeConfig);for k,v in pairs(params or {}) do cfg[k]=copy(v) end
  local slots,drops,handlers,queue,playerItems={},{},{},{},{}
- local ctx={env=env,slots=slots,drops=drops,handlers=handlers,playerItems=playerItems,putFailure=false,facing=1,tags={}}
+ local ctx={requests={},env=env,slots=slots,drops=drops,handlers=handlers,playerItems=playerItems,putFailure=false,facing=1,tags={}}
  env.storage={}
  local function json(path)
   if path=='/interface/chests/chest16.config' then return copy(withIC and fixture.icUi or fixture.nativeUi) end
@@ -66,6 +66,7 @@ local function scenario(withIC,params)
    drops[#drops+1]=type(v)=='table' and copy(v) or item(v,count,copy(parameters or {}));return 500+#drops
   end,entityName=function() return cfg.objectName end}
  env.world.sendEntityMessage=function(_,name,...)
+  ctx.requests[#ctx.requests+1]=name
   local entry={name=name,args={...},done=false};queue[#queue+1]=entry
   return {finished=function() return entry.done end,result=function() return copy(entry.value) end}
  end
@@ -101,7 +102,9 @@ local function scenario(withIC,params)
  function ctx.gui()
   local g=setmetatable({}, {__index=_G});g.root=env.root;g.world=env.world;g.sb=env.sb
   g.pane={containerEntityId=function() return 42 end,dismiss=function() end}
-  local view=cfg.uiConfig;assert(type(view)=='table')
+  -- ContainerObject::containerGuiConfig converts uiConfig to a STRING path.
+  assert(type(cfg.uiConfig)=='string','Cannot convert from object to string: uiConfig')
+  local view=env.root.assetJson(cfg.uiConfig)
   g.config={getParameter=function(key)
    local v=view;for part in key:gmatch('[^.]+') do v=v[part] end;return copy(v)
   end}
@@ -135,7 +138,8 @@ end)
 test('IC init chains machine, handlers, cadence and private GUI bridge',function()
  local s=scenario(true);assert(s.env.self.trades and s.env.ic.version==2 and s.delta==10)
  assert(s.cfg.smashOnBreak and s.handlers.open and s.handlers.rename and s.handlers['fubeesgenetics.storageLock'])
- assert(#s.cfg.uiConfig.scripts==2)
+ assert(s.cfg.uiConfig=='/interface/chests/chest16.config')
+ assert(#s.env.root.assetJson(s.cfg.uiConfig).scripts==2)
  local g=s.gui();assert(g.ic.serverVersion==2 and g.widgets.icRenameButton)
  s.handlers.rename(nil,nil,'Auto Bees');assert(s.cfg.shortdescription=='Auto Bees')
 end)
@@ -206,5 +210,17 @@ test('facing remains correct through IC lock, tag resets and content restoration
  assert(s.slots[3].count==2)
  s.tags.facingSuffix='';s.env.update(.1);assert(s.tags.facingSuffix=='-left')
  s.facing=1;s.env.update(.1);assert(s.tags.facingSuffix=='')
+end)
+test('old saved JSON uiConfig is repaired to the engine string path',function()
+ local s=scenario(true,{fubeesgeneticsIC=true,uiConfig=fixture.icUi})
+ assert(type(s.cfg.uiConfig)=='string')
+ local g=s.gui();assert(g.ic.serverVersion==2)
+end)
+test('shared native window keeps ordinary IC containers sorting normally',function()
+ local s=scenario(true);s.cfg.objectName='woodenchest';s.handlers['fubeesgenetics.storageLock']=nil
+ s.slots[0]=item('zzz',2);s.slots[10]=item('aaa')
+ local g=s.gui();g.ic.sort();s.flush();g.update(0)
+ assert(s.slots[0].name=='aaa' and s.slots[1].name=='zzz')
+ for _,name in ipairs(s.requests) do assert(name~='fubeesgenetics.storageLock') end
 end)
 print('Improved Containers: '..groups..' integration groups passed (uploaded real Lua; simulated engine/UI bindings).')

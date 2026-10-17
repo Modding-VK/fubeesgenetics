@@ -1,7 +1,8 @@
--- Loaded only in this machine's resolved IC window, after the IC GUI script.
--- Obtain a server acknowledgement BEFORE sorting or writing quick-stack items.
-local icUpdate = update
+-- Appended to the shared IC 16-slot window. Engine bindings are used only in
+-- init/update, and the acknowledgement guard applies exclusively to Bee Exchange.
+local providerInit, providerUpdate = init, update
 local pending
+local enabled = false
 local function guarded(action)
   return function(...)
     if pending then return end
@@ -9,11 +10,18 @@ local function guarded(action)
       "fubeesgenetics.storageLock"), action = action, args = {...}}
   end
 end
-ic.sortAction = guarded(ic.sortAction)
-ic.quickstackAction = guarded(ic.quickstackAction)
+function init()
+  if providerInit then providerInit() end
+  enabled = world.entityName(pane.containerEntityId()) == "fubeesgenetics_beeexchange"
+    and type(ic) == "table" and ic.version == 2
+  if enabled then
+    ic.sortAction = guarded(ic.sortAction)
+    ic.quickstackAction = guarded(ic.quickstackAction)
+  end
+end
 function update(dt)
-  icUpdate(dt)
-  if pending and pending.request:finished() then
+  if providerUpdate then providerUpdate(dt) end
+  if enabled and pending and pending.request:finished() then
     local operation = pending
     pending = nil
     if operation.request:result() == true then
