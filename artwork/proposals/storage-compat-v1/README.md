@@ -1,3 +1,7 @@
+Status: investigação concluída na 0.2.11-dev após receber o PAK original.
+Ver docs/BEE_EXCHANGE_0_2_11.md e tools/ic_upstream.json.
+O texto abaixo e native-ui.patch preservam a investigação anterior.
+
 # Storage compatibility investigation — not applied
 
 Target: Improved Containers 2.11 original (Workshop 729427606), confirmed by user

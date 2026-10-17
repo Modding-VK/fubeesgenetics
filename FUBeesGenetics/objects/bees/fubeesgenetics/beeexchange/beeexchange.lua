@@ -180,6 +180,7 @@ function update(dt)
   if self.timer < 1 then return end
   self.timer = self.timer % 1
   transferUtil.loadSelfContainer()
+  if ic and ic.version == 2 and (ic.locked or 0) > 0 then return end
   if not deliver() then return end
   -- Same switch rule as FU Terramart 3.5: unwired runs automatically;
   -- connected low pauses new sales, connected high enables them. Finish any

@@ -77,6 +77,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fetch", action="store_true", help="Download pinned FU test sources")
     parser.add_argument("--fu-root", type=Path, default=ROOT / ".cache/fu")
+    parser.add_argument("--ic-root", type=Path, help="Unpacked original IC 2.11 for optional integration checks")
     args = parser.parse_args()
     fu_root = args.fu_root.resolve()
     for path, expected in MANIFEST["files"].items():
@@ -129,6 +130,9 @@ def main():
             script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)
+    if args.ic_root:
+        from check_storage_compat import run_storage_checks
+        run_storage_checks(ROOT, args.ic_root, fixture, native_root)
     from check_assets import check_assets
     check_assets(ROOT, fu_root, native_root)
     print("Lua syntax, metadata and upstream blob integrity: PASS", flush=True)

@@ -30,7 +30,9 @@ def check_container_ui(root, native_root):
     from run_checks import asset_json
     from check_assets import png_size
     mod = root/'FUBeesGenetics'
-    gui = json.loads((mod/'interface/fubeesgenetics/beeexchange/beeexchange.config').read_text())['gui']
+    obj=json.loads((mod/'objects/bees/fubeesgenetics/beeexchange/beeexchange.object').read_text())
+    assert obj['uiConfig']=='/interface/chests/chest16.config'
+    gui = json.loads((native_root/obj['uiConfig'].lstrip('/')).read_text())['gui']
     vanilla = json.loads((native_root/'interface/chests/chest16.config').read_text())['gui']
     interface = asset_json((native_root/'interface.config').read_text())
     draggable = interface['itemDraggableArea']
@@ -38,18 +40,19 @@ def check_container_ui(root, native_root):
     assert png_size(native_root/'interface/inventory/empty.png') == (18,18)
     assert gui['background'] == vanilla['background']
     assert gui['objectImage'] == vanilla['objectImage']
-    assert gui['clear']['caption'] == 'Take all' and gui['clear']['pressed'] == vanilla['clear']['hover']
-    assert 'press' not in gui['clear'] and gui['close'] == vanilla['close']
-    assert gui['count']['value'] == '<slots> SLOTS'
-    assert gui['overlay']['mouseTransparent']
+    assert gui['clear']['caption'] == 'Take all' and gui['clear'] == vanilla['clear']
+    assert gui['close'] == vanilla['close']
+    assert gui['count']['value'] == '16 SLOTS'
+    assert gui['overlay'] == vanilla['overlay']
     assert "itemGrid2" not in gui
     positions,indices = [],[]
     for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,42],0)]:
         grid=gui[name]
-        assert grid['dimensions']==dimensions and grid['position']==origin and grid['slotOffset']==offset
+        assert grid['dimensions']==dimensions and grid['position']==origin and grid.get('slotOffset',0)==offset
         assert grid['spacing']==[19,19]
         assert grid['backingImage']=='/interface/inventory/empty.png'
-        assert grid['showBackingImageWhenEmpty'] and grid['showBackingImageWhenFull']
+        assert grid.get('showBackingImageWhenEmpty',True)
+        # Filled slots retain the static frames in slots1to16.png.
         size=png_size(native_root/grid['backingImage'].lstrip('/'))
         # ItemSlotWidget sizes to max(itemDraggableArea.max, backingImage.size).
         child_size=[max(draggable[i+2],size[i]) for i in range(2)]

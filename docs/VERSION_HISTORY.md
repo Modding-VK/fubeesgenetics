@@ -39,3 +39,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.9-dev | Ícone amarelo, inspeção Analytical e I/O/on-off do Terramart | [PAK](../dist/fubeesgenetics-mvp-0.2.9-dev.pak), [detalhes](BEE_EXCHANGE_0_2_9.md) |
 
 | 0.2.10-dev | Ícone com vidro; investigação de storage documentada, integração IC pendente | [PAK](../dist/fubeesgenetics-mvp-0.2.10-dev.pak), [detalhes](BEE_EXCHANGE_0_2_10.md) |
+
+| 0.2.11-dev | Inspeções explicam nodes e integração opcional com IC 2.11 | [PAK](../dist/fubeesgenetics-mvp-0.2.11-dev.pak), [detalhes](BEE_EXCHANGE_0_2_11.md) |

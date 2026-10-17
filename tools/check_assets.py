@@ -192,13 +192,19 @@ def check_assets(root, fu_root, native_root):
     display_names=json.loads((exchange_path.parent/'display.frames').read_text())['frameGrid']['names'][0]
     assert display_names==['ready.1','ready.2']+['work.'+str(i) for i in range(1,21)]
     for race in ['human','apex','avian','floran','glitch','hylotl','novakid','generic']:
-        assert exchange[race+'Description'].strip()
+        inspection=exchange[race+'Description']
+        assert inspection.strip()
+        for text in ['Upper Input: On/Off Switch','unwired = on','Lower Input: Item Network Input','Output: Item Network Output']:
+            assert text in inspection,(race,text)
+    assert exchange['scripts'][-1].endswith('/storagecompat.lua')
+    assert exchange['itemAgingScripts'][0].endswith('/storageaging.lua')
 
     refs(exchange)
-    exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
+    assert exchange['uiConfig']=='/interface/chests/chest16.config'
+    exchange_ui=json.loads((native_root/exchange['uiConfig'].lstrip('/')).read_text())
     refs(exchange_ui)
     grid=exchange_ui['gui']['itemGrid']
-    assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
+    assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid.get('slotOffset',0)==0
     assert not exchange['printable']
     passed('S10 Bee Exchange 16-slot container and native grid assets')
     exchange_recipe=next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']=='fubeesgenetics_beeexchange')

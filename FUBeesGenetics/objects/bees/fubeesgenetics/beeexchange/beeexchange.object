@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_beeexchange",
   "objectType": "container",
   "shortdescription": "Bee Exchange",
-  "description": "Automatically exchanges Queens and Young Queens for resources. Five matching Drones give Pixels.\n^blue;Upper Input: On/Off Switch^reset;\n^blue;Lower Input / Output: Item Network^reset;",
+  "description": "Automatically exchanges Queens and Young Queens for resources. Five matching Drones give Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
   "race": "generic",
   "category": "storage",
   "rarity": "rare",
@@ -430,10 +430,11 @@
     }
   ],
   "scripts": [
-    "/objects/bees/fubeesgenetics/beeexchange/beeexchange.lua"
+    "/objects/bees/fubeesgenetics/beeexchange/beeexchange.lua",
+    "/objects/bees/fubeesgenetics/beeexchange/storagecompat.lua"
   ],
   "scriptDelta": 10,
-  "uiConfig": "/interface/fubeesgenetics/beeexchange/beeexchange.config",
+  "uiConfig": "/interface/chests/chest16.config",
   "inputNodes": [
     [
       3,
@@ -450,21 +451,24 @@
       0
     ]
   ],
-  "genericDescription": "Bee Refuge trades, automatically. Queens and Young Queens give the same species resource; groups of five Drones give Pixels.",
-  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated. It takes five matching drones for a payout.",
+  "genericDescription": "Bee Refuge trades, automatically. Queens and Young Queens give the same species resource; groups of five Drones give Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "humanDescription": "Bees in, resources out. The Bee Refuge exchange, automated. It takes five matching drones for a payout.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
   "animation": "/objects/bees/fubeesgenetics/beeexchange/beeexchange.animation",
   "animationPosition": [
     -8,
     0
   ],
-  "apexDescription": "An automated exchange with species-specific rates. Queens yield resources; batches of five matching drones yield Pixels.",
-  "avianDescription": "A small glass chamber that sends bees to the refuge. Five drones of one kind are exchanged together.",
-  "floranDescription": "Beesss vanish, treasuresss appear! Machine wantsss five matching dronesss.",
-  "glitchDescription": "Analytical. Queens yield species-specific resources. Five drones of the same species yield Pixels.",
-  "hylotlDescription": "A glass chamber automates the refuge exchange. Queens provide resources; five drones of one species provide Pixels.",
-  "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal.",
+  "apexDescription": "An automated exchange with species-specific rates. Queens yield resources; batches of five matching drones yield Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "avianDescription": "A small glass chamber that sends bees to the refuge. Five drones of one kind are exchanged together.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "floranDescription": "Beesss vanish, treasuresss appear! Machine wantsss five matching dronesss.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "glitchDescription": "Analytical. Queens yield species-specific resources. Five drones of the same species yield Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "hylotlDescription": "A glass chamber automates the refuge exchange. Queens provide resources; five drones of one species provide Pixels.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
+  "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal.\n^blue;Upper Input: On/Off Switch (unwired = on)^reset;\n^blue;Lower Input: Item Network Input^reset;\n^blue;Output: Item Network Output^reset;",
   "animationCenterLine": 4,
   "kheAA_logicNode": 0,
   "kheAA_inDataNode": 1,
-  "kheAA_outDataNode": 0
+  "kheAA_outDataNode": 0,
+  "itemAgingScripts": [
+    "/objects/bees/fubeesgenetics/beeexchange/storageaging.lua"
+  ]
 }

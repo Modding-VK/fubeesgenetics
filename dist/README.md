@@ -1,16 +1,16 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.10-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.11-dev
 
-- fubeesgenetics-mvp-0.2.10-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.11-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.10-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.11-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
-(48 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
+(51 arquivos); testes no jogo pendentes. A arte é provisória, recuperada do MVP;
 a diretriz v1.2 disponível é consolidada do histórico, não o anexo integral.
 Nenhuma publicação Steam ou aprovação de release é afirmada.
 
@@ -85,3 +85,9 @@ A 0.2.10 substitui a madeira do ícone por vidro azul com transparência, reflex
 e haste vazia. A integração com Improved Containers 2.11 ainda está pendente
 do código do mod; a interface privada atual continua ativa nesta entrega.
 Não considerar esta versão uma integração completa com Improved Containers.
+
+A 0.2.11 conclui a integração opcional com o Improved Containers 2.11 enviado
+pelo usuário: janela nativa, ordenar/empilhar/buscar/renomear e conteúdo ao quebrar,
+com pausa das vendas durante as operações e recuperação das recompensas pendentes.
+Inspeções raciais agora explicam os nodes. 143 grupos locais passaram, incluindo
+10 que executam o Lua real do IC com bindings simulados; teste no jogo pendente.
