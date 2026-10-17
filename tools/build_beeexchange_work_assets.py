@@ -6,8 +6,27 @@ from PIL import Image,ImageDraw
 from pathlib import Path
 r=Path(__file__).resolve().parents[1];d=r/'FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange';s=Image.open(r/'.cache/ui-reference/starbound/assets/packed/objects/generic/cropshipper/cropshipper.png').convert('RGBA');native=s.crop((128,0,192,80));old=Image.open(r/'artwork/proposals/auto-refugee-work-v1/static.png').convert('RGBA');base=native.copy()
 base.paste((0,0,0,0),(0,0,64,28))
-# Approved sign and transparent glass/rod are preserved pixel for pixel.
-for box in [(16,28,61,47),(17,53,48,68)]:base.paste(old.crop(box),box)
+# One vanilla-shaped plate: keep its original bezel and replace only its print.
+base.paste(old.crop((17,53,48,68)),(17,53,48,68))
+ImageDraw.Draw(base).rectangle((19,30,58,44),fill='#f4bb42')
+base.paste(old.crop((20,31,57,44)),(20,31,57,44))
+# Remove the abandoned top rail stub next to the plate and close the two pinholes.
+for y in [28]:
+ for x in range(10,16):base.putpixel((x,y),(0,0,0,0))
+base.putpixel((9,31),native.getpixel((10,31)))
+base.putpixel((8,32),native.getpixel((8,33)))
+# Rebuild the glass under the old rod, then shorten the rod by two pixels.
+for y in range(60,66):
+ left,right=base.getpixel((30,y)),base.getpixel((35,y))
+ for x in range(31,35):
+  t=(x-30)/5
+  base.putpixel((x,y),tuple(round(left[c]*(1-t)+right[c]*t) for c in range(4)))
+base.paste(old.crop((31,60,35,64)),(31,62,35,66))
+# Rebuild moving layers from the approved source, translated down exactly 2px.
+for layer_name in ['specimen','teleport']:
+ source=Image.open(r/'artwork/proposals/auto-refugee-work-v1'/(layer_name+'.png')).convert('RGBA')
+ moved=Image.new('RGBA',source.size);moved.paste(source,(0,2))
+ moved.save(d/(layer_name+'.png'))
 # Vanilla casing has clean panels and both native side LEDs. Keep their original
 # geometry and positions; the fullbright layer below owns their state colors.
 # Remove the baked-in cyan check; only the animated display owns its lit pixels.
@@ -39,7 +58,7 @@ for i in range(22):
  f=base.copy();j=0 if i<2 else i-1
  for layer in [sp,fx]:f.alpha_composite(layer.crop((j*64,0,(j+1)*64,80)))
  f.alpha_composite(sheet.crop((i*64,0,(i+1)*64,80)));bg=Image.new('RGBA',(64,80),'#344451');bg.alpha_composite(f);frames.append(bg.convert('RGB').resize((384,480),Image.Resampling.NEAREST))
-out=r/'artwork/implemented';frames[0].save(out/'beeexchange-0.2.7.png');seq=[frames[i%2] for i in range(10)]+frames[2:]+[frames[i%2] for i in range(10)];seq[0].save(out/'beeexchange-0.2.7.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)
+out=r/'artwork/implemented';frames[0].save(out/'beeexchange-0.2.8.png');seq=[frames[i%2] for i in range(10)]+frames[2:]+[frames[i%2] for i in range(10)];seq[0].save(out/'beeexchange-0.2.8.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)
 
 # Engine mirrors objects facing left. Compensate only lettering and display glyphs
 # in dedicated runtime textures, while the casing/LEDs/insect mirror normally.
@@ -50,12 +69,19 @@ left_base.save(d/'static-left.png')
 left_display=sheet.copy()
 for i in range(22):
  glyph_box=(i*64+28,71,i*64+44,75)
- left_display.paste(sheet.crop(glyph_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT),glyph_box)
+ left_display.paste((0,0,0,0),(i*64+28,71,i*64+46,75))
+ left_display.alpha_composite(sheet.crop(glyph_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT),(i*64+30,71))
 for i in range(22):
  # After the engine's whole-frame flip, the display glyph has its original
  # orientation inside the reflected display housing, for every animation frame.
  original_box=(i*64+28,71,i*64+44,75)
- assert left_display.crop(original_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT).tobytes()==sheet.crop(original_box).tobytes()
+ shifted_box=(i*64+30,71,i*64+46,75)
+ actual=left_display.crop(shifted_box).transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+ expected=sheet.crop(original_box)
+ for yy in range(4):
+  for xx in range(16):
+   a,b=actual.getpixel((xx,yy)),expected.getpixel((xx,yy))
+   assert a==b or a[3]==b[3]==0
 left_display.save(d/'display-left.png')
 (d/'display-left.frames').write_bytes((d/'display.frames').read_bytes())
 # Placement uses already oriented, fully lit ready images; it does not run Lua.
@@ -80,6 +106,6 @@ for i in range(22):
   if is_left:f=f.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
   pair.alpha_composite(f,(0 if is_left else 64,0))
  review.append(pair.convert('RGB').resize((768,480),Image.Resampling.NEAREST))
-review[0].save(out/'beeexchange-0.2.7-directions.png')
+review[0].save(out/'beeexchange-0.2.8-directions.png')
 seq=[review[i%2] for i in range(10)]+review[2:]+[review[i%2] for i in range(10)]
-seq[0].save(out/'beeexchange-0.2.7-directions.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)
+seq[0].save(out/'beeexchange-0.2.8-directions.gif',save_all=True,append_images=seq[1:],duration=65,loop=0)

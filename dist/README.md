@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.7-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.8-dev
 
-- fubeesgenetics-mvp-0.2.7-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.8-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.7-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.8-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -70,3 +70,8 @@ A 0.2.7 cadastra orientações esquerda/direita para a prévia de placement e
 usa variantes de placa/display que compensam o espelhamento automático do
 engine. Texto e símbolos ficam legíveis nos dois lados, em ready e work.
 127 grupos locais passaram; validação de placement dentro do jogo pendente.
+
+A 0.2.8 integra a estampa à moldura original da placa, corrige dois pinholes e
+o vestígio da haste externa no canto superior, encurta a haste interna em dois
+pixels e baixa inseto/teleporte na mesma medida. Display esquerdo deslocado
+dois pixels para a esquerda.
