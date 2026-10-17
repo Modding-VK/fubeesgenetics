@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_beeexchange",
   "objectType": "container",
   "shortdescription": "Bee Exchange",
-  "description": "Automatically exchanges Queens and Young Queens for resources. Five Drones of the same species give Pixels. Other items are left untouched.",
+  "description": "Automatically exchanges Queens and Young Queens for resources. Five matching Drones give Pixels.\n^blue;Upper Input: On/Off Switch^reset;\n^blue;Lower Input / Output: Item Network^reset;",
   "race": "generic",
   "category": "storage",
   "rarity": "rare",
@@ -10,7 +10,7 @@
   "printable": false,
   "slotCount": 16,
   "hasWindowIcon": true,
-  "inventoryIcon": "/objects/generic/cropshipper/cropshippericon.png",
+  "inventoryIcon": "beeexchangeicon.png",
   "openFrameIndex": 0,
   "autoCloseCooldown": 3600,
   "frameCooldown": 1,
@@ -436,13 +436,17 @@
   "uiConfig": "/interface/fubeesgenetics/beeexchange/beeexchange.config",
   "inputNodes": [
     [
-      0,
+      3,
+      1
+    ],
+    [
+      3,
       0
     ]
   ],
   "outputNodes": [
     [
-      5,
+      4,
       0
     ]
   ],
@@ -456,8 +460,11 @@
   "apexDescription": "An automated exchange with species-specific rates. Queens yield resources; batches of five matching drones yield Pixels.",
   "avianDescription": "A small glass chamber that sends bees to the refuge. Five drones of one kind are exchanged together.",
   "floranDescription": "Beesss vanish, treasuresss appear! Machine wantsss five matching dronesss.",
-  "glitchDescription": "Informative. Queens yield species-specific resources. Five drones of the same species yield Pixels.",
+  "glitchDescription": "Analytical. Queens yield species-specific resources. Five drones of the same species yield Pixels.",
   "hylotlDescription": "A glass chamber automates the refuge exchange. Queens provide resources; five drones of one species provide Pixels.",
   "novakidDescription": "Bees beam out, payment rolls in. Takes five drones of the same kind to close that deal.",
-  "animationCenterLine": 4
+  "animationCenterLine": 4,
+  "kheAA_logicNode": 0,
+  "kheAA_inDataNode": 1,
+  "kheAA_outDataNode": 0
 }

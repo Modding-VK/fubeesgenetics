@@ -181,6 +181,11 @@ function update(dt)
   self.timer = self.timer % 1
   transferUtil.loadSelfContainer()
   if not deliver() then return end
+  -- Same switch rule as FU Terramart 3.5: unwired runs automatically;
+  -- connected low pauses new sales, connected high enables them. Finish any
+  -- already owed delivery regardless of switch state.
+  local logicNode = transferUtil.vars.logicNode
+  if object.isInputNodeConnected(logicNode) and not object.getInputNodeLevel(logicNode) then return end
   -- One recipe per slot per second, no offline catch-up. Rotate priority so a
   -- continually refilled early slot cannot monopolize limited output capacity.
   local start = self.cursor

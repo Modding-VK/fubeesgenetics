@@ -12,7 +12,9 @@ end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
 local slots,faults,puts,takes,drops,logs,animations,tags
 local facing=1
-object={direction=function() return facing end}
+object={direction=function() return facing end,
+ isInputNodeConnected=function(n) assert(n==0);return faults.logicConnected or false end,
+ getInputNodeLevel=function(n) assert(n==0);return faults.logicHigh or false end}
 local paths={};for path in pairs(fixture.tradeRecipes) do paths[#paths+1]=path end;table.sort(paths)
 root={assetJson=function(path)
  if path==base..'trades.config' then return {recipes=paths} end
@@ -24,7 +26,7 @@ end,itemConfig=function(item)
  return {config={maxStack=faults.maxStack or 1000},parameters={}}
 end}
 entity={id=function() return 42 end,position=function() return {10,20} end,entityType=function() return 'object' end}
-config={getParameter=function(name) if name=='slotCount' then return 16 end end}
+config={getParameter=function(name) return copy(fixture.exchangeConfig[name]) end}
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
 animator={setGlobalTag=function(name,value) tags[name]=value end,setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
@@ -262,5 +264,30 @@ test('E32 direction tags select readable runtime textures on placement and reloa
  local saved,inventory=copy(storage),copy(slots)
  fresh(saved,inventory);assert(tags.facingSuffix=='-left' and total('money')==7)
  facing=1;fresh();assert(tags.facingSuffix=='')
+end)
+test('E33 wired low pauses queens and drones; wired high resumes sales',function()
+ faults.logicConnected=true
+ slots[0]=item('bee_honey_queen');slots[1]=item('bee_honey_drone',5)
+ update(1);assert(takes==0 and #animations==1)
+ faults.logicHigh=true;update(1)
+ assert(total('coalore')==10 and total('money')==7 and takes==2)
+end)
+test('E34 disconnecting the switch restores automatic sales',function()
+ faults.logicConnected=true;slots[0]=item('bee_honey_queen');update(1)
+ assert(takes==0)
+ faults.logicConnected=false;update(1)
+ assert(total('coalore')==10 and total('bee_honey_queen')==0)
+end)
+test('E35 native FU transfer provider exposes this inventory on both data roles',function()
+ assert(transferUtil.vars.logicNode==0 and transferUtil.vars.inDataNode==1 and transferUtil.vars.outDataNode==0)
+ assert(transferUtil.sendContainerInputs()[42] and transferUtil.sendContainerOutputs()[42])
+ assert(same(transferUtil.sendContainerInputs()[42],entity.position()))
+end)
+test('E36 switching off finishes owed delivery without selling newly arrived bees',function()
+ faults.putFailure=true;slots[0]=item('bee_honey_queen');update(1)
+ assert(storage.exchangePending and takes==1)
+ faults.putFailure=false;faults.logicConnected=true
+ slots[1]=item('bee_honey_queen');update(1)
+ assert(not storage.exchangePending and total('coalore')==10 and total('bee_honey_queen')==1 and takes==1)
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

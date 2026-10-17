@@ -148,8 +148,13 @@ def check_assets(root, fu_root, native_root):
     assert shipper['shortdescription']=='Terramart Shipments 3.5'
     assert exchange['objectType']=='container' and exchange['slotCount']==16 and shipper['slotCount']==40
     assert png_size(exchange_path.parent/'autorefugee-plaque.png')==(64,80)
-    assert exchange['inventoryIcon']=='/objects/generic/cropshipper/cropshippericon.png'
-    assert png_size(native_root/exchange['inventoryIcon'].lstrip('/'))==(16,16)
+    assert exchange['inventoryIcon']=='beeexchangeicon.png'
+    assert png_size(exchange_path.parent/exchange['inventoryIcon'])==(16,16)
+    assert exchange['glitchDescription'].startswith('Analytical.')
+    assert [exchange[k] for k in ['kheAA_logicNode','kheAA_inDataNode','kheAA_outDataNode']]==[0,1,0]
+    offset=(shipper['orientations'][0]['imagePosition'][0]-exchange['orientations'][0]['imagePosition'][0])//-8
+    for key in ['inputNodes','outputNodes']:
+        assert exchange[key]==[[x+offset,y] for x,y in shipper[key]]
     orientation=exchange['orientations'][0]
     assert orientation['imagePosition']==[-8,0]
     assert set(map(tuple,orientation['spaces']))=={(x,y) for x in range(6) for y in range(5)}
