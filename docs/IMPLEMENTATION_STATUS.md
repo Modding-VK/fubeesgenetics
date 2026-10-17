@@ -1,9 +1,12 @@
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.15-dev
+## Situação atual — 0.2.16-dev
 
-A 0.2.15 corrige o nome padrão do item e da interface para **Auto Refugee**.
+A 0.2.16 compacta o Filter para 304×332, centraliza a coluna de valores,
+aproxima os slots e baixa os elementos do cabeçalho em 3 pixels. Tooltips
+usam os limites reais da pane. Ver [detalhes](HUD_COMPACT_0_2_16.md).
+A correção do nome Auto Refugee da 0.2.15 está preservada.
 
 Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do
 Analyzer e do ITD nas versões anteriores e validou as correções da textura da
@@ -15,8 +18,10 @@ lotes de cinco por espécie, vidro/teleporte, texturas direcionais legíveis, í
 próprio, I/O e chave on/off. Inspeções raciais explicam os nodes. A integração IC
 é opcional e preserva recompensas pendentes e conteúdo ao quebrar/recolocar.
 
-Na 0.2.14 passaram 135 grupos básicos + 13 com o Lua original do IC, com bindings
-simulados. O pacote de 52 arquivos foi conferido por pack/unpack nativo.
+Nesta entrega passaram 135 grupos básicos, com bindings simulados. Os 13 testes
+opcionais IC da 0.2.14 não foram repetidos, pois o PAK original não está neste
+ambiente. A máquina Auto Refugee permanece byte a byte igual à base 0.2.15.
+O pacote de 52 arquivos foi conferido por pack/unpack nativo.
 Isso não conclui os gates de jogo, multiplayer ou publicação Steam.
 Ver [correção da GUI](BEE_EXCHANGE_0_2_14.md) e [reteste](IN_GAME_TESTS.md).
 Os registros abaixo preservam a evolução das entregas anteriores; suas contagens

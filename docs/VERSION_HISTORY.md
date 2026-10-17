@@ -47,3 +47,8 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.13-dev | Corrige bootstrap dos adaptadores IC para inicializar scripts e texturas | [PAK](../dist/fubeesgenetics-mvp-0.2.13-dev.pak), [detalhes](BEE_EXCHANGE_0_2_13.md) |
 
 | 0.2.14-dev | Corrige uiConfig e abertura da GUI; ponte IC condicional por tipo de objeto | [PAK](../dist/fubeesgenetics-mvp-0.2.14-dev.pak), [detalhes](BEE_EXCHANGE_0_2_14.md) |
+
+| Versão | Mudança | Código/PAK preservados |
+| --- | --- | --- |
+| 0.2.15-dev | Nome padrão Auto Refugee no item e na janela | [PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/1035754fbe9fde087c9343ae9e2b015ccd8ed4f2/dist/fubeesgenetics-mvp-0.2.15-dev.pak), [detalhes](BEE_EXCHANGE_0_2_15.md) |
+| 0.2.16-dev | Filter compacto, referências centralizadas e slots próximos | [PAK](../dist/fubeesgenetics-mvp-0.2.16-dev.pak), [detalhes](HUD_COMPACT_0_2_16.md) |

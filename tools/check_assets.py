@@ -71,7 +71,7 @@ def check_assets(root, fu_root, native_root):
     passed('S2 static footprint, icon, non-printable and native dualImage facing')
     for p in mod.rglob('*.png'): png_size(p)
     ui_dir = mod/'interface/fubeesgenetics/geneticqueenfilter'
-    native_sizes = {'header.png':(388,34), 'body.png':(388,286), 'footer.png':(388,12),
+    native_sizes = {'header.png':(304,34), 'body.png':(304,286), 'footer.png':(304,12),
                     'dna.png':(20,20), 'close.png':(12,12), 'closehover.png':(12,12),
                     'arrowup.png':(7,7), 'arrowdown.png':(7,7)}
     native_sizes.update({name+'.png':(24,24) for name in ['approvedslot','inputslot','rejectedslot']})
@@ -92,7 +92,7 @@ def check_assets(root, fu_root, native_root):
     refs(ui)
     passed('S4 shipped object and interface paths resolve')
     gui = ui['gui']
-    for name,off,x,frame in [('itemGrid',1,60,'approvedFrame'),('itemGrid2',0,180,'inputFrame'),('outputItemGrid',2,300,'rejectedFrame')]:
+    for name,off,x,frame in [('itemGrid',1,84,'approvedFrame'),('itemGrid2',0,140,'inputFrame'),('outputItemGrid',2,196,'rejectedFrame')]:
         assert gui[name]['type']=='itemgrid' and gui[name]['slotOffset']==off and gui[name]['position']==[x+3,38]
         assert gui[name]['dimensions']==[1,1] and gui[name]['spacing']==[19,19]
         assert gui[name]['backingImage']==''
@@ -139,7 +139,7 @@ def check_assets(root, fu_root, native_root):
     assert len(ui['helpRegions'])==28
     for region in ui['helpRegions']:
         assert region['key'] in ui['helpTexts']
-        x1,y1,x2,y2=region['rect'];assert 0<=x1<x2<=388 and 0<=y1<y2<=332
+        x1,y1,x2,y2=region['rect'];assert 0<=x1<x2<=c['size'][0] and 0<=y1<y2<=c['size'][1]
         for name in ['itemGrid','itemGrid2','outputItemGrid']:
             x,y=gui[name]['position'];assert x2<=x or x1>=x+24 or y2<=y or y1>=y+24
     passed('S9 exact help text and mouse-transparent non-capturing canvas')

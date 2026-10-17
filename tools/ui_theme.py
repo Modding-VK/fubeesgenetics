@@ -84,9 +84,9 @@ def theme_assets(root):
     # One header, one table, no decorative controls or text in the background.
     frame.line(10, 33, w-11, 33, p['blueLine'])
     frame.line(10, 34, w-11, 34, p['circuit'])
-    frame.rect(14, 77, w-15, 102, p['blueLine'])
-    frame.rect(15, 78, w-16, 101, p['header'])
-    for y in range(79, 102, 2):
+    frame.rect(14, 77, w-15, 105, p['blueLine'])
+    frame.rect(15, 78, w-16, 104, p['header'])
+    for y in range(79, 105, 2):
         frame.line(16, y, w-17, y, p['scanline'])
     for y in spec['rowRules']:
         frame.line(18, y, w-19, y, p['circuit'])

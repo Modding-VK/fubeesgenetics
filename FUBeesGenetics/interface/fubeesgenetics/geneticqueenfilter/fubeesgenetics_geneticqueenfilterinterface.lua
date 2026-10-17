@@ -34,8 +34,8 @@ local function updateHelp(dt)
   else self.helpElapsed = self.helpElapsed + dt end
   if not key or self.helpElapsed < 0.35 then return end
   local w, h = 260, 44
-  local x = math.max(6, math.min(388 - w - 6, pos[1] + 12))
-  local y = math.max(6, math.min(332 - h - 6, pos[2] - h - 12))
+  local x = math.max(6, math.min(self.helpSize[1] - w - 6, pos[1] + 12))
+  local y = math.max(6, math.min(self.helpSize[2] - h - 6, pos[2] - h - 12))
   canvas:drawRect({x,y,x+w,y+h}, "#526978")
   canvas:drawRect({x+1,y+1,x+w-1,y+h-1}, "#1b2b35")
   canvas:drawText(self.helpTexts[key], {position={x+7,y+h-7}, horizontalAnchor="left",
@@ -88,6 +88,7 @@ function init()
   self = {containerId = pane.containerEntityId(),
     elapsed = 0, rendering = false, traitByWidget = {}}
   self.helpCanvas = widget.bindCanvas("helpCanvas")
+  self.helpSize = config.getParameter("gui").helpCanvas.size
   self.helpTexts, self.helpRegions = config.getParameter("helpTexts"), config.getParameter("helpRegions")
   self.helpElapsed = 0
   for _, trait in ipairs(traits) do self.traitByWidget[trait .. "Modes"] = trait end

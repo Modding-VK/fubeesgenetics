@@ -141,3 +141,16 @@ Seguir [reteste 0.2.3](BEE_EXCHANGE_0_2_3.md#reteste-no-jogo): esvaziar a fileir
 inferior antes da atualização, conferir 16 slots/ITD 0–15 e verificar que Young
 Queens Honey/Cybernetic rendem respectivamente 10 Coal/2 Titanium Bars. Drones
 continuam 5 por 7 Pixels. Teste de migração do save ainda pendente no jogo.
+
+## Reteste visual do Filter — 0.2.16-dev
+
+- [ ] Janela 304×332 legível na escala usada, sem cortes nos nomes ou textos.
+- [ ] Referências curtas, longas, zero e porcentagem centralizadas sob REFERENCE.
+- [ ] Textos/setas de comparação com margem do contorno superior e inferior.
+- [ ] Molduras Approved/Input/Rejected centradas em x=96/152/208; itens, raridade,
+  contagem, tooltips e cliques continuam nativos ao preencher/esvaziar.
+- [ ] Tooltips das referências e três comparadores cabem na janela nas seis linhas.
+- [ ] Modos e perfil persistem; fluxo ITD continua nos offsets 1/0/2.
+
+Substituir apenas o PAK com o jogo fechado; não precisa resetar o perfil ou
+refazer máquinas. A Auto Refugee não recebeu mudanças nesta atualização.

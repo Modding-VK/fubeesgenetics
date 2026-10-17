@@ -1,12 +1,12 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.15-dev
+# Arquivos de distribuição de desenvolvimento — 0.2.16-dev
 
-- fubeesgenetics-mvp-0.2.15-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- fubeesgenetics-mvp-0.2.16-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.15-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.16-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -110,3 +110,9 @@ sem recriar a máquina. 148 grupos locais passaram; conferência no jogo pendent
 A 0.2.15 corrige o nome exibido na interface e no item para Auto Refugee.
 IDs, inventários, sprites e lógica permanecem iguais. 148 grupos locais passaram;
 52 arquivos conferidos por pack/unpack nativo.
+
+A 0.2.16 compacta o Filter de 388 para 304 pixels de largura, centraliza
+as referências, aproxima os slots e baixa o cabeçalho em 3 pixels.
+135 grupos básicos passaram; o IC opcional não foi repetido neste ambiente.
+Detalhes em docs/HUD_COMPACT_0_2_16.md. Pacotes anteriores são históricos;
+instale apenas uma versão do addon por vez.

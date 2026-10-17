@@ -41,3 +41,7 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
   moldura do mod como backingImage que some ao preencher o slot.
 - Conservar dimensões/centralização nativas e offsets ITD 1/0/2. Consultar
   docs/HUD_SLOTS_0_1_5.md antes de alterar posições ou assets dos slots.
+
+- Após a compactação 0.2.16, as posições atuais dos slots e o tamanho da pane
+  estão em docs/HUD_COMPACT_0_2_16.md. O documento 0.1.5 explica a geometria
+  nativa preservada, mas registra as coordenadas históricas anteriores.

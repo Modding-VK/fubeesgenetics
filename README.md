@@ -3,13 +3,15 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão atual de desenvolvimento: 0.2.15-dev.**
+**Versão atual de desenvolvimento: 0.2.16-dev.**
 
-[Baixar o PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/1035754fbe9fde087c9343ae9e2b015ccd8ed4f2/dist/fubeesgenetics-mvp-0.2.15-dev.pak) ·
-[Alterações da versão](docs/BEE_EXCHANGE_0_2_15.md) ·
+[Baixar o PAK](dist/fubeesgenetics-mvp-0.2.16-dev.pak?raw=true) ·
+[Alterações da versão](docs/HUD_COMPACT_0_2_16.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
-A 0.2.15 corrige o nome exibido na janela e no item para **Auto Refugee**.
+A 0.2.16 compacta o Filter para **304×332**, centraliza os valores de referência,
+aproxima os slots e dá margem aos textos e setas do cabeçalho.
+A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
 O usuário confirmou a correção da textura da Auto Refugee na 0.2.13. A 0.2.14
 corrige a exceção ao abrir sua interface; essa abertura e a integração completa
@@ -19,7 +21,7 @@ com Improved Containers ainda precisam de confirmação dentro do jogo.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `fubeesgenetics-mvp-0.2.15-dev.pak`. Mantenha apenas uma cópia do addon.
+   `fubeesgenetics-mvp-0.2.16-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -115,8 +117,9 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.14 passaram **135 grupos básicos + 13 de integração IC = 148**. Os casos
-IC executam o Lua real do PAK fornecido pelo usuário, conferido por hash.
+Na 0.2.16 passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
+não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
+Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
 **52 arquivos**, com bytes idênticos e metadata JSON equivalente.
