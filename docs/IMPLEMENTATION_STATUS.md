@@ -1,7 +1,9 @@
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.14-dev
+## Situação atual — 0.2.15-dev
+
+A 0.2.15 corrige o nome padrão do item e da interface para **Auto Refugee**.
 
 Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do
 Analyzer e do ITD nas versões anteriores e validou as correções da textura da

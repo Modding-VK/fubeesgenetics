@@ -3,11 +3,13 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão atual de desenvolvimento: 0.2.14-dev.**
+**Versão atual de desenvolvimento: 0.2.15-dev.**
 
-[Baixar o PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/175aa42bf7c79ce729179b383d6811b0f7c02452/dist/fubeesgenetics-mvp-0.2.14-dev.pak) ·
-[Alterações da versão](docs/BEE_EXCHANGE_0_2_14.md) ·
+[Baixar o PAK](https://raw.githubusercontent.com/Modding-VK/fubeesgenetics/1035754fbe9fde087c9343ae9e2b015ccd8ed4f2/dist/fubeesgenetics-mvp-0.2.15-dev.pak) ·
+[Alterações da versão](docs/BEE_EXCHANGE_0_2_15.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
+
+A 0.2.15 corrige o nome exibido na janela e no item para **Auto Refugee**.
 
 O usuário confirmou a correção da textura da Auto Refugee na 0.2.13. A 0.2.14
 corrige a exceção ao abrir sua interface; essa abertura e a integração completa
@@ -17,7 +19,7 @@ com Improved Containers ainda precisam de confirmação dentro do jogo.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `fubeesgenetics-mvp-0.2.14-dev.pak`. Mantenha apenas uma cópia do addon.
+   `fubeesgenetics-mvp-0.2.15-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 

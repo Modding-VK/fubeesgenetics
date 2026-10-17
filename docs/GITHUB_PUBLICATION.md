@@ -9,8 +9,8 @@ gerar um PAK não autoriza, por si só, promover para main.
 ## Estado atual
 
 - Repositório: https://github.com/Modding-VK/fubeesgenetics.
-- Código e PAK atuais: **0.2.14-dev**, commit de entrega
-  `175aa42bf7c79ce729179b383d6811b0f7c02452`, armazenados em dev.
+- Código e PAK atuais: **0.2.15-dev**, commit de entrega
+  `1035754fbe9fde087c9343ae9e2b015ccd8ed4f2`, armazenados em dev.
 - Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
 - Não há nova release, tag estável, PR ou publicação Steam nesta atualização.
 - A revisão documental posterior à entrega não muda o metadata nem os bytes do PAK.
