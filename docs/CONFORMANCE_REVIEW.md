@@ -1,5 +1,10 @@
 # Conformidade da reconstrução
 
+Registro histórico da recuperação. O mantenedor posteriormente confirmou todas
+as alterações funcionais validadas. A situação da candidata, os testes atuais e
+as operações de publicação restantes estão em [RELEASE_READINESS](RELEASE_READINESS.md).
+Os números e pendências abaixo descrevem a fase histórica em que foram registrados.
+
 A implementação foi confrontada com o MD original e com as alterações v1.1/v1.2
 preservadas no histórico. O anexo integral mais recente e a arte final não foram
 recuperados; não se declara equivalência byte a byte com o projeto anterior.
@@ -45,3 +50,7 @@ Não houve mudança nas regras do motor nem declaração de compatibilidade vani
 Tema GUI aprovado pelo usuário e implementado na 0.1.3-dev; ver
 [HUD_THEME_0_1_3](HUD_THEME_0_1_3.md). A confirmação do usuário sobre seletores
 e ITD na 0.1.2 complementa os testes simulados, sem validar todos os cenários.
+
+A 0.1.4-dev acrescenta os reagentes por instrução posterior explícita do usuário,
+preservando os quatro ingredientes anteriores. Esse ajuste prevalece sobre os
+quantitativos originais da diretriz; ver [RECIPE_0_1_4](RECIPE_0_1_4.md).

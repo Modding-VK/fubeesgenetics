@@ -1,0 +1,72 @@
+diff --git a/FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object b/FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object
+index 91497cc..1239947 100644
+--- a/FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object
++++ b/FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object
+@@ -433,7 +433,7 @@
+     "/objects/bees/fubeesgenetics/beeexchange/beeexchange.lua"
+   ],
+   "scriptDelta": 10,
+-  "uiConfig": "/interface/fubeesgenetics/beeexchange/beeexchange.config",
++  "uiConfig": "/interface/chests/chest16.config",
+   "inputNodes": [
+     [
+       3,
+diff --git a/tools/check_assets.py b/tools/check_assets.py
+index 4a2978c..f373ed0 100644
+--- a/tools/check_assets.py
++++ b/tools/check_assets.py
+@@ -195,10 +195,11 @@ def check_assets(root, fu_root, native_root):
+         assert exchange[race+'Description'].strip()
+ 
+     refs(exchange)
+-    exchange_ui=json.loads((mod/exchange['uiConfig'].lstrip('/')).read_text())
++    assert exchange['uiConfig']=='/interface/chests/chest16.config'
++    exchange_ui=json.loads((native_root/exchange['uiConfig'].lstrip('/')).read_text())
+     refs(exchange_ui)
+     grid=exchange_ui['gui']['itemGrid']
+-    assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid['slotOffset']==0
++    assert grid['dimensions']==[4,4] and grid['spacing']==[19,19] and grid.get('slotOffset',0)==0
+     assert not exchange['printable']
+     passed('S10 Bee Exchange 16-slot container and native grid assets')
+     exchange_recipe=next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']=='fubeesgenetics_beeexchange')
+diff --git a/tools/check_container_ui.py b/tools/check_container_ui.py
+index 5d7036d..dd13c9a 100644
+--- a/tools/check_container_ui.py
++++ b/tools/check_container_ui.py
+@@ -30,7 +30,9 @@ def check_container_ui(root, native_root):
+     from run_checks import asset_json
+     from check_assets import png_size
+     mod = root/'FUBeesGenetics'
+-    gui = json.loads((mod/'interface/fubeesgenetics/beeexchange/beeexchange.config').read_text())['gui']
++    obj=json.loads((mod/'objects/bees/fubeesgenetics/beeexchange/beeexchange.object').read_text())
++    assert obj['uiConfig']=='/interface/chests/chest16.config'
++    gui = json.loads((native_root/obj['uiConfig'].lstrip('/')).read_text())['gui']
+     vanilla = json.loads((native_root/'interface/chests/chest16.config').read_text())['gui']
+     interface = asset_json((native_root/'interface.config').read_text())
+     draggable = interface['itemDraggableArea']
+@@ -38,18 +40,19 @@ def check_container_ui(root, native_root):
+     assert png_size(native_root/'interface/inventory/empty.png') == (18,18)
+     assert gui['background'] == vanilla['background']
+     assert gui['objectImage'] == vanilla['objectImage']
+-    assert gui['clear']['caption'] == 'Take all' and gui['clear']['pressed'] == vanilla['clear']['hover']
+-    assert 'press' not in gui['clear'] and gui['close'] == vanilla['close']
+-    assert gui['count']['value'] == '<slots> SLOTS'
+-    assert gui['overlay']['mouseTransparent']
++    assert gui['clear']['caption'] == 'Take all' and gui['clear'] == vanilla['clear']
++    assert gui['close'] == vanilla['close']
++    assert gui['count']['value'] == '16 SLOTS'
++    assert gui['overlay'] == vanilla['overlay']
+     assert "itemGrid2" not in gui
+     positions,indices = [],[]
+     for name,dimensions,origin,offset in [('itemGrid',[4,4],[81,42],0)]:
+         grid=gui[name]
+-        assert grid['dimensions']==dimensions and grid['position']==origin and grid['slotOffset']==offset
++        assert grid['dimensions']==dimensions and grid['position']==origin and grid.get('slotOffset',0)==offset
+         assert grid['spacing']==[19,19]
+         assert grid['backingImage']=='/interface/inventory/empty.png'
+-        assert grid['showBackingImageWhenEmpty'] and grid['showBackingImageWhenFull']
++        assert grid.get('showBackingImageWhenEmpty',True)
++        # Filled slots retain the static frames in slots1to16.png.
+         size=png_size(native_root/grid['backingImage'].lstrip('/'))
+         # ItemSlotWidget sizes to max(itemDraggableArea.max, backingImage.size).
+         child_size=[max(draggable[i+2],size[i]) for i in range(2)]

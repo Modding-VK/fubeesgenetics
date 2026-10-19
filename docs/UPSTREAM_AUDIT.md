@@ -89,3 +89,10 @@ e as diferenças verificadas estão em [RUNTIME_FIX_0_1_1](RUNTIME_FIX_0_1_1.md)
 Nesse engine, callbacks são ligados após carregar os scripts, e putItemsAt pode
 retornar o argumento mesmo após sucesso; a confirmação agora também admite o
 delta exato do slot. Isso substitui as suposições anteriores para essa versão.
+
+## Reagentes solicitados na 0.1.4-dev
+
+Receita atual soma 10 liquidhealing, 5 liquidsulphuricacid e 2 unknowngene aos
+quatro ingredientes anteriores, por instrução posterior do usuário. IDs e fontes
+verificados em [RECIPE_0_1_4](RECIPE_0_1_4.md); tools/upstream.json passa a fixar
+14 fontes FU. Os quantitativos anteriores acima são registro histórico.

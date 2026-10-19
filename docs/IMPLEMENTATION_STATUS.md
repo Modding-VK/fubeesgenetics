@@ -1,4 +1,44 @@
-# Estado do projeto — 2026-10-15
+# Estado do projeto — 2026-10-17
+
+
+## Candidata atual — 0.2.18
+
+Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
+ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
+iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
+nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
+não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
+
+## Registro da build funcional validada — 0.2.18-dev
+
+A 0.2.18 centraliza Reset Profile entre as barras (margens 11/11) e baixa
+as listras para a faixa metálica inferior. Ver [detalhes](HUD_ALIGNMENT_0_2_18.md).
+O cabeçalho com logo centralizado, título laranja e descrição da 0.2.17
+está preservado.
+A compactação 304×332, coluna de referências centralizada, slots próximos e
+tooltips da 0.2.16 permanecem iguais. O usuário confirmou melhora significativa
+no layout compacto; o novo cabeçalho ainda precisa de conferência no jogo.
+A correção do nome Auto Refugee da 0.2.15 está preservada.
+
+Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do
+Analyzer e do ITD nas versões anteriores e validou as correções da textura da
+Bee Exchange na 0.2.13. A abertura da janela na 0.2.14 e a integração completa
+com Improved Containers 2.11 ainda aguardam confirmação no jogo.
+
+A Bee Exchange tem 16 slots, recompensas adultas para Young Queens, drones em
+lotes de cinco por espécie, vidro/teleporte, texturas direcionais legíveis, ícone
+próprio, I/O e chave on/off. Inspeções raciais explicam os nodes. A integração IC
+é opcional e preserva recompensas pendentes e conteúdo ao quebrar/recolocar.
+
+Nesta entrega passaram 135 grupos básicos, com bindings simulados. Os 13 testes
+opcionais IC da 0.2.14 não foram repetidos, pois o PAK original não está neste
+ambiente. A máquina Auto Refugee permanece byte a byte igual à base 0.2.15.
+O pacote de 52 arquivos foi conferido por pack/unpack nativo.
+Isso não conclui os gates de jogo, multiplayer ou publicação Steam.
+Ver [correção da GUI](BEE_EXCHANGE_0_2_14.md) e [reteste](IN_GAME_TESTS.md).
+Os registros abaixo preservam a evolução das entregas anteriores; suas contagens
+são históricas. As limitações da arte recuperada do Analyzer não se aplicam aos
+sprites novos da Bee Exchange.
 
 Implementação local refeita; **build de desenvolvimento**, sem aprovação de release.
 Base e limitações documentais/artísticas: [RECOVERY](RECOVERY.md).
@@ -18,7 +58,7 @@ Requisitos mais recentes disponíveis: [v1.2 recuperada](MASTER_SPEC_V1_2_RECOVE
 ## Evidência executada
 
 `python3 tools/run_checks.py`: **91 grupos passaram** — Adapter 22, máquina 40,
-interface 20 e assets 9. Sintaxe Lua, metadata e hashes dos 12 arquivos FU
+interface 20 e assets 9. Sintaxe Lua, metadata e hashes dos 14 arquivos FU
 fixados também passaram. Bibliotecas FU são reais; bindings de inventário,
 mensagens/promises, widgets e destruição são simulados. Reload é reinit com
 storage preservado, não save de mundo. A cobertura inclui 35 families/70 subespécies.
@@ -29,7 +69,9 @@ Runtime reportado: OpenStarbound 0.1.14 e FU 6.5.8. O log da 0.1.1 confirma carr
 sem o erro anterior do Adapter; a captura mostra perfil preenchido e classificação.
 O usuário confirmou funcionamento perfeito da 0.1.2 e ITD 100% funcional em sua
 instalação. O tema visual aprovado foi implementado na 0.1.3; falta reteste visual
-no jogo. Lua, objeto, receita, patch e geometria dos slots não foram alterados.
+no jogo. Na 0.1.3, Lua, objeto, receita, patch e geometria dos slots não foram alterados.
+Na 0.1.4-dev, a receita recebeu os três reagentes pedidos pelo usuário; a entrega
+fica em dev, sem PR ou promoção para main. Ver RECIPE_0_1_4 e VERSIONING.
 
 ## Recuperação de item e exceções
 
@@ -53,9 +95,9 @@ anexo integral v1.2 e a arte aprovada e validar o tema da GUI no jogo.
 
 ## Distribuição PAK e Steam Workshop
 
-Formato principal: fubeesgenetics-mvp.pak (SBAsset6 padrão), gerado com o
+Formato principal: fubeesgenetics-mvp-0.1.6-dev.pak (SBAsset6 padrão), gerado com o
 asset_packer nativo OpenStarbound v0.1.15.1 para Starbound 1.4.4. O asset_unpacker
-nativo restaurou os 27 arquivos com assets byte a byte e metadata JSON equivalente.
+nativo restaurou os 29 arquivos com assets byte a byte e metadata JSON equivalente.
 A cópia Workshop contents.pak é idêntica ao PAK manual; o conteúdo compactado
 para entrega ao publisher está em fubeesgenetics-workshop-content.zip.
 
@@ -63,3 +105,51 @@ Instalação manual padrão Starbound/mods e fluxo Steam Workshop documentados e
 [WORKSHOP](WORKSHOP.md), conforme a configuração de carregamento informada pelo
 usuário. Verificação do formato não substitui carregamento no jogo. Nenhum
 runtime/tool/asset base do jogo foi incluído nos pacotes do addon.
+
+## Slots da interface — 0.1.5-dev
+
+Molduras são imagens independentes de 24×24, atrás de grids nativos. Os grids
+usam espaçamento 19×19, sem backingImage; o ItemSlot nativo usa tamanho 19×19
+na configuração padrão. Origens +3/+3 alinham os centros. Slots físicos e
+offsets ITD 1/0/2, Lua, modos e receita permanecem os mesmos. Validação offline
+e 91 grupos passaram. O usuário confirmou que as alterações da 0.1.5
+funcionaram perfeitamente; o relato não enumera cada cenário de interação.
+
+## Textos e espaçamento da interface — 0.1.6-dev
+
+Setas nativas de 7×7 para cima/baixo acompanham os nomes Equal or higher e
+Equal or lower; Indifferent substitui o traço. Cabeçalhos em duas linhas e
+colunas mais espaçadas acomodam os nomes completos. Status e Last result
+descem 3 pixels; Reset Profile recebe centralização explícita e offset vertical
+de -1 pixel. Os slots, receita e scripts Lua são idênticos à 0.1.5.
+Ver [HUD_LABELS_0_1_6](HUD_LABELS_0_1_6.md). Reteste visual no jogo pendente.
+
+## Segunda máquina — Bee Exchange 0.2.0-dev
+
+Implementada com 20 slots, as 105 receitas do Bee Refuge lidas do FU em runtime,
+trocas automáticas e crafting/desbloqueio na Bee Station. A suíte atual tem
+120 grupos locais e PAK validado por round-trip de 39 arquivos. O Queen Filter
+permanece igual à 0.1.6-dev. Ver [BEE_EXCHANGE_0_2_0](BEE_EXCHANGE_0_2_0.md)
+para tabela, limites de recuperação e reteste manual. Validação no jogo pendente.
+
+## Bee Exchange — interface 0.2.1-dev
+
+Interface baseada no container nativo usado pelo Terramart: 16 slots à direita
+e 4 abaixo, todos com backingImage nativo e centro (9,9), objeto, título e
+Take all. Controlador/receita/ITD não mudam. 121 grupos locais e round-trip
+de 36 arquivos passaram; visual e interação no engine ainda pendentes.
+Ver [BEE_EXCHANGE_UI_0_2_1](BEE_EXCHANGE_UI_0_2_1.md).
+
+## Bee Exchange — 0.2.2-dev
+
+A pedido do usuário, agora tem 24 slots (substituindo o limite anterior de 20),
+com a fileira inferior completa e offsets 0–23. Sprite, ícone e animações originais do Terramart 3.5 do FU,
+com placa Auto Refugee amarela alaranjada. Footprint físico preservado. 125 grupos passaram;
+validação de save/visual no jogo pendente. Ver [BEE_EXCHANGE_0_2_2](BEE_EXCHANGE_0_2_2.md).
+
+## Bee Exchange — 0.2.3-dev
+
+Reduzida para 16 slots, offsets 0–15; Young Queens recebem a recompensa da
+Queen adulta da mesma espécie. Drones, crafting e animação não mudam. 126 grupos
+locais passaram. Esvaziar offsets 16–23 antes de atualizar: o engine reduz o
+inventário e derruba itens excedentes no mundo. Ver [BEE_EXCHANGE_0_2_3](BEE_EXCHANGE_0_2_3.md).

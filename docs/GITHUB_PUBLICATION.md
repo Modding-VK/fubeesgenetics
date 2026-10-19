@@ -1,4 +1,55 @@
-# Armazenamento e publicação no GitHub
+# Operação do repositório no GitHub
+
+Revisão de 2026-10-17: conferidas as instruções do mantenedor no chat
+**Bee Analyzer**, também aplicáveis ao chat Automatic Seller. Elas coincidem
+com AGENTS.md e VERSIONING.md: dev para desenvolvimento; main para produção;
+PR e promoção somente mediante pedido explícito. Atualizar o repositório ou
+gerar um PAK não autoriza, por si só, promover para main.
+
+## Estado atual
+
+- Repositório: https://github.com/Modding-VK/fubeesgenetics.
+- Candidata estável 0.2.18 em release/0.2.18, PR #5 aberto para main.
+- Identidade integrada da dev cc30138dd2d7b0a713d0722829374118eae0957d (0.2.19-dev).
+  Base preservada: `6de1050114e865e119a434698c25b4ec4ed67b13` (0.2.18-dev).
+  [Pacote](../dist/bee-abusive-industry-0.2.18.pak) e
+  [identidade e prontidão](RELEASE_READINESS.md).
+- Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
+- PR #5 já solicitado e aberto: release/0.2.18 → main. Candidata atualizada
+  com a identidade pública. Não houve merge, tag estável ou publicação Steam.
+- Nome público, autor, ícone e pacote foram atualizados; IDs/scripts iguais.
+- Validação local: 135 grupos básicos e pack/unpack nativo de 53 arquivos.
+  Os 13 testes IC opcionais não foram repetidos neste ambiente. O CI valida o push.
+
+## Procedimento vigente
+
+1. Conferir AGENTS.md, VERSIONING.md, estado local e HEAD remoto antes de escrever.
+   Para clones limitados à main, buscar a ref dev explicitamente:
+   `git fetch origin refs/heads/dev:refs/remotes/origin/dev`.
+2. Trabalhar em dev a partir do histórico remoto, preservando alterações locais
+   e trabalho de outros chats. Se o remoto avançar, integrar com o histórico
+   existente; não usar reset/force push nem rebase de commits publicados.
+3. Validar as alterações pertinentes. Para uma nova entrega, conferir versão
+   `-dev`, gerar o PAK versionado com pack/unpack nativo e atualizar SHA256SUMS.
+   Para documentação, manter o pacote existente e conferir links/versões/hashes.
+4. Criar commit e push normal para dev. Preservar pacotes anteriores e fornecer
+   downloads por SHA imutável. Não criar PR ou atualizar main automaticamente.
+5. Confirmar a ref remota e informar o que foi verificado localmente, no CI e
+   dentro do jogo, distinguindo esses resultados.
+
+A convenção completa está em [VERSIONING](VERSIONING.md). O nome público futuro
+não altera automaticamente metadata, IDs ou nomes de pacotes atuais.
+
+## Registros históricos
+
+Os registros abaixo explicam a recuperação e os problemas de autenticação
+anteriores. Não são procedimentos para refazer o checkout atual.
+
+# Histórico anterior de armazenamento e publicação
+
+**Fluxo vigente:** desenvolvimento em `dev`, produção em `main`. PRs e promoção
+somente com solicitação explícita do usuário. As instruções e tentativas antigas
+abaixo são histórico; siga [VERSIONING](VERSIONING.md) e o AGENTS.md atual.
 
 Destino atual: https://github.com/Modding-VK/fubeesgenetics.
 O repositório foi transferido para a organização Modding-VK, mantendo seu ID.

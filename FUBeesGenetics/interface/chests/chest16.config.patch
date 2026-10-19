@@ -1,0 +1,18 @@
+[
+  [
+    {
+      "op": "test",
+      "path": "/gui/icSortButton/callback",
+      "value": "ic.sort"
+    },
+    {
+      "op": "test",
+      "path": "/scripts"
+    },
+    {
+      "op": "add",
+      "path": "/scripts/-",
+      "value": "/objects/bees/fubeesgenetics/beeexchange/storagegui.lua"
+    }
+  ]
+]

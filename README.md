@@ -1,122 +1,156 @@
-# FU Bees Genetics
+# Bee Abusive Industry
 
-Repositório: [Modding-VK/fubeesgenetics](https://github.com/Modding-VK/fubeesgenetics).
+Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
+Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-Addon de Frackin' Universe para **OpenStarbound**. O Genetic Queen Filter é um
-container real de três slots que classifica Queens e Young Queens analisadas
-por seis traits, com perfil adaptativo e comparadores configuráveis.
+**Candidata à produção: 0.2.18. Autor: Goblin Man.**
 
-**0.1.3-dev — reconstrução preparada para validação no jogo.**
-A base é o ZIP MVP recuperado; documentação e testes iniciais vieram do pacote
-phases1-2. As correções posteriores foram refeitas conforme os requisitos v1.2
-registrados no histórico. Não é uma cópia byte a byte do commit antigo c3a0238.
+[Baixar o PAK](dist/bee-abusive-industry-0.2.18.pak?raw=true) ·
+[Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
+[Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
-A [MasterSpec original](FUBeesGenetics_GeneticQueenFilter_MasterSpec.md) foi
-preservada. Leia também os [requisitos v1.2 recuperados](docs/MASTER_SPEC_V1_2_RECOVERED.md),
-a [procedência](docs/RECOVERY.md) e o [estado de implementação](docs/IMPLEMENTATION_STATUS.md).
-**O arquivo integral v1.2 e o sprite final aprovado não foram recuperados.**
-O sprite da máquina continua sendo o do ZIP MVP, identificado como provisório.
-A interface recebeu o tema aprovado inspirado no FU.
+A 0.2.19 aplica o nome **[oSB][FU] Bee Abusive Industry**, autor **Goblin Man**,
+ícone Cybernetic Queen em fundo laranja e link do projeto na lista de mods.
+Os IDs internos permanecem iguais. A interface validada da 0.2.18 está preservada.
+O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.16
+permanecem iguais.
+A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
-Veja o [tema da interface e o reteste da versão 0.1.3](docs/HUD_THEME_0_1_3.md)
-e o [histórico das versões](docs/VERSION_HISTORY.md).
+O mantenedor confirmou todas as alterações anteriores validadas e prontas.
+O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
+A candidata estável permanece em revisão no PR #5; main não foi promovida.
 
-## Instalar e usar
+## Instalação
 
-O formato principal de distribuição é **`fubeesgenetics-mvp.pak`**, um arquivo
-Starbound padrão. Para instalação manual, copie para
-`Starbound/mods/fubeesgenetics-mvp.pak`. Instale FU e execute OpenStarbound com
-essas fontes de mods, conforme a instalação definida pelo usuário.
+1. Instale Frackin Universe e execute OpenStarbound.
+2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
+   `bee-abusive-industry-0.2.18.pak`. Mantenha apenas uma cópia do addon.
+3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
+   refazer as máquinas nem resetar o perfil do Analyzer.
 
-Na Steam Workshop, o conteúdo é distribuído como **`contents.pak`**: Steam
-administra a pasta `steamapps/workshop/content/211820/<id-do-item>/`, carregada
-pelo OpenStarbound com Steam aberto. Não é necessário copiar a assinatura para
-mods manualmente. Use apenas uma cópia do addon por instalação.
+[dist/SHA256SUMS](dist/SHA256SUMS) identifica o PAK e o ZIP Workshop da entrega.
+O ZIP Workshop contém os mesmos bytes com o nome padrão `contents.pak`.
+Isso não representa publicação na Steam; veja [WORKSHOP](docs/WORKSHOP.md).
 
-`fubeesgenetics-workshop-content.zip` contém esse mesmo PAK como `contents.pak`.
-O ZIP do mod mantém a pasta descompactada para desenvolvimento/Mod Uploader;
-o ZIP de fontes contém o projeto. Veja [WORKSHOP](docs/WORKSHOP.md) para os
-fluxos de publicação e geração do PAK. O mod continua exigindo OpenStarbound;
-a extensão .pak não torna sua interface compatível com o executável vanilla.
+## Genetic Queen Filter / Bee Analyzer
 
-1. Obtenha Bee Station para aprender o blueprint. Em saves existentes, recolha
-   e obtenha a estação novamente. O aprendizado é permanente.
-2. Na aba Functional da Bee Station, fabrique com **2 AI Chips, 5 Laser Diodes,
-   5 Reinforced Glass e 10 Titanium Bars**. A máquina não é printable.
-3. Coloque no chão e use o Input central. A primeira válida estabelece baseline
-   de todas as seis referências e segue para Approved, à esquerda.
-4. Configure `>=`, `<=` ou `—` por trait; os modos podem ser escolhidos antes
-   da baseline. Todos os critérios ativos precisam passar; igualdade é aceita.
-   Ignore congela a referência antiga, inclusive ao reativar o trait.
-5. Retire Approved/Rejected. Qualquer conteúdo em qualquer saída bloqueia o
-   próximo ciclo, mesmo que seja uma stack compatível.
-6. Reset Profile limpa perfil/referências e último resultado, preservando
-   modos, os três slots e eventual unidade em recuperação.
+Contêiner real de três slots que classifica Queens e Young Queens analisadas
+por seis traits, com referências adaptativas e comparadores configuráveis.
 
-A máquina processa uma unidade por segundo enquanto carregada, com GUI aberta
-ou fechada. Queen/Young Queen da mesma family/subtype compartilham linhagem.
-`wild` e vida restante não substituem inspeção/genética. A inspeção usa a
-truthiness Lua do FU: apenas nil/false são falsos.
+- Obtenha/recolha a **Bee Station** para aprender a receita. Fabrique na aba
+  Functional com 2 AI Chips, 5 Laser Diodes, 5 Reinforced Glass, 10 Titanium Bars,
+  10 Healing Water, 5 Sulphuric Acid e 2 Unknown Gene.
+- Use o Input central. A primeira abelha válida estabelece a referência e vai
+  para Approved. Todas as condições ativas precisam passar; igualdade é aceita.
+- Escolha **Equal or higher**, **Equal or lower** ou **Indifferent** por trait.
+  Indifferent congela a referência. Os modos podem ser definidos antes da baseline.
+- Qualquer saída ocupada bloqueia o próximo ciclo. Reset Profile limpa o perfil
+  e o último resultado, preservando modos, slots e eventual item em recuperação.
+- **Offsets ITD: Input 0, Approved 1, Rejected 2.**
 
-Os slots são nativos, sem filtros ou roteamento especial de Shift+Click.
-**ITD offsets: Input 0, Approved 1, Rejected 2.** Configure-os no próprio ITD.
-Não há energia, locks, contador de revisão, simulação offline ou genome repair.
+Processa uma unidade por segundo enquanto carregada, com janela aberta ou
+fechada. Queen/Young Queen da mesma family/subtype compartilham linhagem.
+Wild e vida restante não substituem inspeção ou genética.
 
-Se uma unidade já retirada não puder voltar ao Input nem virar drop, ela fica
-em `storage.recoveryEscrow`. **Recovery pending — preserving item** bloqueia
-novas classificações; os três slots continuam acessíveis. A recuperação tem
-prioridade após reload, e o processamento retoma no tick seguinte à recuperação.
-Exceções de spawn com efeito incerto são registradas e suspendem tentativas
-naquele carregamento; consulte as limitações em IMPLEMENTATION_STATUS.
+A recuperação de transferências incompletas usa `storage.recoveryEscrow` e
+bloqueia novas classificações até resolver o item. Consulte as limitações e
+exceções em [IMPLEMENTATION_STATUS](docs/IMPLEMENTATION_STATUS.md).
 
-Para obter o objeto como administrador:
+ID para `/spawnitem`: `fubeesgenetics_geneticqueenfilter`.
 
-```text
-/admin
-/spawnitem fubeesgenetics_geneticqueenfilter
-```
+## Bee Exchange / Auto Refugee
+
+Troca abelhas automaticamente conforme as receitas do Bee Refuge do FU.
+
+- Receita na Bee Station / Functional: **1 Bee Refuge + 1 Terramart Shipments 3.5
+  + 2 AI Chips**. Desbloqueio ao obter/recolher a Bee Station.
+- **16 slots compartilhados**, offsets ITD **0–15**. Filtre abelhas na inserção
+  e recursos/Pixels na extração.
+- Queens e Young Queens rendem o mesmo recurso e quantidade por espécie.
+  **Cinco drones da mesma espécie rendem 7 Pixels**; genéticas podem diferir.
+- Recursos/Pixels permanecem no contêiner. Outros itens não são vendidos.
+  Sem espaço para a recompensa completa, as abelhas aguardam.
+- **Input superior:** chave on/off. Sem fio funciona automaticamente; conectado,
+  sinal alto habilita e sinal baixo pausa novas vendas.
+- **Input inferior / output:** entrada e saída da rede de itens FU/ITD, nos mesmos
+  pontos visuais da referência Terramart 3.5.
+
+A arte atual tem placa amarela integrada, caixa de vidro com transparência,
+dois LEDs nativos e display de status. Durante work, a abelha na haste desaparece
+em um teleporte de 1,25 s no total, com som nativo. Placa e display têm variantes
+legíveis para os dois lados, também na prévia de placement.
+
+**Improved Containers 2.11 é opcional.** A integração usa seus scripts instalados
+para ordenar, empilhar, buscar, renomear e guardar conteúdo ao quebrar a máquina.
+As vendas aguardam a organização. A 0.2.14 mantém `uiConfig` como caminho de
+arquivo e repara o valor inválido salvo pelas versões anteriores.
+Veja [integração](docs/BEE_EXCHANGE_0_2_11.md) e
+[correção de abertura](docs/BEE_EXCHANGE_0_2_14.md). Outros mods de armazenamento
+e o Post-Load Mega-Patch ainda não foram validados.
+
+ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
+Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
+atualizar. As versões atuais já usam os mesmos 16 slots.
+
+## Desenvolvimento e GitHub
+
+As regras acordadas no chat **Bee Analyzer** valem para as duas máquinas:
+
+- `dev`: desenvolvimento e PAKs com versão `X.Y.Z-dev`.
+- `main`: produção; PR, merge ou promoção só mediante solicitação explícita.
+- Preservar histórico compartilhado e PAKs antigos; downloads usam commits fixos.
+- Tags estáveis `vX.Y.Z` ficam reservadas às promoções autorizadas.
+
+Veja [VERSIONING](docs/VERSIONING.md), [operação GitHub](docs/GITHUB_PUBLICATION.md)
+e [AGENTS.md](AGENTS.md). O nome público **Bee Abusive Industry** e o título
+Workshop **[oSB][FU] Bee Abusive Industry** já foram aplicados. O name técnico
+e os IDs permanecem iguais. [Identidade e planejamento](docs/ROADMAP.md).
 
 ## Testes e ferramentas
 
-Requisitos: Python 3.9+ e Lua 5.4 (executável ou biblioteca compartilhada).
+Ambiente usado: Python 3.12 e Lua 5.4 (executável ou biblioteca compartilhada).
+Os geradores de sprites usam Pillow. O empacotamento usa as ferramentas nativas
+Starbound/OpenStarbound fixadas em [pak_toolchain.json](tools/pak_toolchain.json).
 
 ```sh
+python3 tools/check_version.py --release --tag v0.2.18
 python3 tools/run_checks.py --fetch
-python3 tools/build_assets.py
-python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
+# Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
+python3 tools/run_checks.py --ic-root .cache/improved-containers
+python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-`--fetch` baixa as 12 fontes FU fixadas em `tools/upstream.json` e verifica seus
-hashes Git. Para checkout FU local, use `--fu-root /caminho/FrackinUniverse`.
-O cache não é redistribuído. **91 grupos passaram**: Adapter 22, máquina 40,
-interface 20 e assets 9. São testes do código de produção com bibliotecas FU
-reais; bindings de inventário, promises, widgets e destruição são simulados.
-Não comprovam ITD, multiplayer, save de mundo, crafting ou renderização reais.
-O CI da entrega anterior passou no GitHub; a validação desta correção é registrada no PR.
-O empacotamento usa ferramentas nativas do Starbound/OpenStarbound e valida o
-PAK por desempacotamento: 27 arquivos restaurados, assets idênticos e metadata
-JSON equivalente. Não precisa de uma cópia de packed.pak para empacotar o addon.
-A procedência das ferramentas usadas está em tools/pak_toolchain.json.
+Nesta candidata passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
+não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
+Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
+Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
+à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
+**53 arquivos**, com bytes idênticos e metadata JSON equivalente.
 
-O gerador preserva os pixels recuperados da máquina e do ícone. O tema da GUI
-é desenhado em resolução nativa a partir de artwork/ui-theme.json.
-`artwork/interface-layout.json` é a fonte da config da GUI; botões usam `pressed`,
-e tooltips individuais usam canvas sem captura de eventos ou bloqueio de slots.
-Cada pane aceita uma mutação pendente, descarta consultas anteriores ao comando
-e retoma polling após sua resposta. Panes convergem por refresh, sem contador.
+`--fetch` prepara referências fixadas e verificadas por hash em
+[upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).
+O IC opcional segue [ic_upstream.json](tools/ic_upstream.json). Para um checkout
+FU local, use `--fu-root /caminho/FrackinUniverse`. Caches não são redistribuídos.
 
-## API do Adapter
+Geradores atuais: `tools/build_assets.py` (Analyzer),
+`tools/build_beeexchange_work_assets.py` (móvel/animação) e
+`tools/build_beeexchange_icon.py` (ícone). O último par usa os assets e conceitos
+aprovados, em escala nativa. [Roteiro de testes no jogo](docs/IN_GAME_TESTS.md).
+
+## API e procedência
 
 ```lua
 require "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua"
 local result = fubeesgenetics_beegeneticadapter.read(itemDescriptor)
 ```
 
-O require do engine retorna zero valores; a API é a tabela global namespaced.
-`normalize` aceita descritores abreviados, defaults de count=1/parameters={} e
-retorna forma canônica ou nil; `read` retorna elegibilidade, identidade e seis
-pares raw/display, ou motivo de falha. Não modifica entrada, genomes ou casta.
+O require do engine retorna zero valores; a API é uma tabela global namespaced.
+`normalize` aceita descritores abreviados; `read` retorna elegibilidade,
+identidade e seis pares raw/display, ou o motivo de falha. Não altera a abelha.
 
-Antes de release, execute [IN_GAME_TESTS](docs/IN_GAME_TESTS.md). Veja também
-[CONFORMANCE_REVIEW](docs/CONFORMANCE_REVIEW.md), [UPSTREAM_AUDIT](docs/UPSTREAM_AUDIT.md)
-e [GITHUB_PUBLICATION](docs/GITHUB_PUBLICATION.md).
+A [MasterSpec original](FUBeesGenetics_GeneticQueenFilter_MasterSpec.md), os
+[requisitos v1.2 recuperados](docs/MASTER_SPEC_V1_2_RECOVERED.md), a
+[recuperação](docs/RECOVERY.md) e a [auditoria](docs/UPSTREAM_AUDIT.md) preservam
+as referências do Analyzer. Suas limitações de arte recuperada não descrevem
+os sprites novos da Bee Exchange. Consulte também a
+[revisão de conformidade](docs/CONFORMANCE_REVIEW.md).

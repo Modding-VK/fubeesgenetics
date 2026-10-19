@@ -77,6 +77,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fetch", action="store_true", help="Download pinned FU test sources")
     parser.add_argument("--fu-root", type=Path, default=ROOT / ".cache/fu")
+    parser.add_argument("--ic-root", type=Path, help="Unpacked original IC 2.11 for optional integration checks")
     args = parser.parse_args()
     fu_root = args.fu_root.resolve()
     for path, expected in MANIFEST["files"].items():
@@ -94,6 +95,8 @@ def main():
         actual = hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest()
         if actual != expected:
             raise RuntimeError(f"Upstream blob mismatch: {path} ({actual} != {expected})")
+    from check_container_ui import load_references
+    native_root = load_references(ROOT, args.fetch)
     metadata = json.loads((ROOT / "FUBeesGenetics/_metadata").read_text())
     dependency = asset_json((fu_root / ".metadata").read_text())["name"]
     assert metadata["name"] == "FUBeesGenetics"
@@ -113,7 +116,8 @@ def main():
     tags["bee_unknown_queen"] = {"bee": True, "queen": True}
     tags["brokenname"] = {"bee": True, "queen": True}
     tags["bee_honey_fakequeen"] = {"bee": True}
-    fixture = {"beeData": bee_data, "tags": tags, "fuRoot": str(fu_root), "repoRoot": str(ROOT),
+    fixture = {"nativeRoot": str(native_root), "nativeContainerUi": json.loads((native_root / "interface/chests/chest16.config").read_text()), "exchangeConfig": json.loads((ROOT / "FUBeesGenetics/objects/bees/fubeesgenetics/beeexchange/beeexchange.object").read_text()), "beeData": bee_data, "tags": tags, "fuRoot": str(fu_root), "repoRoot": str(ROOT),
+               "tradeRecipes": {"/"+p: asset_json((fu_root/p).read_text()) for p in MANIFEST["files"] if p.startswith("recipes/bees/beerefuge/")},
                "uiConfig": json.loads((ROOT / "FUBeesGenetics/interface/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.config").read_text())}
     with tempfile.TemporaryDirectory(prefix="fubeesgenetics-checks-") as directory:
         script = Path(directory) / "run.lua"
@@ -122,12 +126,15 @@ def main():
         script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                           + "dofile(" + lua(str(ROOT / "tests/adapter_test.lua")) + ")\n")
         run_lua(script)
-        for name in ["machine_test.lua", "interface_test.lua"]:
+        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua"]:
             script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)
+    if args.ic_root:
+        from check_storage_compat import run_storage_checks
+        run_storage_checks(ROOT, args.ic_root, fixture, native_root)
     from check_assets import check_assets
-    check_assets(ROOT, fu_root)
+    check_assets(ROOT, fu_root, native_root)
     print("Lua syntax, metadata and upstream blob integrity: PASS", flush=True)
 
 

@@ -106,16 +106,29 @@ test('U12 all MD hover help regions show correct text after delay without messag
   assert(u.helpDraws[3].text==fixture.uiConfig.helpTexts[r.key] and #u.requests==1) end
 end)
 test('U13 tooltip clears over native slots and outside pane',function()
- for _,p in ipairs({{72,47},{192,47},{312,47},{400,400},{-1,-1}}) do
-  local u=boot();u.mouse={260,218};u.env.update(0);u.env.update(.36);assert(#u.helpDraws==3)
+ local positions={{-1,-1},{fixture.uiConfig.gui.helpCanvas.size[1]+1,200}}
+ for _,name in ipairs({'itemGrid','itemGrid2','outputItemGrid'}) do
+  local p=fixture.uiConfig.gui[name].position;positions[#positions+1]={p[1]+9,p[2]+9}
+ end
+ local mode=fixture.uiConfig.gui.baseProductionModes.position
+ for _,p in ipairs(positions) do
+  local u=boot();u.mouse={mode[1]+9,mode[2]+9};u.env.update(0);u.env.update(.36);assert(#u.helpDraws==3)
   u.mouse=p;u.env.update(0);assert(#u.helpDraws==0)
  end
  local u=boot();u.mouse=nil;u.env.update(.36);assert(#u.helpDraws==0)
 end)
 test('U14 tooltip stays in pane and comparator change restarts delay',function()
- local u=boot();u.mouse={340,108};u.env.update(0);u.env.update(.36);local r=u.helpDraws[1].rect
- assert(r[1]>=0 and r[2]>=0 and r[3]<=388 and r[4]<=332)
- u.mouse={302,108};u.env.update(0);assert(#u.helpDraws==0);u.env.update(.36);assert(u.helpDraws[3].text==fixture.uiConfig.helpTexts.lte)
+ local size=fixture.uiConfig.gui.helpCanvas.size
+ for _,region in ipairs(fixture.uiConfig.helpRegions) do
+  local u=boot();u.mouse={region.rect[1]+1,region.rect[2]+1};u.env.update(0);u.env.update(.36)
+  local r=u.helpDraws[1].rect
+  assert(r[1]>=6 and r[2]>=6 and r[3]<=size[1]-6 and r[4]<=size[2]-6)
+ end
+ local mode=fixture.uiConfig.gui.mutationChanceModes
+ local u=boot();u.mouse={mode.position[1]+mode.buttons[3].position[1]+9,mode.position[2]+9}
+ u.env.update(0);u.env.update(.36);assert(#u.helpDraws==3)
+ u.mouse={mode.position[1]+mode.buttons[2].position[1]+9,mode.position[2]+9}
+ u.env.update(0);assert(#u.helpDraws==0);u.env.update(.36);assert(u.helpDraws[3].text==fixture.uiConfig.helpTexts.lte)
 end)
 test('U15 destroyed entity clears view, closes and stops commands and reads',function()
  local u=boot();u.destroyed=true;u.env.update(0);assert(u.dismissed and not u.env.self.state and u.texts.family=='Family: —')
