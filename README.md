@@ -3,28 +3,29 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Candidata à produção: 0.2.18. Autor: Goblin Man.**
+**Release estável: 0.2.19. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.18.pak?raw=true) ·
-[Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.19.pak?raw=true) ·
+[Release 0.2.19](docs/RELEASE_0_2_19.md) ·
+[Prontidão](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
 A 0.2.19 aplica o nome **[oSB][FU] Bee Abusive Industry**, autor **Goblin Man**,
 ícone Cybernetic Queen em fundo laranja e link do projeto na lista de mods.
-Os IDs internos permanecem iguais. A interface validada da 0.2.18 está preservada.
+Os IDs internos permanecem iguais. A build foi validada no jogo pelo mantenedor.
 O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.16
 permanecem iguais.
 A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
-O mantenedor confirmou todas as alterações anteriores validadas e prontas.
-O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
-A candidata estável permanece em revisão no PR #5; main não foi promovida.
+O mantenedor confirmou a validação ingame da build 0.2.19. A versão estável
+está em `main` com a tag anotada `v0.2.19`. O envio à Steam Workshop é separado
+e não foi realizado nesta etapa.
 
 ## Instalação
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.18.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.19.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -113,19 +114,17 @@ Os geradores de sprites usam Pillow. O empacotamento usa as ferramentas nativas
 Starbound/OpenStarbound fixadas em [pak_toolchain.json](tools/pak_toolchain.json).
 
 ```sh
-python3 tools/check_version.py --release --tag v0.2.18
+python3 tools/check_version.py --release --tag v0.2.19
 python3 tools/run_checks.py --fetch
 # Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
 python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Nesta candidata passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
-não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
-Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
-Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
-à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**53 arquivos**, com bytes idênticos e metadata JSON equivalente.
+Para a release 0.2.19, `check_version.py` passou e o PAK foi empacotado e
+extraído pelas ferramentas nativas: **53 arquivos** conferidos, assets idênticos
+e metadata JSON equivalente. A suíte de testes do projeto não foi executada
+novamente nesta promoção; a validação ingame foi confirmada pelo mantenedor.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).

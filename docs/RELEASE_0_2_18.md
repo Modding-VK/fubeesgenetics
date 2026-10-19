@@ -1,4 +1,7 @@
-# Bee Abusive Industry — candidata 0.2.18
+# Bee Abusive Industry — preparação histórica da 0.2.18
+
+Este documento registra a candidata e revisão da versão 0.2.18. Ela foi
+substituída pela release estável 0.2.19; consulte [RELEASE_0_2_19](RELEASE_0_2_19.md).
 
 O mantenedor confirmou todas as alterações validadas e prontas e solicitou
 Pull Request. A candidata parte da dev 6de1050114e865e119a434698c25b4ec4ed67b13,

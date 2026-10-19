@@ -6,21 +6,21 @@ O addon usa PAK padrão Starbound 1.4.4 (SBAsset6); não exige instalador própr
 Seu runtime continua sendo OpenStarbound com FU, por causa da interface scriptável.
 
 O nome do PAK manual inclui automaticamente a versão do _metadata, no formato
-`bee-abusive-industry-<versão>.pak`. Exemplo da candidata: 0.2.18. O arquivo instalado
+`bee-abusive-industry-<versão>.pak`. A release estável atual é 0.2.19. O arquivo instalado
 pela Workshop mantém o nome padrão contents.pak.
 
 ## Arquivos entregues
 
 | Arquivo | Finalidade |
 | --- | --- |
-| bee-abusive-industry-0.2.18.pak | Instalação manual em Starbound/mods |
+| bee-abusive-industry-0.2.19.pak | Instalação manual em Starbound/mods |
 | bee-abusive-industry-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
 | bee-abusive-industry-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
 | bee-abusive-industry-source.zip | Projeto completo com ferramentas/testes/documentação |
 
 ## Instalação
 
-Manual: copiar bee-abusive-industry-0.2.18.pak para Starbound/mods e iniciar pelo
+Manual: copiar bee-abusive-industry-0.2.19.pak para Starbound/mods e iniciar pelo
 OpenStarbound configurado para carregar essa instalação, com FU disponível.
 Não instalar junto uma pasta FUBeesGenetics antiga ou cópia Workshop do addon.
 
@@ -83,8 +83,8 @@ Preparar preview/título/descrição e marcar FU como item requerido na página.
 Declarar explicitamente OpenStarbound e a build testada; requires do metadata
 refere-se a FrackinUniverse e não cria uma dependência entre itens Steam.
 Preservar steamContentId/link gerados pelo uploader para atualizar o mesmo item.
-Não publicar como release validada antes dos testes no jogo e da arte final.
-A imagem de preview do Workshop é separada do ícone de inventário.
+A release 0.2.19 foi validada ingame pelo mantenedor; seu upload ainda não foi
+realizado. A imagem de preview do Workshop é separada do ícone de inventário.
 
 ## Gerar novamente
 

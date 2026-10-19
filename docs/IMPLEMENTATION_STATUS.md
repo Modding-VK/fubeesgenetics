@@ -1,13 +1,16 @@
-# Estado do projeto — 2026-10-17
+# Estado do projeto — 2026-10-19
 
+## Release estável — 0.2.19
 
-## Candidata atual — 0.2.18
+A build 0.2.19-dev foi validada ingame pelo mantenedor e promovida para
+0.2.19 em main, com tag anotada v0.2.19. Identidade pública: [oSB][FU] Bee
+Abusive Industry, autor Goblin Man, ícone Cybernetic Queen em fundo laranja e
+homepage. A promoção preserva IDs, scripts, receitas e inventários.
 
-Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
-ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
-iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
-nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
-não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
+O PAK SBAsset6 e o ZIP com contents.pak foram gerados e conferidos por
+pack/unpack nativo. O upload à Steam Workshop não foi realizado. Ver
+[release](RELEASE_0_2_19.md), [prontidão](RELEASE_READINESS.md) e
+[material de publicação](WORKSHOP.md).
 
 ## Registro da build funcional validada — 0.2.18-dev
 

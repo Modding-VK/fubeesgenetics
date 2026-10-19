@@ -59,8 +59,11 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | --- | --- | --- |
 | 0.2.19-dev | Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19-dev.pak), [prontidão](RELEASE_READINESS.md) |
 
-## Candidata estável em revisão
+## Release estável
 
 | Versão | Mudança | Pacote |
 | --- | --- | --- |
-| 0.2.18 | Identidade Bee Abusive Industry, Goblin Man e ícone laranja, aplicados antes da publicação | [PAK candidato](../dist/bee-abusive-industry-0.2.18.pak), [prontidão](RELEASE_READINESS.md); PR #5 aberto |
+| 0.2.18 | Ajustes de Reset Profile e listras no HUD | [PAK](../dist/bee-abusive-industry-0.2.18.pak), [detalhes](HUD_ALIGNMENT_0_2_18.md) |
+| 0.2.19 | Release estável da build validada, com identidade Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19.pak), [prontidão](RELEASE_READINESS.md) |
+
+Tag anotada: `v0.2.19`. O envio à Steam Workshop permanece pendente e separado.
