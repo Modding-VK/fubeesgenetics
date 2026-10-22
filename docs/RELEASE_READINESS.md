@@ -1,5 +1,14 @@
 # Bee Abusive Industry — identidade e prontidão
 
+## Compatibilidade com apiários FU 0.2.22-dev
+
+Patches nos objetos de apiário pequeno e grande carregam uma extensão do script
+nativo. Ela calcula recursos, biomas, plantas, rivalidades e descendentes pela
+linhagem híbrida, preservando o ciclo normal das abelhas FU. Não tenta gerar
+entidades capturáveis híbridas; a geração nativa das outras abelhas permanece.
+Passaram simulações locais dos dois tamanhos e checagem estática dos patches.
+O uso dentro do jogo com FU ainda precisa de conferência.
+
 ## Sprites híbridos 0.2.21-dev
 
 As 595 espécies híbridas agora têm folhas de sprites PNG próprias, com frames

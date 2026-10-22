@@ -106,12 +106,12 @@ conserva padrões mais marcantes ao dar peso local ao contraste de cada fonte.
 O resultado é um PNG próprio por espécie; o jogo lê esse PNG pelo ID do par.
 
 O formato nativo `beeData.stats[family][subtype].production` não representa
-saídas diferentes por linhagem. A implementação precisa de um caminho dinâmico
-para a família `hybrid`, que leia os recursos parentais dos parâmetros da
-Queen. Na primeira versão, o suporte deve ser limitado ao **Overload Apiary**,
-que já tem script do addon e consegue tratar a linhagem sem sobrescrever o
-script global de apiários do FU. A compatibilidade com Apiaries nativos fica
-como etapa posterior.
+saídas diferentes por linhagem. O caminho dinâmico da família `hybrid` lê os
+recursos parentais dos parâmetros da Queen e dos Drones. Desde 0.2.22-dev,
+patches dos objetos dos apiários pequeno e grande do FU carregam o mesmo
+cálculo usado pelo Overload Apiary, com multiplicador 1 em vez de 1,2. As
+abelhas nativas mantêm o comportamento original nesses objetos. Híbridas não
+geram entidades capturáveis no mundo, pois não existe monstro `bee_hybrid`.
 
 ## Preferências de bioma
 

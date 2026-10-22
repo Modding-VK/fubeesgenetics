@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.21-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.22-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.21-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.22-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,7 +24,7 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.21-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.22-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -113,7 +113,11 @@ marcas e cores parentais. As duas usam a mesma aparência. A Queen híbrida
 transmite sua linhagem a Young Queens e Drones.
 
 - Receita e blueprint na Bee Station.
-- Produção híbrida disponível no **Overload Apiary**.
+- Produção híbrida disponível no **Overload Apiary** e nos apiários nativos
+  pequeno e grande do FU. Os apiários nativos mantêm sua produção sem energia;
+  o patch lê a linhagem para recursos, preferências e descendentes híbridos.
+  Eles continuam a gerar entidades capturáveis para abelhas nativas, mas não
+  tentam gerar entidades híbridas inexistentes.
 - O catálogo contém **595 combinações / 1.190 subespécies** e 595 folhas de
   sprites. [Prévia visual](artwork/hybrids/preview.png). A validação no
   jogo ainda está pendente.
@@ -150,12 +154,12 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.21 passaram **167 grupos locais básicos e 13 casos opcionais com
+Na 0.2.22 passaram **169 grupos locais básicos e 13 casos opcionais com
 Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
 fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**664 arquivos** com bytes idênticos e metadata JSON equivalente.
+**667 arquivos** com bytes idênticos e metadata JSON equivalente.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).

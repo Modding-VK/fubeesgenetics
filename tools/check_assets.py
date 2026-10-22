@@ -274,4 +274,15 @@ def check_assets(root, fu_root, native_root):
     overload_lua = (mod / 'objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua').read_text()
     assert 'function tryBeeSpawn() end' in overload_lua
     passed('S17 powered apiary has no capturable world-bee species')
+    compatibility_script = '/scripts/fubeesgenetics/nativeapiary.lua'
+    assert (mod / compatibility_script.lstrip('/')).is_file()
+    for directory, filename in [('apiary', 'apiary'), ('apiarylarge', 'apiarylarge')]:
+        patch = docs[mod / f'bees/objects/{directory}/{filename}.object.patch']
+        assert patch == [{'op': 'replace', 'path': '/scripts/0', 'value': compatibility_script}]
+    small = asset_json((fu_root / 'bees/objects/apiary/apiary.object').read_text())
+    assert small['scripts'] == ['/bees/apiary.lua']
+    assert small['objectName'] == 'normalapiary'
+    assert (small['slotCount'], small['queenSlot'], small['droneSlots'], small['frameSlots'], small['firstInventorySlot']) == (12, 1, [2], [3], 4)
+    assert 'hybridbees.install(1)' in (mod / compatibility_script.lstrip('/')).read_text()
+    passed('S18 native small and large apiaries load lineage-aware hybrid script')
     print(f'Assets: {count} test groups passed (static checks).')

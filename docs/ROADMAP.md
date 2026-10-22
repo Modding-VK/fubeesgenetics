@@ -48,7 +48,8 @@ Não gera abelhas entidades capturáveis aleatórias.
 
 A primeira implementação já inclui a máquina de hibridização, Queen/Young
 Queen/Drone genéricos com metadados de linhagem, produção dinâmica no Overload
-Apiary e folhas de sprites próprias com formas, marcas e cores parentais
+Apiary e nos apiários nativos pequeno e grande do FU, além de folhas de sprites
+próprias com formas, marcas e cores parentais
 fundidas. O catálogo deriva
 **595 espécies / 1.190 subespécies** das 35 famílias FU. A validação dentro do
 jogo ainda está pendente. A hibridizadora entrega uma larva de rainha

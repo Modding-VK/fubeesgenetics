@@ -144,6 +144,13 @@ local function setup(bootstrap)
     e.require("/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua"); e.init()
     e.inventory[2] = {name = "basicframe", count = 1, parameters = {}}
   end
+  e.startNativeApiary = function(large)
+    e.settings = {objectName = large and "normalalveary" or "normalapiary",
+      slotCount = large and 20 or 12, queenSlot = 1,
+      droneSlots = large and {2, 3} or {2}, frameSlots = large and {4, 5} or {3},
+      firstInventorySlot = large and 6 or 4, scriptDelta = 5}
+    e.require("/scripts/fubeesgenetics/nativeapiary.lua"); e.init()
+  end
   e.finish = function() for _ = 1, 417 do e.update(1) end end
   return e
 end
@@ -372,5 +379,36 @@ test("Powered apiary never spawns native or hybrid capturable bees", function()
   e.inventory[0] = h
   for _ = 1, 100 do e.update(1) end
   equal(#e.monsters, 0)
+end)
+test("Native small and large apiaries produce hybrid resources and preserve lineage", function()
+  for _, large in ipairs({false, true}) do
+    local e = setup(); e.startNativeApiary(large)
+    local h = e.hybrid("honey", "carpenter")
+    local larva = copy(h); larva.name = "bee_hybrid_youngQueen"; larva.parameters.lifespan = nil
+    e.inventory[0] = e.root.createItem(larva)
+    e.inventory[e.settings.frameSlots[1] - 1] = {name = "basicframe", count = 1, parameters = {}}
+    for _ = 1, 100 do e.beeTick(1) end
+    local drone = e.inventory[1]
+    assert(drone and e.hybridbees.compatible(e.inventory[0], drone))
+    assert(e.inventory[0].parameters.hybridLineage.speciesId == h.parameters.hybridLineage.speciesId)
+    drone.count = 1000; e.inventory[1] = drone
+    for _ = 1, 150 do e.beeTick(1) end
+    local total = 0
+    for slot = e.settings.firstInventorySlot - 1, e.settings.slotCount - 1 do
+      local item = e.inventory[slot]
+      if item and item.name ~= "bee_hybrid_drone" and item.name ~= "bee_hybrid_youngQueen" then total = total + item.count end
+    end
+    assert(total > 0); equal(#e.monsters, 0)
+    e.queen = e.inventory[0]; e.contents = e.world.containerItems(42)
+    local child = e.generateYoungQueen()
+    equal(child.name, "bee_hybrid_youngQueen")
+    equal(child.parameters.hybridLineage.speciesId, h.parameters.hybridLineage.speciesId)
+    local native = e.parent("honey", "queen")
+    e.data.beeSpawnChance = 1; e.roll = 0
+    e.tryBeeSpawn("honey", native.parameters.genome)
+    equal(#e.monsters, 1)
+    e.tryBeeSpawn("hybrid", h.parameters.genome)
+    equal(#e.monsters, 1)
+  end
 end)
 print("Hybrids: " .. passed .. " test groups passed (engine bindings mocked).")
