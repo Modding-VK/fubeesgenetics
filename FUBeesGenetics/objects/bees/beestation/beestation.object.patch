@@ -20,5 +20,15 @@
     "op": "add",
     "path": "/learnBlueprintsOnPickup/-",
     "value": "fubeesgenetics_beeexchange"
+  },
+  {
+    "op": "add",
+    "path": "/learnBlueprintsOnPickup/-",
+    "value": "fubeesgenetics_overloadapiary"
+  },
+  {
+    "op": "add",
+    "path": "/learnBlueprintsOnPickup/-",
+    "value": "fubeesgenetics_hybridizer"
   }
 ]

@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
 Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
 
-**Versão atual de desenvolvimento: 0.2.19-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.19-dev. Desenvolvimento atual: 0.2.20-dev. Autor: Goblin Man.**
 
 [Baixar o PAK](dist/bee-abusive-industry-0.2.19-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -91,6 +91,28 @@ e o Post-Load Mega-Patch ainda não foram validados.
 ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
 Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
 atualizar. As versões atuais já usam os mesmos 16 slots.
+
+## Overload Apiary (em desenvolvimento)
+
+Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
+vida útil da rainha **0,7×**. A receita é aprendida ao obter a Bee Station.
+Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
+
+## Genetic Hybridizer e abelhas híbridas (em desenvolvimento)
+
+Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
+energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
+chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
+Cada cruzamento tem duas subespécies com prioridade de produção alternada e
+ícones compostos pelas imagens dos dois progenitores. As duas usam a mesma
+aparência. A Queen híbrida transmite sua linhagem a Young Queens e Drones.
+
+- Receita e blueprint na Bee Station.
+- Produção híbrida disponível no **Overload Apiary**.
+- O catálogo contém **595 combinações / 1.190 subespécies**. A validação no
+  jogo ainda está pendente.
+
+ID para `/spawnitem`: `fubeesgenetics_hybridizer`.
 
 ## Desenvolvimento e GitHub
 

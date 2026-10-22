@@ -1,0 +1,50 @@
+{
+  "objectName": "fubeesgenetics_hybridizer",
+  "objectType": "container",
+  "colonyTags": ["bees", "insects"],
+  "shortdescription": "Genetic Hybridizer",
+  "description": "Crosses a Queen and Drone from different species. Both are consumed on success and failure. The machine accumulates 10,000 energy per attempt and draws 24 W while valid parents and output space are available.",
+  "subtitle": "Two bloodlines enter. One lineage leaves.",
+  "race": "generic",
+  "category": "crafting",
+  "rarity": "rare",
+  "price": 8000,
+  "printable": false,
+  "smashOnBreak": true,
+  "health": 0.1,
+  "slotCount": 3,
+  "hasWindowIcon": true,
+  "inventoryIcon": "/bees/objects/apiary/icon.png",
+  "openFrameIndex": 0,
+  "frameCooldown": 1,
+  "autoCloseCooldown": 3600,
+  "uiConfig": "/interface/fubeesgenetics/hybridizer/hybridizer.config",
+  "orientations": [
+    {
+      "dualImage": "/bees/objects/apiary/object.png:default",
+      "imagePosition": [0, 0],
+      "spaceScan": 0.1,
+      "anchors": ["bottom"],
+      "collision": "platform"
+    }
+  ],
+  "animation": "/bees/objects/apiary.animation",
+  "animationParts": {
+    "base": "/bees/objects/apiary/object.png",
+    "bees": "/bees/objects/apiary/bees.png",
+    "loading": "/bees/objects/apiary/loading.png",
+    "warning": "/bees/objects/apiary/warning.png"
+  },
+  "animationPosition": [0, 0],
+  "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
+  "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
+  "scripts": ["/objects/bees/fubeesgenetics/hybridizer/hybridizer.lua"],
+  "scriptDelta": 5,
+  "queenSlot": 1,
+  "droneSlot": 2,
+  "outputSlot": 3,
+  "inputNodes": [[0, 0]],
+  "outputNodes": [[1, 0]],
+  "powertype": "input",
+  "isn_requiredPower": 24
+}

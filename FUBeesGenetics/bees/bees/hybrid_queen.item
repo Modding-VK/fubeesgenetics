@@ -1,0 +1,14 @@
+{
+  "itemName": "bee_hybrid_queen",
+  "description": "A hybrid queen descended from two different bee species.",
+  "shortdescription": "Hybrid Queen",
+  "inventoryIcon": "/assetmissing.png",
+  "tooltipKind": "bee",
+  "rarity": "Rare",
+  "maxStack": 1,
+  "category": "craftingMaterial",
+  "itemTags": ["bee", "queen", "hybrid"],
+  "dropCollision": [-2.5, -2.0, 2.5, 2.0],
+  "builder": "/scripts/fubeesgenetics/hybridbeebuilder.lua",
+  "beeConfig": "/bees/beeData.config"
+}

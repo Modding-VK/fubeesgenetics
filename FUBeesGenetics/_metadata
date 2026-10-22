@@ -4,6 +4,8 @@
   "author": "Goblin Man",
   "version": "0.2.19-dev",
   "description": "Genetic queen filtering and automated bee-to-resource trading. Requires OpenStarbound and Frackin Universe.",
+  "version": "0.2.20-dev",
+  "description": "Genetic queen filtering, bee trading, and powered high-output apiaries. Requires OpenStarbound and Frackin Universe.",
   "requires": [
     "FrackinUniverse"
   ],

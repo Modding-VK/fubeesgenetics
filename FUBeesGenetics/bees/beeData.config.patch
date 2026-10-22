@@ -1,0 +1,42 @@
+[
+  {
+    "op": "add",
+    "path": "/stats/hybrid",
+    "value": [
+      {
+        "name": "hybridA",
+        "baseProduction": 1,
+        "droneToughness": 1,
+        "droneBreedRate": 1,
+        "queenBreedRate": 1,
+        "queenLifespan": 500,
+        "mutationChance": 10,
+        "miteResistance": 0,
+        "workTime": 0,
+        "production": {}
+      },
+      {
+        "name": "hybridB",
+        "baseProduction": 1,
+        "droneToughness": 1,
+        "droneBreedRate": 1,
+        "queenBreedRate": 1,
+        "queenLifespan": 500,
+        "mutationChance": 10,
+        "miteResistance": 0,
+        "workTime": 1,
+        "production": {}
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/biomeLikeness/hybrid",
+    "value": {}
+  },
+  {
+    "op": "add",
+    "path": "/rivals/hybrid",
+    "value": []
+  }
+]
