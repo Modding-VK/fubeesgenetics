@@ -98,6 +98,17 @@ Os executáveis não são redistribuídos. Exemplo (substituir caminhos):
 python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
 ```
 
+Na branch `dev`, a Action **Build development PAK** também gera o pacote. Ela
+roda quando os assets ou scripts do mod mudam e pode ser iniciada manualmente em
+GitHub → Actions → Build development PAK → Run workflow, selecionando `dev`.
+O resultado fica no artefato da execução por 30 dias: PAK com a versão do
+`_metadata`, ZIP com `contents.pak` para Workshop e `SHA256SUMS`. O GitHub baixa
+esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as
+ferramentas OpenStarbound fixadas em `tools/pak_toolchain.json`, confere seus
+hashes, desempacota o PAK para conferir os arquivos e não publica release,
+Steam Workshop ou commits. Os pacotes versionados em `dist/` continuam sendo
+registrados separadamente quando uma entrega for preparada.
+
 Windows: usar os caminhos dos executáveis .exe. O script aceita ferramentas no
 PATH ou na pasta de cache local, e procura unpacker ao lado de packer quando
 seu caminho não foi informado. O script gera PAK, desempacota em pasta temporária,
