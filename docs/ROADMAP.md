@@ -62,6 +62,10 @@ somente ao inserir uma híbrida no apiário.
 
 ## Fluxo de trabalho
 
+A viabilidade de integrar pesquisas próprias à sequência de abelhas do FU está
+documentada em [Pesquisas de abelhas no FU](FU_BEE_RESEARCH_ANALYSIS.md).
+Os desbloqueios por pesquisa ainda não foram implementados.
+
 Planejamento e desenvolvimento permanecem em dev. Não criar PR ou promover
 para main sem solicitação explícita. O planejamento não representa publicação
 na Steam, nova versão de pacote nem promoção para produção.
