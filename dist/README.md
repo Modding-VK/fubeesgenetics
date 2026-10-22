@@ -1,6 +1,6 @@
-# Distribuição atual — Bee Abusive Industry 0.2.20-dev
+# Distribuição atual — Bee Abusive Industry 0.2.21-dev
 
-- bee-abusive-industry-0.2.20-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-0.2.21-dev.pak: instalação manual Starbound/mods.
 - bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
 - SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
 
@@ -8,15 +8,17 @@ Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
 O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
 não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.
 
-167 grupos básicos e 13 casos opcionais com IC 2.11 passaram; os 69 arquivos
+167 grupos básicos e 13 casos opcionais com IC 2.11 passaram; os **664 arquivos**
 do PAK foram conferidos por pack/unpack nativo. O mantenedor já
 validou a funcionalidade anterior; conferir o novo ícone na lista do OpenStarbound.
 Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
 
-Esta versão acrescenta o Overload Apiary e o Genetic Hybridizer. O sucesso
+A série 0.2.20 acrescentou o Overload Apiary e o Genetic Hybridizer. O sucesso
 da hibridização entrega uma larva de rainha. O Overload Apiary não gera
 abelhas entidades capturáveis aleatórias. Ver
 docs/HYBRID_FIXES_0_2_20.md para os detalhes e a validação pendente no jogo.
+Esta 0.2.21-dev acrescenta 595 folhas de sprites próprias para as híbridas;
+o PAK anterior 0.2.20-dev continua preservado no histórico.
 
 ## Registros anteriores
 

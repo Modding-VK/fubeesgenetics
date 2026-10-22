@@ -145,6 +145,8 @@ def main():
     hybrid_catalog = asset_json((ROOT / 'FUBeesGenetics/bees/hybridSpecies.config').read_text())
     assert hybrid_catalog == generate(fu_root), 'Hybrid runtime catalog is stale'
     assert hybrid_catalog == asset_json((ROOT / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
+    from build_hybrid_sprites import generate_sprites
+    generate_sprites(fu_root, check=True)
     hybrid_data = copy.deepcopy(bee_data)
     for op in asset_json((ROOT / 'FUBeesGenetics/bees/beeData.config.patch').read_text()):
         section, name = op['path'].strip('/').split('/')

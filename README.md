@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.20-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.21-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.20-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.21-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -18,13 +18,13 @@ A correção do nome **Auto Refugee** da 0.2.15 está preservada.
 
 O mantenedor confirmou todas as alterações anteriores validadas e prontas.
 O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
-A candidata estável permanece em revisão no PR #5; main não foi promovida.
+A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 ## Instalação
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.20-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.21-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -108,12 +108,14 @@ chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
 O sucesso produz **uma larva de rainha híbrida** (`bee_hybrid_youngQueen`),
 que se torna adulta no apiário, preservando o genome e a linhagem.
 Cada cruzamento tem duas subespécies com prioridade de produção alternada e
-ícones compostos pelas imagens dos dois progenitores. As duas usam a mesma
-aparência. A Queen híbrida transmite sua linhagem a Young Queens e Drones.
+uma folha de sprites própria para Queen, larva e Drone, que funde formas,
+marcas e cores parentais. As duas usam a mesma aparência. A Queen híbrida
+transmite sua linhagem a Young Queens e Drones.
 
 - Receita e blueprint na Bee Station.
 - Produção híbrida disponível no **Overload Apiary**.
-- O catálogo contém **595 combinações / 1.190 subespécies**. A validação no
+- O catálogo contém **595 combinações / 1.190 subespécies** e 595 folhas de
+  sprites. [Prévia visual](artwork/hybrids/preview.png). A validação no
   jogo ainda está pendente.
 
 ID para `/spawnitem`: `fubeesgenetics_hybridizer`.
@@ -135,23 +137,25 @@ e os IDs permanecem iguais. [Identidade e planejamento](docs/ROADMAP.md).
 ## Testes e ferramentas
 
 Ambiente usado: Python 3.12 e Lua 5.4 (executável ou biblioteca compartilhada).
-Os geradores de sprites usam Pillow. O empacotamento usa as ferramentas nativas
+Instale `requirements-build.txt` para gerar e validar os sprites com Pillow.
+O empacotamento usa as ferramentas nativas
 Starbound/OpenStarbound fixadas em [pak_toolchain.json](tools/pak_toolchain.json).
 
 ```sh
 python3 tools/check_version.py --development
+python3 tools/build_hybrid_sprites.py --check
 python3 tools/run_checks.py --fetch
 # Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
 python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.20 passaram **167 grupos locais básicos e 13 casos opcionais com
+Na 0.2.21 passaram **167 grupos locais básicos e 13 casos opcionais com
 Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
 fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**69 arquivos** com bytes idênticos e metadata JSON equivalente.
+**664 arquivos** com bytes idênticos e metadata JSON equivalente.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).
@@ -159,9 +163,9 @@ O IC opcional segue [ic_upstream.json](tools/ic_upstream.json). Para um checkout
 FU local, use `--fu-root /caminho/FrackinUniverse`. Caches não são redistribuídos.
 
 Geradores atuais: `tools/build_assets.py` (Analyzer),
-`tools/build_beeexchange_work_assets.py` (móvel/animação) e
-`tools/build_beeexchange_icon.py` (ícone). O último par usa os assets e conceitos
-aprovados, em escala nativa. [Roteiro de testes no jogo](docs/IN_GAME_TESTS.md).
+`tools/build_beeexchange_work_assets.py` (móvel/animação),
+`tools/build_beeexchange_icon.py` (ícone) e `tools/build_hybrid_sprites.py`
+(595 folhas de sprites e prévia). [Roteiro de testes no jogo](docs/IN_GAME_TESTS.md).
 
 ## API e procedência
 

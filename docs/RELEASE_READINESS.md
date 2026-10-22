@@ -1,5 +1,15 @@
 # Bee Abusive Industry — identidade e prontidão
 
+## Sprites híbridos 0.2.21-dev
+
+As 595 espécies híbridas agora têm folhas de sprites PNG próprias, com frames
+de Queen, larva e Drone. Cada folha funde formas, marcas e cores dos dois
+progenitores; as duas subespécies compartilham a mesma folha. O PAK 0.2.20-dev
+é preservado. Os 664 arquivos do PAK foram verificados por empacotamento e
+extração nativos; os 595 sprites foram conferidos pixel a pixel contra o
+gerador. A aparência em escala nativa dentro do OpenStarbound continua
+pendente de conferência.
+
 ## Desenvolvimento 0.2.20-dev
 
 O Overload Apiary e as híbridas estão implementados na branch `dev`. O sucesso

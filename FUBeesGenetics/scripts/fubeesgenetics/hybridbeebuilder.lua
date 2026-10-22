@@ -12,13 +12,12 @@ function build(directory, config, parameters, level, seed)
   if root.itemHasTag(config.itemName, "queen") then frame, caste = "queen", "Queen"
   elseif root.itemHasTag(config.itemName, "youngQueen") then frame, caste = "youngQueen", "Queen Larva" end
 
-  -- Complementary regions form a single 28x28 bee in its original coordinate
-  -- system. No scaling, no pair of miniature bees, and no subspecies color swap.
+  -- Each parent pair has a dedicated 84x28 sprite sheet with all three caste
+  -- frames. The subspecies gene affects production, not the species artwork.
   local lifeBar = type(builtConfig.inventoryIcon) == "table" and builtConfig.inventoryIcon[2]
   local parents = lineage.parentFamilies
   builtConfig.inventoryIcon = {
-    {image = string.format("/bees/bees/%s.png:%s?crop=0;0;14;28", parents[1], frame), position = {-7, 0}},
-    {image = string.format("/bees/bees/%s.png:%s?crop=14;0;28;28", parents[2], frame), position = {7, 0}}
+    {image = string.format("/bees/bees/%s.png:%s", lineage.speciesId, frame), position = {0, 0}}
   }
   if lifeBar then builtConfig.inventoryIcon[#builtConfig.inventoryIcon + 1] = lifeBar end
   local name = displayName(parents[1]) .. " × " .. displayName(parents[2])

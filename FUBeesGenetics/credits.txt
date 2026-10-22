@@ -5,6 +5,8 @@ Cybernetic Queen texture and bee definitions: Frackin Universe team / sayterdark
 Source: https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/bees/cybernetic.png
 The mod-list icon loads this texture from the required FU installation at runtime.
 The queen frame is cropped/scaled with nearest-neighbor and placed on an orange background using native image directives. The original texture is not redistributed by this addon.
+The 595 hybrid bee sprite sheets introduced in 0.2.21-dev are derived from the 35 FU bee sheets at this same pinned commit. They combine parental silhouettes, markings, and colors for drone, queen, and queen-larva frames. These derived PNGs are distributed with the addon under the FU source artwork's CC BY 4.0 terms; the source bee sheets remain credited to the FU team and contributors.
+Hybrid source sheets: https://github.com/sayterdarkwynd/FrackinUniverse/tree/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/bees
 Frackin Universe license: Creative Commons Attribution 4.0 International.
 License: https://creativecommons.org/licenses/by/4.0/
 Full terms and warranty disclaimer: https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/LICENSE.txt

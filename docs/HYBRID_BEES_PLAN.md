@@ -13,9 +13,10 @@ da Queen progenitora; a outra, os da espécie do Drone progenitor.
 Foram adicionados os itens genéricos `bee_hybrid_queen`,
 `bee_hybrid_youngQueen` e `bee_hybrid_drone`; o catálogo de 595 combinações é
 incluído nos assets do mod. A linhagem guarda os progenitores, subtipos,
-preferências e subespécie. Cada ícone combina uma metade do sprite de cada
-progenitora em uma única abelha de 28 × 28 pixels. As duas subespécies da
-mesma linhagem têm a mesma aparência.
+preferências e subespécie. Cada uma das 595 espécies tem uma folha própria
+de sprites para Drone, Queen e larva. Formas, padrões e cores dos progenitores
+são fundidos em cada frame. As duas subespécies da mesma linhagem têm a mesma
+aparência.
 
 A máquina de hibridização tem slots de Queen, Drone e saída, acumula 10.000
 unidades de energia a 24 W, consome ambos os progenitores nos dois resultados e
@@ -25,10 +26,9 @@ Após amadurecer no apiário, a Queen híbrida preserva a linhagem em Young Quee
 Drones; a produção dinâmica dos dois conjuntos de recursos está habilitada no
 Overload Apiary. A receita e o desbloqueio são feitos pela Bee Station.
 
-A implementação ainda precisa de validação dentro do jogo. A arte combinada
-é gerada nos ícones dos itens usando os sprites parentais; não foram criados
-595 arquivos independentes. O Overload Apiary não gera abelhas entidades
-capturáveis aleatórias, inclusive para as híbridas.
+A implementação ainda precisa de validação dentro do jogo. As 595 folhas PNG
+são geradas durante o desenvolvimento e incluídas no PAK. O Overload Apiary
+não gera abelhas entidades capturáveis aleatórias, inclusive para as híbridas.
 
 ## Regras definidas
 
@@ -99,8 +99,11 @@ duas subespécies. A aparência da nova espécie combina características visuai
 das duas progenitoras; a dominância da subespécie altera a prioridade de
 produção, não o sprite. Portanto, Queens, Young Queens e Drones da mesma
 linhagem usam a aparência da espécie híbrida, sem variação visual entre as
-subespécies. A arte de cada combinação é composta em tempo de execução a
-partir das metades dos sprites parentais, sem criar outro conjunto de imagens.
+subespécies. Cada folha tem 84 × 28 pixels e três frames de 28 × 28 na ordem
+Drone, Queen e larva. O gerador reúne os detalhes de silhueta presentes em
+qualquer dos dois sprites parentais, mistura suas cores nas áreas comuns e
+conserva padrões mais marcantes ao dar peso local ao contraste de cada fonte.
+O resultado é um PNG próprio por espécie; o jogo lê esse PNG pelo ID do par.
 
 O formato nativo `beeData.stats[family][subtype].production` não representa
 saídas diferentes por linhagem. A implementação precisa de um caminho dinâmico

@@ -263,9 +263,13 @@ def check_assets(root, fu_root, native_root):
     assert len(catalog['hybrids']) == 595 and sum(len(s['subspecies']) for s in catalog['hybrids']) == 1190
     for family in catalog['production']['parents']:
         assert png_size(fu_root / f'bees/bees/{family}.png') == (84, 28)
+    hybrid_sheets = {mod / f"bees/bees/{species['id']}.png" for species in catalog['hybrids']}
+    assert set((mod / 'bees/bees').glob('hybrid_*_*.png')) == hybrid_sheets
+    for path in hybrid_sheets:
+        assert png_size(path) == (84, 28)
     frames = asset_json((fu_root / 'bees/bees/default.frames').read_text())['frameGrid']
     assert frames['size'] == [28, 28] and frames['names'] == [['drone', 'queen', 'youngQueen']]
-    passed('S16 all 35 parent sprite sheets and all three hybrid castes resolve')
+    passed('S16 all 595 unique hybrid sheets, 35 parent sheets and three caste frames resolve')
     assert not list((mod / 'monsters').rglob('*.monstertype'))
     overload_lua = (mod / 'objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua').read_text()
     assert 'function tryBeeSpawn() end' in overload_lua
