@@ -101,7 +101,7 @@ python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /
 Na branch `dev`, a Action **Build development PAK** também gera o pacote. Ela
 roda quando os assets ou scripts do mod mudam e pode ser iniciada manualmente em
 GitHub → Actions → Build development PAK → Run workflow, selecionando `dev`.
-O resultado fica no artefato da execução por 30 dias: PAK com a versão do
+O resultado fica no artefato da execução por 90 dias: PAK com a versão do
 `_metadata`, ZIP com `contents.pak` para Workshop e `SHA256SUMS`. O GitHub baixa
 esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as
 ferramentas OpenStarbound fixadas em `tools/pak_toolchain.json`, confere seus

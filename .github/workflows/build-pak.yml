@@ -55,4 +55,4 @@ jobs:
             ${{ runner.temp }}/pak-build/bee-abusive-industry-workshop-content.zip
             ${{ runner.temp }}/pak-build/SHA256SUMS
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 90
