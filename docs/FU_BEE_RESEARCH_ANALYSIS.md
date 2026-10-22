@@ -20,6 +20,7 @@ Fontes:
 - [Regras de combinação de tabelas](https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/zb/zb_util.lua)
 - [Instruções para mods](https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/a_modders/research/research_instructions.txt)
 - [Modelo de pesquisa](https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/a_modders/research/research_template.config)
+- [Árvore Madness e custos de referência](https://github.com/sayterdarkwynd/FrackinUniverse/blob/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/zb/researchTree/madness.config)
 
 ## Sequência atual
 
@@ -49,16 +50,23 @@ Criar um arquivo próprio, por exemplo
   1.400 Research, posição aproximada `[-150, -110]`.
 - Acrescentar `fubeesgenetics_hybrid_research` aos `children` de `bees3`.
   Seu `unlocks` conteria `fubeesgenetics_hybridizer`. Sugestão inicial:
-  2.200 Research, posição aproximada `[-150, -150]`.
+  2.200 Research (`fuscienceresource`) e 120 Madness
+  (`fumadnessresource`), posição aproximada `[-150, -150]`.
 - Dar a ambos ícones distintos, siglas prefixadas e descrições que expliquem
   consumo de energia, perda de vida da rainha e falha da hibridização. Conferir
   posições e legibilidade na interface do jogo.
 
+O custo de 120 Madness tem precedente no nó `psychiatry2` do FU, que também
+custa 2.200 Research. Representa a manipulação genética sem exigir o patamar
+de Madness dos nós avançados dessa árvore. O Overload Apiary continua custando
+apenas Research. Madness é um custo único da pesquisa: cada tentativa na
+máquina de hibridização continua consumindo 10.000 de energia, sem Madness.
+
 Esses valores são propostas de balanceamento. O FU entrega os blueprints com
 `player.giveBlueprint` ao concluir a pesquisa. As receitas já existentes na
 Bee Station usam os IDs de saída acima e podem permanecer com seus materiais.
-Na árvore Agriculture, `customConsumptionRules` consome moeda Research, mas
-**não consome os itens** em `price`: itens ali exigem posse, e as próprias
+Na árvore Agriculture, `customConsumptionRules` consome as moedas Research e
+Madness, mas **não consome os itens** em `price`: itens ali exigem posse, e as próprias
 receitas consomem os materiais ao fabricar.
 
 ## Desbloqueio atual e saves
