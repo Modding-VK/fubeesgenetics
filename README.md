@@ -1,11 +1,11 @@
 # Bee Abusive Industry
 
-Addon de **Frackin Universe para OpenStarbound**, com duas máquinas: Genetic
-Queen Filter (Bee Analyzer) e Bee Exchange (Auto Refugee).
+Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
+(Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.19-dev. Desenvolvimento atual: 0.2.20-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.20-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.19-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.20-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,7 +24,7 @@ A candidata estável permanece em revisão no PR #5; main não foi promovida.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.19-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.20-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -92,13 +92,15 @@ ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
 Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
 atualizar. As versões atuais já usam os mesmos 16 slots.
 
-## Overload Apiary (em desenvolvimento)
+## Overload Apiary (0.2.20-dev)
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
 vida útil da rainha **0,7×**. A receita é aprendida ao obter a Bee Station.
+Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
+como itens no inventário.
 Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
 
-## Genetic Hybridizer e abelhas híbridas (em desenvolvimento)
+## Genetic Hybridizer e abelhas híbridas (0.2.20-dev)
 
 Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
 energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
@@ -144,12 +146,12 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.19 passaram **135 grupos básicos**. Os 13 casos opcionais com o IC
-não foram repetidos nesta entrega: seu PAK original não está neste ambiente.
-Na 0.2.14, esses casos executaram o Lua real do PAK fornecido pelo usuário, conferido por hash.
+Na 0.2.20 passaram **167 grupos locais básicos e 13 casos opcionais com
+Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
+fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**53 arquivos**, com bytes idênticos e metadata JSON equivalente.
+**69 arquivos** com bytes idênticos e metadata JSON equivalente.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).

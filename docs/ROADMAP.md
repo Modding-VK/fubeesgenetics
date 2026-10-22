@@ -35,15 +35,16 @@ O mantenedor confirmou todas as alterações anteriores validadas e prontas.
 O novo ícone de apresentação ainda precisa de conferência visual no jogo.
 Ver [estado e prontidão](RELEASE_READINESS.md).
 
-## Apiário de sobrecarga — em desenvolvimento
+## Apiário de sobrecarga — implementado em `dev`
 
 Implementação iniciada em **0.2.20-dev**. O novo Apiário reutiliza o ciclo
 genético nativo do FU, requer **12 W**, multiplica produção de recursos e drones
 por **1,2×** e reduz a vida útil da rainha para **0,7×**. A receita melhora um
 Apiário normal com dois AI Chips e oito Titanium Bars. Ver
 [especificação e detalhes](OVERLOAD_APIARY_0_2_20.md).
+Não gera abelhas entidades capturáveis aleatórias.
 
-## Abelhas híbridas — em desenvolvimento
+## Abelhas híbridas — implementadas em `dev`
 
 A primeira implementação já inclui a máquina de hibridização, Queen/Young
 Queen/Drone genéricos com metadados de linhagem, produção dinâmica no Overload

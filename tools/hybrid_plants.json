@@ -1,0 +1,178 @@
+{
+  "aquarum": {
+    "id": "aquapodseed",
+    "name": "Aquapod Bud",
+    "likeness": 1
+  },
+  "artisan": {
+    "id": "brackentreeseed",
+    "name": "Bracken Tree Seed",
+    "likeness": 1
+  },
+  "assassin": {
+    "id": "lasherplantseed",
+    "name": "Lasher Seed",
+    "likeness": 1
+  },
+  "bumblebee": {
+    "id": "beeflower",
+    "name": "Beeflower Seed",
+    "likeness": 1
+  },
+  "carpenter": {
+    "id": "algaeseed",
+    "name": "Algae Pod",
+    "likeness": 1
+  },
+  "crystalwing": {
+    "id": "crystallite",
+    "name": "Crystallite",
+    "likeness": 1
+  },
+  "cuckoo": {
+    "id": "haleflowerseed",
+    "name": "Haleflower Seed",
+    "likeness": 1
+  },
+  "cybernetic": {
+    "id": "batterystem",
+    "name": "Battery Stem",
+    "likeness": 1
+  },
+  "devoratrix": {
+    "id": "aenemaflower",
+    "name": "Aenema Flower",
+    "likeness": 1
+  },
+  "digger": {
+    "id": "caprioleplantseed",
+    "name": "Capriole Seed",
+    "likeness": 1
+  },
+  "exspiravit": {
+    "id": "flowergrey",
+    "name": "Gray Flower",
+    "likeness": 1
+  },
+  "gelidburrower": {
+    "id": "blizzberryseed",
+    "name": "Blizzberry Seed",
+    "likeness": 1
+  },
+  "goldensaint": {
+    "id": "goldenglowseed",
+    "name": "Goldenglow Seed",
+    "likeness": 1
+  },
+  "harlequin": {
+    "id": "erithianalgaeseed",
+    "name": "Erithian Algae Seed",
+    "likeness": 1
+  },
+  "honey": {
+    "id": "beeflower",
+    "name": "Beeflower Seed",
+    "likeness": 1
+  },
+  "inventor": {
+    "id": "vextongueseed",
+    "name": "Vextongue Seed",
+    "likeness": 1
+  },
+  "isovapitdae": {
+    "id": "blisterbushplantseed",
+    "name": "Blister Pod",
+    "likeness": 1
+  },
+  "leafcutter": {
+    "id": "beeflower",
+    "name": "Beeflower Seed",
+    "likeness": 1
+  },
+  "loamzipper": {
+    "id": "greenleafseed",
+    "name": "Greenleaf Seed",
+    "likeness": 1
+  },
+  "mason": {
+    "id": "flowergreen",
+    "name": "Green Flower",
+    "likeness": 1
+  },
+  "orchid": {
+    "id": "flowerorchid",
+    "name": "Black Orchid",
+    "likeness": 1
+  },
+  "oremason": {
+    "id": "flowerbrown",
+    "name": "Brown Flower",
+    "likeness": 1
+  },
+  "plasterer": {
+    "id": "algaeseed",
+    "name": "Algae Pod",
+    "likeness": 1
+  },
+  "reaper": {
+    "id": "flowerred",
+    "name": "Red Flower",
+    "likeness": 1,
+    "source": "FU flowerred patch"
+  },
+  "redbanded": {
+    "id": "blexplantseed",
+    "name": "Blex Cactus Bulb",
+    "likeness": 1
+  },
+  "rimewing": {
+    "id": "flowergrey",
+    "name": "Gray Flower",
+    "likeness": 1
+  },
+  "sandprowler": {
+    "id": "blexplantseed",
+    "name": "Blex Cactus Bulb",
+    "likeness": 1
+  },
+  "scoria": {
+    "id": "hellfireplantseed",
+    "name": "Hellfire Plant Seed",
+    "likeness": 1
+  },
+  "shrouded": {
+    "id": "flowerblack",
+    "name": "Black Flower",
+    "likeness": 1
+  },
+  "squash": {
+    "id": "beeflower",
+    "name": "Beeflower Seed",
+    "likeness": 1
+  },
+  "stalwart": {
+    "id": "flowerblack",
+    "name": "Black Flower",
+    "likeness": 1
+  },
+  "stellar": {
+    "id": "lumivineseed",
+    "name": "Lumivine Seed",
+    "likeness": 1
+  },
+  "sweat": {
+    "id": "algaeseed",
+    "name": "Algae Pod",
+    "likeness": 1
+  },
+  "tunguskudae": {
+    "id": "corvexseed",
+    "name": "Corvex Sprout",
+    "likeness": 1
+  },
+  "xenodaemonae": {
+    "id": "aenemaflower",
+    "name": "Aenema Flower",
+    "likeness": 1
+  }
+}

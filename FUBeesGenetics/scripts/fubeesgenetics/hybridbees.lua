@@ -1,298 +1,382 @@
 require "/bees/genomeLibrary.lua"
+require "/scripts/fubeesgenetics/containerutil.lua"
 
-hybridbees = hybridbees or {}
+hybridbees = {}
+local M = hybridbees
+local copy, same = fubeesContainer.copy, fubeesContainer.same
+local catalog, byId, byPair, nativeData
 
-local hybridCatalog = root.assetJson("/bees/hybridSpecies.config")
-local speciesById = {}
-local speciesByPair = {}
-local nativeParents = hybridCatalog.production.parents
-local getFlowerLikenessNative
-
-for _, species in ipairs(hybridCatalog.hybrids) do
-  speciesById[species.id] = species
-  speciesByPair[species.parentFamilies[1] .. ":" .. species.parentFamilies[2]] = species
+-- Engine callbacks are unavailable while scripts are first being loaded.
+local function loadData()
+  if catalog then return end
+  catalog = root.assetJson("/bees/hybridSpecies.config")
+  nativeData = root.assetJson("/bees/beeData.config")
+  byId, byPair = {}, {}
+  for _, species in ipairs(catalog.hybrids) do
+    byId[species.id] = species
+    byPair[table.concat(species.parentFamilies, ":")] = species
+  end
 end
 
-local function familyFromItem(item)
-  if not item or type(item.name) ~= "string" then return nil end
-  return item.name:match("^bee_([^_]+)_[^_]+$")
+function M.family(item)
+  local name = type(item) == "table" and item.name or item
+  return type(name) == "string" and name:match("^bee_([^_]+)_[^_]+$") or nil
 end
 
-local function pairKey(familyA, familyB)
-  if familyA < familyB then return familyA .. ":" .. familyB end
-  return familyB .. ":" .. familyA
+function M.isHybrid(item) return M.family(item) == "hybrid" end
+
+function M.speciesForParents(a, b)
+  if type(a) ~= "string" or type(b) ~= "string" or a == b then return nil end
+  loadData()
+  return byPair[a < b and a .. ":" .. b or b .. ":" .. a]
 end
 
-local function midpoint(a, b)
-  if a == b then return a end
-  local average = (a + b) / 2
-  if average < 2 then return math.ceil(average) end
-  return math.floor(average)
+local function validGenome(genome, family)
+  loadData()
+  if type(genome) ~= "string" or #genome ~= 18 or genome:find("[^0-9A-Z]") then return false end
+  local subtype = genelib.statFromGenomeToValue(genome, "subtype")
+  return nativeData.stats[family] and nativeData.stats[family][subtype] ~= nil
+end
+
+local function parentGenome(item)
+  local genome = item.parameters and item.parameters.genome
+  -- Pinned FU's Shuttershard default uses mutationChance=0.05. Its encoder
+  -- rounds that gene to a single "0" instead of "00". Repair only that exact
+  -- known default for inheritance; never rewrite the inventory specimen.
+  if M.family(item) == "crystalwing" and genome == "02040F0101GO0OO00" then
+    return "02040F0101GO00OO00"
+  end
+  return genome
 end
 
 local function ensureGenome(item)
-  if item.parameters and item.parameters.genome then return item.parameters.genome end
-  return genelib.generateDefaultGenome(item.name)
+  item.parameters = item.parameters or {}
+  if not item.parameters.genome then item.parameters.genome = genelib.generateDefaultGenome(item.name) end
+  return parentGenome(item)
 end
 
-local function parentStats(item)
-  local genome = ensureGenome(item)
-  return genelib.returnFullGenomeStats(genome), genome
+function M.validParent(item, caste)
+  loadData()
+  local family = M.family(item)
+  if not family or family == "hybrid" or not nativeData.stats[family] then return false end
+  local ok, tagged = pcall(root.itemHasTag, item.name, caste)
+  if not ok or not tagged then return false end
+  return validGenome(parentGenome(item), family)
 end
 
-local function geneForGenome(statsA, genomeA, statsB, genomeB, stat, exceptions)
-  local rawA = genelib.statFromGenomeToDecimal(genomeA, stat)
-  local rawB = genelib.statFromGenomeToDecimal(genomeB, stat)
-  local raw
-
-  if stat == "subtype" then
-    raw = math.random(1, 2)
-  elseif stat == "workTime" then
-    local a = statsA.workTime
-    local b = statsB.workTime
-    if a == b and a ~= "both" then
-      raw = a == "night" and 1 or 0
-    elseif a == "both" and b ~= "both" then
-      raw = b == "night" and 1 or 0
-    elseif b == "both" and a ~= "both" then
-      raw = a == "night" and 1 or 0
-    else
-      raw = math.random(0, 1)
-    end
-  elseif stat == "mutationChance" then
-    raw = math.max(rawA, rawB) + 1
-    if raw > (genelib.libraryLength ^ 2 - 1) then
-      raw = genelib.libraryLength ^ 2 - 1
-      table.insert(exceptions, stat)
-    end
-  else
-    raw = math.min(rawA, rawB) - 1
-    if raw < 0 then
-      raw = 0
-      table.insert(exceptions, stat)
-    end
-  end
-
-  return genelib.numberToStat(raw)
-end
-
-function hybridbees.makeGenome(queenItem, droneItem)
-  local statsA, genomeA = parentStats(queenItem)
-  local statsB, genomeB = parentStats(droneItem)
-  local exceptions = {}
-  local genome = ""
+function M.makeGenome(queenItem, droneItem)
+  local a, b = ensureGenome(queenItem), ensureGenome(droneItem)
+  local genome, exceptions = "", {}
   for _, stat in ipairs(genelib.statOrder) do
-    genome = genome .. geneForGenome(statsA, genomeA, statsB, genomeB, stat, exceptions)
+    local av, bv = genelib.statFromGenomeToDecimal(a, stat), genelib.statFromGenomeToDecimal(b, stat)
+    local value
+    if stat == "subtype" then value = math.random(1, 2)
+    elseif stat == "workTime" then
+      if av == bv and av < 2 then value = av
+      elseif av >= 2 and bv < 2 then value = bv
+      elseif bv >= 2 and av < 2 then value = av
+      else value = math.random(0, 1) end
+    elseif stat == "mutationChance" then
+      value = math.min(1295, math.max(av, bv) + 1)
+      if value <= math.max(av, bv) then exceptions[#exceptions + 1] = stat end
+    else
+      value = math.max(0, math.min(av, bv) - 1)
+      if value >= math.min(av, bv) then exceptions[#exceptions + 1] = stat end
+    end
+    genome = genome .. genelib.numberToStat(value)
   end
   return genome, exceptions
 end
 
-function hybridbees.makeLineage(queenItem, droneItem, genome)
-  local familyA = familyFromItem(queenItem)
-  local familyB = familyFromItem(droneItem)
-  if not familyA or not familyB or familyA == familyB or familyA == "hybrid" or familyB == "hybrid" then
-    return nil, "invalidParents"
-  end
+local function midpoint(a, b)
+  local value = (a + b) / 2
+  return value < 2 and math.ceil(value) or math.floor(value)
+end
 
-  local species = speciesByPair[pairKey(familyA, familyB)]
-  if not species then return nil, "unknownSpecies" end
-
-  local queenGenome = ensureGenome(queenItem)
-  local droneGenome = ensureGenome(droneItem)
-  local queenSubtype = genelib.statFromGenomeToValue(queenGenome, "subtype")
-  local droneSubtype = genelib.statFromGenomeToValue(droneGenome, "subtype")
-  local parentSubtypes = {}
-  parentSubtypes[familyFromItem(queenItem)] = queenSubtype
-  parentSubtypes[familyFromItem(droneItem)] = droneSubtype
-
-  local beeData = root.assetJson("/bees/beeData.config")
-  local subtypeNames = {}
-  for family, subtype in pairs(parentSubtypes) do
-    subtypeNames[family] = beeData.stats[family][subtype].name
+-- Keep all intolerances. Pick one favourite per parent, deterministically.
+-- Only explicitly declared conflicts are averaged (absence is not a conflict).
+function M.inheritBiomes(a, b)
+  local result, names = {}, {}
+  for name in pairs(a) do names[name] = true end
+  for name in pairs(b) do names[name] = true end
+  for name in pairs(names) do
+    local av, bv = a[name], b[name]
+    local value = av ~= nil and bv ~= nil and midpoint(av, bv) or (av or bv)
+    result[name] = value
   end
-  local biomeValues = {}
-  local parentBiomesA = beeData.biomeLikeness[familyA] or {}
-  local parentBiomesB = beeData.biomeLikeness[familyB] or {}
-  for biome, value in pairs(parentBiomesA) do
-    biomeValues[biome] = midpoint(value, parentBiomesB[biome] or 2)
+  local selected = {}
+  for _, parent in ipairs({a, b}) do
+    local favorites = {}
+    for name, value in pairs(parent) do
+      if value == 3 and result[name] == 3 then favorites[#favorites + 1] = name end
+    end
+    table.sort(favorites)
+    if favorites[1] then selected[favorites[1]] = true end
   end
-  for biome, value in pairs(parentBiomesB) do
-    if biomeValues[biome] == nil then biomeValues[biome] = midpoint(parentBiomesA[biome] or 2, value) end
-  end
+  for name, value in pairs(result) do if value == 3 and not selected[name] then result[name] = 2 end end
+  return result
+end
 
-  local preferredPlants = {}
-  for _, plant in ipairs(species.preferredPlants) do
-    preferredPlants[plant.parent] = plant.id
-  end
+local function refreshEnvironment(lineage, species)
+  lineage.biomeLikeness = M.inheritBiomes(nativeData.biomeLikeness[lineage.queenFamily] or {},
+    nativeData.biomeLikeness[lineage.droneFamily] or {})
+  lineage.preferredPlants = {}
+  for _, plant in ipairs(species.preferredPlants) do lineage.preferredPlants[plant.parent] = plant.id end
+  lineage.version = 2
+end
 
-  local parents = {familyA, familyB}
-  table.sort(parents)
-  local subtypeId = genelib.statFromGenomeToValue(genome, "subtype")
-  local lineage = {
-    speciesId = species.id,
-    parentFamilies = parents,
-    queenFamily = familyFromItem(queenItem),
-    droneFamily = familyFromItem(droneItem),
-    parentSubtypes = parentSubtypes,
-    parentFlowerSubtypes = subtypeNames,
-    preferredPlants = preferredPlants,
-    biomeLikeness = biomeValues,
-    subspecies = subtypeId
-  }
+function M.makeLineage(queenItem, droneItem, genome)
+  local a, b = M.family(queenItem), M.family(droneItem)
+  local species = M.speciesForParents(a, b)
+  if not species or not M.validParent(queenItem, "queen") or not M.validParent(droneItem, "drone")
+    or not validGenome(genome, "hybrid") then return nil, "invalidParents" end
+  local lineage = {speciesId = species.id, parentFamilies = copy(species.parentFamilies),
+    queenFamily = a, droneFamily = b, parentSubtypes = {},
+    subspecies = genelib.statFromGenomeToValue(genome, "subtype")}
+  lineage.parentSubtypes[a] = genelib.statFromGenomeToValue(ensureGenome(queenItem), "subtype")
+  lineage.parentSubtypes[b] = genelib.statFromGenomeToValue(ensureGenome(droneItem), "subtype")
+  refreshEnvironment(lineage, species)
   return lineage
 end
 
-local function isHybrid(item)
-  return item and item.parameters and item.parameters.hybridLineage ~= nil
+function M.lineage(item)
+  if not M.isHybrid(item) or not item.parameters then return nil end
+  local lineage = item.parameters.hybridLineage
+  if type(lineage) ~= "table" then return nil end
+  local species = M.speciesForParents(lineage.queenFamily, lineage.droneFamily)
+  if not species or species.id ~= lineage.speciesId or not validGenome(item.parameters.genome, "hybrid")
+    or type(lineage.parentSubtypes) ~= "table" then return nil end
+  for _, family in ipairs(species.parentFamilies) do
+    if not nativeData.stats[family][lineage.parentSubtypes[family]] then return nil end
+  end
+  lineage.parentFamilies = copy(species.parentFamilies)
+  lineage.subspecies = genelib.statFromGenomeToValue(item.parameters.genome, "subtype")
+  if lineage.version ~= 2 then refreshEnvironment(lineage, species) end
+  return lineage
 end
 
-local function speciesForLineage(lineage)
-  return lineage and speciesById[lineage.speciesId]
+function M.compatible(a, b)
+  local la, lb = M.lineage(a), M.lineage(b)
+  return la and lb and la.speciesId == lb.speciesId or false
 end
 
-local function hybridBiomeFavor(lineage)
-  local likeness = lineage.biomeLikeness[biome] or 2
-  if likeness == 0 then return -1 end
-  if likeness == 1 then return beeData.biomeDisliked end
-  if likeness == 3 then return beeData.biomeFavorite end
-  return beeData.biomeLiked
+local function contains(list, value)
+  if type(list) == "string" then return list == value end
+  for _, entry in ipairs(list or {}) do if entry == value then return true end end
+  return false
 end
 
-local function hybridFlowerFavor(lineage)
-  local names = lineage.parentFlowerSubtypes or {}
-  local total, count = 0, 0
+function M.areRivals(a, b)
+  loadData()
+  local fa, fb, la, lb = M.family(a), M.family(b), M.lineage(a), M.lineage(b)
+  if la and lb and la.speciesId == lb.speciesId then return false end
+  if la then
+    local rivals = byId[la.speciesId].rivalNativeFamilies
+    if lb then
+      for _, parent in ipairs(lb.parentFamilies) do if contains(rivals, parent) then return true end end
+    elseif contains(rivals, fb) then return true end
+  end
+  if lb then
+    local rivals = byId[lb.speciesId].rivalNativeFamilies
+    if la then
+      for _, parent in ipairs(la.parentFamilies) do if contains(rivals, parent) then return true end end
+    elseif contains(rivals, fa) then return true end
+  end
+  if la or lb or not fa or not fb or fa == fb then return false end
+  return contains(nativeData.rivals[fa], fb) or contains(nativeData.rivals[fb], fa)
+end
+
+function M.successChance(species) return species and species.parentSpeciesAreRivals and 0.1 or 0.3 end
+
+-- Each denominator is fixed by its native parental subtype, never by the
+-- current queen's genes. The +1 floor gives zero-gene hybrids a small finite
+-- output while preserving the effect of genetic improvement and frame bonuses.
+function M.productionRates(lineage, genome, frameBonus, multiplier)
+  loadData()
+  local rates = {}
+  local genetic = genelib.statFromGenomeToValue(genome, "baseProduction")
+  local priority = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
   for _, family in ipairs(lineage.parentFamilies) do
-    local name = names[family]
-    if name then
-      local favor = getFlowerLikenessNative(name)
-      if favor >= 0 then
-        total = total + favor
-        count = count + 1
-      end
+    local parent = nativeData.stats[family][lineage.parentSubtypes[family]]
+    local weights = catalog.production.weights
+    local weight = family == priority and weights.priorityParent or weights.secondaryParent
+    local factor = ((genetic + 1) * (multiplier or 1) + (frameBonus or 0)) / (math.max(0, parent.baseProduction) + 1)
+    for product, requirement in pairs(parent.production) do
+      if requirement > 0 then rates[product] = (rates[product] or 0) + math.max(0, weight * parent.baseProduction / requirement * factor) end
+    end
+  end
+  return rates
+end
+
+function M.flowerFavor(lineage)
+  loadData()
+  local preferences = {}
+  for _, plant in ipairs(byId[lineage.speciesId].preferredPlants) do
+    preferences[plant.id] = math.max(preferences[plant.id] or 0, plant.likeness or 1)
+  end
+  local objects = world.objectQuery(entity.position(), nativeData.flowerSearchRadius,
+    {withoutEntityId = entity.id(), order = "nearest"})
+  local count, favor = 0, 0
+  for _, id in ipairs(objects) do
+    local stage = world.farmableStage(id)
+    if stage then
+      local stages = world.getObjectParameter(id, "stages", {})
+      local name = world.entityName(id)
+      local addition = preferences[name] or nativeData.flowerDefaultLikeness
+      addition = addition * (stage > #stages - 2 and nativeData.flowerLastTwoStagesModifier or nativeData.flowerLowerStagesModifier)
+      count = count + 1
+      favor = favor + addition * (count > nativeData.flowerMinimum and nativeData.flowerExtrasFavorModifier or 1)
+      if count >= nativeData.flowerMaximum then break end
     end
   end
   if count == 0 then return -1 end
-  return total / count
+  if count <= nativeData.flowerMinimum then favor = favor / (nativeData.flowerMinimum / count) end
+  return favor
 end
 
-local function productionRequirements(lineage)
-  local species = speciesForLineage(lineage)
-  if not species then return nil end
-  if not species.subspecies[lineage.subspecies] then return nil end
+local function putOutput(item)
+  for slot = firstInventorySlot, slotCount do
+    item = world.containerPutItemsAt(entity.id(), item, slot - 1)
+    contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+    if not item then return end
+  end
+  if item then world.spawnItem(item, entity.position()) end
+end
 
-  local requirements = {}
-  local priorityFamily = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
-  for _, family in ipairs(lineage.parentFamilies) do
-    local weight = family == priorityFamily and 0.5 or 0.25
-    local parent = nativeParents[family]
-    local subtype = parent and parent.subspecies[lineage.parentSubtypes[family]]
-    if subtype then
-      for product, requirement in pairs(subtype.production) do
-        local rate = weight * subtype.baseProduction / requirement
-        requirements[product] = (requirements[product] or 0) + rate
+function M.install(multiplier)
+  multiplier = multiplier or 1
+  local nativeBiome, nativeFlower, nativeDrone = getBiomeFavor, getFlowerLikeness, droneProduction
+  local nativeYoung, nativeQueen, nativeTick = generateYoungQueen, queenProduction, beeTick
+  local nativeSame, nativeActive, nativeRivalries = isSameQueen, isDroneActive, checkRivalries
+
+  local function biomeFavor(lineage)
+    -- Delegate to FU so resistance frames retain their original behavior.
+    local previous = beeData.biomeLikeness.hybrid
+    beeData.biomeLikeness.hybrid = lineage.biomeLikeness
+    local result = nativeBiome("bee_hybrid_queen")
+    beeData.biomeLikeness.hybrid = previous
+    return result
+  end
+  getBiomeFavor = function(name)
+    if M.family(name) == "hybrid" or name == "hybrid" then
+      local lineage = M.lineage(queen)
+      return lineage and biomeFavor(lineage) or -1
+    end
+    return nativeBiome(name)
+  end
+  getFlowerLikeness = function(subtype)
+    local lineage = M.lineage(queen)
+    if lineage then return M.flowerFavor(lineage) end
+    return nativeFlower(subtype)
+  end
+  isSameQueen = function(a, b)
+    if M.isHybrid(a) or M.isHybrid(b) then
+      if not M.compatible(a, b) or not same(M.lineage(a), M.lineage(b)) then return false end
+    end
+    return nativeSame(a, b)
+  end
+  isDroneActive = function(drone)
+    if M.isHybrid(drone) or M.isHybrid(queen) then
+      if not M.compatible(drone, queen) then return false end
+    end
+    return nativeActive(drone)
+  end
+  checkRivalries = function()
+    local halt = nativeRivalries()
+    local q = contents[queenSlot]
+    for i, slot in ipairs(droneSlots) do
+      local a = contents[slot]
+      if a and root.itemHasTag(a.name, "drone") then
+        if q and (M.isHybrid(a) or M.isHybrid(q)) and M.areRivals(q, a) then
+          halt = true
+          world.containerTakeNumItemsAt(entity.id(), slot - 1, math.max(1, math.floor(a.count * beeData.droneDecayPercentile)))
+          contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+        end
+        for j = i + 1, #droneSlots do
+          local b = contents[droneSlots[j]]
+          if b and root.itemHasTag(b.name, "drone") and (M.isHybrid(a) or M.isHybrid(b)) and M.areRivals(a, b) then
+            halt = true
+            -- Genes may be zero after hybridization; avoid FU's toughness / 0.
+            local ta = math.max(1, genelib.statFromGenomeToValue(a.parameters.genome, "droneToughness"))
+            local tb = math.max(1, genelib.statFromGenomeToValue(b.parameters.genome, "droneToughness"))
+            world.containerTakeNumItemsAt(entity.id(), slot - 1, math.min(a.count, math.max(1, math.ceil(b.count * tb / (3 * ta)))))
+            world.containerTakeNumItemsAt(entity.id(), droneSlots[j] - 1, math.min(b.count, math.max(1, math.ceil(a.count * ta / (3 * tb)))))
+            contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+            contents[droneSlots[j]] = world.containerItemAt(entity.id(), droneSlots[j] - 1)
+          end
+        end
       end
     end
+    return halt
   end
-
-  local baseProduction = genelib.statFromGenomeToValue(queen.parameters.genome, "baseProduction")
-  for product, rate in pairs(requirements) do
-    if rate > 0 then requirements[product] = baseProduction / rate end
+  generateYoungQueen = function()
+    local lineage = M.lineage(queen)
+    if not lineage then return nativeYoung() end
+    local genomes = {}
+    for _, slot in ipairs(droneSlots) do
+      local drone = contents[slot]
+      if M.compatible(queen, drone) then genomes[#genomes + 1] = drone.parameters.genome end
+    end
+    local genome = genelib.evolveGenome(genelib.getAvarageGenome(queen.parameters.genome, genomes), frameBonuses.mutationChance)
+    local child = {name = "bee_hybrid_youngQueen", count = 1,
+      parameters = {genome = genome, hybridLineage = copy(lineage)}}
+    M.lineage(child)
+    return child
   end
-  return requirements
-end
-
-local function hybridDroneProduction(drone)
-  local lineage = drone.parameters.hybridLineage or (queen and queen.parameters.hybridLineage)
-  if not queen or not isHybrid(queen)
-    or queen.parameters.hybridLineage.speciesId ~= (lineage and lineage.speciesId) then
-    return
-  end
-  local requirements = productionRequirements(lineage)
-  if not requirements then return end
-
-  local biomeFavor = hybridBiomeFavor(lineage)
-  if biomeFavor == -1 then return end
-  local flowerFavor = hybridFlowerFavor(lineage)
-  if flowerFavor == -1 then return end
-  if ticksToSimulate and ticksToSimulate % 2 == 1
-    and genelib.statFromGenomeToValue(drone.parameters.genome, "workTime") ~= "both" then
-    return
-  end
-
-  local production = (genelib.statFromGenomeToValue(drone.parameters.genome, "baseProduction")
-    + frameBonuses.baseProduction) * 1.2
-    * (((drone.count / 1000) + math.min(1 / ((1 + hivesAroundHive) * 0.75), 1)
-      + flowerFavor + biomeFavor) / 4) * 0.5
-
-  for product, requirement in pairs(requirements) do
-    droneProductionProgress[product] = (droneProductionProgress[product] or 0) + production
-    if droneProductionProgress[product] >= requirement then
-      local count = math.floor(droneProductionProgress[product] / requirement)
-      droneProductionProgress[product] = droneProductionProgress[product] - requirement * count
-      local item = {name = product, count = count}
-      for i = firstInventorySlot, slotCount do
-        item = world.containerPutItemsAt(entity.id(), item, i - 1)
-        contents[i] = world.containerItemAt(entity.id(), i - 1)
+  queenProduction = function()
+    local lineage = M.lineage(queen)
+    if not lineage then
+      if M.isHybrid(queen) then return end
+      return nativeQueen()
+    end
+    local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
+    if bv < 0 or fv < 0 then return end
+    local hasMate = false
+    for _, slot in ipairs(droneSlots) do if M.compatible(queen, contents[slot]) then hasMate = true end end
+    local randomness = math.random(beeData.productionRandomModifierRange[1], beeData.productionRandomModifierRange[2]) * 0.01
+    -- Unfertilized queens can establish their own drones; young queens need a
+    -- compatible mate. A small floor keeps a zero breeding gene viable.
+    local breed = (genelib.statFromGenomeToValue(queen.parameters.genome, "droneBreedRate") + 0.1) * multiplier
+    droneProgress = droneProgress + (breed + frameBonuses.droneBreedRate * ((fv + bv) / 2)) * randomness * 0.25
+    if hasMate then
+      youngQueenProgress = youngQueenProgress + (0.01 + genelib.statFromGenomeToValue(queen.parameters.genome, "queenBreedRate")
+        + frameBonuses.queenBreedRate * ((fv + bv) / 2)) * randomness * 0.5
+      while youngQueenProgress >= beeData.youngQueenProductionRequirement do
+        youngQueenProgress = youngQueenProgress - beeData.youngQueenProductionRequirement
+        putOutput(generateYoungQueen())
+      end
+    end
+    if droneProgress >= beeData.droneProductionRequirement then
+      local count = math.floor(droneProgress / beeData.droneProductionRequirement)
+      droneProgress = droneProgress % beeData.droneProductionRequirement
+      local params = copy(queen.parameters); params.lifespan = nil; params.wild = nil
+      local item = {name = "bee_hybrid_drone", count = count, parameters = params}
+      for _, slot in ipairs(droneSlots) do
+        item = world.containerPutItemsAt(entity.id(), item, slot - 1)
+        contents[slot] = world.containerItemAt(entity.id(), slot - 1)
         if not item then break end
       end
-      if item and not ticksToSimulate then
-        world.spawnItem(item, entity.position(), nil, nil, nil, 0.5)
-      end
+      if item then putOutput(item) end
     end
+    ageQueen()
   end
-end
-
-function hybridbees.install()
-  getFlowerLikenessNative = getFlowerLikeness
-  local nativeBiomeFavor = getBiomeFavor
-  local nativeDroneProduction = droneProduction
-  local nativeGenerateYoungQueen = generateYoungQueen
-  local nativeTryBeeSpawn = tryBeeSpawn
-
-  getBiomeFavor = function(name)
-    if name and name:match("^bee_hybrid_") and queen and isHybrid(queen) then
-      return hybridBiomeFavor(queen.parameters.hybridLineage)
-    end
-    return nativeBiomeFavor(name)
+  beeTick = function(dt)
+    -- Native FU otherwise requires existing drones before allowing any births.
+    if M.lineage(queen) then hasDrones = true end
+    return nativeTick(dt)
   end
-
-  getFlowerLikeness = function(subtypeName)
-    if queen and isHybrid(queen) then
-      return hybridFlowerFavor(queen.parameters.hybridLineage)
-    end
-    return getFlowerLikenessNative(subtypeName)
-  end
-
   droneProduction = function(drone)
-    if isHybrid(drone) or (queen and isHybrid(queen)) then
-      return hybridDroneProduction(drone)
+    if not M.isHybrid(drone) and not M.isHybrid(queen) then return nativeDrone(drone) end
+    if not M.compatible(drone, queen) then return end
+    local lineage = M.lineage(drone)
+    local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
+    if bv < 0 or fv < 0 then return end
+    local efficiency = ((drone.count / 1000) + math.min(1 / ((1 + hivesAroundHive) * 0.75), 1) + fv + bv) / 4 * 0.5
+    for product, rate in pairs(M.productionRates(lineage, drone.parameters.genome, frameBonuses.baseProduction, multiplier)) do
+      local progress = (droneProductionProgress[product] or 0) + rate * efficiency
+      local count = math.floor(progress)
+      droneProductionProgress[product] = progress - count
+      if count > 0 then putOutput({name = product, count = count}) end
     end
-    return nativeDroneProduction(drone)
   end
-
-  generateYoungQueen = function()
-    local item = nativeGenerateYoungQueen()
-    if queen and isHybrid(queen) then
-      item.parameters.hybridLineage = copy(queen.parameters.hybridLineage)
-    end
-    return item
-  end
-
-  tryBeeSpawn = function(family, genome)
-    if family == "hybrid" then return end
-    return nativeTryBeeSpawn(family, genome)
-  end
-end
-
-function hybridbees.isRivalHybridization(species)
-  return species and species.parentSpeciesAreRivals == true
-end
-
-function hybridbees.successChance(species)
-  if hybridbees.isRivalHybridization(species) then return 0.1 end
-  return 0.3
-end
-
-function hybridbees.speciesForParents(familyA, familyB)
-  return speciesByPair[pairKey(familyA, familyB)]
 end

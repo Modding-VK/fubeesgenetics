@@ -13,7 +13,7 @@
   "smashOnBreak": true,
   "health": 0.1,
   "slotCount": 3,
-  "hasWindowIcon": true,
+  "hasWindowIcon": false,
   "inventoryIcon": "/bees/objects/apiary/icon.png",
   "openFrameIndex": 0,
   "frameCooldown": 1,

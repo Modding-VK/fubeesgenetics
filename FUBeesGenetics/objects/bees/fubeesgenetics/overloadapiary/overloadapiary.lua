@@ -1,68 +1,61 @@
--- Powered variant of the Frackin Universe apiary. Keep the upstream apiary's
--- storage, frame, genetics, biome and production behavior, then apply the
--- industrial multipliers and gate simulation on FU power.
 require "/scripts/fupower.lua"
 require "/bees/apiary.lua"
+require "/scripts/fubeesgenetics/containerutil.lua"
+require "/scripts/fubeesgenetics/hybridbees.lua"
 
-local upstreamInit = init
-local upstreamUpdate = update
-local upstreamUpdate2 = update2
-
-local function powerAvailable(dt)
-	power.update(dt)
-	local watts = config.getParameter("isn_requiredPower", 12)
-	if power.consume(watts * dt) then return true end
-	setAnimationStates(true, false, false)
-	return false
-end
+local upstreamInit, upstreamUpdate = init, update2
+local upstreamDroneProduction, upstreamQueenProduction = droneProduction, queenProduction
+local upstreamAgeQueen = ageQueen
 
 function init()
-	upstreamInit()
-	power.init()
+  fubeesContainer.install()
+  upstreamInit()
+  power.init()
+  -- An unloaded power network cannot pay for production. Discard FU's offline
+  -- simulation timestamps, including timestamps from an older saved version.
+  storage.lastActive, storage.unfinishedTicks, ticksToSimulate = nil, nil, nil
 end
 
--- The upstream first-update path switches the object's update callback to
--- update2. Both paths therefore enforce the same continuous power draw.
 function update(dt)
-	if powerAvailable(dt) then upstreamUpdate(dt) end
+  if biome == "unknown" then return end
+  power.update(dt)
+  if power.consume(config.getParameter("isn_requiredPower", 12) * dt) then
+    upstreamUpdate(dt)
+  else
+    setAnimationStates(true, false, false)
+  end
+end
+update2 = update
+
+function uninit()
+  storage.lastActive, storage.unfinishedTicks = nil, nil
 end
 
-function update2(dt)
-	if powerAvailable(dt) then upstreamUpdate2(dt) end
-end
-
-local upstreamDroneProduction = droneProduction
 function droneProduction(drone)
-	local oldBonus = frameBonuses.baseProduction
-	local base = genelib.statFromGenomeToValue(drone.parameters.genome, "baseProduction")
-	frameBonuses.baseProduction = oldBonus + base * 0.2
-	upstreamDroneProduction(drone)
-	frameBonuses.baseProduction = oldBonus
+  local oldBonus = frameBonuses.baseProduction
+  local base = genelib.statFromGenomeToValue(drone.parameters.genome, "baseProduction")
+  frameBonuses.baseProduction = oldBonus + base * 0.2
+  upstreamDroneProduction(drone)
+  frameBonuses.baseProduction = oldBonus
 end
 
-local upstreamStatFromGenomeToValue = genelib.statFromGenomeToValue
+local nativeStat = genelib.statFromGenomeToValue
 local boostDroneBreeding = false
 genelib.statFromGenomeToValue = function(genome, stat, ...)
-	local value = upstreamStatFromGenomeToValue(genome, stat, ...)
-	if boostDroneBreeding and stat == "droneBreedRate" and queen
-		and genome == queen.parameters.genome then
-		return value * 1.2
-	end
-	return value
+  local value = nativeStat(genome, stat, ...)
+  if boostDroneBreeding and stat == "droneBreedRate" and queen and genome == queen.parameters.genome then return value * 1.2 end
+  return value
 end
 
-local upstreamQueenProduction = queenProduction
 function queenProduction()
-	boostDroneBreeding = true
-	upstreamQueenProduction()
-	boostDroneBreeding = false
+  boostDroneBreeding = true
+  upstreamQueenProduction()
+  boostDroneBreeding = false
 end
 
-local upstreamAgeQueen = ageQueen
-function ageQueen(amount)
-	return upstreamAgeQueen((amount or 1) / 0.7)
-end
+function ageQueen(amount) return upstreamAgeQueen((amount or 1) / 0.7) end
+hybridbees.install(1.2)
 
--- Hybrid lineages are handled here so native FU apiaries remain untouched.
-require "/scripts/fubeesgenetics/hybridbees.lua"
-hybridbees.install()
+-- The powered apiary keeps all bees in its container; FU's random capturable
+-- world-bee spawn is disabled for both native and hybrid queens.
+function tryBeeSpawn() end

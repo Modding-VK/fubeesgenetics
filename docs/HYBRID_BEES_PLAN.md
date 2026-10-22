@@ -8,14 +8,14 @@ genome e a linhagem. A colmeia produz os recursos das duas espécies em
 quantidades menores. Há duas subespécies: uma prioriza os recursos da espécie
 da Queen progenitora; a outra, os da espécie do Drone progenitor.
 
-## Estado da primeira implementação em `dev`
+## Estado da implementação em `dev`
 
 Foram adicionados os itens genéricos `bee_hybrid_queen`,
 `bee_hybrid_youngQueen` e `bee_hybrid_drone`; o catálogo de 595 combinações é
 incluído nos assets do mod. A linhagem guarda os progenitores, subtipos,
-preferências e subespécie. Os ícones dos itens sobrepõem as imagens das duas
-progenitoras, então as duas subespécies da mesma linhagem têm a mesma
-aparência.
+preferências e subespécie. Cada ícone combina uma metade do sprite de cada
+progenitora em uma única abelha de 28 × 28 pixels. As duas subespécies da
+mesma linhagem têm a mesma aparência.
 
 A máquina de hibridização tem slots de Queen, Drone e saída, acumula 10.000
 unidades de energia a 24 W, consome ambos os progenitores nos dois resultados e
@@ -25,9 +25,10 @@ Após amadurecer no apiário, a Queen híbrida preserva a linhagem em Young Quee
 Drones; a produção dinâmica dos dois conjuntos de recursos está habilitada no
 Overload Apiary. A receita e o desbloqueio são feitos pela Bee Station.
 
-A primeira implementação ainda precisa de validação dentro do jogo. A arte
-combinada é gerada nos ícones dos itens usando as sprites parentais; não foram
-criados 595 arquivos de sprite independentes.
+A implementação ainda precisa de validação dentro do jogo. A arte combinada
+é gerada nos ícones dos itens usando os sprites parentais; não foram criados
+595 arquivos independentes. O Overload Apiary não gera abelhas entidades
+capturáveis aleatórias, inclusive para as híbridas.
 
 ## Regras definidas
 
@@ -74,13 +75,14 @@ trocam essa prioridade. Os valores devem ser ajustáveis em uma tabela central
 para permitir balanceamento sem alterar a máquina.
 
 O catálogo lista para cada par todos os recursos presentes nos dois subtipos
-nativos de cada progenitora. A quantidade é derivada das exigências reais do
-FU: para cada recurso, soma-se `peso × produção-base parental / exigência`
-entre as progenitoras; a exigência efetiva da híbrida é a produção-base híbrida
-dividida por essa soma. Assim, se ambas produzem o mesmo recurso, as
-contribuições se somam em uma única saída. A genética da Queen, bioma, flores,
-quadros e apiários próximos continuam afetando a quantidade final como no
-sistema nativo.
+nativos de cada progenitora. Para cada recurso, a taxa de cada progenitora é
+`peso × produção-base parental / exigência FU × ((produção-base genética da
+híbrida + 1) × multiplicador do apiário + bônus de quadros) /
+(produção-base parental + 1)`. As contribuições de recursos compartilhados
+se somam em uma única saída. O denominador parental permanece fixo para que
+melhorias genéticas da híbrida realmente aumentem a produção. O `+1` evita
+divisão por zero quando o gene chega a zero. Bioma, flores e apiários próximos
+aplicam a eficiência ambiental nativa ao resultado.
 
 O nome de cada espécie é `<Parent A> × <Parent B> Hybrid`, em ordem alfabética
 de IDs FU. Cada linhagem tem uma subespécie **Queen-parent-dominant** e outra
@@ -92,13 +94,13 @@ para cada combinação.
 
 ## Aparência e sprites
 
-Cada espécie híbrida terá um único desenho de abelha compartilhado por suas
+Cada espécie híbrida tem um único desenho de abelha compartilhado por suas
 duas subespécies. A aparência da nova espécie combina características visuais
 das duas progenitoras; a dominância da subespécie altera a prioridade de
 produção, não o sprite. Portanto, Queens, Young Queens e Drones da mesma
 linhagem usam a aparência da espécie híbrida, sem variação visual entre as
-subespécies. O catálogo define os progenitores de cada sprite, mas a arte de
-cada combinação ainda precisa ser criada.
+subespécies. A arte de cada combinação é composta em tempo de execução a
+partir das metades dos sprites parentais, sem criar outro conjunto de imagens.
 
 O formato nativo `beeData.stats[family][subtype].production` não representa
 saídas diferentes por linhagem. A implementação precisa de um caminho dinâmico
@@ -113,7 +115,8 @@ como etapa posterior.
 Os valores do FU são `0` (deadly), `1` (disliked), `2` (liked) e `3` (favorite).
 Cada preferência não herdada explicitamente usa `2` como valor neutro.
 
-- Intolerâncias herdadas são combinadas dos dois progenitores.
+- Intolerâncias herdadas são combinadas dos dois progenitores quando não há
+  conflito explícito de valor para o mesmo bioma.
 - Se um progenitor tem preferência por vários biomas, ele transmite no máximo
   uma dessas preferências. A seleção ocorre na criação da Queen e fica salva na
   linhagem, para não mudar entre recargas.
@@ -177,10 +180,10 @@ de rivalidade nativa simetrizada do FU.
 - O catálogo inclui os rivais nativos de cada espécie; a regra acima determina
   as relações entre todas as 595 híbridas sem uma lista duplicada de arestas.
 
-Como ponto inicial de energia, proponho uma demanda contínua de **24 W**,
-equivalente à demanda documentada da Centrifuge do FU. A 24 W constantes,
-10.000 unidades levam cerca de **6 min 57 s** para acumular. A máquina deve
-usar a rede `fupower` do FU e persistir o progresso para sobreviver a reloads.
+A demanda elétrica implementada é de até **24 W**, equivalente à demanda
+documentada da Centrifuge do FU. A 24 W constantes, 10.000 unidades levam
+cerca de **6 min 57 s** para acumular. A máquina usa a rede `fupower` do FU e
+persiste o progresso para sobreviver a reloads.
 
 ## Etapas de implementação
 
@@ -196,9 +199,9 @@ usar a rede `fupower` do FU e persistir o progresso para sobreviver a reloads.
    os casos de likeness `3/0`, `3/1` e `0/2`, falhas repetidas, reload durante a
    carga, saída ocupada e ciclo de vida de Queens e Drones híbridos.
 
-## Decisões de balanceamento propostas
+## Balanceamento implementado
 
-| Parâmetro | Proposta inicial |
+| Parâmetro | Valor inicial |
 | --- | ---: |
 | Energia por tentativa | 10.000 |
 | Demanda elétrica | 24 W |
@@ -207,8 +210,7 @@ usar a rede `fupower` do FU e persistir o progresso para sobreviver a reloads.
 | Saída do recurso secundário | 25% da referência parental |
 | Subespécie no sucesso | 50/50 |
 
-Esses números, exceto os 10.000 de energia já definidos, são valores iniciais
-de balanceamento e podem ser alterados antes da implementação final.
+Esses valores podem ser ajustados após a conferência no jogo.
 
 ## Catálogo completo
 

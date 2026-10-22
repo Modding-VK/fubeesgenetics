@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import re
+from run_checks import asset_json
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -15,7 +16,7 @@ def main():
     mode.add_argument('--release', action='store_true')
     parser.add_argument('--tag', help='Expected production tag, for example v0.2.0')
     args = parser.parse_args()
-    version = json.loads((ROOT / 'FUBeesGenetics/_metadata').read_text())['version']
+    version = asset_json((ROOT / 'FUBeesGenetics/_metadata').read_text())['version']
     stable = r'(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)'
     expected = stable + (r'-dev' if args.development else '')
     if not re.fullmatch(expected, version):

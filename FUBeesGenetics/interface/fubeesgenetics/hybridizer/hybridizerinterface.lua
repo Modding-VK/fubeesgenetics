@@ -33,6 +33,9 @@ function update(dt)
     if result then
       widget.setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
       widget.setText("energy", string.format("Energy: %d / %d", math.floor(result.charge), result.capacity))
+      widget.setText("power", string.format("Power draw: up to %d W", result.watts or 24))
+      widget.setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))
+        or "Success: 30% (10% for rival species)")
       local lastResult = not result.hasResult and "No result yet"
         or (result.succeeded and "Hybrid queen larva created" or "Failed; parent bees consumed")
       widget.setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))

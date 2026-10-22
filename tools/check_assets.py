@@ -9,7 +9,7 @@ import zlib
 def png_size(path):
     data = path.read_bytes()
     assert data[:8] == b'\x89PNG\r\n\x1a\n', path
-    offset, pixels, size = 8, b'', None
+    offset, pixels, size, channels, palette = 8, b'', None, None, False
     while offset < len(data):
         length = struct.unpack('>I', data[offset:offset+4])[0]
         kind = data[offset+4:offset+8]
@@ -18,12 +18,15 @@ def png_size(path):
         assert zlib.crc32(kind + payload) & 0xffffffff == crc, path
         if kind == b'IHDR':
             w,h,depth,color,compression,filtering,interlace = struct.unpack('>IIBBBBB',payload)
-            assert (depth,color,compression,filtering,interlace) == (8,6,0,0,0), path
+            assert depth == 8 and color in (3, 6) and (compression,filtering,interlace) == (0,0,0), path
+            channels = 1 if color == 3 else 4
             size = w,h
+        elif kind == b'PLTE': palette = True
         elif kind == b'IDAT': pixels += payload
         offset += length + 12
         if kind == b'IEND': break
-    assert size and len(zlib.decompress(pixels)) == size[1] * (1+size[0]*4), path
+    assert size and (channels == 4 or palette), path
+    assert len(zlib.decompress(pixels)) == size[1] * (1+size[0]*channels), path
     assert offset == len(data), path
     return size
 
@@ -54,9 +57,9 @@ def check_assets(root, fu_root, native_root):
         nonlocal count
         count += 1
         print('PASS '+label)
-    docs = {p:json.loads(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation'}}
+    docs = {p:asset_json(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation','.item','.monstertype','.monsterpart'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
-    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange"}
+    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_hybridizer"}
     path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
@@ -127,7 +130,7 @@ def check_assets(root, fu_root, native_root):
     patch = next(d for p,d in docs.items() if p.name=='beestation.object.patch')
     for before in [{}, {'learnBlueprintsOnPickup':['existing']},asset_json((fu_root/'objects/bees/beestation/beestation.object').read_text())]:
         after = apply_patch(before,patch)
-        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange']
+        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange','fubeesgenetics_overloadapiary','fubeesgenetics_hybridizer']
         assert {k:v for k,v in after.items() if k!='learnBlueprintsOnPickup'} == {k:v for k,v in before.items() if k!='learnBlueprintsOnPickup'}
     passed('S8 conditional blueprint patch preserves existing entries')
     c=gui['helpCanvas']
@@ -224,4 +227,47 @@ def check_assets(root, fu_root, native_root):
     from check_container_ui import check_container_ui
     check_container_ui(root, native_root)
     passed('S13 native chest layout, visible slots, exact centering and offsets 0-15')
+    overload = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadapiary')
+    hybridizer = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_hybridizer')
+    for obj in [overload, hybridizer]:
+        refs(obj)
+        gui_config = docs.get(mod / obj['uiConfig'].lstrip('/')) or asset_json((fu_root / obj['uiConfig'].lstrip('/')).read_text())
+        refs(gui_config)
+        assert obj['powertype'] == 'input' and len(obj['inputNodes']) >= 1
+        recipes = [d for p, d in docs.items() if p.suffix == '.recipe' and d['output']['item'] == obj['objectName']]
+        assert len(recipes) == 1 and 'beestation' in recipes[0]['groups']
+    assert overload['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
+    assert overload['slotCount'] == 12 and hybridizer['slotCount'] == 3
+    passed('S14 powered objects, Bee Station recipes and all direct asset references')
+    hybrid_ui = docs[mod / hybridizer['uiConfig'].lstrip('/')]
+    gui = hybrid_ui['gui']
+    assert 'background' in gui and gui['close']['type'] == 'button'
+    assert not hybridizer['hasWindowIcon']  # own title, no duplicate native header
+    for offset, name in enumerate(['itemGrid', 'itemGrid2', 'outputItemGrid']):
+        grid, frame = gui[name], gui[name+'Frame']
+        assert grid['slotOffset'] == offset and grid['dimensions'] == [1, 1]
+        assert grid['spacing'] == [19, 19] and grid['backingImage'] == ''
+        assert not grid['showBackingImageWhenEmpty'] and not grid['showBackingImageWhenFull']
+        assert frame['mouseTransparent'] and frame['zlevel'] < grid['zlevel']
+        assert [v+9 for v in grid['position']] == [v+12 for v in frame['position']]
+        assert png_size(mod / frame['file'].lstrip('/')) == (24, 24)
+    assert not {'queenSlot', 'droneSlot', 'outputSlot'} & gui.keys()
+    engine = (root / '.cache/ui-reference/openstarbound/source/frontend/StarContainerInterface.cpp').read_text()
+    assert 'fetchChild<ItemGridWidget>("itemGrid")->setItemBag(m_itemBag)' in engine
+    passed('S15 hybridizer native inventory callbacks, independent frames and visible window')
+    for caste, tag in [('queen', 'queen'), ('youngQueen', 'youngQueen'), ('drone', 'drone')]:
+        item = docs[mod / f'bees/bees/hybrid_{caste}.item']
+        assert item['itemName'] == f'bee_hybrid_{caste}' and set(item['itemTags']) == {'bee', tag, 'hybrid'}
+        refs(item)
+    catalog = docs[mod / 'bees/hybridSpecies.config']
+    assert len(catalog['hybrids']) == 595 and sum(len(s['subspecies']) for s in catalog['hybrids']) == 1190
+    for family in catalog['production']['parents']:
+        assert png_size(fu_root / f'bees/bees/{family}.png') == (84, 28)
+    frames = asset_json((fu_root / 'bees/bees/default.frames').read_text())['frameGrid']
+    assert frames['size'] == [28, 28] and frames['names'] == [['drone', 'queen', 'youngQueen']]
+    passed('S16 all 35 parent sprite sheets and all three hybrid castes resolve')
+    assert not list((mod / 'monsters').rglob('*.monstertype'))
+    overload_lua = (mod / 'objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua').read_text()
+    assert 'function tryBeeSpawn() end' in overload_lua
+    passed('S17 powered apiary has no capturable world-bee species')
     print(f'Assets: {count} test groups passed (static checks).')

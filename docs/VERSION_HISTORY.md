@@ -58,3 +58,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | Versão | Mudança | Pacote e detalhes |
 | --- | --- | --- |
 | 0.2.19-dev | Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19-dev.pak), [prontidão](RELEASE_READINESS.md) |
+| 0.2.20-dev | Overload Apiary e Genetic Hybridizer com 595 híbridas; sucesso gera larva e apiário não solta abelhas capturáveis | [PAK](../dist/bee-abusive-industry-0.2.20-dev.pak), [detalhes](HYBRID_FIXES_0_2_20.md) |

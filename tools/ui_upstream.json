@@ -33,7 +33,15 @@
         "assets/packed/interface/chests/shine1to16.png": "276af0903fb6104ae86e7f7281bb25affe894c7e",
         "assets/packed/sfx/tools/teleport_up.ogg": "f26774316869ba59fbddef727f6524e9410a434c",
         "assets/packed/objects/generic/cropshipper/cropshipper.png": "abb4ca0ae7a702c8f6c3cfd432e4462a1a7224b1",
-        "assets/packed/scripts/items/rotting.lua": "2a58da7d6565f4750bd9040d3d2474ec105e93ec"
+        "assets/packed/scripts/items/rotting.lua": "2a58da7d6565f4750bd9040d3d2474ec105e93ec",
+        "assets/packed/monsters/bugs/bug.lua": "2586231b972c5771f4ab06fcde3cae23febe31a3",
+        "assets/packed/scripts/vec2.lua": "9a8102d6920be54e4ef61d3be796001dfab87529",
+        "assets/packed/scripts/util.lua": "cc08f729d697ca42653ae29d78c74fb7c15a042b",
+        "assets/packed/stats/monster_primary.lua": "392712729a3f6dc33944602723154190c11f66ba",
+        "assets/packed/sfx/objects/woodenbox_open.ogg": "0ab9d48c9fcccd2bcf016d8e9e02a8412cd47071",
+        "assets/packed/sfx/objects/woodenbox_close.ogg": "033dc6705333e2309b780a8759e1e2f9dbf86f71",
+        "assets/packed/assetmissing.png": "a0a56867acc83e2fd33a5305ddd754eaa4401c95",
+        "assets/packed/interface/inventory/grayborder.png": "5b7dd6c23c6196f412373c8650ed635b71f78748"
       }
     },
     {

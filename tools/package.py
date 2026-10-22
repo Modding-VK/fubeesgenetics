@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import tempfile
 import zipfile
+from run_checks import asset_json
 
 ROOT = Path(__file__).resolve().parents[1]
 STAMP = (2026, 10, 14, 0, 0, 0)
@@ -55,7 +56,7 @@ def verify_unpacked(source, restored):
     for name, original in expected.items():
         # Native unpacker writes metadata from the PAK index; JSON formatting can change.
         if name == '_metadata':
-            identical = json.loads(original.read_text()) == json.loads(actual[name].read_text())
+            identical = asset_json(original.read_text()) == asset_json(actual[name].read_text())
         else:
             identical = original.read_bytes() == actual[name].read_bytes()
         if not identical:
@@ -82,7 +83,7 @@ def main():
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
     mod = ROOT / 'FUBeesGenetics'
-    version = json.loads((mod / '_metadata').read_text())['version']
+    version = asset_json((mod / '_metadata').read_text())['version']
     if not isinstance(version, str) or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?', version):
         parser.error('Metadata version must be a valid filename-safe version identifier.')
     pak_name = f'bee-abusive-industry-{version}.pak'

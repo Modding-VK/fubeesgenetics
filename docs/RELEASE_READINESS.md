@@ -1,5 +1,16 @@
 # Bee Abusive Industry — identidade e prontidão
 
+## Desenvolvimento 0.2.20-dev
+
+O Overload Apiary e as híbridas estão implementados na branch `dev`. O sucesso
+da hibridização gera uma larva de rainha. O apiário não cria abelhas entidades
+capturáveis aleatórias. Passaram 167 grupos básicos e 13 casos com Improved
+Containers 2.11. O PAK desta versão foi conferido por empacotamento e extração
+nativos. A execução dentro de OpenStarbound com FU, inclusive GUI, energia e
+sprites, continua pendente. Consulte [as correções e o limite da validação](HYBRID_FIXES_0_2_20.md).
+
+As seções seguintes registram a revisão anterior da identidade 0.2.19.
+
 ## Identidade solicitada
 
 Nome público e título Workshop: [oSB][FU] Bee Abusive Industry. Autor exibido:
@@ -39,7 +50,7 @@ A tipografia do cartão é aproximada. O ícone da lista, a imagem Workshop e os
 | IC opcional | 13 casos não repetidos neste ambiente; registros anteriores preservados |
 | PAK e Workshop contents.pak | SBAsset6, round-trip de 53 arquivos e cópias idênticas |
 | Preview e descrição da Workshop | Preparados, separados do ícone nativo |
-| PR #5 | Candidata estável em revisão; main ainda não atualizada |
+| PR #5 | Situação histórica da revisão 0.2.19; verificar estado atual antes de qualquer promoção |
 | Tag/release GitHub | Ainda não criadas |
 | Item Steam, propriedade e dependência na página | Configurar/publicar na conta Steam do mantenedor |
 
@@ -50,9 +61,9 @@ nome, autor e apresentação. Novas falhas concretas exigem diagnóstico própri
 
 ## Publicação
 
-O PR existente contém a candidata estável 0.2.18. A dev de identidade usa
-0.2.19-dev; a candidata recebe a mesma apresentação mantendo sua versão estável
-não publicada. Downloads anteriores continuam disponíveis por SHA.
+O PR #5 foi usado na preparação anterior da candidata estável 0.2.18.
+A branch `main` já contém a identidade 0.2.19; o novo conteúdo 0.2.20-dev
+permanece em `dev`. Downloads anteriores continuam disponíveis por SHA.
 
 Depois de aprovar a candidata, autorizar merge em main e a tag anotada v0.2.18.
 Publicação GitHub e upload Steam são ações separadas. Usar o título definido,
