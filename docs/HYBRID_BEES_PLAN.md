@@ -2,10 +2,11 @@
 
 ## Objetivo
 
-Cruzar uma Queen e um Drone de espécies diferentes para obter uma Queen
-híbrida. Ela produz os recursos das duas espécies em quantidades menores. Há
-duas subespécies: uma prioriza os recursos da espécie da Queen progenitora; a
-outra, os da espécie do Drone progenitor.
+Cruzar uma Queen e um Drone de espécies diferentes para obter uma larva de
+rainha híbrida (`Young Queen`). Ela se torna adulta no apiário, preservando o
+genome e a linhagem. A colmeia produz os recursos das duas espécies em
+quantidades menores. Há duas subespécies: uma prioriza os recursos da espécie
+da Queen progenitora; a outra, os da espécie do Drone progenitor.
 
 ## Estado da primeira implementação em `dev`
 
@@ -19,7 +20,8 @@ aparência.
 A máquina de hibridização tem slots de Queen, Drone e saída, acumula 10.000
 unidades de energia a 24 W, consome ambos os progenitores nos dois resultados e
 exibe o progresso. A chance inicial de sucesso é 30%, reduzida a 10% para
-progenitores rivais. Queens híbridas preservam a linhagem em Young Queens e
+progenitores rivais. O sucesso entrega uma larva `bee_hybrid_youngQueen`.
+Após amadurecer no apiário, a Queen híbrida preserva a linhagem em Young Queens e
 Drones; a produção dinâmica dos dois conjuntos de recursos está habilitada no
 Overload Apiary. A receita e o desbloqueio são feitos pela Bee Station.
 
@@ -33,10 +35,12 @@ criados 595 arquivos de sprite independentes.
 - Uma tentativa consome a Queen e o Drone, tanto no sucesso quanto na falha.
 - Cada tentativa consome **10.000 unidades de energia**, acumuladas ao longo do
   tempo. Ao atingir o total, a máquina tenta o cruzamento e zera o progresso.
-- O sucesso gera uma Queen híbrida; a falha não gera abelha.
+- O sucesso gera uma larva de rainha híbrida (`bee_hybrid_youngQueen`); a falha
+  não gera abelha. A larva se torna adulta no apiário pelo ciclo nativo do FU.
 - A chance de falha deve ser alta. Para o primeiro balanceamento, proponho
   **70% de falha / 30% de sucesso**.
-- A Queen híbrida deve ter genética inferior à dos progenitores.
+- A larva de rainha híbrida deve ter genética inferior à dos progenitores;
+  a rainha adulta conserva essa genética.
 - A linhagem da Queen guarda as espécies progenitoras para que as abelhas
   descendentes mantenham a combinação.
 
@@ -135,8 +139,9 @@ O genome híbrido parte do meio-termo entre os genomes dos progenitores. Depois,
 o gerador aplica uma penalidade antes de gravar o genome final: os genes
 numéricos favoráveis (produção, resistência, reprodução e longevidade) ficam
 abaixo do menor valor parental; `mutationChance`, que é prejudicial, fica acima
-do maior valor parental. A penalidade e os limites devem ser centralizados e
-reutilizados ao promover uma Young Queen a Queen.
+do maior valor parental. A penalidade é aplicada uma única vez, ao gerar a
+larva. A promoção de Young Queen a Queen preserva o genome e a linhagem,
+sem aplicar uma nova penalidade.
 
 `workTime` é categórico (`day`, `night`, `both`), portanto não tem comparação
 numérica. Proposta: uma híbrida nunca herda `both`; escolhe um único turno. O
@@ -154,7 +159,8 @@ preservar o limite e registrar essa exceção na exibição genética.
 4. Ao completar a carga, executa o sorteio. Em ambos os resultados, consome os
    dois progenitores e a energia.
 5. No sucesso, escolhe uma das duas subespécies com chance igual, cria uma
-   Queen adulta com genome e linhagem persistidos e libera o próximo ciclo.
+   larva de rainha (`bee_hybrid_youngQueen`) com genome e linhagem persistidos
+   e libera o próximo ciclo. A larva amadurece no apiário.
    Na falha, informa o resultado e libera o próximo ciclo sem saída.
 
 Espécies progenitoras que rivalizam entre si têm **10% de chance de sucesso**;

@@ -49,7 +49,9 @@ A primeira implementação já inclui a máquina de hibridização, Queen/Young
 Queen/Drone genéricos com metadados de linhagem, produção dinâmica no Overload
 Apiary e ícones formados pelas imagens dos progenitores. O catálogo deriva
 **595 espécies / 1.190 subespécies** das 35 famílias FU. A validação dentro do
-jogo ainda está pendente. Os valores de balanceamento estão no
+jogo ainda está pendente. A hibridizadora entrega uma larva de rainha
+(`bee_hybrid_youngQueen`), que amadurece no apiário com a mesma genética e
+linhagem. Os valores de balanceamento estão no
 [plano](HYBRID_BEES_PLAN.md) e no [catálogo completo](HYBRID_SPECIES_CATALOG.json).
 
 ## Fluxo de trabalho

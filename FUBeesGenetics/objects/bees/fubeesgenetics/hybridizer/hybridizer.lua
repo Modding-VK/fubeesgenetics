@@ -57,7 +57,7 @@ local function attemptCrossing(queen, drone)
     local lineage, errorCode = hybridbees.makeLineage(queen, drone, genome)
     if lineage then
       lineage.genomeExceptions = exceptions
-      result = {name = "bee_hybrid_queen", count = 1, parameters = {genome = genome, hybridLineage = lineage}}
+      result = {name = "bee_hybrid_youngQueen", count = 1, parameters = {genome = genome, hybridLineage = lineage}}
     else
       succeeded = false
       sb.logWarn("[Bee Abusive Industry] Hybridization failed to create lineage: %s", errorCode)

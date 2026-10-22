@@ -1,7 +1,7 @@
 {
   "itemName": "bee_hybrid_youngQueen",
-  "description": "A young hybrid queen descended from two different bee species.",
-  "shortdescription": "Young Hybrid Queen",
+  "description": "A hybrid queen larva descended from two different bee species. Matures into a queen in an apiary.",
+  "shortdescription": "Hybrid Queen Larva",
   "inventoryIcon": "/assetmissing.png",
   "tooltipKind": "bee",
   "rarity": "Rare",

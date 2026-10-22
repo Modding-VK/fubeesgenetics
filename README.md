@@ -103,6 +103,8 @@ Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
 Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
 energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
 chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
+O sucesso produz **uma larva de rainha híbrida** (`bee_hybrid_youngQueen`),
+que se torna adulta no apiário, preservando o genome e a linhagem.
 Cada cruzamento tem duas subespécies com prioridade de produção alternada e
 ícones compostos pelas imagens dos dois progenitores. As duas usam a mesma
 aparência. A Queen híbrida transmite sua linhagem a Young Queens e Drones.

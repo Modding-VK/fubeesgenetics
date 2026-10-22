@@ -3,7 +3,7 @@ local statusLabels = {
   WAITING_OUTPUT = "Clear the result slot",
   NO_POWER = "Waiting for electrical power",
   CHARGING = "Charging hybridization coil",
-  SUCCESS = "Hybrid queen created",
+  SUCCESS = "Hybrid queen larva created",
   FAILURE = "Hybridization failed; both bees were lost"
 }
 
@@ -34,7 +34,7 @@ function update(dt)
       widget.setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
       widget.setText("energy", string.format("Energy: %d / %d", math.floor(result.charge), result.capacity))
       local lastResult = not result.hasResult and "No result yet"
-        or (result.succeeded and "Hybrid Queen created" or "Failed; parent bees consumed")
+        or (result.succeeded and "Hybrid queen larva created" or "Failed; parent bees consumed")
       widget.setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))
     else
       widget.setText("status", "Status: machine connection unavailable")
