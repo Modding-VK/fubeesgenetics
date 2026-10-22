@@ -14,7 +14,7 @@ local function equal(a, b, label)
   assert(a == b, (label or "value") .. ": expected " .. tostring(b) .. ", got " .. tostring(a))
 end
 local function finite(x) return type(x) == "number" and x == x and x < math.huge and x > -math.huge end
-local function setup(bootstrap)
+local function setup(bootstrap, skipHybridBuilder)
   local e = setmetatable({}, {__index = _G}); e._G = e; e.self = {}; e.copy = copy; e.compare = same
   e.math = copy(math); e.roll = .05; e.subtype = 1
   e.math.random = function(a, b)
@@ -25,9 +25,10 @@ local function setup(bootstrap)
   end
   e.storage = {}; e.inventory = {}; e.spawned = {}; e.monsters = {}; e.consumed = 0
   e.supply = 1e9; e.settings = copy(fixture.hybridizerConfig); e.data = copy(fixture.hybridBeeData)
-  e.frameStats = {}; e.flowers = {}; e.labels = {}; e.messages = {}; e.now = 1000
+  e.frameStats = {}; e.flowers = {}; e.labels = {}; e.messages = {}; e.now = 1000; e.assetLoads = {}
   for i = 1, 5 do e.flowers[i] = {name = "beeflower", stage = 2, stages = {{}, {}, {}}} end
   local loaded = {}
+  e.loadedScripts = loaded
   local engineRoot, engineWorld
   e.require = function(path)
     if loaded[path] then return end; loaded[path] = true
@@ -44,7 +45,10 @@ local function setup(bootstrap)
   -- No root/world/config callbacks during bootstrap, matching the engine.
   e.require("/bees/genomeLibrary.lua")
   e.require("/bees/beeBuilder.lua"); e.nativeBuild = e.build
-  e.require("/scripts/fubeesgenetics/hybridbeebuilder.lua")
+  if not skipHybridBuilder then
+    e.require("/scripts/fubeesgenetics/hybridbeebuilder.lua")
+    e.require("/scripts/fubeesgenetics/hybridbees.lua")
+  end
   if bootstrap then e.require(bootstrap) end
   e.entity = {id = function() return 42 end, position = function() return {0, 0} end}
   e.config = {getParameter = function(k, d) if e.settings[k] == nil then return d end return e.settings[k] end}
@@ -54,8 +58,9 @@ local function setup(bootstrap)
   e.object = {setInteractive = function(v) e.interactive = v end, name = function() return e.settings.objectName end,
     toAbsolutePosition = function(p) return p end}
   e.root = {assetJson = function(path)
+    e.assetLoads[path] = (e.assetLoads[path] or 0) + 1
     if path == "/bees/beeData.config" then return copy(e.data) end
-    if path == "/bees/hybridSpecies.config" then return copy(fixture.hybridCatalog) end
+    if path == "/bees/hybridPlants.config" then return copy(fixture.hybridPlants) end
     if path == "/items/defaultParameters.config" then return {defaultMaxStack = 1000} end
     error("Unmocked asset " .. path)
   end, itemHasTag = function(name, tag)
@@ -157,6 +162,12 @@ end
 
 local passed = 0
 local function test(label, callback) callback(); passed = passed + 1; print("PASS H" .. passed .. " " .. label) end
+local function activateHybrid(e, queen)
+  e.inventory[0] = queen
+  e.beeTick(1)
+  e.queen = queen
+  e.contents = e.world.containerItems(42)
+end
 
 test("Machine and apiary bootstrap before engine callbacks", function()
   setup("/objects/bees/fubeesgenetics/hybridizer/hybridizer.lua")
@@ -223,9 +234,47 @@ test("All 595 pairs have valid rivals and symmetric native chances", function()
     local a, b = table.unpack(species.parentFamilies)
     for _, rival in ipairs(species.rivalNativeFamilies) do assert(fixture.beeData.stats[rival], rival) end
     local expected = (has(rivals[a], b) or has(rivals[b], a)) and .1 or .3
-    equal(e.hybridbees.successChance(e.hybridbees.speciesForParents(a, b)), expected)
+    local computed = e.hybridbees.speciesForParents(a, b)
+    equal(computed.id, species.id)
+    assert(same(computed.parentFamilies, species.parentFamilies))
+    assert(same(computed.rivalNativeFamilies, species.rivalNativeFamilies))
+    for index, plant in ipairs(computed.preferredPlants) do
+      equal(plant.parent, species.preferredPlants[index].parent)
+      equal(plant.id, species.preferredPlants[index].id)
+      equal(plant.likeness, species.preferredPlants[index].likeness)
+    end
+    equal(e.hybridbees.successChance(computed), expected)
     equal(e.hybridbees.successChance(e.hybridbees.speciesForParents(b, a)), expected)
   end
+  equal(e.assetLoads["/bees/hybridPlants.config"], 1)
+  equal(e.assetLoads["/bees/hybridSpecies.config"], nil)
+end)
+test("Ordinary FU apiaries do not load hybrid plant data", function()
+  local e = setup(nil, true); e.startNativeApiary(false)
+  e.inventory[0] = e.parent("honey", "queen")
+  e.inventory[1] = e.parent("honey", "drone")
+  e.inventory[2] = {name = "basicframe", count = 1, parameters = {}}
+  for _ = 1, 30 do e.beeTick(1) end
+  equal(e.assetLoads["/bees/hybridPlants.config"], nil)
+  assert(not e.loadedScripts["/scripts/fubeesgenetics/hybridbees.lua"])
+  assert(not e.loadedScripts["/scripts/fubeesgenetics/containerutil.lua"])
+end)
+test("Ordinary Overload Apiaries do not load hybrid code", function()
+  local e = setup(nil, true); e.startApiary()
+  e.inventory[0] = e.parent("honey", "queen")
+  e.inventory[1] = e.parent("honey", "drone")
+  for _ = 1, 30 do e.beeTick(1) end
+  equal(e.assetLoads["/bees/hybridPlants.config"], nil)
+  assert(not e.loadedScripts["/scripts/fubeesgenetics/hybridbees.lua"])
+end)
+test("Hybrid item builder uses the sprite without loading hybrid production code", function()
+  local source = setup(); local specimen = source.hybrid("honey", "carpenter")
+  local e = setup(nil, true)
+  e.require("/scripts/fubeesgenetics/hybridbeebuilder.lua")
+  local built = e.build("/bees/bees/", copy(fixture.hybridItems[specimen.name]), copy(specimen.parameters), 1, 1)
+  equal(built.inventoryIcon[1].image, "/bees/bees/hybrid_carpenter_honey.png:queen")
+  assert(not e.loadedScripts["/scripts/fubeesgenetics/hybridbees.lua"])
+  equal(e.assetLoads["/bees/hybridPlants.config"], nil)
 end)
 test("Hybrid rivals include native rivals, their hybrids and rival parents", function()
   local e = setup(); local h = e.hybrid("carpenter", "mason")
@@ -326,17 +375,18 @@ test("Zero-gene production works with no NaN and old return semantics", function
   assert(total > 0); equal(#e.spawned, 0)
 end)
 test("Cross-species native drones cannot produce hybrid resources", function()
-  local e = setup(); e.startApiary(); e.queen = e.hybrid("honey", "carpenter")
+  local e = setup(); e.startApiary(); activateHybrid(e, e.hybrid("honey", "carpenter"))
   e.droneProduction(e.parent("honey", "drone")); equal(next(e.droneProductionProgress), nil)
   assert(not e.isDroneActive(e.parent("honey", "drone")))
 end)
 test("Queen/drone rivalry works with the single drone slot", function()
-  local e = setup(); e.startApiary(); e.inventory[0] = e.hybrid("carpenter", "mason")
+  local e = setup(); e.startApiary(); activateHybrid(e, e.hybrid("carpenter", "mason"))
   e.inventory[1] = e.parent("carpenter", "drone"); e.inventory[1].count = 50
   e.contents = e.world.containerItems(42); assert(e.checkRivalries()); assert(e.inventory[1].count < 50)
 end)
 test("Queen identity and descendant lineage cannot cross unrelated pairs", function()
   local e = setup(); e.startApiary(); local a, b = e.hybrid("honey", "carpenter"), e.hybrid("honey", "artisan")
+  activateHybrid(e, a)
   b.parameters.genome = a.parameters.genome
   assert(not e.isSameQueen(a, b)); assert(not e.hybridbees.compatible(a, b))
   e.queen = a; local mate = copy(a); mate.name = "bee_hybrid_drone"; mate.parameters.lifespan = nil
@@ -344,7 +394,7 @@ test("Queen identity and descendant lineage cannot cross unrelated pairs", funct
   equal(child.name, "bee_hybrid_youngQueen"); equal(child.parameters.hybridLineage.speciesId, a.parameters.hybridLineage.speciesId)
 end)
 test("Resistance frames still resolve hybrid biome intolerance", function()
-  local e = setup(); e.startApiary(); e.queen = e.hybrid("honey", "mason"); e.biome = "desert"
+  local e = setup(); e.startApiary(); activateHybrid(e, e.hybrid("honey", "mason")); e.biome = "desert"
   equal(e.getBiomeFavor(e.queen.name), -1); e.frameBonuses.heatResistance = true
   equal(e.getBiomeFavor(e.queen.name), e.data.biomeLiked)
 end)
@@ -382,8 +432,7 @@ test("Powered apiary never spawns native or hybrid capturable bees", function()
 end)
 test("Native small and large apiaries produce hybrid resources and preserve lineage", function()
   for _, large in ipairs({false, true}) do
-    local e = setup(); e.startNativeApiary(large)
-    local h = e.hybrid("honey", "carpenter")
+    local e = setup(); local h = e.hybrid("honey", "carpenter"); e.startNativeApiary(large)
     local larva = copy(h); larva.name = "bee_hybrid_youngQueen"; larva.parameters.lifespan = nil
     e.inventory[0] = e.root.createItem(larva)
     e.inventory[e.settings.frameSlots[1] - 1] = {name = "basicframe", count = 1, parameters = {}}

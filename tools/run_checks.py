@@ -142,16 +142,19 @@ def main():
         from check_storage_compat import run_storage_checks
         run_storage_checks(ROOT, args.ic_root, fixture, native_root)
     from generate_hybrids import generate
-    hybrid_catalog = asset_json((ROOT / 'FUBeesGenetics/bees/hybridSpecies.config').read_text())
+    hybrid_catalog = asset_json((ROOT / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
     assert hybrid_catalog == generate(fu_root), 'Hybrid runtime catalog is stale'
-    assert hybrid_catalog == asset_json((ROOT / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
+    hybrid_plants = asset_json((ROOT / 'FUBeesGenetics/bees/hybridPlants.config').read_text())
+    expected_plants = asset_json((ROOT / 'tools/hybrid_plants.json').read_text())
+    assert hybrid_plants == {family: {'id': plant['id'], 'likeness': plant['likeness']}
+                             for family, plant in expected_plants.items()}
     from build_hybrid_sprites import generate_sprites
     generate_sprites(fu_root, check=True)
     hybrid_data = copy.deepcopy(bee_data)
     for op in asset_json((ROOT / 'FUBeesGenetics/bees/beeData.config.patch').read_text()):
         section, name = op['path'].strip('/').split('/')
         hybrid_data[section][name] = op['value']
-    fixture.update(hybridBeeData=hybrid_data, hybridCatalog=hybrid_catalog,
+    fixture.update(hybridBeeData=hybrid_data, hybridCatalog=hybrid_catalog, hybridPlants=hybrid_plants,
                    hybridizerConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/hybridizer/hybridizer.object').read_text()),
                    overloadConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.object').read_text()),
                    hybridItems={d['itemName']: d for p in (ROOT / 'FUBeesGenetics/bees/bees').glob('hybrid*.item')

@@ -1,7 +1,6 @@
 require "/scripts/fupower.lua"
 require "/bees/apiary.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
-require "/scripts/fubeesgenetics/hybridbees.lua"
 
 local upstreamInit, upstreamUpdate = init, update2
 local upstreamDroneProduction, upstreamQueenProduction = droneProduction, queenProduction
@@ -54,7 +53,29 @@ function queenProduction()
 end
 
 function ageQueen(amount) return upstreamAgeQueen((amount or 1) / 0.7) end
-hybridbees.install(1.2)
+
+local nativeTick = beeTick
+local hybridInstalled = false
+function beeTick(dt)
+  if not hybridInstalled then
+    local queenItem = world.containerItemAt(entity.id(), queenSlot - 1)
+    local found = queenItem and queenItem.name:match("^bee_hybrid_")
+    if not found then
+      for _, slot in ipairs(droneSlots) do
+        local droneItem = world.containerItemAt(entity.id(), slot - 1)
+        if droneItem and droneItem.name:match("^bee_hybrid_") then found = true; break end
+      end
+    end
+    if found then
+      require "/scripts/fubeesgenetics/hybridbees.lua"
+      beeTick = nativeTick
+      hybridbees.install(1.2)
+      hybridInstalled = true
+      return beeTick(dt)
+    end
+  end
+  return nativeTick(dt)
+end
 
 -- The powered apiary keeps all bees in its container; FU's random capturable
 -- world-bee spawn is disabled for both native and hybrid queens.

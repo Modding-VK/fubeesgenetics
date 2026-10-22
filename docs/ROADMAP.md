@@ -56,6 +56,9 @@ jogo ainda está pendente. A hibridizadora entrega uma larva de rainha
 (`bee_hybrid_youngQueen`), que amadurece no apiário com a mesma genética e
 linhagem. Os valores de balanceamento estão no
 [plano](HYBRID_BEES_PLAN.md) e no [catálogo completo](HYBRID_SPECIES_CATALOG.json).
+Desde 0.2.23-dev, o catálogo completo é usado apenas na documentação e nos
+checks; o jogo calcula o par quando necessário e carrega o script de produção
+somente ao inserir uma híbrida no apiário.
 
 ## Fluxo de trabalho
 

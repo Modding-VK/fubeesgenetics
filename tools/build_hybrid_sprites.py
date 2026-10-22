@@ -110,7 +110,7 @@ def build_preview(sprites):
 
 
 def generate_sprites(fu_root, check=False):
-    catalog = asset_json((ROOT / 'FUBeesGenetics/bees/hybridSpecies.config').read_text())
+    catalog = asset_json((ROOT / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
     pairs = [(species['id'], *species['parentFamilies']) for species in catalog['hybrids']]
     families = {family for _, a, b in pairs for family in (a, b)}
     originals = {family: source_image(fu_root, family) for family in families}

@@ -1,5 +1,15 @@
 # Bee Abusive Industry — identidade e prontidão
 
+## Carregamento das híbridas 0.2.23-dev
+
+O catálogo de 1.038.279 bytes foi retirado do PAK. O código calcula as 595
+combinações sob demanda usando os dados FU e um mapa de plantas de 1.629 bytes.
+Apiários normais e Overload sem híbridas não carregam o script híbrido. O item
+híbrido usa apenas o construtor visual. Os 595 pares foram comparados ao
+catálogo completo durante a validação local. O impacto no tempo de abertura do
+jogo ainda precisa ser medido dentro do OpenStarbound.
+O PAK passou de 1.895.739 para 862.978 bytes (redução de 54,5%).
+
 ## Compatibilidade com apiários FU 0.2.22-dev
 
 Patches nos objetos de apiário pequeno e grande carregam uma extensão do script

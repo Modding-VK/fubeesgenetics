@@ -113,6 +113,11 @@ cálculo usado pelo Overload Apiary, com multiplicador 1 em vez de 1,2. As
 abelhas nativas mantêm o comportamento original nesses objetos. Híbridas não
 geram entidades capturáveis no mundo, pois não existe monstro `bee_hybrid`.
 
+Desde 0.2.23-dev, as 595 entradas completas permanecem apenas no catálogo de
+documentação. No jogo, cada par é montado sob demanda a partir dos dados FU e
+de um mapa compacto de plantas. Apiários sem híbridas não carregam o script de
+produção híbrida; os itens carregam apenas o código de aparência.
+
 ## Preferências de bioma
 
 Os valores do FU são `0` (deadly), `1` (disliked), `2` (liked) e `3` (favorite).

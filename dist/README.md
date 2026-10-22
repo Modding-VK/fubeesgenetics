@@ -1,6 +1,6 @@
-# Distribuição atual — Bee Abusive Industry 0.2.22-dev
+# Distribuição atual — Bee Abusive Industry 0.2.23-dev
 
-- bee-abusive-industry-0.2.22-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-0.2.23-dev.pak: instalação manual Starbound/mods.
 - bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
 - SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
 
@@ -8,7 +8,7 @@ Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
 O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
 não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.
 
-169 grupos básicos e 13 casos opcionais com IC 2.11 passaram; os **667 arquivos**
+172 grupos básicos e 13 casos opcionais com IC 2.11 passaram; os **667 arquivos**
 do PAK foram conferidos por pack/unpack nativo. O mantenedor já
 validou a funcionalidade anterior; conferir o novo ícone na lista do OpenStarbound.
 Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
@@ -21,6 +21,9 @@ Esta 0.2.21-dev acrescenta 595 folhas de sprites próprias para as híbridas;
 o PAK anterior 0.2.20-dev continua preservado no histórico.
 Esta 0.2.22-dev acrescenta suporte às híbridas nos apiários FU pequeno e grande;
 o PAK 0.2.21-dev também permanece preservado.
+Esta 0.2.23-dev retira o catálogo expandido de 1 MB do PAK e carrega os scripts
+híbridos nos apiários somente quando uma híbrida está presente. O PAK
+0.2.22-dev permanece preservado.
 
 ## Registros anteriores
 

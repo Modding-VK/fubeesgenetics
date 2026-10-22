@@ -4,17 +4,26 @@ require "/scripts/fubeesgenetics/containerutil.lua"
 hybridbees = {}
 local M = hybridbees
 local copy, same = fubeesContainer.copy, fubeesContainer.same
-local catalog, byId, byPair, nativeData
+local plants, byPair, nativeData, rivals
 
 -- Engine callbacks are unavailable while scripts are first being loaded.
 local function loadData()
-  if catalog then return end
-  catalog = root.assetJson("/bees/hybridSpecies.config")
-  nativeData = root.assetJson("/bees/beeData.config")
-  byId, byPair = {}, {}
-  for _, species in ipairs(catalog.hybrids) do
-    byId[species.id] = species
-    byPair[table.concat(species.parentFamilies, ":")] = species
+  if nativeData then return end
+  plants = root.assetJson("/bees/hybridPlants.config")
+  -- FU apiaries already loaded this in init; reuse that table in their Lua
+  -- contexts instead of parsing the same asset a second time.
+  nativeData = beeData or root.assetJson("/bees/beeData.config")
+  byPair, rivals = {}, {}
+  for family in pairs(nativeData.stats) do
+    if family ~= "hybrid" then rivals[family] = {} end
+  end
+  for family, entries in pairs(nativeData.rivals) do
+    if rivals[family] then
+      if type(entries) == "string" then entries = {entries} end
+      for _, other in ipairs(entries or {}) do
+        if rivals[other] then rivals[family][other], rivals[other][family] = true, true end
+      end
+    end
   end
 end
 
@@ -28,7 +37,24 @@ function M.isHybrid(item) return M.family(item) == "hybrid" end
 function M.speciesForParents(a, b)
   if type(a) ~= "string" or type(b) ~= "string" or a == b then return nil end
   loadData()
-  return byPair[a < b and a .. ":" .. b or b .. ":" .. a]
+  if not rivals[a] or not rivals[b] or not plants[a] or not plants[b] then return nil end
+  if a > b then a, b = b, a end
+  local key = a .. ":" .. b
+  if byPair[key] then return byPair[key] end
+  local inherited = {}
+  for family in pairs(rivals[a]) do inherited[family] = true end
+  for family in pairs(rivals[b]) do inherited[family] = true end
+  local isRival = rivals[a][b] or false
+  if isRival then inherited[a], inherited[b] = true, true end
+  local rivalFamilies = {}
+  for family in pairs(inherited) do rivalFamilies[#rivalFamilies + 1] = family end
+  table.sort(rivalFamilies)
+  local species = {id = "hybrid_" .. a .. "_" .. b, parentFamilies = {a, b},
+    parentSpeciesAreRivals = isRival, rivalNativeFamilies = rivalFamilies,
+    preferredPlants = {{parent = a, id = plants[a].id, likeness = plants[a].likeness},
+      {parent = b, id = plants[b].id, likeness = plants[b].likeness}}}
+  byPair[key] = species
+  return species
 end
 
 local function validGenome(genome, family)
@@ -171,13 +197,13 @@ function M.areRivals(a, b)
   local fa, fb, la, lb = M.family(a), M.family(b), M.lineage(a), M.lineage(b)
   if la and lb and la.speciesId == lb.speciesId then return false end
   if la then
-    local rivals = byId[la.speciesId].rivalNativeFamilies
+    local rivals = M.speciesForParents(la.queenFamily, la.droneFamily).rivalNativeFamilies
     if lb then
       for _, parent in ipairs(lb.parentFamilies) do if contains(rivals, parent) then return true end end
     elseif contains(rivals, fb) then return true end
   end
   if lb then
-    local rivals = byId[lb.speciesId].rivalNativeFamilies
+    local rivals = M.speciesForParents(lb.queenFamily, lb.droneFamily).rivalNativeFamilies
     if la then
       for _, parent in ipairs(la.parentFamilies) do if contains(rivals, parent) then return true end end
     elseif contains(rivals, fa) then return true end
@@ -198,8 +224,7 @@ function M.productionRates(lineage, genome, frameBonus, multiplier)
   local priority = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
   for _, family in ipairs(lineage.parentFamilies) do
     local parent = nativeData.stats[family][lineage.parentSubtypes[family]]
-    local weights = catalog.production.weights
-    local weight = family == priority and weights.priorityParent or weights.secondaryParent
+    local weight = family == priority and 0.5 or 0.25
     local factor = ((genetic + 1) * (multiplier or 1) + (frameBonus or 0)) / (math.max(0, parent.baseProduction) + 1)
     for product, requirement in pairs(parent.production) do
       if requirement > 0 then rates[product] = (rates[product] or 0) + math.max(0, weight * parent.baseProduction / requirement * factor) end
@@ -211,7 +236,7 @@ end
 function M.flowerFavor(lineage)
   loadData()
   local preferences = {}
-  for _, plant in ipairs(byId[lineage.speciesId].preferredPlants) do
+  for _, plant in ipairs(M.speciesForParents(lineage.queenFamily, lineage.droneFamily).preferredPlants) do
     preferences[plant.id] = math.max(preferences[plant.id] or 0, plant.likeness or 1)
   end
   local objects = world.objectQuery(entity.position(), nativeData.flowerSearchRadius,
@@ -284,6 +309,13 @@ function M.install(multiplier)
   checkRivalries = function()
     local halt = nativeRivalries()
     local q = contents[queenSlot]
+    local hybridPresent = M.isHybrid(q)
+    if not hybridPresent then
+      for _, slot in ipairs(droneSlots) do
+        if M.isHybrid(contents[slot]) then hybridPresent = true; break end
+      end
+    end
+    if not hybridPresent then return halt end
     for i, slot in ipairs(droneSlots) do
       local a = contents[slot]
       if a and root.itemHasTag(a.name, "drone") then

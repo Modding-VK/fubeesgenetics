@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.22-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.23-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.22-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.23-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,7 +24,7 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.22-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.23-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -122,6 +122,12 @@ transmite sua linhagem a Young Queens e Drones.
   sprites. [Prévia visual](artwork/hybrids/preview.png). A validação no
   jogo ainda está pendente.
 
+Na 0.2.23-dev, os pares são calculados a partir dos dados das 35 famílias do
+FU. O catálogo detalhado continua na documentação; o PAK carrega apenas as
+plantas escolhidas (1,6 KB). Apiários comuns carregam a lógica híbrida somente
+quando recebem uma híbrida. O construtor visual dos itens também deixou de
+carregar a lógica de produção.
+
 ID para `/spawnitem`: `fubeesgenetics_hybridizer`.
 
 ## Desenvolvimento e GitHub
@@ -154,7 +160,7 @@ python3 tools/run_checks.py --ic-root .cache/improved-containers
 python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
-Na 0.2.22 passaram **169 grupos locais básicos e 13 casos opcionais com
+Na 0.2.23 passaram **172 grupos locais básicos e 13 casos opcionais com
 Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
 fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem

@@ -67,11 +67,19 @@ def main():
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
     expected = generate(args.fu_root)
-    for path in [ROOT / 'FUBeesGenetics/bees/hybridSpecies.config', ROOT / 'docs/HYBRID_SPECIES_CATALOG.json']:
+    for path in [ROOT / 'docs/HYBRID_SPECIES_CATALOG.json']:
         if args.check:
             assert asset_json(path.read_text()) == expected, f'Stale catalog: {path}'
         else:
             path.write_text(json.dumps(expected, indent=2, ensure_ascii=False) + '\n')
+    plants = asset_json((ROOT / 'tools/hybrid_plants.json').read_text())
+    runtime_plants = {family: {'id': plant['id'], 'likeness': plant['likeness']}
+                      for family, plant in sorted(plants.items())}
+    runtime_path = ROOT / 'FUBeesGenetics/bees/hybridPlants.config'
+    if args.check:
+        assert asset_json(runtime_path.read_text()) == runtime_plants, f'Stale runtime plants: {runtime_path}'
+    else:
+        runtime_path.write_text(json.dumps(runtime_plants, separators=(',', ':'), sort_keys=True) + '\n')
     print(f'Hybrid catalog: {expected["speciesCount"]} pairs; ' + ('verified' if args.check else 'generated'))
 
 

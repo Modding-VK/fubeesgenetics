@@ -259,8 +259,12 @@ def check_assets(root, fu_root, native_root):
         item = docs[mod / f'bees/bees/hybrid_{caste}.item']
         assert item['itemName'] == f'bee_hybrid_{caste}' and set(item['itemTags']) == {'bee', tag, 'hybrid'}
         refs(item)
-    catalog = docs[mod / 'bees/hybridSpecies.config']
+    catalog = asset_json((root / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
     assert len(catalog['hybrids']) == 595 and sum(len(s['subspecies']) for s in catalog['hybrids']) == 1190
+    assert not (mod / 'bees/hybridSpecies.config').exists()
+    plants_path = mod / 'bees/hybridPlants.config'
+    assert plants_path.stat().st_size < 4096
+    assert set(docs[plants_path]) == set(catalog['production']['parents'])
     for family in catalog['production']['parents']:
         assert png_size(fu_root / f'bees/bees/{family}.png') == (84, 28)
     hybrid_sheets = {mod / f"bees/bees/{species['id']}.png" for species in catalog['hybrids']}
