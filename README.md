@@ -95,7 +95,9 @@ atualizar. As versões atuais já usam os mesmos 16 slots.
 ## Overload Apiary (0.2.20-dev)
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
-vida útil da rainha **0,7×**. A receita é aprendida ao obter a Bee Station.
+vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
+normal; o desgaste da rainha permanece. A receita usa 1 Normal Apiary, 1 A.I.
+Chip e 5 Durasteel Bars, e é aprendida ao obter a Bee Station.
 Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
 como itens no inventário.
 Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).

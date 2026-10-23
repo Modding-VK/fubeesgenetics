@@ -63,3 +63,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.22-dev | Híbridas funcionam nos apiários FU pequeno e grande por patch dos objetos | [PAK](../dist/bee-abusive-industry-0.2.22-dev.pak) |
 | 0.2.23-dev | Catálogo híbrido calculado sob demanda e carregamento dos scripts somente quando necessários | [PAK](../dist/bee-abusive-industry-0.2.23-dev.pak) |
 | 0.2.24-dev | Hybridizer acumula energia antes de receber espécies distintas | [PAK](../dist/bee-abusive-industry-0.2.24-dev.pak) |
+| 0.2.25-dev | Overload Apiary produz sem energia na velocidade normal; receita de 1 AI Chip e 5 Durasteel Bars | [PAK](../dist/bee-abusive-industry-0.2.25-dev.pak) |

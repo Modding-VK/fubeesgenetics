@@ -270,6 +270,9 @@ end
 
 function M.install(multiplier)
   multiplier = multiplier or 1
+  local function currentMultiplier()
+    return type(multiplier) == "function" and multiplier() or multiplier
+  end
   local nativeBiome, nativeFlower, nativeDrone = getBiomeFavor, getFlowerLikeness, droneProduction
   local nativeYoung, nativeQueen, nativeTick = generateYoungQueen, queenProduction, beeTick
   local nativeSame, nativeActive, nativeRivalries = isSameQueen, isDroneActive, checkRivalries
@@ -368,7 +371,7 @@ function M.install(multiplier)
     local randomness = math.random(beeData.productionRandomModifierRange[1], beeData.productionRandomModifierRange[2]) * 0.01
     -- Unfertilized queens can establish their own drones; young queens need a
     -- compatible mate. A small floor keeps a zero breeding gene viable.
-    local breed = (genelib.statFromGenomeToValue(queen.parameters.genome, "droneBreedRate") + 0.1) * multiplier
+    local breed = (genelib.statFromGenomeToValue(queen.parameters.genome, "droneBreedRate") + 0.1) * currentMultiplier()
     droneProgress = droneProgress + (breed + frameBonuses.droneBreedRate * ((fv + bv) / 2)) * randomness * 0.25
     if hasMate then
       youngQueenProgress = youngQueenProgress + (0.01 + genelib.statFromGenomeToValue(queen.parameters.genome, "queenBreedRate")
@@ -404,7 +407,7 @@ function M.install(multiplier)
     local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
     if bv < 0 or fv < 0 then return end
     local efficiency = ((drone.count / 1000) + math.min(1 / ((1 + hivesAroundHive) * 0.75), 1) + fv + bv) / 4 * 0.5
-    for product, rate in pairs(M.productionRates(lineage, drone.parameters.genome, frameBonuses.baseProduction, multiplier)) do
+    for product, rate in pairs(M.productionRates(lineage, drone.parameters.genome, frameBonuses.baseProduction, currentMultiplier())) do
       local progress = (droneProductionProgress[product] or 0) + rate * efficiency
       local count = math.floor(progress)
       droneProductionProgress[product] = progress - count

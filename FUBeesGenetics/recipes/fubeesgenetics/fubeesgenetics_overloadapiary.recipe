@@ -1,8 +1,8 @@
 {
   "input": [
     {"item": "normalapiary", "count": 1},
-    {"item": "aichip", "count": 2},
-    {"item": "titaniumbar", "count": 8}
+    {"item": "aichip", "count": 1},
+    {"item": "durasteelbar", "count": 5}
   ],
   "output": {
     "item": "fubeesgenetics_overloadapiary",

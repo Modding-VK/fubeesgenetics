@@ -6,16 +6,15 @@ the FU power network for a continuous draw of **12 W**.
 
 ## Behavior
 
-- Resource production is multiplied by **1.2**.
-- Drone breeding is multiplied by **1.2**.
+- With 12 W available, resource production and drone breeding are multiplied by **1.2**.
+- Without power, resources and drones continue at their normal production rates.
 - The queen loses lifespan at **1 / 0.7** the normal rate, resulting in 70% of
   her normal working life.
-- The apiary pauses its bee simulation when its connected network cannot supply
-  its power draw. Output and queen aging resume when power is available.
+- Queen aging continues without power at the same accelerated rate.
 - It never releases random capturable bee entities, whether the queen is native
   or hybrid. Drones and queen larvae remain inventory items.
 - Crafting is unlocked by obtaining the Bee Station. Recipe: one Normal Apiary,
-  two AI Chips, and eight Titanium Bars.
+  one AI Chip, and five Durasteel Bars.
 
 The current object reuses FU's native Apiary art and interface. The item ID is
 `fubeesgenetics_overloadapiary`.

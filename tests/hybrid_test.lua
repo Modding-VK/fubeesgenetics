@@ -334,6 +334,7 @@ test("Genetic production changes rates instead of cancelling out", function()
 end)
 test("Native overload multipliers and aging remain 1.2 / 1.2 / 0.7", function()
   local e = setup(); e.startApiary(); e.queen = e.parent("honey", "queen")
+  e.update(0)
   e.queen.parameters.wild = nil; e.inventory[0] = copy(e.queen); e.hasFrame = true
   local before = e.queen.parameters.lifespan; e.ageQueen(); equal(e.queen.parameters.lifespan, before - 1 / .7)
   e.frameBonuses.baseProduction = 3; e.frameBonuses.droneBreedRate = 0
@@ -348,13 +349,14 @@ test("Native overload multipliers and aging remain 1.2 / 1.2 / 0.7", function()
   for _, value in pairs(e.droneProductionProgress) do assert(math.abs(value - expected) < 1e-9) end
   equal(e.frameBonuses.baseProduction, 3)
 end)
-test("Powered apiary skips offline catchup and pauses without power", function()
+test("Overload apiary skips offline catchup and continues without power", function()
   local e = setup(); e.storage.lastActive = 0; e.storage.unfinishedTicks = 700; e.startApiary()
   equal(e.storage.lastActive, nil); equal(e.ticksToSimulate, nil)
   local ticks = 0; e.beeTick = function() ticks = ticks + 1 end
   e.update(1/12); e.update(1/12); equal(ticks, 0); equal(e.consumed, 2)
-  e.supply = 0; for _ = 1, 20 do e.update(1) end; equal(ticks, 0); equal(e.consumed, 2)
-  e.supply = 100; for _ = 1, 20 do e.update(.1) end; assert(ticks >= 1)
+  e.supply = 0; for _ = 1, 20 do e.update(1) end; assert(ticks >= 1); equal(e.consumed, 2)
+  local unpoweredTicks = ticks
+  e.supply = 100; for _ = 1, 20 do e.update(.1) end; assert(ticks > unpoweredTicks)
   e.uninit(); equal(e.storage.lastActive, nil); equal(e.storage.unfinishedTicks, nil)
 end)
 test("Larva matures and establishes drones without a native starter", function()
