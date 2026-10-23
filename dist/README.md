@@ -1,6 +1,6 @@
-# Distribuição atual — Bee Abusive Industry 0.2.25-dev
+# Distribuição atual — Bee Abusive Industry 0.2.26-dev
 
-- bee-abusive-industry-0.2.25-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-0.2.26-dev.pak: instalação manual Starbound/mods.
 - bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
 - SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
 
@@ -13,8 +13,9 @@ O mantenedor testou as novas máquinas no jogo: o Overload Apiary parou sem
 energia na versão anterior; o Hybridizer permaneceu em zero com progenitores da
 mesma espécie. Na 0.2.24-dev, o Hybridizer passa a carregar antes dos insumos.
 O reteste dessa mudança no OpenStarbound ainda está pendente.
-Os 667 arquivos do PAK 0.2.25-dev foram conferidos por empacotamento e extração
-nativos. O comportamento sem energia nesta versão ainda precisa de reteste no jogo.
+Os 669 arquivos do PAK 0.2.26-dev foram conferidos por empacotamento e extração
+nativos. O comportamento dos apiários Overload nesta versão ainda precisa de
+reteste no jogo.
 Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
 
 A série 0.2.20 acrescentou o Overload Apiary e o Genetic Hybridizer. O sucesso
@@ -34,6 +35,9 @@ Esta 0.2.25-dev mantém o Overload Apiary ativo sem energia, com velocidade
 normal de recursos e drones; seus 12 W concedem o bônus de 20%. A rainha
 continua envelhecendo mais rápido. Receita: 1 Normal Apiary, 1 AI Chip e
 5 Durasteel Bars. O PAK 0.2.24-dev permanece preservado.
+Esta 0.2.26-dev adiciona o Overload Large Apiary, com 20 slots, dois drones,
+dois quadros e as mesmas regras de energia e desgaste. A receita usa 1 Large
+Apiary, 1 AI Chip e 5 Durasteel Bars. O PAK 0.2.25-dev permanece preservado.
 
 ## Registros anteriores
 

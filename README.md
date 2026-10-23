@@ -102,6 +102,11 @@ Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
 como itens no inventário.
 Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
 
+O **Overload Large Apiary** tem 20 slots, dois espaços para drones e dois para
+quadros. Usa a mesma regra de produção e desgaste, e também consome 12 W para
+ativar o bônus. Sua receita na Bee Station é 1 Large Apiary, 1 A.I. Chip e
+5 Durasteel Bars.
+
 ## Genetic Hybridizer e abelhas híbridas (0.2.20-dev)
 
 Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
@@ -169,7 +174,7 @@ Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
 fornecido pelo usuário, conferido por hash.
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
 à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**667 arquivos** com bytes idênticos e metadata JSON equivalente.
+**669 arquivos** com bytes idênticos e metadata JSON equivalente.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).

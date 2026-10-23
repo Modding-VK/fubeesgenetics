@@ -29,6 +29,11 @@
   {
     "op": "add",
     "path": "/learnBlueprintsOnPickup/-",
+    "value": "fubeesgenetics_overloadlargeapiary"
+  },
+  {
+    "op": "add",
+    "path": "/learnBlueprintsOnPickup/-",
     "value": "fubeesgenetics_hybridizer"
   }
 ]

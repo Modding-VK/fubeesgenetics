@@ -59,7 +59,7 @@ def check_assets(root, fu_root, native_root):
         print('PASS '+label)
     docs = {p:asset_json(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation','.item','.monstertype','.monsterpart'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
-    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_hybridizer"}
+    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_overloadlargeapiary", "fubeesgenetics_hybridizer"}
     path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
@@ -130,7 +130,7 @@ def check_assets(root, fu_root, native_root):
     patch = next(d for p,d in docs.items() if p.name=='beestation.object.patch')
     for before in [{}, {'learnBlueprintsOnPickup':['existing']},asset_json((fu_root/'objects/bees/beestation/beestation.object').read_text())]:
         after = apply_patch(before,patch)
-        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange','fubeesgenetics_overloadapiary','fubeesgenetics_hybridizer']
+        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange','fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary','fubeesgenetics_hybridizer']
         assert {k:v for k,v in after.items() if k!='learnBlueprintsOnPickup'} == {k:v for k,v in before.items() if k!='learnBlueprintsOnPickup'}
     passed('S8 conditional blueprint patch preserves existing entries')
     c=gui['helpCanvas']
@@ -228,16 +228,21 @@ def check_assets(root, fu_root, native_root):
     check_container_ui(root, native_root)
     passed('S13 native chest layout, visible slots, exact centering and offsets 0-15')
     overload = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadapiary')
+    overload_large = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadlargeapiary')
     hybridizer = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_hybridizer')
-    for obj in [overload, hybridizer]:
-        refs(obj)
-        gui_config = docs.get(mod / obj['uiConfig'].lstrip('/')) or asset_json((fu_root / obj['uiConfig'].lstrip('/')).read_text())
-        refs(gui_config)
+    for obj in [overload, overload_large, hybridizer]:
+        if obj is not overload_large:
+            refs(obj)
+            gui_config = docs.get(mod / obj['uiConfig'].lstrip('/')) or asset_json((fu_root / obj['uiConfig'].lstrip('/')).read_text())
+            refs(gui_config)
         assert obj['powertype'] == 'input' and len(obj['inputNodes']) >= 1
         recipes = [d for p, d in docs.items() if p.suffix == '.recipe' and d['output']['item'] == obj['objectName']]
         assert len(recipes) == 1 and 'beestation' in recipes[0]['groups']
-    assert overload['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
-    assert overload['slotCount'] == 12 and hybridizer['slotCount'] == 3
+    assert overload['isn_requiredPower'] == overload_large['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
+    assert overload['slotCount'] == 12 and overload_large['slotCount'] == 20 and hybridizer['slotCount'] == 3
+    assert overload_large['scripts'] == overload['scripts']
+    assert (overload_large['queenSlot'], overload_large['droneSlots'], overload_large['frameSlots'], overload_large['firstInventorySlot']) == (1, [2,3], [4,5], 6)
+    assert overload_large['uiConfig'] == '/bees/interface/apiary/largeapiary.config'
     passed('S14 powered objects, Bee Station recipes and all direct asset references')
     hybrid_ui = docs[mod / hybridizer['uiConfig'].lstrip('/')]
     gui = hybrid_ui['gui']

@@ -30,3 +30,12 @@ the queen's decoded drone-breeding stat. Power is drawn through
 12 W is the initial balance value, chosen as a moderate industrial draw below
 the FU Centrifuge's documented 24 W. It can be adjusted after in-game balance
 review without changing the bee mechanics.
+
+## Large variant (0.2.26-dev)
+
+The Overload Large Apiary upgrades one FU Large Apiary (`normalalveary`) with
+one AI Chip and five Durasteel Bars at the Bee Station. Its item ID is
+`fubeesgenetics_overloadlargeapiary`. It retains the native large interface,
+20 slots, two drone slots and two frame slots. The same overload script gives
+the 1.2 resource and drone bonus when 12 W is available, normal production
+without power, 70% queen lifespan, and no random capturable bee spawns.
