@@ -1,6 +1,7 @@
 local statusLabels = {
   WAITING_INPUT = "Waiting for valid parent bees",
   WAITING_OUTPUT = "Clear the result slot",
+  NO_CONNECTION = "Connect power to the input node",
   NO_POWER = "Waiting for electrical power",
   CHARGING = "Charging hybridization coil",
   SUCCESS = "Hybrid queen larva created",

@@ -88,16 +88,29 @@ end
 function update(dt)
   power.update(dt)
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
-  local queen, drone = validParents()
-  if not queen then setStatus("WAITING_INPUT"); return end
-  if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
-  if storage.hybridCharge >= energyPerAttempt then attemptCrossing(queen, drone); return end
+  -- The coil is a battery: it may charge before either parent is inserted.
+  -- Inputs and output space are required only when an attempt starts.
+  if storage.hybridCharge >= energyPerAttempt then
+    local queen, drone = validParents()
+    if not queen then setStatus("WAITING_INPUT"); return end
+    if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
+    attemptCrossing(queen, drone)
+    return
+  end
   local watts = config.getParameter("isn_requiredPower", 24)
   local draw = math.min(watts * dt, energyPerAttempt - storage.hybridCharge, power.getTotalEnergy())
-  if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
+  if draw <= 0 or not power.consume(draw) then
+    setStatus(object.isInputNodeConnected(0) and "NO_POWER" or "NO_CONNECTION")
+    return
+  end
   storage.hybridCharge = math.min(energyPerAttempt, storage.hybridCharge + draw)
   setStatus("CHARGING")
-  if storage.hybridCharge >= energyPerAttempt then attemptCrossing(queen, drone) end
+  if storage.hybridCharge >= energyPerAttempt then
+    local queen, drone = validParents()
+    if not queen then setStatus("WAITING_INPUT")
+    elseif readSlot(outputSlot) then setStatus("WAITING_OUTPUT")
+    else attemptCrossing(queen, drone) end
+  end
 end
 
 function die()

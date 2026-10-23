@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.23-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.24-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.23-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.24-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,7 +24,7 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.23-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.24-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -105,6 +105,8 @@ Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
 Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
 energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
 chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
+Desde 0.2.24-dev, a máquina pode carregar antes da inserção das abelhas; ao
+atingir 10.000, aguarda progenitores válidos e espaço livre na saída.
 O sucesso produz **uma larva de rainha híbrida** (`bee_hybrid_youngQueen`),
 que se torna adulta no apiário, preservando o genome e a linhagem.
 Cada cruzamento tem duas subespécies com prioridade de produção alternada e
@@ -119,8 +121,8 @@ transmite sua linhagem a Young Queens e Drones.
   Eles continuam a gerar entidades capturáveis para abelhas nativas, mas não
   tentam gerar entidades híbridas inexistentes.
 - O catálogo contém **595 combinações / 1.190 subespécies** e 595 folhas de
-  sprites. [Prévia visual](artwork/hybrids/preview.png). A validação no
-  jogo ainda está pendente.
+  sprites. [Prévia visual](artwork/hybrids/preview.png). O reteste da carga
+  antecipada no jogo ainda está pendente.
 
 Na 0.2.23-dev, os pares são calculados a partir dos dados das 35 famílias do
 FU. O catálogo detalhado continua na documentação; o PAK carrega apenas as
