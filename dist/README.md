@@ -27,8 +27,7 @@ o PAK 0.2.21-dev também permanece preservado.
 Esta 0.2.23-dev retira o catálogo expandido de 1 MB do PAK e carrega os scripts
 híbridos nos apiários somente quando uma híbrida está presente. O PAK
 0.2.22-dev permanece preservado.
-Esta 0.2.24-dev permite carregar o Hybridizer sem progenitores válidos e exibe
-um status específico quando o pino de energia está desconectado. O PAK
+Esta 0.2.24-dev permite carregar o Hybridizer sem progenitores válidos. O PAK
 0.2.23-dev permanece preservado.
 
 ## Registros anteriores

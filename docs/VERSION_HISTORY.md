@@ -62,4 +62,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.21-dev | 595 folhas de sprites próprias, com cores, silhuetas e padrões das progenitoras fundidos | [PAK](../dist/bee-abusive-industry-0.2.21-dev.pak), [prévia](../artwork/hybrids/preview.png) |
 | 0.2.22-dev | Híbridas funcionam nos apiários FU pequeno e grande por patch dos objetos | [PAK](../dist/bee-abusive-industry-0.2.22-dev.pak) |
 | 0.2.23-dev | Catálogo híbrido calculado sob demanda e carregamento dos scripts somente quando necessários | [PAK](../dist/bee-abusive-industry-0.2.23-dev.pak) |
-| 0.2.24-dev | Hybridizer acumula energia antes de receber espécies distintas; status indica pino desconectado | [PAK](../dist/bee-abusive-industry-0.2.24-dev.pak) |
+| 0.2.24-dev | Hybridizer acumula energia antes de receber espécies distintas | [PAK](../dist/bee-abusive-industry-0.2.24-dev.pak) |

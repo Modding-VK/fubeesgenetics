@@ -99,10 +99,7 @@ function update(dt)
   end
   local watts = config.getParameter("isn_requiredPower", 24)
   local draw = math.min(watts * dt, energyPerAttempt - storage.hybridCharge, power.getTotalEnergy())
-  if draw <= 0 or not power.consume(draw) then
-    setStatus(object.isInputNodeConnected(0) and "NO_POWER" or "NO_CONNECTION")
-    return
-  end
+  if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
   storage.hybridCharge = math.min(energyPerAttempt, storage.hybridCharge + draw)
   setStatus("CHARGING")
   if storage.hybridCharge >= energyPerAttempt then
