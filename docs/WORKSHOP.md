@@ -91,14 +91,7 @@ A imagem de preview do Workshop é separada do ícone de inventário.
 
 ## Gerar novamente
 
-Requer Python e asset_packer/asset_unpacker da instalação Starbound/OpenStarbound.
-Os executáveis não são redistribuídos. Exemplo (substituir caminhos):
-
-```sh
-python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
-```
-
-Na branch `dev`, a Action **Build development PAK** também gera o pacote. Ela
+Somente a Action **Build development PAK** gera novos arquivos `.pak`. Ela
 roda quando os assets ou scripts do mod mudam e pode ser iniciada manualmente em
 GitHub → Actions → Build development PAK → Run workflow, selecionando `dev`.
 O resultado fica no artefato da execução por 90 dias: PAK com a versão do
@@ -106,15 +99,11 @@ O resultado fica no artefato da execução por 90 dias: PAK com a versão do
 esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as
 ferramentas OpenStarbound fixadas em `tools/pak_toolchain.json`, confere seus
 hashes, desempacota o PAK para conferir os arquivos e não publica release,
-Steam Workshop ou commits. Os pacotes versionados em `dist/` continuam sendo
-registrados separadamente quando uma entrega for preparada.
-
-Windows: usar os caminhos dos executáveis .exe. O script aceita ferramentas no
-PATH ou na pasta de cache local, e procura unpacker ao lado de packer quando
-seu caminho não foi informado. O script gera PAK, desempacota em pasta temporária,
-confere lista de arquivos, bytes dos assets e valores do metadata, e só depois
-gera os pacotes de entrega. A raiz virtual é /objects, /scripts, /interface etc.,
-sem uma pasta FUBeesGenetics extra dentro do PAK.
+Steam Workshop ou commits. Os pacotes já versionados em `dist/` são históricos.
+Para obter um novo pacote, usar o artefato da execução correspondente no GitHub.
+O workflow gera o PAK, desempacota em pasta temporária e confere lista de
+arquivos, bytes dos assets e valores do metadata. A raiz virtual é /objects,
+/scripts, /interface etc., sem uma pasta FUBeesGenetics extra dentro do PAK.
 
 Ferramentas usadas nesta entrega: OpenStarbound v0.1.15.1 para Starbound 1.4.4,
 Source ID e hashes registrados em [pak_toolchain.json](../tools/pak_toolchain.json).

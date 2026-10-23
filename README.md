@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.24-dev. Autor: Goblin Man.**
+**Última versão empacotada: 0.2.26-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.24-dev.pak?raw=true) ·
+[Baixar o PAK](dist/bee-abusive-industry-0.2.26-dev.pak?raw=true) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,7 +24,7 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.24-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.26-dev.pak`. Mantenha apenas uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
@@ -157,8 +157,8 @@ e os IDs permanecem iguais. [Identidade e planejamento](docs/ROADMAP.md).
 
 Ambiente usado: Python 3.12 e Lua 5.4 (executável ou biblioteca compartilhada).
 Instale `requirements-build.txt` para gerar e validar os sprites com Pillow.
-O empacotamento usa as ferramentas nativas
-Starbound/OpenStarbound fixadas em [pak_toolchain.json](tools/pak_toolchain.json).
+O GitHub Actions usa as ferramentas nativas Starbound/OpenStarbound fixadas em
+[pak_toolchain.json](tools/pak_toolchain.json) para gerar novos PAKs.
 
 ```sh
 python3 tools/check_version.py --development
@@ -166,7 +166,6 @@ python3 tools/build_hybrid_sprites.py --check
 python3 tools/run_checks.py --fetch
 # Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
 python3 tools/run_checks.py --ic-root .cache/improved-containers
-python3 tools/package.py --output-dir /caminho/da/entrega
 ```
 
 Na 0.2.23 passaram **172 grupos locais básicos e 13 casos opcionais com

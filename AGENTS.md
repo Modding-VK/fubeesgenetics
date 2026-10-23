@@ -1,5 +1,12 @@
 # Operação de Git e entregas
 
+- Instrução geral atual: gerar novos arquivos `.pak` exclusivamente no GitHub
+  Actions. Não executar `tools/package.py`, `asset_packer` nem outro gerador de
+  PAK no workspace local. O script de empacotamento só aceita o ambiente do CI.
+  Após alterar assets, enviar o código para `dev` e obter o PAK do artefato da
+  Action **Build development PAK**. Preservar os PAKs antigos em `dist/` como
+  histórico; não criar uma cópia local nova para registrá-la ali.
+
 Instruções explícitas do mantenedor, recebidas nesta conversa:
 
 - `dev` é a branch de desenvolvimento. Alterações, correções, documentação e

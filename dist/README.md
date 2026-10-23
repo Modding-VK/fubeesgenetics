@@ -4,6 +4,9 @@
 - bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
 - SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
 
+Novos PAKs são gerados somente pelo GitHub Actions. Os arquivos deste diretório
+foram empacotados antes dessa regra e permanecem disponíveis como histórico.
+
 Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
 O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
 não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.

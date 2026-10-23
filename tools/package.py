@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -70,6 +71,8 @@ def main():
     parser.add_argument('--asset-packer', help='Native asset_packer executable, including .exe on Windows')
     parser.add_argument('--asset-unpacker', help='Native asset_unpacker executable for round-trip verification')
     args = parser.parse_args()
+    if os.environ.get('GITHUB_ACTIONS') != 'true':
+        parser.error('PAK generation is restricted to GitHub Actions. Run the Build development PAK workflow.')
     try:
         packer = native_tool(args.asset_packer, 'asset_packer')
         unpacker_value = args.asset_unpacker
