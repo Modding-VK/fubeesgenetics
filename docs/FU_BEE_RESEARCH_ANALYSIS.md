@@ -60,7 +60,11 @@ pagos na pesquisa; materiais das receitas continuam sendo consumidos ao fabricar
 O custo de 120 Madness tem precedente em `psychiatry2` da árvore Madness.
 
 Os ícones próprios ficam em `/zb/researchTree/fubeesgenetics/`: abelha com
-seleção e troca; favo com raio; hélices combinadas. O jogo aprende cada blueprint
+separação de saídas; favo sob um raio de sobrecarga; hélices combinadas com
+sinal de risco. São PNGs transparentes de 16×16, sem moldura interna: a
+interface do FU desenha `iconBackground.png` sob cada ícone. O gerador
+reproduzível é `tools/build_research_icons.py`; ver
+[revisão visual](RESEARCH_ICONS_0_2_28.md). O jogo aprende cada blueprint
 com `player.giveBlueprint` quando o nó é concluído. A Bee Station permanece como
 estação de crafting na aba Functional, mas o patch que ensinava as cinco receitas
 por coleta foi removido.

@@ -15,4 +15,5 @@ jobs:
       - name: Validate development version
         if: github.ref == 'refs/heads/dev'
         run: python tools/check_version.py --development
+      - run: python tools/build_research_icons.py --check
       - run: python tools/run_checks.py --fetch

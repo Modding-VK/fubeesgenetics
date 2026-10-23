@@ -178,6 +178,7 @@ O GitHub Actions usa as ferramentas nativas Starbound/OpenStarbound fixadas em
 ```sh
 python3 tools/check_version.py --development
 python3 tools/build_hybrid_sprites.py --check
+python3 tools/build_research_icons.py --check
 python3 tools/run_checks.py --fetch
 # Opcional: testar com o IC 2.11 original desempacotado, sem redistribuí-lo.
 python3 tools/run_checks.py --ic-root .cache/improved-containers
@@ -197,7 +198,8 @@ FU local, use `--fu-root /caminho/FrackinUniverse`. Caches não são redistribu�
 
 Geradores atuais: `tools/build_assets.py` (Analyzer),
 `tools/build_beeexchange_work_assets.py` (móvel/animação),
-`tools/build_beeexchange_icon.py` (ícone) e `tools/build_hybrid_sprites.py`
+`tools/build_beeexchange_icon.py` (ícone), `tools/build_research_icons.py`
+(ícones dos três nós) e `tools/build_hybrid_sprites.py`
 (595 folhas de sprites e prévia). [Roteiro de testes no jogo](docs/IN_GAME_TESTS.md).
 
 ## API e procedência
