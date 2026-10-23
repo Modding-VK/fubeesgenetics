@@ -13,7 +13,8 @@ the FU power network for a continuous draw of **12 W**.
 - Queen aging continues without power at the same accelerated rate.
 - It never releases random capturable bee entities, whether the queen is native
   or hybrid. Drones and queen larvae remain inventory items.
-- Crafting is unlocked by obtaining the Bee Station. Recipe: one Normal Apiary,
+- Crafting is unlocked by researching Abusive Apiaries in FU Agriculture.
+  The recipe stays at the Bee Station: one Normal Apiary,
   one AI Chip, and five Durasteel Bars.
 
 The current object reuses FU's native Apiary art and interface. The item ID is

@@ -24,7 +24,8 @@ exibe o progresso. A chance inicial de sucesso é 30%, reduzida a 10% para
 progenitores rivais. O sucesso entrega uma larva `bee_hybrid_youngQueen`.
 Após amadurecer no apiário, a Queen híbrida preserva a linhagem em Young Queens e
 Drones; a produção dinâmica dos dois conjuntos de recursos está habilitada no
-Overload Apiary. A receita e o desbloqueio são feitos pela Bee Station.
+Overload Apiary. A receita permanece na Bee Station; o blueprint é desbloqueado pela pesquisa
+Unethical Genetic Practices na árvore Agriculture do FU.
 
 A implementação ainda precisa de validação dentro do jogo. As 595 folhas PNG
 são geradas durante o desenvolvimento e incluídas no PAK. O Overload Apiary
@@ -202,7 +203,8 @@ persiste o progresso para sobreviver a reloads.
    falha e consumo dos progenitores.
 4. **Apiary:** produção dinâmica e herança para descendentes implementadas no
    Overload Apiary.
-5. **Conteúdo:** receita Bee Station, desbloqueio e tooltip implementados.
+5. **Conteúdo:** receita Bee Station, pesquisa Unethical Genetic Practices e
+   tooltip implementados.
 6. **Validação no jogo:** cruzamentos com recursos distintos e compartilhados,
    os casos de likeness `3/0`, `3/1` e `0/2`, falhas repetidas, reload durante a
    carga, saída ocupada e ciclo de vida de Queens e Drones híbridos.

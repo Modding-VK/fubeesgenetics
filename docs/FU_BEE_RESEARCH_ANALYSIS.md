@@ -1,7 +1,7 @@
 # Pesquisas de abelhas no Frackin Universe
 
 Análise da fonte FU fixada em `17868d86c9bb7bc00f92038fb78b48cebd1b41b8`.
-Esta análise não altera os desbloqueios atuais do addon.
+A integração foi definida para os cinco blueprints do addon na versão 0.2.27-dev.
 
 ## Resultado
 
@@ -38,53 +38,40 @@ Fontes:
 `acronyms.fu_agriculture` e de título/descrição em `strings.research`.
 O código mostra erro na interface quando falta uma sigla.
 
-## Integração recomendada
+## Integração adotada no addon
 
-Criar um arquivo próprio, por exemplo
-`/zb/researchTree/fubeesgenetics_bees.config`, e acrescentar seu caminho a
-`/zb/researchTree/data.config` com `data.config.patch` usando
-`/researchFiles/-`. No arquivo próprio:
+O addon registra `/zb/researchTree/fubeesgenetics_bees.config` em
+`/zb/researchTree/data.config.patch`. O arquivo próprio acrescenta os nós à
+árvore `fu_agriculture`, sem substituir `fu_agriculture.config`. Usa IDs
+namespaced, siglas únicas, títulos, descrições, posições e ícones PNG de 16×16.
 
-- Acrescentar `fubeesgenetics_overload_research` aos `children` de `bees2`.
-  Seu `unlocks` conteria `fubeesgenetics_overloadapiary`. Sugestão inicial:
-  1.400 Research, posição aproximada `[-150, -110]`.
-- Acrescentar `fubeesgenetics_hybrid_research` aos `children` de `bees3`.
-  Seu `unlocks` conteria `fubeesgenetics_hybridizer`. Sugestão inicial:
-  2.200 Research (`fuscienceresource`) e 120 Madness
-  (`fumadnessresource`), posição aproximada `[-150, -150]`.
-- Dar a ambos ícones distintos, siglas prefixadas e descrições que expliquem
-  consumo de energia, perda de vida da rainha e falha da hibridização. Conferir
-  posições e legibilidade na interface do jogo.
+| Nó | Pais necessários | Posição | Custo | Blueprints |
+| --- | --- | --- | --- | --- |
+| Industrial Beekeeping | `bees1` | [-155, -50] | 1.000 Research | Genetic Queen Filter, Auto Refugee |
+| Abusive Apiaries | Industrial Beekeeping e `bees2` | [-155, -90] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
+| Unethical Genetic Practices | Abusive Apiaries e `bees3` | [-155, -130] | 2.200 Research + 120 Madness | Genetic Hybridizer |
 
-O custo de 120 Madness tem precedente no nó `psychiatry2` do FU, que também
-custa 2.200 Research. Representa a manipulação genética sem exigir o patamar
-de Madness dos nós avançados dessa árvore. O Overload Apiary continua custando
-apenas Research. Madness é um custo único da pesquisa: cada tentativa na
-máquina de hibridização continua consumindo 10.000 de energia, sem Madness.
+Os pais são conectados pelo campo `children`. O FU requer que todos os pais
+de um nó estejam pesquisados antes de liberá-lo. As siglas persistidas são
+`FUBI1`, `FUBI2` e `FUBI3`; mantê-las estáveis para não perder o progresso
+em saves. Os nós usam `fuscienceresource` e `fumadnessresource` como moedas.
+Na Agriculture, `customConsumptionRules` consome moedas, então os preços são
+pagos na pesquisa; materiais das receitas continuam sendo consumidos ao fabricar.
+O custo de 120 Madness tem precedente em `psychiatry2` da árvore Madness.
 
-Esses valores são propostas de balanceamento. O FU entrega os blueprints com
-`player.giveBlueprint` ao concluir a pesquisa. As receitas já existentes na
-Bee Station usam os IDs de saída acima e podem permanecer com seus materiais.
-Na árvore Agriculture, `customConsumptionRules` consome as moedas Research e
-Madness, mas **não consome os itens** em `price`: itens ali exigem posse, e as próprias
-receitas consomem os materiais ao fabricar.
+Os ícones próprios ficam em `/zb/researchTree/fubeesgenetics/`: abelha com
+seleção e troca; favo com raio; hélices combinadas. O jogo aprende cada blueprint
+com `player.giveBlueprint` quando o nó é concluído. A Bee Station permanece como
+estação de crafting na aba Functional, mas o patch que ensinava as cinco receitas
+por coleta foi removido.
 
-## Desbloqueio atual e saves
+## Saves e validação
 
-Hoje o patch da Bee Station ensina `fubeesgenetics_overloadapiary` e
-`fubeesgenetics_hybridizer` assim que a estação é obtida. Para transformar as
-pesquisas em requisito real, retirar esses dois blueprints do patch da estação
-ao implementar os nós. O Genetic Queen Filter e a Bee Exchange podem conservar
-o desbloqueio atual. Personagens que já aprenderam as receitas mantêm esse
-conhecimento; o novo requisito se aplica com clareza a personagens novos.
+Blueprints aprendidos antes da mudança permanecem aprendidos; o jogo não os
+revoga. Os novos requisitos se aplicam a personagens sem esse aprendizado.
+Não alteramos `versions.fu_agriculture`, pois os blueprints estão em nós novos.
 
-Não é necessário mudar `versions.fu_agriculture` apenas para adicionar nós.
-O modelo do FU recomenda mudar a versão quando são acrescentados blueprints a
-pesquisas já concluídas, para reaprender os desbloqueios. IDs e siglas dos nós
-novos devem permanecer estáveis após publicados, pois o progresso salvo guarda
-as siglas. Outros mods podem acrescentar filhos à mesma árvore; os IDs
-prefixados e a combinação de arrays reduzem colisões.
-
-Conclusão baseada no código e nos arquivos do FU. A interface e a persistência
-das novas pesquisas exigirão conferência dentro do OpenStarbound quando os
-patches forem implementados.
+A validação estática confere registro, estrutura, custos, cinco desbloqueios,
+ícones e ausência do patch de coleta. Ainda é necessário verificar no jogo a
+posição dos nós, a exigência de todos os pais, os custos Research/Madness, o
+aprendizado de cada receita e a persistência após salvar/recarregar.

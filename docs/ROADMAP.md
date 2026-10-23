@@ -28,7 +28,7 @@ As fontes do FU foram auditadas no commit fixado em tools/upstream.json:
 105 receitas do Bee Refuge; Terramart Shipments 3.5 usa o ID cropshipper_kheAA2
 e 40 slots. A Bee Exchange atualmente usa 16 slots compartilhados e lê as receitas reais
 do FU em runtime. Crafting: 1 beerefuge + 1 cropshipper_kheAA2 + 2 aichip,
-na Bee Station, com desbloqueio ao obtê-la. Não há dependência adicional de mod.
+na Bee Station, com desbloqueio em Industrial Beekeeping. Não há dependência adicional de mod.
 
 Ver [especificação, tabela e testes](BEE_EXCHANGE_0_2_0.md).
 O mantenedor confirmou todas as alterações anteriores validadas e prontas.
@@ -62,9 +62,8 @@ somente ao inserir uma híbrida no apiário.
 
 ## Fluxo de trabalho
 
-A viabilidade de integrar pesquisas próprias à sequência de abelhas do FU está
-documentada em [Pesquisas de abelhas no FU](FU_BEE_RESEARCH_ANALYSIS.md).
-Os desbloqueios por pesquisa ainda não foram implementados.
+Os cinco blueprints são desbloqueados pelos três nós de pesquisa descritos
+em [Pesquisas de abelhas no FU](FU_BEE_RESEARCH_ANALYSIS.md).
 
 Planejamento e desenvolvimento permanecem em dev. Não criar PR ou promover
 para main sem solicitação explícita. O planejamento não representa publicação

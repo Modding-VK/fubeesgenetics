@@ -32,13 +32,28 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 O ZIP Workshop contém os mesmos bytes com o nome padrão `contents.pak`.
 Isso não representa publicação na Steam; veja [WORKSHOP](docs/WORKSHOP.md).
 
+## Pesquisa na árvore Agriculture
+
+Os cinco blueprints do addon são aprendidos em três pesquisas ligadas à trilha de
+abelhas do FU. A Bee Station continua sendo a estação de fabricação na aba Functional.
+A coleta da estação não ensina mais as receitas do addon.
+
+| Pesquisa | Requisitos | Custo | Blueprints |
+| --- | --- | --- | --- |
+| Industrial Beekeeping | bees1 | 1.000 Research | Genetic Queen Filter, Auto Refugee |
+| Abusive Apiaries | Industrial Beekeeping e bees2 | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
+| Unethical Genetic Practices | Abusive Apiaries e bees3 | 2.200 Research + 120 Madness | Genetic Hybridizer |
+
+Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
+Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).
+
 ## Genetic Queen Filter / Bee Analyzer
 
 Contêiner real de três slots que classifica Queens e Young Queens analisadas
 por seis traits, com referências adaptativas e comparadores configuráveis.
 
-- Obtenha/recolha a **Bee Station** para aprender a receita. Fabrique na aba
-  Functional com 2 AI Chips, 5 Laser Diodes, 5 Reinforced Glass, 10 Titanium Bars,
+- Pesquise **Industrial Beekeeping** na árvore Agriculture para aprender a receita.
+  Fabrique na Bee Station, aba Functional com 2 AI Chips, 5 Laser Diodes, 5 Reinforced Glass, 10 Titanium Bars,
   10 Healing Water, 5 Sulphuric Acid e 2 Unknown Gene.
 - Use o Input central. A primeira abelha válida estabelece a referência e vai
   para Approved. Todas as condições ativas precisam passar; igualdade é aceita.
@@ -63,7 +78,7 @@ ID para `/spawnitem`: `fubeesgenetics_geneticqueenfilter`.
 Troca abelhas automaticamente conforme as receitas do Bee Refuge do FU.
 
 - Receita na Bee Station / Functional: **1 Bee Refuge + 1 Terramart Shipments 3.5
-  + 2 AI Chips**. Desbloqueio ao obter/recolher a Bee Station.
+  + 2 AI Chips**. Desbloqueio em **Industrial Beekeeping**.
 - **16 slots compartilhados**, offsets ITD **0–15**. Filtre abelhas na inserção
   e recursos/Pixels na extração.
 - Queens e Young Queens rendem o mesmo recurso e quantidade por espécie.
@@ -97,7 +112,7 @@ atualizar. As versões atuais já usam os mesmos 16 slots.
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
 vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
 normal; o desgaste da rainha permanece. A receita usa 1 Normal Apiary, 1 A.I.
-Chip e 5 Durasteel Bars, e é aprendida ao obter a Bee Station.
+Chip e 5 Durasteel Bars. O blueprint vem de **Abusive Apiaries**.
 Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
 como itens no inventário.
 Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
@@ -121,7 +136,7 @@ uma folha de sprites própria para Queen, larva e Drone, que funde formas,
 marcas e cores parentais. As duas usam a mesma aparência. A Queen híbrida
 transmite sua linhagem a Young Queens e Drones.
 
-- Receita e blueprint na Bee Station.
+- Blueprint desbloqueado por **Unethical Genetic Practices**; receita na Bee Station.
 - Produção híbrida disponível no **Overload Apiary** e nos apiários nativos
   pequeno e grande do FU. Os apiários nativos mantêm sua produção sem energia;
   o patch lê a linhagem para recursos, preferências e descendentes híbridos.

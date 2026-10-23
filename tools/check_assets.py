@@ -127,12 +127,35 @@ def check_assets(root, fu_root, native_root):
         items = [asset_json(p.read_text()) for p in (fu_root/'items').rglob('*') if p.suffix in {'.item','.liqitem'}]
         assert any(i['itemName']==name for i in items)
     passed('S7 recipe IDs quantities and station groups')
-    patch = next(d for p,d in docs.items() if p.name=='beestation.object.patch')
-    for before in [{}, {'learnBlueprintsOnPickup':['existing']},asset_json((fu_root/'objects/bees/beestation/beestation.object').read_text())]:
-        after = apply_patch(before,patch)
-        assert after['learnBlueprintsOnPickup'] == before.get('learnBlueprintsOnPickup',[])+[ident,'fubeesgenetics_beeexchange','fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary','fubeesgenetics_hybridizer']
-        assert {k:v for k,v in after.items() if k!='learnBlueprintsOnPickup'} == {k:v for k,v in before.items() if k!='learnBlueprintsOnPickup'}
-    passed('S8 conditional blueprint patch preserves existing entries')
+    research = docs[mod/'zb/researchTree/fubeesgenetics_bees.config']
+    registry_patch = docs[mod/'zb/researchTree/data.config.patch']
+    assert registry_patch == [{'op':'add','path':'/researchFiles/-','value':'/zb/researchTree/fubeesgenetics_bees.config'}]
+    assert not (mod/'objects/bees/beestation/beestation.object.patch').exists()
+    nodes = research['researchTree']['fu_agriculture']
+    names = ['fubeesgenetics_industrial_beekeeping','fubeesgenetics_abusive_apiaries','fubeesgenetics_unethical_genetics']
+    assert nodes['bees1']['children'] == [names[0]]
+    assert nodes['bees2']['children'] == [names[1]]
+    assert nodes['bees3']['children'] == [names[2]]
+    assert nodes[names[0]]['children'] == [names[1]] and nodes[names[1]]['children'] == [names[2]]
+    assert nodes[names[2]]['children'] == []
+    assert [nodes[name]['unlocks'] for name in names] == [
+        [ident,'fubeesgenetics_beeexchange'],
+        ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary'],
+        ['fubeesgenetics_hybridizer']]
+    assert [nodes[name]['price'] for name in names] == [
+        [['fuscienceresource',1000]],
+        [['fuscienceresource',1400],['fumadnessresource',60]],
+        [['fuscienceresource',2200],['fumadnessresource',120]]]
+    assert research['acronyms']['fu_agriculture'] == dict(zip(['FUBI1','FUBI2','FUBI3'],names))
+    assert [research['strings']['research'][name][0] for name in names] == [
+        'Industrial Beekeeping','Abusive Apiaries','Unethical Genetic Practices']
+    assert all(len(research['strings']['research'][name][1]) > 80 for name in names)
+    for name in names:
+        icon = nodes[name]['icon']
+        assert icon.startswith('/zb/researchTree/fubeesgenetics/')
+        assert png_size(mod/icon.lstrip('/')) == (16,16)
+        assert nodes[name]['position'][0] < -100
+    passed('S8 FU Agriculture research nodes, costs, blueprints and no pickup unlock')
     c=gui['helpCanvas']
     assert c['mouseTransparent'] and not c['captureMouseEvents'] and not c['captureKeyboardEvents']
     assert ui['helpTexts']=={
