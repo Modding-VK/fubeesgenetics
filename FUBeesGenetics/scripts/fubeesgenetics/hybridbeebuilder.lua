@@ -46,7 +46,7 @@ function build(directory, config, parameters, level, seed)
   local queenSubtype = parentSubtypeName(lineage.queenFamily, lineage.parentSubtypes[lineage.queenFamily])
   local droneSubtype = parentSubtypeName(lineage.droneFamily, lineage.parentSubtypes[lineage.droneFamily])
   builtConfig.shortdescription = queenSubtype .. " × " .. droneSubtype .. " H" .. lineage.subspecies .. " " .. caste
-  builtConfig.tooltipFields.subTitle = "Hybrid Subtype: " .. lineage.subspecies
+  builtConfig.tooltipFields.subTitle = "Predominant: " .. (lineage.subspecies == 1 and queenSubtype or droneSubtype)
   builtConfig.description = string.format("Hybrid %s from %s and %s. Works in FU Apiaries and the Overload Apiary.",
     caste:lower(), queenSubtype, droneSubtype)
   if lineage.genomeExceptions and #lineage.genomeExceptions > 0 then

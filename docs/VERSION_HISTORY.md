@@ -70,3 +70,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.33-dev | Gene favorável positivo das novas híbridas mantém mínimo 1; evita atributos zerados em cruzamentos comuns | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.34-dev | Penalidade genética proporcional: um terço do menor valor parental para atributos favoráveis | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.35-dev | Nome das híbridas mostra as subespécies nativas de origem e H1/H2; subtítulo mostra somente a subespécie híbrida | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.36-dev | Campo de subespécie da híbrida mostra `Predominant:` com o nome da subespécie nativa priorizada | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

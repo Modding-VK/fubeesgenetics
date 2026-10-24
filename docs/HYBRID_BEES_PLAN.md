@@ -96,8 +96,8 @@ para cada combinação.
 No item, o nome visível usa os nomes das subespécies nativas efetivamente
 cruzadas, seguidos de `H1` ou `H2` e da casta. Por exemplo, uma larva pode
 aparecer como `PlatedHoneybee × Carpenter H1 Queen Larva`. O subtítulo mostra
-`Hybrid Subtype: 1` ou `2`. A descrição identifica as duas subespécies de
-origem, sem rótulo de espécie dominante nem lista de recursos.
+`Predominant: PlatedHoneybee` em H1, ou `Predominant: Carpenter` em H2. A
+descrição identifica as duas subespécies de origem, sem lista de recursos.
 
 ## Aparência e sprites
 
