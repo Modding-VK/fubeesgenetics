@@ -66,3 +66,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.25-dev | Overload Apiary produz sem energia na velocidade normal; receita de 1 AI Chip e 5 Durasteel Bars | [PAK](../dist/bee-abusive-industry-0.2.25-dev.pak) |
 | 0.2.26-dev | Overload Large Apiary: 20 slots, dois drones e dois quadros, com bônus de 20% por 12 W | [PAK](../dist/bee-abusive-industry-0.2.26-dev.pak) |
 | 0.2.31-dev | Textos de scanner por espécie para os três objetos que faltavam; regra documentada para objetos futuros | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.32-dev | Hybridizer atualiza a cada 30 ticks, consulta a janela a cada 2 s e evita verificar energia após a carga completa | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

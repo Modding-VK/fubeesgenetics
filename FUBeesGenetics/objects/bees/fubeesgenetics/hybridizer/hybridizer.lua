@@ -12,8 +12,9 @@ local function validParents()
   local queen, drone = readSlot(queenSlot), readSlot(droneSlot)
   if not queen or not drone then return nil end
   if not hybridbees.validParent(queen, "queen") or not hybridbees.validParent(drone, "drone") then return nil end
-  if not hybridbees.speciesForParents(hybridbees.family(queen), hybridbees.family(drone)) then return nil end
-  return queen, drone
+  local species = hybridbees.speciesForParents(hybridbees.family(queen), hybridbees.family(drone))
+  if not species then return nil end
+  return queen, drone, species
 end
 
 -- Undelivered larvae or exceptional input refunds survive reloads. Do not roll
@@ -66,8 +67,7 @@ local function attemptCrossing(queen, drone)
 end
 
 local function getState()
-  local queen, drone = validParents()
-  local species = queen and hybridbees.speciesForParents(hybridbees.family(queen), hybridbees.family(drone))
+  local _, _, species = validParents()
   return {charge = storage.hybridCharge or 0, capacity = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
@@ -86,7 +86,6 @@ function init()
 end
 
 function update(dt)
-  power.update(dt)
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
   -- The coil is a battery: it may charge before either parent is inserted.
   -- Inputs and output space are required only when an attempt starts.
@@ -97,6 +96,8 @@ function update(dt)
     attemptCrossing(queen, drone)
     return
   end
+  -- A full coil needs no power-network traversal while it waits for bees.
+  power.update(dt)
   local watts = config.getParameter("isn_requiredPower", 24)
   local draw = math.min(watts * dt, energyPerAttempt - storage.hybridCharge, power.getTotalEnergy())
   if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end

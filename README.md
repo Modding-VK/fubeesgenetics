@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.31-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.32-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -24,7 +24,7 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.31-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.32-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -135,6 +135,9 @@ energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
 chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
 Desde 0.2.24-dev, a máquina pode carregar antes da inserção das abelhas; ao
 atingir 10.000, aguarda progenitores válidos e espaço livre na saída.
+Desde 0.2.32-dev, a máquina atualiza a cada 30 ticks e a janela consulta o
+estado a cada 2 segundos para reduzir carga na thread do mundo. A recarga pode
+ficar mais lenta em redes sem bateria.
 O sucesso produz **uma larva de rainha híbrida** (`bee_hybrid_youngQueen`),
 que se torna adulta no apiário, preservando o genome e a linhagem.
 Cada cruzamento tem duas subespécies com prioridade de produção alternada e

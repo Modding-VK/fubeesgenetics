@@ -39,7 +39,7 @@
   "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
   "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
   "scripts": ["/objects/bees/fubeesgenetics/hybridizer/hybridizer.lua"],
-  "scriptDelta": 5,
+  "scriptDelta": 30,
   "queenSlot": 1,
   "droneSlot": 2,
   "outputSlot": 3,

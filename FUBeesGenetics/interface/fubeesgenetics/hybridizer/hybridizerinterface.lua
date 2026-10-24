@@ -43,8 +43,8 @@ function update(dt)
       widget.setText("status", "Status: machine connection unavailable")
     end
   end
-  if self.elapsed >= 0.5 then
-    self.elapsed = self.elapsed % 0.5
+  if self.elapsed >= 2 then
+    self.elapsed = self.elapsed % 2
     requestState()
   end
 end
