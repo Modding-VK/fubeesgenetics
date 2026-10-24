@@ -180,6 +180,11 @@ ID para `/spawnitem`: `fubeesgenetics_hybridizer`.
 
 ## Desenvolvimento e GitHub
 
+**Eficiência de scripting é requisito para todo conteúdo novo ou alterado.**
+Consulte a [política de desempenho](docs/SCRIPTING_PERFORMANCE.md) e a
+[skill do projeto](.agents/skills/starbound-scripting-performance/SKILL.md).
+
+
 As regras acordadas no chat **Bee Analyzer** valem para as duas máquinas:
 
 - `dev`: desenvolvimento e PAKs com versão `X.Y.Z-dev`.

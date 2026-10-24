@@ -1,3 +1,22 @@
+# Requisito obrigatório de eficiência de scripting
+
+- Por determinação do mantenedor, **todo item ou conteúdo criado ou alterado
+  neste mod deve considerar e minimizar o consumo da fila de scripting**.
+  Isso abrange objetos, máquinas, itens de inventário, interfaces, builders
+  e patches, inclusive alterações em conteúdo existente.
+- Antes de implementar, ler e aplicar a política
+  [SCRIPTING_PERFORMANCE](docs/SCRIPTING_PERFORMANCE.md) e a skill
+  [starbound-scripting-performance](.agents/skills/starbound-scripting-performance/SKILL.md).
+  Esta instrução também vale para chats que acessem os arquivos via GitHub.
+- Justificar scripts e frequências, evitar trabalho ocioso e consultas
+  redundantes, limitar caches e comunicação, atualizar UI somente quando
+  necessário e carregar dependências pesadas sob demanda.
+- Preservar correção, itens, persistência e contratos FU/ITD. Otimização não
+  autoriza remover revalidações, rollback ou escrow.
+- Documentar evidências e limites. Não confundir redução de chamadas com ganho
+  de CPU medido no jogo. Conteúdo estático deve evitar scripting desnecessário;
+  não adicionar loops ou testes artificiais para cumprir o requisito.
+
 # Operação de Git e entregas
 
 - Instrução geral atual: gerar novos arquivos `.pak` exclusivamente no GitHub
