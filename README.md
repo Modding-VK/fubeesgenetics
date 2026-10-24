@@ -3,9 +3,9 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Última versão empacotada: 0.2.26-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.31-dev. Autor: Goblin Man.**
 
-[Baixar o PAK](dist/bee-abusive-industry-0.2.26-dev.pak?raw=true) ·
+[Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -24,11 +24,13 @@ A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.26-dev.pak`. Mantenha apenas uma cópia do addon.
+   `bee-abusive-industry-0.2.31-dev.pak` do artefato da Action. Mantenha apenas
+   uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
 
-[dist/SHA256SUMS](dist/SHA256SUMS) identifica o PAK e o ZIP Workshop da entrega.
+[dist/SHA256SUMS](dist/SHA256SUMS) identifica o último pacote histórico em `dist/`.
+O artefato da Action contém os hashes do pacote atual.
 O ZIP Workshop contém os mesmos bytes com o nome padrão `contents.pak`.
 Isso não representa publicação na Steam; veja [WORKSHOP](docs/WORKSHOP.md).
 
@@ -46,6 +48,10 @@ A coleta da estação não ensina mais as receitas do addon.
 
 Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
 Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).
+
+Todos os objetos próprios do mod têm texto de scanner para Human, Apex, Avian,
+Floran, Glitch, Hylotl e Novakid, além de uma descrição genérica. Essa regra
+também vale para novos objetos.
 
 ## Genetic Queen Filter / Bee Analyzer
 

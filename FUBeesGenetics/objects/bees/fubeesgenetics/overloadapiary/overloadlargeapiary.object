@@ -44,5 +44,13 @@
   "firstInventorySlot": 6,
   "inputNodes": [[0, 0]],
   "powertype": "input",
-  "isn_requiredPower": 12
+  "isn_requiredPower": 12,
+  "humanDescription": "A larger overload apiary with room for two drones and two frames. Power speeds up resources and drones by 20%, but the queen burns out early either way.",
+  "apexDescription": "Expanded industrial breeding capacity: two drone slots and two frame slots. Twelve watts raise output by 20% while queen lifespan drops to 70%.",
+  "avianDescription": "This broad hive gives two drone colonies room to work, then drives them faster with electricity. The queen's life is shortened even when the current stops.",
+  "floranDescription": "Big hive holdsss more dronesss and framesss. Power makesss beesss work faster. Queen still getsss old too soon.",
+  "glitchDescription": "Analytical. Twenty slots include two for drones and two for frames. At 12 watts, output gains 20%; unpowered output remains normal, with accelerated queen aging.",
+  "hylotlDescription": "A spacious hive made harsh by its machinery. It allows two drones and two frames, yet demands a shorter life from its queen for greater output.",
+  "novakidDescription": "Room for two drones and two frames in this big rig. Twelve watts gets 'em moving faster, but their queen pays the price even after the lights go out.",
+  "genericDescription": "Large apiary with 20 slots, including two drones and two frames. Twelve watts grant 20% faster resources and drones; normal output continues without power. Queen lifespan is 70% of normal."
 }

@@ -7,6 +7,16 @@
   Action **Build development PAK**. Preservar os PAKs antigos em `dist/` como
   histórico; não criar uma cópia local nova para registrá-la ali.
 
+# Textos de scanner dos objetos
+
+- Toda máquina ou objeto próprio do mod deve ter textos de inspeção para cada
+  espécie jogável: `humanDescription`, `apexDescription`, `avianDescription`,
+  `floranDescription`, `glitchDescription`, `hylotlDescription` e
+  `novakidDescription`, além de `genericDescription` para outras espécies.
+- Ao criar ou alterar objetos, escrever textos coerentes com a voz de cada
+  espécie e com a mecânica real do objeto. Preservar os textos existentes e
+  atualizar qualquer texto que fique incorreto após uma mudança de mecânica.
+
 Instruções explícitas do mantenedor, recebidas nesta conversa:
 
 - `dev` é a branch de desenvolvimento. Alterações, correções, documentação e
