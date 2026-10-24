@@ -106,8 +106,11 @@ function M.makeGenome(queenItem, droneItem)
       value = math.min(1295, math.max(av, bv) + 1)
       if value <= math.max(av, bv) then exceptions[#exceptions + 1] = stat end
     else
-      value = math.max(0, math.min(av, bv) - 1)
-      if value >= math.min(av, bv) then exceptions[#exceptions + 1] = stat end
+      local weaker = math.min(av, bv)
+      -- A positive parental gene cannot become zero just because its value is
+      -- one. Keep zero only when a parent already has zero in that gene.
+      value = weaker == 0 and 0 or math.max(1, weaker - 1)
+      if value >= weaker then exceptions[#exceptions + 1] = stat end
     end
     genome = genome .. genelib.numberToStat(value)
   end

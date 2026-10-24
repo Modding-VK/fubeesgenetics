@@ -327,10 +327,10 @@ test("All pair/subtype outputs are finite, positive and use the union of resourc
 end)
 test("Genetic production changes rates instead of cancelling out", function()
   local e = setup(); local h = e.hybrid("aquarum", "honey"); local l = h.parameters.hybridLineage
-  equal(e.genelib.statFromGenomeToValue(h.parameters.genome, "baseProduction"), 0)
+  equal(e.genelib.statFromGenomeToValue(h.parameters.genome, "baseProduction"), 1)
   local rates = e.hybridbees.productionRates(l, h.parameters.genome, 0, 1)
   local improved = e.hybridbees.productionRates(l, e.genelib.modifyGenomeStat(h.parameters.genome, "baseProduction", 1), 0, 1)
-  for resource, rate in pairs(rates) do equal(improved[resource], 2 * rate) end
+  for resource, rate in pairs(rates) do assert(math.abs(improved[resource] - 1.5 * rate) < 1e-9) end
 end)
 test("Native overload multipliers and aging remain 1.2 / 1.2 / 0.7", function()
   local e = setup(); e.startApiary(); e.queen = e.parent("honey", "queen")
@@ -369,7 +369,9 @@ test("Larva matures and establishes drones without a native starter", function()
 end)
 test("Zero-gene production works with no NaN and old return semantics", function()
   local e = setup(); e.startApiary(); e.reportFull = true
-  local h = e.hybrid("aquarum", "honey"); e.inventory[0] = h
+  local h = e.hybrid("aquarum", "honey")
+  h.parameters.genome = e.genelib.modifyGenomeStat(h.parameters.genome, "baseProduction", -1)
+  e.inventory[0] = h
   local d = copy(h); d.name = "bee_hybrid_drone"; d.count = 100; d.parameters.lifespan = nil
   e.inventory[1] = e.root.createItem(d)
   for _ = 1, 100 do e.update(1) end

@@ -147,19 +147,23 @@ definida pelo addon. A lista escolhida para cada família está no catálogo.
 
 ## Genética
 
-O genome híbrido parte do meio-termo entre os genomes dos progenitores. Depois,
-o gerador aplica uma penalidade antes de gravar o genome final: os genes
-numéricos favoráveis (produção, resistência, reprodução e longevidade) ficam
-abaixo do menor valor parental; `mutationChance`, que é prejudicial, fica acima
-do maior valor parental. A penalidade é aplicada uma única vez, ao gerar a
+O genome híbrido combina os genomes dos progenitores. Depois, o gerador aplica
+uma penalidade antes de gravar o genome final: os genes numéricos favoráveis
+(produção, resistência, reprodução e longevidade) ficam um nível abaixo do
+menor valor parental quando isso conserva o mínimo funcional; `mutationChance`,
+que é prejudicial, fica acima do maior valor parental. A penalidade é aplicada uma única vez, ao gerar a
 larva. A promoção de Young Queen a Queen preserva o genome e a linhagem,
 sem aplicar uma nova penalidade.
 
 `workTime` é categórico (`day`, `night`, `both`), portanto não tem comparação
 numérica. Proposta: uma híbrida nunca herda `both`; escolhe um único turno. O
 gene `subtype` identifica a subespécie de prioridade. Nos genes que já estejam
-no limite mínimo representável, não existe valor inferior válido; a regra deve
-preservar o limite e registrar essa exceção na exibição genética.
+no limite mínimo funcional, não existe valor inferior utilizável. Genes
+favoráveis que tenham valor positivo nos dois pais ficam no mínimo em `1` na
+prole; se um pai já tiver `0`, a prole conserva `0`. O limite e as exceções
+são registrados na exibição genética. Isso evita que cruzamentos comuns com
+gene parental `1` zerem produção ou reprodução. Híbridas já criadas preservam
+o genome que receberam originalmente.
 
 ## Máquina de hibridização
 

@@ -44,7 +44,7 @@ function build(directory, config, parameters, level, seed)
   builtConfig.description = string.format("Hybrid %s. Works in FU Apiaries and the Overload Apiary. Prioritizes %s resources; also produces %s resources.",
     caste:lower(), displayName(priority), displayName(priority == lineage.queenFamily and lineage.droneFamily or lineage.queenFamily))
   if lineage.genomeExceptions and #lineage.genomeExceptions > 0 then
-    builtConfig.description = builtConfig.description .. " Genes already at their limit: " .. table.concat(lineage.genomeExceptions, ", ") .. "."
+    builtConfig.description = builtConfig.description .. " Gene penalty limited for: " .. table.concat(lineage.genomeExceptions, ", ") .. "."
   end
   return builtConfig, builtParameters
 end
