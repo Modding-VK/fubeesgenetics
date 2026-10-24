@@ -76,3 +76,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 
 | 0.2.38-dev | Auditoria geral: snapshots bulk e gates na Auto Refugee, detecção híbrida no snapshot FU, flores por tick, caches compartilhados e UI/ponte IC condicionais | [Auditoria](SCRIPTING_AUDIT_0_2_38.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.39-dev | Hybridizer só avança com entradas válidas e saída livre; medidor mostra progresso do experimento | [Detalhes](HYBRIDIZER_PROGRESS_0_2_39.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.40-dev | Hybridizer preserva progresso com a mesma cobaia e perde 50% ao substituí-la, com alerta na janela | [Detalhes](HYBRIDIZER_SPECIMENS_0_2_40.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

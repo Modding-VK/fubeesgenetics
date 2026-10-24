@@ -21,7 +21,8 @@ local function setText(name, value)
 end
 
 function init()
-  self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false, textValues = {}}
+  self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false,
+    textValues = {warning = ""}}
   if world.entityExists(self.containerId) then requestState() end
 end
 
@@ -39,6 +40,7 @@ function update(dt)
     self.pending = nil
     if result then
       setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
+      setText("warning", result.reworkAlert and "WARNING: New specimen; rework cost 50% progress" or "")
       setText("energy", string.format("Experiment progress: %d / %d", math.floor(result.progress), result.requiredProgress))
       setText("power", string.format("Power draw: up to %d W", result.watts or 24))
       setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))

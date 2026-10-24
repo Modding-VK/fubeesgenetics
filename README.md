@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.39-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.40-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -40,7 +40,7 @@ uma unidade por segundo. Ver [detalhes, evidências e roteiro de medição](docs
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.39-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.40-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -152,6 +152,8 @@ Os dois progenitores são consumidos em sucesso ou falha. A chance inicial de
 sucesso é 30%, ou 10% quando os progenitores são rivais.
 Desde 0.2.39-dev, o progresso só avança com progenitores válidos inseridos e
 saída livre. O progresso parcial é preservado se uma entrada for retirada.
+Desde 0.2.40-dev, reinserir o mesmo exemplar conserva o progresso; substituí-lo
+por outro reduz o progresso acumulado em 50% e exibe um alerta de retrabalho.
 Desde 0.2.32-dev, a máquina atualiza a cada 30 ticks e a janela consulta o
 estado a cada 2 segundos para reduzir carga na thread do mundo. O avanço pode
 ficar mais lento em redes sem bateria.

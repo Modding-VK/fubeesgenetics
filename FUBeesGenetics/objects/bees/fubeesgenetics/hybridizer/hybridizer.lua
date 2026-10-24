@@ -18,6 +18,24 @@ local function validParents()
   return queen, drone, species
 end
 
+local function specimen(item)
+  return {name = item.name, parameters = copy(item.parameters or {})}
+end
+
+local function bindExperiment(queen, drone)
+  local parents = storage.hybridExperimentParents
+  if not parents then
+    storage.hybridExperimentParents = {queen = specimen(queen), drone = specimen(drone)}
+    return
+  end
+  if fubeesContainer.matches(parents.queen, queen) and fubeesContainer.matches(parents.drone, drone) then return end
+  if storage.hybridProgress > 0 then
+    storage.hybridProgress = storage.hybridProgress * 0.5
+    storage.hybridReworkAlert = true
+  end
+  storage.hybridExperimentParents = {queen = specimen(queen), drone = specimen(drone)}
+end
+
 -- Undelivered larvae or exceptional input refunds survive reloads. Do not roll
 -- another attempt while a result is still owed, and never spawn a duplicate.
 local function deliver()
@@ -61,6 +79,8 @@ local function attemptCrossing(queen, drone)
   end
   -- Only commit the attempt after both exact specimens were removed.
   storage.hybridProgress = 0
+  storage.hybridExperimentParents = nil
+  storage.hybridReworkAlert = nil
   storage.lastHybridizationSucceeded = succeeded
   storage.hybridizationAttempts = (storage.hybridizationAttempts or 0) + 1
   if result then storage.hybridPending = {{slot = outputSlot, item = result}}; deliver() end
@@ -72,7 +92,8 @@ local function getState()
   return {progress = storage.hybridProgress or 0, requiredProgress = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
-    chance = species and hybridbees.successChance(species), watts = requiredPower}
+    chance = species and hybridbees.successChance(species), watts = requiredPower,
+    reworkAlert = storage.hybridReworkAlert == true}
 end
 
 function init()
@@ -92,6 +113,7 @@ function update(dt)
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
   local queen, drone = validParents()
   if not queen then setStatus("WAITING_INPUT"); return end
+  bindExperiment(queen, drone)
   if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
   if storage.hybridProgress >= energyPerAttempt then
     attemptCrossing(queen, drone)

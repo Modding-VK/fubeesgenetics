@@ -183,6 +183,8 @@ o genome que receberam originalmente.
    espécie ou cruzamentos já híbridos não iniciam o ciclo.
 2. O progresso do experimento avança somente quando os dois progenitores estão
    presentes e há espaço para o resultado. Sem eles, o progresso parcial pausa.
+   Reinserir os mesmos exemplares preserva o progresso; substituir qualquer um
+   deles reduz o valor acumulado pela metade e mostra alerta de retrabalho.
 3. O medidor mostra `progresso do experimento / 10.000` e o estado atual.
 4. Ao completar o progresso, executa o sorteio. Em ambos os resultados, consome os
    dois progenitores e a energia utilizada.
