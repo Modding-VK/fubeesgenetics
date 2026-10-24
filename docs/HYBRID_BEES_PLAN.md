@@ -149,9 +149,14 @@ definida pelo addon. A lista escolhida para cada família está no catálogo.
 
 O genome híbrido combina os genomes dos progenitores. Depois, o gerador aplica
 uma penalidade antes de gravar o genome final: os genes numéricos favoráveis
-(produção, resistência, reprodução e longevidade) ficam um nível abaixo do
-menor valor parental quando isso conserva o mínimo funcional; `mutationChance`,
-que é prejudicial, fica acima do maior valor parental. A penalidade é aplicada uma única vez, ao gerar a
+(produção, robustez, reprodução e longevidade) ficam em **dois terços do menor
+gene parental**, arredondados ao inteiro mais próximo. Por exemplo, `9 → 6`,
+`6 → 4` e `4 → 3`. Um valor parental positivo produz no mínimo `1`; `0` em
+um progenitor continua `0`. A resistência a ácaros positiva perde um terço;
+se já for negativa, sua magnitude negativa cresce um terço. O cálculo usa o
+valor decodificado, pois o gene é codificado ao redor de um ponto neutro.
+`mutationChance`, que é prejudicial, mantém a regra separada de
+um ponto codificado acima do maior valor parental. A penalidade é aplicada uma única vez, ao gerar a
 larva. A promoção de Young Queen a Queen preserva o genome e a linhagem,
 sem aplicar uma nova penalidade.
 

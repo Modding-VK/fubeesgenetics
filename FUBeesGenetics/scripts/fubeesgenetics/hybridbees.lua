@@ -93,6 +93,7 @@ end
 function M.makeGenome(queenItem, droneItem)
   local a, b = ensureGenome(queenItem), ensureGenome(droneItem)
   local genome, exceptions = "", {}
+  local function round(value) return math.floor(value + 0.5) end
   for _, stat in ipairs(genelib.statOrder) do
     local av, bv = genelib.statFromGenomeToDecimal(a, stat), genelib.statFromGenomeToDecimal(b, stat)
     local value
@@ -105,11 +106,19 @@ function M.makeGenome(queenItem, droneItem)
     elseif stat == "mutationChance" then
       value = math.min(1295, math.max(av, bv) + 1)
       if value <= math.max(av, bv) then exceptions[#exceptions + 1] = stat end
+    elseif stat == "miteResistance" then
+      -- This gene is encoded around a neutral midpoint; scale its resistance,
+      -- not the raw code, so neutral parents do not gain a large intolerance.
+      local weaker = math.min(av, bv)
+      local neutral = genelib.libraryLength ^ 2 / 2
+      local resistance = weaker - neutral
+      value = math.max(0, math.min(1295, neutral + round(resistance * (resistance >= 0 and 2 / 3 or 4 / 3))))
+      if value >= weaker then exceptions[#exceptions + 1] = stat end
     else
       local weaker = math.min(av, bv)
-      -- A positive parental gene cannot become zero just because its value is
-      -- one. Keep zero only when a parent already has zero in that gene.
-      value = weaker == 0 and 0 or math.max(1, weaker - 1)
+      -- Reduce the weaker parent's positive trait by one third, rounding to
+      -- the nearest gene unit. A positive trait cannot fall below one.
+      value = weaker == 0 and 0 or math.max(1, round(weaker * 2 / 3))
       if value >= weaker then exceptions[#exceptions + 1] = stat end
     end
     genome = genome .. genelib.numberToStat(value)
