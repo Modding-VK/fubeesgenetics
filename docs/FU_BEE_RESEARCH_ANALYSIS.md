@@ -43,7 +43,7 @@ O código mostra erro na interface quando falta uma sigla.
 O addon registra `/zb/researchTree/fubeesgenetics_bees.config` em
 `/zb/researchTree/data.config.patch`. O arquivo próprio acrescenta os nós à
 árvore `fu_agriculture`, sem substituir `fu_agriculture.config`. Usa IDs
-namespaced, siglas únicas, títulos, descrições, posições e ícones PNG de 16×16.
+namespaced, siglas únicas, títulos, descrições com tiering, posições e ícones PNG de 16×16.
 
 | Nó | Pais necessários | Posição | Custo | Blueprints |
 | --- | --- | --- | --- | --- |
