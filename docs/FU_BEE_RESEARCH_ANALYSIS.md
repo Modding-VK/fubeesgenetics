@@ -47,11 +47,11 @@ namespaced, siglas únicas, títulos, descrições com tiering, posições e íc
 
 | Nó | Pais necessários | Posição | Custo | Blueprints |
 | --- | --- | --- | --- | --- |
-| Industrial Beekeeping | `bees1` | [-155, -50] | 1.000 Research | Genetic Queen Filter, Auto Refugee |
-| Abusive Apiaries | Industrial Beekeeping e `bees2` | [-155, -90] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
-| Unethical Genetic Practices | Abusive Apiaries e `bees3` | [-155, -130] | 2.200 Research + 120 Madness | Genetic Hybridizer |
+| Industrial Beekeeping | `bees3` (Advanced Beekeeping) | [-155, -50] | 1.000 Research | Genetic Queen Filter, Auto Refugee |
+| Abusive Apiaries | Industrial Beekeeping | [-155, -90] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
+| Unethical Genetic Practices | Abusive Apiaries | [-155, -130] | 2.200 Research + 120 Madness | Genetic Hybridizer |
 
-Os pais são conectados pelo campo `children`. O FU requer que todos os pais
+A cadeia começa depois de `bees3` (Advanced Beekeeping). Os pais são conectados pelo campo `children`. O FU requer que todos os pais
 de um nó estejam pesquisados antes de liberá-lo. As siglas persistidas são
 `FUBI1`, `FUBI2` e `FUBI3`; mantê-las estáveis para não perder o progresso
 em saves. Os nós usam `fuscienceresource` e `fumadnessresource` como moedas.

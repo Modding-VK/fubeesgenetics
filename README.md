@@ -40,9 +40,9 @@ A coleta da estação não ensina mais as receitas do addon.
 
 | Pesquisa | Requisitos | Custo | Blueprints |
 | --- | --- | --- | --- |
-| Industrial Beekeeping | bees1 | 1.000 Research | Genetic Queen Filter, Auto Refugee |
-| Abusive Apiaries | Industrial Beekeeping e bees2 | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
-| Unethical Genetic Practices | Abusive Apiaries e bees3 | 2.200 Research + 120 Madness | Genetic Hybridizer |
+| Industrial Beekeeping | bees3 (Advanced Beekeeping) | 1.000 Research | Genetic Queen Filter, Auto Refugee |
+| Abusive Apiaries | Industrial Beekeeping | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
+| Unethical Genetic Practices | Abusive Apiaries | 2.200 Research + 120 Madness | Genetic Hybridizer |
 
 Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
 Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).

@@ -133,9 +133,7 @@ def check_assets(root, fu_root, native_root):
     assert not (mod/'objects/bees/beestation/beestation.object.patch').exists()
     nodes = research['researchTree']['fu_agriculture']
     names = ['fubeesgenetics_industrial_beekeeping','fubeesgenetics_abusive_apiaries','fubeesgenetics_unethical_genetics']
-    assert nodes['bees1']['children'] == [names[0]]
-    assert nodes['bees2']['children'] == [names[1]]
-    assert nodes['bees3']['children'] == [names[2]]
+    assert nodes['bees3']['children'] == [names[0]]
     assert nodes[names[0]]['children'] == [names[1]] and nodes[names[1]]['children'] == [names[2]]
     assert nodes[names[2]]['children'] == []
     assert [nodes[name]['unlocks'] for name in names] == [
