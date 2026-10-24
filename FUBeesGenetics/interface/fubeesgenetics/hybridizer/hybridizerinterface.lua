@@ -2,7 +2,7 @@ local statusLabels = {
   WAITING_INPUT = "Waiting for valid parent bees",
   WAITING_OUTPUT = "Clear the result slot",
   NO_POWER = "Waiting for electrical power",
-  CHARGING = "Charging hybridization coil",
+  IN_PROGRESS = "Experiment in progress",
   SUCCESS = "Hybrid queen larva created",
   FAILURE = "Hybridization failed; both bees were lost"
 }
@@ -39,7 +39,7 @@ function update(dt)
     self.pending = nil
     if result then
       setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
-      setText("energy", string.format("Energy: %d / %d", math.floor(result.charge), result.capacity))
+      setText("energy", string.format("Experiment progress: %d / %d", math.floor(result.progress), result.requiredProgress))
       setText("power", string.format("Power draw: up to %d W", result.watts or 24))
       setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))
         or "Success: 30% (10% for rival species)")

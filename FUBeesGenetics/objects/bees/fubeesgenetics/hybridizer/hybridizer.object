@@ -3,7 +3,7 @@
   "objectType": "container",
   "colonyTags": ["bees", "insects"],
   "shortdescription": "Genetic Hybridizer",
-  "description": "Crosses a Queen and Drone from different species to produce a hybrid queen larva. Both parents are consumed on success and failure. The machine stores up to 10,000 energy before or after the bees are inserted, drawing up to 24 W while charging.",
+  "description": "Crosses a Queen and Drone from different species to produce a hybrid queen larva. With both parents present and the output clear, the experiment consumes up to 24 W until it reaches 10,000 progress. Both parents are consumed on success and failure.",
   "subtitle": "Two bloodlines enter. One lineage leaves.",
   "race": "generic",
   "category": "crafting",
@@ -47,12 +47,12 @@
   "outputNodes": [[1, 0]],
   "powertype": "input",
   "isn_requiredPower": 24,
-  "humanDescription": "A genetic hybridizer. It charges with electricity, then consumes a queen and a drone of different species to attempt a hybrid queen larva. Even a failed attempt uses both bees.",
+  "humanDescription": "A genetic hybridizer. With a queen and a drone of different species inserted, electricity advances the experiment. Even a failed attempt uses both bees.",
   "apexDescription": "Genetic experimentation with poor odds. This apparatus consumes two bee specimens from different species and may produce an inferior hybrid queen larva.",
   "avianDescription": "Two bee lineages meet inside this powered chamber. A new queen larva might emerge, though neither parent survives the attempt.",
   "floranDescription": "Machine mixesss two different beesss. Might make little queen, might make nothing. Eatsss both either way.",
   "glitchDescription": "Cautionary. This powered apparatus consumes a queen and a drone of different species per attempt. Successful output is a hybrid queen larva.",
   "hylotlDescription": "A troubling attempt to join two bee lineages. Both parents are sacrificed, and any resulting queen larva inherits diminished genetics.",
   "novakidDescription": "Feed this rig a queen and a drone from different kinds of bees. It might turn out a hybrid queen larva, but those two ain't coming back.",
-  "genericDescription": "Accumulates 10,000 energy, then consumes a queen and a drone of different species for a chance at an inferior hybrid queen larva. Failure also consumes both bees."
+  "genericDescription": "With a queen and a drone of different species inserted, consumes energy to advance an experiment to 10,000 progress. A hybrid queen larva may result; failure also consumes both bees."
 }

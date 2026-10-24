@@ -18,9 +18,10 @@ de sprites para Drone, Queen e larva. Formas, padrões e cores dos progenitores
 são fundidos em cada frame. As duas subespécies da mesma linhagem têm a mesma
 aparência.
 
-A máquina de hibridização tem slots de Queen, Drone e saída, acumula 10.000
-unidades de energia a 24 W, consome ambos os progenitores nos dois resultados e
-exibe o progresso. A chance inicial de sucesso é 30%, reduzida a 10% para
+A máquina de hibridização tem slots de Queen, Drone e saída. Com os dois
+progenitores válidos e a saída livre, consome até 24 W para avançar até 10.000
+de progresso. Consome ambos os progenitores nos dois resultados. A chance
+inicial de sucesso é 30%, reduzida a 10% para
 progenitores rivais. O sucesso entrega uma larva `bee_hybrid_youngQueen`.
 Após amadurecer no apiário, a Queen híbrida preserva a linhagem em Young Queens e
 Drones; a produção dinâmica dos dois conjuntos de recursos está habilitada no
@@ -35,8 +36,8 @@ não gera abelhas entidades capturáveis aleatórias, inclusive para as híbrida
 
 - Só cruzamentos entre espécies diferentes são válidos.
 - Uma tentativa consome a Queen e o Drone, tanto no sucesso quanto na falha.
-- Cada tentativa consome **10.000 unidades de energia**, acumuladas ao longo do
-  tempo. Ao atingir o total, a máquina tenta o cruzamento e zera o progresso.
+- Cada tentativa consome **10.000 unidades de energia** para avançar o progresso
+  do experimento. Ao atingir o total, a máquina tenta o cruzamento e zera o progresso.
 - O sucesso gera uma larva de rainha híbrida (`bee_hybrid_youngQueen`); a falha
   não gera abelha. A larva se torna adulta no apiário pelo ciclo nativo do FU.
 - A chance de falha deve ser alta. Para o primeiro balanceamento, proponho
@@ -180,11 +181,11 @@ o genome que receberam originalmente.
 
 1. Slots dedicados recebem uma Queen e um Drone. Itens inválidos, da mesma
    espécie ou cruzamentos já híbridos não iniciam o ciclo.
-2. A máquina acumula energia somente quando os dois progenitores estão
-   presentes e há espaço para o resultado.
-3. O medidor mostra `energia acumulada / 10.000` e o estado atual.
-4. Ao completar a carga, executa o sorteio. Em ambos os resultados, consome os
-   dois progenitores e a energia.
+2. O progresso do experimento avança somente quando os dois progenitores estão
+   presentes e há espaço para o resultado. Sem eles, o progresso parcial pausa.
+3. O medidor mostra `progresso do experimento / 10.000` e o estado atual.
+4. Ao completar o progresso, executa o sorteio. Em ambos os resultados, consome os
+   dois progenitores e a energia utilizada.
 5. No sucesso, escolhe uma das duas subespécies com chance igual, cria uma
    larva de rainha (`bee_hybrid_youngQueen`) com genome e linhagem persistidos
    e libera o próximo ciclo. A larva amadurece no apiário.
@@ -214,7 +215,7 @@ persiste o progresso para sobreviver a reloads.
 1. **Contrato e dados:** implementados nos itens genéricos e catálogo.
 2. **Geração:** implementada para validar progenitores, penalizar genes e
    persistir genome, subespécie e linhagem.
-3. **Máquina:** implementada com slots, medidor de energia acumulada, chance de
+3. **Máquina:** implementada com slots, medidor de progresso do experimento, chance de
    falha e consumo dos progenitores.
 4. **Apiary:** produção dinâmica e herança para descendentes implementadas no
    Overload Apiary.

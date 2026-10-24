@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.38-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.39-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -40,7 +40,7 @@ uma unidade por segundo. Ver [detalhes, evidências e roteiro de medição](docs
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.38-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.39-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -146,14 +146,15 @@ ativar o bônus. Sua receita na Bee Station é 1 Large Apiary, 1 A.I. Chip e
 
 ## Genetic Hybridizer e abelhas híbridas (0.2.20-dev)
 
-Cruza Queen e Drone de espécies FU diferentes. Cada tentativa acumula **10.000
-energia a 24 W**; os dois progenitores são consumidos em sucesso ou falha. A
-chance inicial de sucesso é 30%, ou 10% quando os progenitores são rivais.
-Desde 0.2.24-dev, a máquina pode carregar antes da inserção das abelhas; ao
-atingir 10.000, aguarda progenitores válidos e espaço livre na saída.
+Cruza Queen e Drone de espécies FU diferentes. Cada tentativa consome **10.000
+unidades de energia a até 24 W** para completar o progresso do experimento.
+Os dois progenitores são consumidos em sucesso ou falha. A chance inicial de
+sucesso é 30%, ou 10% quando os progenitores são rivais.
+Desde 0.2.39-dev, o progresso só avança com progenitores válidos inseridos e
+saída livre. O progresso parcial é preservado se uma entrada for retirada.
 Desde 0.2.32-dev, a máquina atualiza a cada 30 ticks e a janela consulta o
-estado a cada 2 segundos para reduzir carga na thread do mundo. A recarga pode
-ficar mais lenta em redes sem bateria.
+estado a cada 2 segundos para reduzir carga na thread do mundo. O avanço pode
+ficar mais lento em redes sem bateria.
 O sucesso produz **uma larva de rainha híbrida** (`bee_hybrid_youngQueen`),
 que se torna adulta no apiário, preservando o genome e a linhagem.
 Desde 0.2.33-dev, genes favoráveis positivos não caem para zero apenas pela

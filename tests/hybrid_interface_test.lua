@@ -2,7 +2,7 @@
 local passed = 0
 local function test(name, fn) fn(); passed = passed + 1; print('PASS HU' .. passed .. ' ' .. name) end
 local function state()
-  return {status='CHARGING',charge=24,capacity=10000,watts=24,chance=.3,
+  return {status='IN_PROGRESS',progress=24,requiredProgress=10000,watts=24,chance=.3,
     hasResult=false,attempts=0}
 end
 local function pane()
@@ -31,7 +31,7 @@ end)
 test('identical snapshots do not rewrite widgets',function()
   local u=pane();u.requests[1]:resolve(state());u.env.update(0);assert(u.writes==5)
   u.env.update(2);u.requests[2]:resolve(state());u.env.update(0);assert(u.writes==5)
-  u.env.update(2);local nextState=state();nextState.charge=48
+  u.env.update(2);local nextState=state();nextState.progress=48
   u.requests[3]:resolve(nextState);u.env.update(0);assert(u.writes==6)
 end)
 test('failed reply recovers the status even when all other fields stay equal',function()
@@ -39,7 +39,7 @@ test('failed reply recovers the status even when all other fields stay equal',fu
   u.env.update(2);u.requests[2]:resolve(nil,false);u.env.update(0)
   assert(u.texts.status:find('unavailable',1,true))
   u.env.update(2);u.requests[3]:resolve(state());u.env.update(0)
-  assert(u.texts.status=='Status: Charging hybridization coil')
+  assert(u.texts.status=='Status: Experiment in progress')
 end)
 test('polling does not repeat the same entity-existence query',function()
   local u=pane();assert(u.exists==1)

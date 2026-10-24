@@ -60,7 +60,7 @@ local function attemptCrossing(queen, drone)
     end
   end
   -- Only commit the attempt after both exact specimens were removed.
-  storage.hybridCharge = 0
+  storage.hybridProgress = 0
   storage.lastHybridizationSucceeded = succeeded
   storage.hybridizationAttempts = (storage.hybridizationAttempts or 0) + 1
   if result then storage.hybridPending = {{slot = outputSlot, item = result}}; deliver() end
@@ -69,7 +69,7 @@ end
 
 local function getState()
   local _, _, species = validParents()
-  return {charge = storage.hybridCharge or 0, capacity = energyPerAttempt,
+  return {progress = storage.hybridProgress or 0, requiredProgress = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
     chance = species and hybridbees.successChance(species), watts = requiredPower}
@@ -77,7 +77,8 @@ end
 
 function init()
   requiredPower = config.getParameter("isn_requiredPower", 24)
-  storage.hybridCharge = math.max(0, math.min(energyPerAttempt, storage.hybridCharge or 0))
+  storage.hybridProgress = math.max(0, math.min(energyPerAttempt, storage.hybridProgress or 0))
+  storage.hybridCharge = nil -- Retire energy banked by older versions without parents.
   storage.hybridizationAttempts = storage.hybridizationAttempts or 0
   power.init()
   animator.setAnimationState("base", "default")
@@ -89,28 +90,20 @@ end
 
 function update(dt)
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
-  -- The coil is a battery: it may charge before either parent is inserted.
-  -- Inputs and output space are required only when an attempt starts.
-  if storage.hybridCharge >= energyPerAttempt then
-    local queen, drone = validParents()
-    if not queen then setStatus("WAITING_INPUT"); return end
-    if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
+  local queen, drone = validParents()
+  if not queen then setStatus("WAITING_INPUT"); return end
+  if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
+  if storage.hybridProgress >= energyPerAttempt then
     attemptCrossing(queen, drone)
     return
   end
-  -- A full coil needs no power-network traversal while it waits for bees.
+  -- Experiment progress pauses without valid parents or a free result slot.
   power.update(dt)
-  local watts = requiredPower
-  local draw = math.min(watts * dt, energyPerAttempt - storage.hybridCharge, power.getTotalEnergy())
+  local draw = math.min(requiredPower * dt, energyPerAttempt - storage.hybridProgress, power.getTotalEnergy())
   if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
-  storage.hybridCharge = math.min(energyPerAttempt, storage.hybridCharge + draw)
-  setStatus("CHARGING")
-  if storage.hybridCharge >= energyPerAttempt then
-    local queen, drone = validParents()
-    if not queen then setStatus("WAITING_INPUT")
-    elseif readSlot(outputSlot) then setStatus("WAITING_OUTPUT")
-    else attemptCrossing(queen, drone) end
-  end
+  storage.hybridProgress = math.min(energyPerAttempt, storage.hybridProgress + draw)
+  setStatus("IN_PROGRESS")
+  if storage.hybridProgress >= energyPerAttempt then attemptCrossing(queen, drone) end
 end
 
 function die()
