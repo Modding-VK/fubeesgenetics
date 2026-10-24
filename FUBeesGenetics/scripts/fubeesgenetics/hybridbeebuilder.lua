@@ -2,6 +2,12 @@ require "/bees/beeBuilder.lua"
 
 local nativeBuild = build
 local function displayName(family) return family:sub(1, 1):upper() .. family:sub(2) end
+local parentStats
+local function parentSubtypeName(family, subtype)
+  if not parentStats then parentStats = root.assetJson("/bees/beeData.config").stats end
+  local entry = parentStats[family] and parentStats[family][subtype]
+  return displayName(entry and entry.name or family)
+end
 local function visualLineage(parameters)
   local lineage = parameters and parameters.hybridLineage
   local genome = parameters and parameters.genome
@@ -17,6 +23,7 @@ local function visualLineage(parameters)
   if subtype ~= "01" and subtype ~= "02" then return nil end
   return {speciesId = speciesId, parentFamilies = a < b and {a, b} or {b, a},
     queenFamily = a, droneFamily = b, subspecies = subtype == "01" and 1 or 2,
+    parentSubtypes = lineage.parentSubtypes,
     genomeExceptions = lineage.genomeExceptions}
 end
 
@@ -32,17 +39,16 @@ function build(directory, config, parameters, level, seed)
   -- Each parent pair has a dedicated 84x28 sprite sheet with all three caste
   -- frames. The subspecies gene affects production, not the species artwork.
   local lifeBar = type(builtConfig.inventoryIcon) == "table" and builtConfig.inventoryIcon[2]
-  local parents = lineage.parentFamilies
   builtConfig.inventoryIcon = {
     {image = string.format("/bees/bees/%s.png:%s", lineage.speciesId, frame), position = {0, 0}}
   }
   if lifeBar then builtConfig.inventoryIcon[#builtConfig.inventoryIcon + 1] = lifeBar end
-  local name = displayName(parents[1]) .. " × " .. displayName(parents[2])
-  local priority = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
-  builtConfig.shortdescription = name .. " " .. caste
-  builtConfig.tooltipFields.subTitle = "Priority: " .. displayName(priority)
-  builtConfig.description = string.format("Hybrid %s. Works in FU Apiaries and the Overload Apiary. Prioritizes %s resources; also produces %s resources.",
-    caste:lower(), displayName(priority), displayName(priority == lineage.queenFamily and lineage.droneFamily or lineage.queenFamily))
+  local queenSubtype = parentSubtypeName(lineage.queenFamily, lineage.parentSubtypes[lineage.queenFamily])
+  local droneSubtype = parentSubtypeName(lineage.droneFamily, lineage.parentSubtypes[lineage.droneFamily])
+  builtConfig.shortdescription = queenSubtype .. " × " .. droneSubtype .. " H" .. lineage.subspecies .. " " .. caste
+  builtConfig.tooltipFields.subTitle = "Hybrid Subtype: " .. lineage.subspecies
+  builtConfig.description = string.format("Hybrid %s from %s and %s. Works in FU Apiaries and the Overload Apiary.",
+    caste:lower(), queenSubtype, droneSubtype)
   if lineage.genomeExceptions and #lineage.genomeExceptions > 0 then
     builtConfig.description = builtConfig.description .. " Gene penalty limited for: " .. table.concat(lineage.genomeExceptions, ", ") .. "."
   end

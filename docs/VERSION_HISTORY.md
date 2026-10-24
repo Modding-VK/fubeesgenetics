@@ -69,3 +69,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.32-dev | Hybridizer atualiza a cada 30 ticks, consulta a janela a cada 2 s e evita verificar energia após a carga completa | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.33-dev | Gene favorável positivo das novas híbridas mantém mínimo 1; evita atributos zerados em cruzamentos comuns | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.34-dev | Penalidade genética proporcional: um terço do menor valor parental para atributos favoráveis | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.35-dev | Nome das híbridas mostra as subespécies nativas de origem e H1/H2; subtítulo mostra somente a subespécie híbrida | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

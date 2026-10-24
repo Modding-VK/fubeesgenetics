@@ -93,6 +93,12 @@ Isso define **595
 espécies híbridas e 1.190 subespécies** sem criar uma família de item diferente
 para cada combinação.
 
+No item, o nome visível usa os nomes das subespécies nativas efetivamente
+cruzadas, seguidos de `H1` ou `H2` e da casta. Por exemplo, uma larva pode
+aparecer como `PlatedHoneybee × Carpenter H1 Queen Larva`. O subtítulo mostra
+`Hybrid Subtype: 1` ou `2`. A descrição identifica as duas subespécies de
+origem, sem rótulo de espécie dominante nem lista de recursos.
+
 ## Aparência e sprites
 
 Cada espécie híbrida tem um único desenho de abelha compartilhado por suas
