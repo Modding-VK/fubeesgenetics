@@ -1,37 +1,21 @@
 require "/bees/genomeLibrary.lua"
+require "/scripts/fubeesgenetics/filtercontract.lua"
+require "/scripts/fubeesgenetics/containerutil.lua"
 require "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua"
 require "/scripts/kheAA/transferUtil.lua"
 
 local INPUT, APPROVED, REJECTED = 0, 1, 2
-local traits = {
-  "baseProduction", "droneToughness", "droneBreedRate",
-  "queenBreedRate", "queenLifespan", "mutationChance"
-}
-local traitSet = {}
-for _, trait in ipairs(traits) do traitSet[trait] = true end
-local modeSet = {gte = true, lte = true, ignore = true}
+local traits, traitSet = fubeesFilter.traits, fubeesFilter.traitSet
+local modeSet = fubeesFilter.modeToId
 local reasons = {
   INVALID_DESCRIPTOR = "REJECTED_INVALID_ITEM",
   NOT_BEE = "REJECTED_INVALID_ITEM", NOT_QUEEN = "REJECTED_INVALID_ITEM",
   NOT_INSPECTED = "REJECTED_NOT_INSPECTED",
   INVALID_GENOME = "REJECTED_INVALID_GENOME", UNKNOWN_FAMILY = "REJECTED_INVALID_GENOME",
-  INVALID_SUBTYPE = "REJECTED_INVALID_GENOME"
+  INVALID_SUBTYPE = "REJECTED_INVALID_GENOME", INVALID_LINEAGE = "REJECTED_INVALID_GENOME"
 }
 
-local function copy(value)
-  if type(value) ~= "table" then return value end
-  local result = {}
-  for key, child in pairs(value) do result[key] = copy(child) end
-  return result
-end
-
-local function same(left, right)
-  if type(left) ~= type(right) then return false end
-  if type(left) ~= "table" then return left == right end
-  for key, value in pairs(left) do if not same(value, right[key]) then return false end end
-  for key in pairs(right) do if left[key] == nil then return false end end
-  return true
-end
+local copy, same = fubeesContainer.copy, fubeesContainer.same
 
 local function status(value)
   if storage.operationalStatus ~= value then
@@ -53,6 +37,14 @@ end
 
 local function getState()
   refreshStatus()
+  if self.referenceSource ~= storage.references then
+    self.referenceSource, self.referenceDisplay = storage.references, {}
+    if storage.references then
+      for _, trait in ipairs(traits) do
+        self.referenceDisplay[trait] = genelib.statToValue(genelib.numberToStat(storage.references[trait]), trait)
+      end
+    end
+  end
   local state = {
     initialized = storage.profile ~= nil, profile = copy(storage.profile), traits = {},
     operationalStatus = storage.operationalStatus, lastResult = storage.lastResult
@@ -60,7 +52,7 @@ local function getState()
   for _, trait in ipairs(traits) do
     local entry = {mode = storage.modes[trait]}
     if storage.references then
-      entry.referenceDisplay = genelib.statToValue(genelib.numberToStat(storage.references[trait]), trait)
+      entry.referenceDisplay = self.referenceDisplay[trait]
     end
     state.traits[trait] = entry
   end
@@ -77,8 +69,7 @@ local function decide(candidate, profile, references, modes)
     for _, trait in ipairs(traits) do references[trait] = candidate.genetics[trait].raw end
     return APPROVED, "PROFILE_INITIALIZED", copy(candidate.identity), references
   end
-  if candidate.identity.family ~= profile.family
-    or candidate.identity.subtype ~= profile.subtype then
+  if not fubeesFilter.sameIdentity(candidate.identity, profile) then
     return REJECTED, "REJECTED_INCOMPATIBLE_SUBSPECIES"
   end
   for _, trait in ipairs(traits) do
@@ -112,20 +103,7 @@ end
 -- OpenStarbound 0.1.14 returns the input descriptor even after a complete put.
 -- Confirm that case against the exact synchronous slot delta before any rollback.
 local function putAt(item, slot)
-  local normalize = fubeesgenetics_beegeneticadapter.normalize
-  local before = normalize(world.containerItemAt(entity.id(), slot))
-  local leftover = world.containerPutItemsAt(entity.id(), item, slot)
-  if not leftover then return nil end
-  local after = normalize(world.containerItemAt(entity.id(), slot))
-  local unit = normalize(item)
-  local function matches(value)
-    return value and value.name == unit.name and same(value.parameters, unit.parameters)
-  end
-  if unit and after and matches(after) and (not before or matches(before))
-    and after.count == (before and before.count or 0) + unit.count then
-    return nil
-  end
-  return leftover
+  return fubeesContainer.putExact(entity.id(), item, slot, fubeesgenetics_beegeneticadapter.normalize)
 end
 
 local function rollback(item)
@@ -211,7 +189,7 @@ local function process()
 end
 
 function init()
-  self = {timer = 0}
+  self = {timer = 0, referenceDisplay = {}}
   storage.stateRevision = nil -- Remove the obsolete development snapshot counter.
   local function rawValid(v)
     return type(v) == "number" and v == v and v >= 0 and v <= 1295 and v == math.floor(v)
@@ -221,6 +199,8 @@ function init()
     and rawValid(p.subtype) and p.subtype >= 1
     and type(p.subspeciesName) == "string" and p.subspeciesName ~= "" and type(refs) == "table"
   for _, trait in ipairs(traits) do valid = valid and rawValid(refs[trait]) end
+  -- Old hybrid profiles cannot distinguish pairs; discard only that baseline.
+  valid = valid and (p.family ~= "hybrid" or (type(p.lineageKey) == "string" and p.lineageKey ~= ""))
   if (p ~= nil or refs ~= nil) and not valid then
     storage.profile, storage.references = nil, nil
     sb.logWarn("[FUBeesGenetics] Incomplete genetic profile cleared; valid modes preserved.")
@@ -251,9 +231,9 @@ end
 
 function update(dt)
   self.timer = self.timer + dt
-  if self.timer >= 1 then
+  if self.timer >= fubeesFilter.processInterval then
     -- One check per loaded update; do not simulate missed/unloaded cycles.
-    self.timer = self.timer % 1
+    self.timer = self.timer % fubeesFilter.processInterval
     transferUtil.loadSelfContainer()
     process()
   end

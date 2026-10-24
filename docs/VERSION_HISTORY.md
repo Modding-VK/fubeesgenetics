@@ -71,3 +71,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.34-dev | Penalidade genética proporcional: um terço do menor valor parental para atributos favoráveis | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.35-dev | Nome das híbridas mostra as subespécies nativas de origem e H1/H2; subtítulo mostra somente a subespécie híbrida | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.36-dev | Campo de subespécie da híbrida mostra `Predominant:` com o nome da subespécie nativa priorizada | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+
+| 0.2.37-dev | Filter: callbacks reduzidos, polling 1 s, renderização condicional, caches limitados, contrato compartilhado e isolamento de linhagens híbridas | [Detalhes](FILTER_PERFORMANCE_0_2_37.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

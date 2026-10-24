@@ -1,3 +1,16 @@
+# Estado atual de desenvolvimento — 0.2.37-dev
+
+A `main` está na versão 0.2.19. A `dev` inclui Overload Apiary pequeno e grande,
+Genetic Hybridizer, 595 combinações híbridas e três pesquisas na árvore Agriculture.
+A 0.2.37-dev otimiza o Filter e distingue linhagens híbridas pelo par parental,
+subtipos e dominância. Modos, slots e recuperação são preservados; somente perfis
+híbridos antigos sem chave recriam a baseline. Ver
+[FILTER_PERFORMANCE_0_2_37](FILTER_PERFORMANCE_0_2_37.md) e [README](../README.md).
+Os recursos novos e o ganho de tempo de script ainda exigem conferência no jogo.
+
+Os registros abaixo são históricos: referências a PR #5 aberto, versões antigas,
+pendências e contagens não representam o estado atual da branch.
+
 # Estado do projeto — 2026-10-17
 
 

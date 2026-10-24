@@ -12,6 +12,11 @@ end
 local function ui(destroyed)
  local u={texts={},selected={},requests={},env={},mouse={-100,-100},helpDraws={},destroyed=destroyed}
  local e=u.env;setmetatable(e,{__index=_G})
+ e.require=function(path)
+  assert(path=='/scripts/fubeesgenetics/filtercontract.lua')
+  assert(loadfile(fixture.repoRoot..'/FUBeesGenetics'..path,'t',e))()
+ end
+ u.textWrites,u.modeWrites,u.clears,u.draws=0,0,0,0
  -- WidgetParser names children by numeric ID; ButtonGroup passes that child.
  function u:click(group,id)
   local w=assert(fixture.uiConfig.gui[group])
@@ -25,13 +30,13 @@ local function ui(destroyed)
  end
  e.config={getParameter=function(k) return fixture.uiConfig[k] end}
  local c={}
- function c:clear() u.helpDraws={} end
+ function c:clear() u.clears=u.clears+1;u.helpDraws={} end
  function c:mousePosition() return u.mouse end
- function c:drawRect(rect,color) u.helpDraws[#u.helpDraws+1]={rect=rect,color=color} end
+ function c:drawRect(rect,color) u.draws=u.draws+1;u.helpDraws[#u.helpDraws+1]={rect=rect,color=color} end
  function c:drawText(text,positioning,size,color) u.helpDraws[#u.helpDraws+1]={text=text,positioning=positioning,size=size,color=color} end
  e.pane={containerEntityId=function() return 42 end,dismiss=function() u.dismissed=true end}
- e.widget={setText=function(n,t) u.texts[n]=t end,getSelectedOption=function(n) return u.selected[n] end,
-  setSelectedOption=function(n,id) u:click(n,id) end,
+ e.widget={setText=function(n,t) u.textWrites=u.textWrites+1;u.texts[n]=t end,getSelectedOption=function(n) return u.selected[n] end,
+  setSelectedOption=function(n,id) u.modeWrites=u.modeWrites+1;u:click(n,id) end,
   bindCanvas=function(n) assert(n=='helpCanvas');return c end}
  e.world={entityExists=function() return not u.destroyed end,sendEntityMessage=function(id,name,...)
   assert(id==42 and not u.destroyed);local p={name=name,args={...},done=false,ok=true}
@@ -47,8 +52,8 @@ end
 local function boot() local u=ui();u.requests[1]:resolve(state());u.env.update(0);return u end
 
 test('U1 one passive query maximum, immediate initial request',function()
- local u=ui();assert(#u.requests==1);for i=1,10 do u.env.update(.5) end;assert(#u.requests==1)
- u.requests[1]:resolve(state());u.env.update(.5);assert(#u.requests==2)
+ local u=ui();assert(#u.requests==1);for i=1,10 do u.env.update(1) end;assert(#u.requests==1)
+ u.requests[1]:resolve(state());u.env.update(1);assert(#u.requests==2)
 end)
 test('U2 authoritative display accepts zero and formats mutation percent',function()
  local u=boot();assert(u.texts.baseProductionReference=='0' and u.texts.mutationChanceReference=='49.92%')
@@ -58,13 +63,13 @@ test('U3 mode command restores confirmed radio until reply',function()
  local u=boot();u.selected.baseProductionModes=1;u.env.modeChanged('baseProductionModes')
  assert(u.selected.baseProductionModes==0 and #u.requests==2)
  local p=u.requests[2];assert(p.args[1]=='baseProduction' and p.args[2]=='lte')
- p:resolve(state('lte'));u.env.update(0);assert(u.selected.baseProductionModes==1 and #u.requests==3)
+ p:resolve(state('lte'));u.env.update(0);assert(u.selected.baseProductionModes==1 and #u.requests==2)
 end)
 test('U4 old passive reply after command completion is permanently discarded',function()
- local u=boot();u.env.update(.5);local old=u.requests[2]
+ local u=boot();u.env.update(1);local old=u.requests[2]
  u.selected.baseProductionModes=2;u.env.modeChanged('baseProductionModes');u.requests[3]:resolve(state('ignore'));u.env.update(0)
  old:resolve(state('gte'));u.env.update(0);assert(u.selected.baseProductionModes==2)
- u.env.update(.5);u.requests[4]:resolve(state('lte'));u.env.update(0);assert(u.selected.baseProductionModes==1)
+ u.env.update(1);u.requests[4]:resolve(state('lte'));u.env.update(0);assert(u.selected.baseProductionModes==1)
 end)
 test('U5 one mutable command per pane and no revision dependency',function()
  local u=boot();u.selected.baseProductionModes=1;u.env.modeChanged('baseProductionModes')
@@ -78,7 +83,7 @@ test('U6 Reset waits for authoritative empty state and preserves local physical 
  assert(u.texts.family=='Family: —' and u.texts.baseProductionReference=='—')
 end)
 test('U7 transient failed promise retries instead of assuming entity destroyed',function()
- local u=ui();u.requests[1]:resolve(nil,false);u.env.update(.5)
+ local u=ui();u.requests[1]:resolve(nil,false);u.env.update(1)
  assert(u.texts.status:find('Connection unavailable',1,true) and #u.requests==2 and not u.dismissed)
  u.requests[2]:resolve(state());u.env.update(0);assert(u.texts.status=='Status: Waiting for input')
 end)
@@ -91,7 +96,7 @@ test('U9 all selectors map exclusive radio options to allowed modes',function()
   assert(u.requests[2].args[1]==t and u.requests[2].args[2]=='ignore') end
 end)
 test('U10 independent panes converge after authoritative refresh',function()
- local a,b=boot(),boot();a.env.update(.5);b.env.update(.5)
+ local a,b=boot(),boot();a.env.update(1);b.env.update(1)
  a.requests[2]:resolve(state('lte'));b.requests[2]:resolve(state('lte'));a.env.update(0);b.env.update(0)
  assert(a.selected.queenLifespanModes==1 and b.selected.queenLifespanModes==1)
 end)
@@ -157,8 +162,8 @@ test('U18 numeric child callback identifies each row for every comparator',funct
   for _,other in ipairs(traits) do if other~=trait then
    assert(u.selected[other..'Modes']==(id==0 and 1 or 0))
   end end
-  u.requests[3]:resolve(reply);u.env.update(.5)
-  assert(u.selected[trait..'Modes']==id and #u.requests==4)
+  assert(#u.requests==2);u.env.update(1);u.requests[3]:resolve(reply);u.env.update(0)
+  assert(u.selected[trait..'Modes']==id and #u.requests==3)
  end end
 end)
 test('U19 malformed child metadata cannot issue a mode command',function()
@@ -167,14 +172,43 @@ test('U19 malformed child metadata cannot issue a mode command',function()
  u.env.modeChanged('2');assert(#u.requests==1)
 end)
 test('U20 numeric child command survives stale reads and stays selected after reopen',function()
- local u=boot();u.env.update(.5);local stale=u.requests[2]
+ local u=boot();u.env.update(1);local stale=u.requests[2]
  u:click('mutationChanceModes',2);assert(#u.requests==3)
  local confirmed=state();confirmed.traits.mutationChance.mode='ignore'
  u.requests[3]:resolve(confirmed);u.env.update(0)
  stale:resolve(state());u.env.update(0);assert(u.selected.mutationChanceModes==2)
- u.env.update(.5);u.requests[4]:resolve(confirmed);u.env.update(0)
+ u.env.update(1);u.requests[4]:resolve(confirmed);u.env.update(0)
  assert(u.selected.mutationChanceModes==2)
  local reopened=ui();reopened.requests[1]:resolve(confirmed);reopened.env.update(0)
  assert(reopened.selected.mutationChanceModes==2 and #reopened.requests==1)
+end)
+
+test('U21 unchanged replies write no widgets and a changed field writes once',function()
+ local u=boot();local texts,modes=u.textWrites,u.modeWrites
+ u.env.update(1);u.requests[2]:resolve(state());u.env.update(0)
+ assert(u.textWrites==texts and u.modeWrites==modes)
+ local changed=state();changed.traits.baseProduction.referenceDisplay=7
+ u.env.update(1);u.requests[3]:resolve(changed);u.env.update(0)
+ assert(u.textWrites==texts+1 and u.modeWrites==modes)
+end)
+test('U22 steady tooltip is retained without further canvas operations',function()
+ local u=boot();local r=fixture.uiConfig.helpRegions[1].rect
+ u.mouse={r[1]+1,r[2]+1};u.env.update(0);u.env.update(.36)
+ local clears,draws=u.clears,u.draws
+ for i=1,30 do u.env.update(.01) end
+ assert(u.clears==clears and u.draws==draws and #u.helpDraws==3)
+ u.mouse=nil;u.env.update(0);assert(u.clears==clears+1 and #u.helpDraws==0)
+ for i=1,30 do u.env.update(.01) end;assert(u.clears==clears+1)
+end)
+test('U23 idle polling stays at one query per second and commands add no follow-up',function()
+ local u=boot()
+ for i=1,10 do
+  u.env.update(.5);assert(#u.requests==i)
+  u.env.update(.5);assert(#u.requests==i+1)
+  u.requests[i+1]:resolve(state());u.env.update(0)
+ end
+ u:click('baseProductionModes',1);local command=u.requests[#u.requests];local sent=#u.requests
+ command:resolve(state('lte'));u.env.update(0)
+ assert(#u.requests==sent and u.selected.baseProductionModes==1)
 end)
 print('Interface: '..count..' test groups passed (engine bindings mocked).')

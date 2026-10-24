@@ -23,6 +23,21 @@ function fubeesContainer.matches(a, b)
     and fubeesContainer.same(a.parameters or {}, b.parameters or {})
 end
 
+-- Filter transfers must never rebuild an inspected specimen. Preserve the
+-- original descriptor and legacy nil/leftover behavior, confirming successful
+-- legacy returns only through an exact synchronous slot delta.
+function fubeesContainer.putExact(id, descriptor, slot, normalize)
+  local before = normalize(world.containerItemAt(id, slot))
+  local leftover = world.containerPutItemsAt(id, descriptor, slot)
+  if not leftover then return nil end
+  local after = normalize(world.containerItemAt(id, slot))
+  local unit = normalize(descriptor)
+  if unit and after and fubeesContainer.matches(after, unit)
+    and (not before or fubeesContainer.matches(before, unit))
+    and after.count == (before and before.count or 0) + unit.count then return nil end
+  return leftover
+end
+
 function fubeesContainer.put(id, descriptor, slot)
   local item = root.createItem(descriptor)
   if not item or item.count < 1 then return descriptor end

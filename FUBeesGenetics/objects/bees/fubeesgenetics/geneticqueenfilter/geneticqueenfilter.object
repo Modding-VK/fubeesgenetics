@@ -112,7 +112,7 @@
   "scripts": [
     "/objects/bees/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.lua"
   ],
-  "scriptDelta": 10,
+  "scriptDelta": 30,
   "uiConfig": "/interface/fubeesgenetics/geneticqueenfilter/fubeesgenetics_geneticqueenfilter.config",
   "inputNodes": [
     [
