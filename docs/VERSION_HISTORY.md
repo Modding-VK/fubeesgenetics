@@ -73,3 +73,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.36-dev | Campo de subespécie da híbrida mostra `Predominant:` com o nome da subespécie nativa priorizada | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 
 | 0.2.37-dev | Filter: callbacks reduzidos, polling 1 s, renderização condicional, caches limitados, contrato compartilhado e isolamento de linhagens híbridas | [Detalhes](FILTER_PERFORMANCE_0_2_37.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+
+| 0.2.38-dev | Auditoria geral: snapshots bulk e gates na Auto Refugee, detecção híbrida no snapshot FU, flores por tick, caches compartilhados e UI/ponte IC condicionais | [Auditoria](SCRIPTING_AUDIT_0_2_38.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |

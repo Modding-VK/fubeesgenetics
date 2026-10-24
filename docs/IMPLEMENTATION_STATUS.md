@@ -1,3 +1,11 @@
+# Estado atual — 0.2.38-dev
+
+Auditoria de todo o conteúdo e otimizações na Auto Refugee, apiários, híbridas,
+Hybridizer e interfaces. Balanceamento, registro ITD e garantias de transferência
+preservados. Ver [auditoria e roteiro de medição](SCRIPTING_AUDIT_0_2_38.md).
+A main permanece na 0.2.19. Medições no engine e a suíte IC original opcional
+não foram executadas nesta revisão. Os registros abaixo são históricos.
+
 # Estado atual de desenvolvimento — 0.2.37-dev
 
 A `main` está na versão 0.2.19. A `dev` inclui Overload Apiary pequeno e grande,

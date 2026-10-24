@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.37-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.38-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -20,6 +20,14 @@ O mantenedor confirmou todas as alterações anteriores validadas e prontas.
 O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
 A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
+## Auditoria de scripting — 0.2.38-dev
+
+Todo o conteúdo próprio foi revisado: leituras de inventário da Auto Refugee,
+carregamento e consultas florais dos apiários, tags e linhagens híbridas,
+interfaces e ponte IC. As garantias físicas e o balanceamento foram preservados.
+Veja [escopo, evidências, escolhas e reteste](docs/SCRIPTING_AUDIT_0_2_38.md).
+O ganho de tempo de script ainda precisa de medição no jogo.
+
 ## Otimização do Genetic Queen Filter — 0.2.37-dev
 
 Controlador com menos callbacks, janela com polling de 1 s e atualização somente
@@ -32,7 +40,7 @@ uma unidade por segundo. Ver [detalhes, evidências e roteiro de medição](docs
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.37-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.38-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.

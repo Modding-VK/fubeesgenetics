@@ -1,28 +1,14 @@
 require "/scripts/kheAA/transferUtil.lua"
+require "/scripts/fubeesgenetics/containerutil.lua"
 
 local BASE = "/objects/bees/fubeesgenetics/beeexchange/"
-local function copy(value)
-  if type(value) ~= "table" then return value end
-  local result = {}
-  for key, child in pairs(value) do result[key] = copy(child) end
-  return result
-end
-local function same(a, b)
-  if type(a) ~= type(b) then return false end
-  if type(a) ~= "table" then return a == b end
-  for key, value in pairs(a) do if not same(value, b[key]) then return false end end
-  for key in pairs(b) do if a[key] == nil then return false end end
-  return true
-end
-local function matches(a, b)
-  return a and b and a.name == b.name and same(a.parameters or {}, b.parameters or {})
-end
+local copy, same, matches = fubeesContainer.copy, fubeesContainer.same, fubeesContainer.matches
 local function integer(n)
   return type(n) == "number" and n > 0 and n < math.huge and n == math.floor(n)
 end
 local function contents()
-  local result = {}
-  for slot = 0, self.size - 1 do result[slot] = world.containerItemAt(entity.id(), slot) end
+  local result, snapshot = {}, world.containerItems(entity.id())
+  for slot = 0, self.size - 1 do result[slot] = snapshot[slot + 1] end
   return result
 end
 local function maxStack(item)
@@ -88,6 +74,11 @@ local function deliver()
 end
 
 local function exchange(slot)
+  -- A hint only: a real trade still takes a fresh complete snapshot and
+  -- revalidates every physical source before withdrawal. Empty/reward/junk
+  -- slots do not need to serialize the other fifteen slots.
+  local hint = world.containerItemAt(entity.id(), slot)
+  if not hint or not self.trades[hint.name] then return false end
   local slots = contents()
   local candidate = slots[slot]
   local trade = candidate and self.trades[candidate.name]

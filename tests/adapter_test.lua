@@ -37,7 +37,7 @@ require = function(path)
   if path == "/bees/genomeLibrary.lua" then
     if not genelib then dofile(fixture.fuRoot .. path) end
     return
-  elseif path == "/scripts/fubeesgenetics/filtercontract.lua" or path == "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua" then
+  elseif path == "/scripts/fubeesgenetics/itemtags.lua" or path == "/scripts/fubeesgenetics/filtercontract.lua" or path == "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua" then
     dofile(fixture.repoRoot .. "/FUBeesGenetics" .. path)
     return
   end

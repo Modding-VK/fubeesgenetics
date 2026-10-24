@@ -161,9 +161,10 @@ def main():
                                 for d in [asset_json(p.read_text())]})
     with tempfile.TemporaryDirectory(prefix='hybrid-checks-') as directory:
         script = Path(directory) / 'run.lua'
-        script.write_text('fixture = ' + lua(fixture) + '\n' +
-                          'dofile(' + lua(str(ROOT / 'tests/hybrid_test.lua')) + ')\n')
-        run_lua(script)
+        for name in ['hybrid_test.lua', 'hybrid_interface_test.lua', 'storage_gui_test.lua']:
+            script.write_text('fixture = ' + lua(fixture) + '\n' +
+                              'dofile(' + lua(str(ROOT / 'tests' / name)) + ')\n')
+            run_lua(script)
     from check_assets import check_assets
     check_assets(ROOT, fu_root, native_root)
     print("Lua syntax, metadata and upstream blob integrity: PASS", flush=True)

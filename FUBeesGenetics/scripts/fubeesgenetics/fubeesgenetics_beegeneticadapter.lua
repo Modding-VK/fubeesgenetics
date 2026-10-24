@@ -1,6 +1,7 @@
 -- Read-only normalization of FU ItemDescriptors. No inventory or machine state.
 require "/bees/genomeLibrary.lua"
 require "/scripts/fubeesgenetics/filtercontract.lua"
+require "/scripts/fubeesgenetics/itemtags.lua"
 
 local genomeLibrary = genelib
 -- Engine callbacks (including root) are attached after top-level scripts load.
@@ -43,23 +44,7 @@ function adapter.normalize(item)
   return {name = item.name, count = item.count or 1, parameters = item.parameters or {}}
 end
 
--- Bounded per-script cache: item tags are immutable during an asset load.
--- Errors are not cached, and no specimen/genome data is retained here.
-local tagCache, tagNames, nextTag = {}, {}, 1
-local function hasTag(name, tag)
-  local entry = tagCache[name]
-  if entry and entry[tag] ~= nil then return true, entry[tag] end
-  local ok, value = pcall(root.itemHasTag, name, tag)
-  if not ok then return false, nil end
-  if not entry then
-    if tagNames[nextTag] then tagCache[tagNames[nextTag]] = nil end
-    tagNames[nextTag], entry = name, {}
-    tagCache[name] = entry
-    nextTag = nextTag % 128 + 1
-  end
-  entry[tag] = not not value
-  return true, entry[tag]
-end
+local hasTag = fubeesItemTags.has
 
 function adapter.read(item)
   item = adapter.normalize(item)

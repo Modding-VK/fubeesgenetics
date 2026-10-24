@@ -1,5 +1,6 @@
 require "/bees/genomeLibrary.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
+require "/scripts/fubeesgenetics/itemtags.lua"
 
 hybridbees = {}
 local M = hybridbees
@@ -61,7 +62,7 @@ local function validGenome(genome, family)
   loadData()
   if type(genome) ~= "string" or #genome ~= 18 or genome:find("[^0-9A-Z]") then return false end
   local subtype = genelib.statFromGenomeToValue(genome, "subtype")
-  return nativeData.stats[family] and nativeData.stats[family][subtype] ~= nil
+  return nativeData.stats[family] and nativeData.stats[family][subtype] ~= nil, subtype
 end
 
 local function parentGenome(item)
@@ -85,9 +86,10 @@ function M.validParent(item, caste)
   loadData()
   local family = M.family(item)
   if not family or family == "hybrid" or not nativeData.stats[family] then return false end
-  local ok, tagged = pcall(root.itemHasTag, item.name, caste)
+  local ok, tagged = fubeesItemTags.has(item.name, caste)
   if not ok or not tagged then return false end
-  return validGenome(parentGenome(item), family)
+  local valid = validGenome(parentGenome(item), family)
+  return valid
 end
 
 function M.makeGenome(queenItem, droneItem)
@@ -182,13 +184,17 @@ function M.lineage(item)
   local lineage = item.parameters.hybridLineage
   if type(lineage) ~= "table" then return nil end
   local species = M.speciesForParents(lineage.queenFamily, lineage.droneFamily)
-  if not species or species.id ~= lineage.speciesId or not validGenome(item.parameters.genome, "hybrid")
+  if not species or species.id ~= lineage.speciesId
     or type(lineage.parentSubtypes) ~= "table" then return nil end
+  local valid, subtype = validGenome(item.parameters.genome, "hybrid")
+  if not valid then return nil end
   for _, family in ipairs(species.parentFamilies) do
     if not nativeData.stats[family][lineage.parentSubtypes[family]] then return nil end
   end
-  lineage.parentFamilies = copy(species.parentFamilies)
-  lineage.subspecies = genelib.statFromGenomeToValue(item.parameters.genome, "subtype")
+  if not same(lineage.parentFamilies, species.parentFamilies) then
+    lineage.parentFamilies = copy(species.parentFamilies)
+  end
+  lineage.subspecies = subtype
   if lineage.version ~= 2 then refreshEnvironment(lineage, species) end
   return lineage
 end
@@ -245,7 +251,10 @@ function M.productionRates(lineage, genome, frameBonus, multiplier)
   return rates
 end
 
+local tickFlowers, inBeeTick
 function M.flowerFavor(lineage)
+  if inBeeTick and not tickFlowers then tickFlowers = {} end
+  if tickFlowers and tickFlowers[lineage.speciesId] ~= nil then return tickFlowers[lineage.speciesId] end
   loadData()
   local preferences = {}
   for _, plant in ipairs(M.speciesForParents(lineage.queenFamily, lineage.droneFamily).preferredPlants) do
@@ -266,8 +275,9 @@ function M.flowerFavor(lineage)
       if count >= nativeData.flowerMaximum then break end
     end
   end
-  if count == 0 then return -1 end
-  if count <= nativeData.flowerMinimum then favor = favor / (nativeData.flowerMinimum / count) end
+  if count == 0 then favor = -1
+  elseif count <= nativeData.flowerMinimum then favor = favor / (nativeData.flowerMinimum / count) end
+  if tickFlowers then tickFlowers[lineage.speciesId] = favor end
   return favor
 end
 
@@ -410,7 +420,13 @@ function M.install(multiplier)
   beeTick = function(dt)
     -- Native FU otherwise requires existing drones before allowing any births.
     if M.lineage(queen) then hasDrones = true end
-    return nativeTick(dt)
+    inBeeTick = true
+    -- Clear even on an engine exception; never reuse world data on another
+    -- tick, a direct helper call, or an offline simulation iteration.
+    local ok, result = pcall(nativeTick, dt)
+    tickFlowers, inBeeTick = nil, false
+    if not ok then error(result, 0) end
+    return result
   end
   droneProduction = function(drone)
     if not M.isHybrid(drone) and not M.isHybrid(queen) then return nativeDrone(drone) end

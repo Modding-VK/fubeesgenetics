@@ -1,13 +1,16 @@
 require "/scripts/fupower.lua"
 require "/bees/apiary.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
+require "/scripts/fubeesgenetics/apiaryhybridloader.lua"
 
 local upstreamInit, upstreamUpdate = init, update2
 local upstreamDroneProduction, upstreamQueenProduction = droneProduction, queenProduction
 local upstreamAgeQueen = ageQueen
 local powered = false
+local requiredPower
 
 function init()
+  requiredPower = config.getParameter("isn_requiredPower", 12)
   fubeesContainer.install()
   upstreamInit()
   power.init()
@@ -19,7 +22,7 @@ end
 function update(dt)
   if biome == "unknown" then return end
   power.update(dt)
-  powered = power.consume(config.getParameter("isn_requiredPower", 12) * dt)
+  powered = power.consume(requiredPower * dt)
   upstreamUpdate(dt)
 end
 update2 = update
@@ -29,9 +32,10 @@ function uninit()
 end
 
 function droneProduction(drone)
+  if not powered then return upstreamDroneProduction(drone) end
   local oldBonus = frameBonuses.baseProduction
   local base = genelib.statFromGenomeToValue(drone.parameters.genome, "baseProduction")
-  frameBonuses.baseProduction = oldBonus + (powered and base * 0.2 or 0)
+  frameBonuses.baseProduction = oldBonus + (base * 0.2)
   upstreamDroneProduction(drone)
   frameBonuses.baseProduction = oldBonus
 end
@@ -52,28 +56,7 @@ end
 
 function ageQueen(amount) return upstreamAgeQueen((amount or 1) / 0.7) end
 
-local nativeTick = beeTick
-local hybridInstalled = false
-function beeTick(dt)
-  if not hybridInstalled then
-    local queenItem = world.containerItemAt(entity.id(), queenSlot - 1)
-    local found = queenItem and queenItem.name:match("^bee_hybrid_")
-    if not found then
-      for _, slot in ipairs(droneSlots) do
-        local droneItem = world.containerItemAt(entity.id(), slot - 1)
-        if droneItem and droneItem.name:match("^bee_hybrid_") then found = true; break end
-      end
-    end
-    if found then
-      require "/scripts/fubeesgenetics/hybridbees.lua"
-      beeTick = nativeTick
-      hybridbees.install(function() return powered and 1.2 or 1 end)
-      hybridInstalled = true
-      return beeTick(dt)
-    end
-  end
-  return nativeTick(dt)
-end
+fubeesApiary.deferHybrids(function() return powered and 1.2 or 1 end)
 
 -- The powered apiary keeps all bees in its container; FU's random capturable
 -- world-bee spawn is disabled for both native and hybrid queens.

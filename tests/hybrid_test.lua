@@ -465,4 +465,89 @@ test("Native small and large apiaries produce hybrid resources and preserve line
     equal(#e.monsters, 1)
   end
 end)
+
+test("Hybrid loading reuses FU's tick snapshot without extra slot bindings", function()
+  for _,large in ipairs({false,true}) do
+    local e=setup(nil,true);e.startNativeApiary(large)
+    local reads=0;local original=e.world.containerItemAt
+    e.world.containerItemAt=function(...) reads=reads+1;return original(...) end
+    -- Empty native ticks do not read any single slot. The one bulk snapshot
+    -- remains FU's source of truth for optional hybrid loading.
+    for i=1,5 do e.beeTick(1) end
+    equal(reads,0);assert(not e.loadedScripts["/scripts/fubeesgenetics/hybridbees.lua"])
+    local source=setup();e.inventory[0]=source.hybrid('honey','carpenter')
+    e.beeTick(1);assert(e.loadedScripts["/scripts/fubeesgenetics/hybridbees.lua"])
+  end
+end)
+test("Hybrid flower queries are shared only inside a logical tick",function()
+  local e=setup();e.startApiary();local q=e.hybrid('honey','carpenter');local l=q.parameters.hybridLineage
+  local queries=0;local original=e.world.objectQuery
+  e.world.objectQuery=function(...) queries=queries+1;return original(...) end
+  local values={}
+  e.beeTick=function()
+    values[1]=e.hybridbees.flowerFavor(l);values[2]=e.hybridbees.flowerFavor(l)
+  end
+  e.hybridbees.install(1)
+  e.beeTick(1);equal(queries,1);equal(values[1],values[2])
+  e.flowers={};e.beeTick(1);equal(queries,2);equal(values[1],-1)
+  e.hybridbees.flowerFavor(l);equal(queries,3)
+end)
+test("Flower tick cache is cleared after an engine exception",function()
+  local e=setup();e.startApiary();local q=e.hybrid('honey','carpenter');local l=q.parameters.hybridLineage
+  e.beeTick=function() e.hybridbees.flowerFavor(l);error('injected engine fault') end
+  e.hybridbees.install(1);local ok,err=pcall(e.beeTick,1)
+  assert(not ok and tostring(err):find('injected engine fault',1,true))
+  e.flowers={};equal(e.hybridbees.flowerFavor(l),-1)
+end)
+test("Immutable tags are cached but parent genomes are always revalidated",function()
+  local e=setup();local q=e.parent('honey','queen');local calls=0;local original=e.root.itemHasTag
+  e.root.itemHasTag=function(...) calls=calls+1;return original(...) end
+  assert(e.hybridbees.validParent(q,'queen'));equal(calls,1)
+  for i=1,10 do assert(e.hybridbees.validParent(q,'queen')) end;equal(calls,1)
+  q.parameters.genome='bad';assert(not e.hybridbees.validParent(q,'queen'));equal(calls,1)
+end)
+test("Repeated lineage reads preserve derived tables and observe genome changes",function()
+  local e=setup();local q=e.hybrid('honey','carpenter')
+  local l=e.hybridbees.lineage(q);local families=l.parentFamilies
+  for i=1,10 do assert(e.hybridbees.lineage(q).parentFamilies==families) end
+  q.parameters.genome=e.genelib.numberToStat(2)..q.parameters.genome:sub(3)
+  equal(e.hybridbees.lineage(q).subspecies,2)
+  l.parentFamilies={'wrong'};e.hybridbees.lineage(q)
+  assert(same(l.parentFamilies,{'carpenter','honey'}))
+end)
+
+test("Powered machines read fixed wattage once per init",function()
+  for _,kind in ipairs({'hybridizer','apiary'}) do
+    local e=setup();local original=e.config.getParameter;local wattReads=0
+    e.config.getParameter=function(key,...) if key=='isn_requiredPower' then wattReads=wattReads+1 end;return original(key,...) end
+    if kind=='hybridizer' then e.startMachine() else e.startApiary() end
+    for i=1,20 do e.update(1/12) end;equal(wattReads,1)
+    e.init();equal(wattReads,2)
+  end
+end)
+test("Unpowered native drones do not decode the boost gene twice",function()
+  local e=setup();e.startApiary();e.supply=0;e.update(1/12)
+  local d=e.parent('honey','drone');local reads=0;local original=e.genelib.statFromGenomeToValue
+  e.genelib.statFromGenomeToValue=function(genome,stat,...) if stat=='baseProduction' then reads=reads+1 end;return original(genome,stat,...) end
+  e.droneProduction(d);equal(reads,1)
+end)
+
+test("Large hybrid apiary performs one flower search per production tick",function()
+  local e=setup();e.startNativeApiary(true)
+  e.inventory[3]={name='basicframe',count=1,parameters={}}
+  local q=e.hybrid('honey','carpenter');e.inventory[0]=q
+  for slot=1,2 do
+    local drone=copy(q);drone.name='bee_hybrid_drone';drone.count=100;drone.parameters.lifespan=nil
+    e.inventory[slot]=e.root.createItem(drone)
+  end
+  e.beeTick(1) -- native queen adoption and lazy hybrid installation
+  local original=e.world.objectQuery;local flowers=0
+  e.world.objectQuery=function(pos,radius,opts)
+    if not (opts and opts.callScript) then flowers=flowers+1 end
+    return original(pos,radius,opts)
+  end
+  for i=1,3 do
+    flowers=0;e.beeTick(1);equal(flowers,1)
+  end
+end)
 print("Hybrids: " .. passed .. " test groups passed (engine bindings mocked).")

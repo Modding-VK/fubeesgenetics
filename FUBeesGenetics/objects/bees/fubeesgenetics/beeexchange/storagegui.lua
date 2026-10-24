@@ -14,6 +14,9 @@ function init()
   if providerInit then providerInit() end
   enabled = world.entityName(pane.containerEntityId()) == "fubeesgenetics_beeexchange"
     and type(ic) == "table" and ic.version == 2
+  -- This module is appended to the shared 16-slot IC pane. Unrelated
+  -- containers keep the provider's original update, without an extra wrapper.
+  if not enabled and providerUpdate then update = providerUpdate end
   if enabled then
     ic.sortAction = guarded(ic.sortAction)
     ic.quickstackAction = guarded(ic.quickstackAction)

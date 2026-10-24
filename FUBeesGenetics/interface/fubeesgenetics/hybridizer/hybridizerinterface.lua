@@ -8,14 +8,21 @@ local statusLabels = {
 }
 
 local function requestState()
-  if not self.pending and not self.closed and world.entityExists(self.containerId) then
+  if not self.pending and not self.closed then
     self.pending = world.sendEntityMessage(self.containerId, "fubeesgenetics.hybridizer.getState")
   end
 end
 
+local function setText(name, value)
+  if self.textValues[name] ~= value then
+    self.textValues[name] = value
+    widget.setText(name, value)
+  end
+end
+
 function init()
-  self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false}
-  requestState()
+  self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false, textValues = {}}
+  if world.entityExists(self.containerId) then requestState() end
 end
 
 function update(dt)
@@ -31,16 +38,16 @@ function update(dt)
     local result = self.pending:succeeded() and self.pending:result() or nil
     self.pending = nil
     if result then
-      widget.setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
-      widget.setText("energy", string.format("Energy: %d / %d", math.floor(result.charge), result.capacity))
-      widget.setText("power", string.format("Power draw: up to %d W", result.watts or 24))
-      widget.setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))
+      setText("status", "Status: " .. (statusLabels[result.status] or "Unavailable"))
+      setText("energy", string.format("Energy: %d / %d", math.floor(result.charge), result.capacity))
+      setText("power", string.format("Power draw: up to %d W", result.watts or 24))
+      setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))
         or "Success: 30% (10% for rival species)")
       local lastResult = not result.hasResult and "No result yet"
         or (result.succeeded and "Hybrid queen larva created" or "Failed; parent bees consumed")
-      widget.setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))
+      setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))
     else
-      widget.setText("status", "Status: machine connection unavailable")
+      setText("status", "Status: machine connection unavailable")
     end
   end
   if self.elapsed >= 2 then

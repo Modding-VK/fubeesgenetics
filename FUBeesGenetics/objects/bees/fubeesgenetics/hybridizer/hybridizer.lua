@@ -3,6 +3,7 @@ require "/scripts/fubeesgenetics/hybridbees.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
 
 local energyPerAttempt = 10000
+local requiredPower
 local queenSlot, droneSlot, outputSlot = 1, 2, 3
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
@@ -71,10 +72,11 @@ local function getState()
   return {charge = storage.hybridCharge or 0, capacity = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
-    chance = species and hybridbees.successChance(species), watts = config.getParameter("isn_requiredPower", 24)}
+    chance = species and hybridbees.successChance(species), watts = requiredPower}
 end
 
 function init()
+  requiredPower = config.getParameter("isn_requiredPower", 24)
   storage.hybridCharge = math.max(0, math.min(energyPerAttempt, storage.hybridCharge or 0))
   storage.hybridizationAttempts = storage.hybridizationAttempts or 0
   power.init()
@@ -98,7 +100,7 @@ function update(dt)
   end
   -- A full coil needs no power-network traversal while it waits for bees.
   power.update(dt)
-  local watts = config.getParameter("isn_requiredPower", 24)
+  local watts = requiredPower
   local draw = math.min(watts * dt, energyPerAttempt - storage.hybridCharge, power.getTotalEnergy())
   if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
   storage.hybridCharge = math.min(energyPerAttempt, storage.hybridCharge + draw)

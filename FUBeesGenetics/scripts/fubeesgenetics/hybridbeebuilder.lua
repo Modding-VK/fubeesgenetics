@@ -21,7 +21,7 @@ local function visualLineage(parameters)
   if lineage.speciesId ~= speciesId then return nil end
   local subtype = genome:sub(1, 2)
   if subtype ~= "01" and subtype ~= "02" then return nil end
-  return {speciesId = speciesId, parentFamilies = a < b and {a, b} or {b, a},
+  return {speciesId = speciesId,
     queenFamily = a, droneFamily = b, subspecies = subtype == "01" and 1 or 2,
     parentSubtypes = lineage.parentSubtypes,
     genomeExceptions = lineage.genomeExceptions}

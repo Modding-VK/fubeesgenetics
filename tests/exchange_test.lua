@@ -11,6 +11,7 @@ local function same(a,b)
 end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
 local slots,faults,puts,takes,drops,logs,animations,tags
+local slotReads, inventoryReads=0,0
 local facing=1
 local objectParameters={}
 object={direction=function() return facing end,
@@ -33,7 +34,10 @@ config={getParameter=function(name) return copy(objectParameters[name]~=nil and 
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
 animator={setGlobalTag=function(name,value) tags[name]=value end,setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
- assert(id==42 and s>=0 and s<16);return copy(slots[s])
+ slotReads=slotReads+1;assert(id==42 and s>=0 and s<16);return copy(slots[s])
+end,containerItems=function(id)
+ inventoryReads=inventoryReads+1;assert(id==42)
+ local result={};for i=0,15 do result[i+1]=copy(slots[i]) end;return result
 end,containerTakeNumItemsAt=function(id,s,n)
  takes=takes+1
  if faults.takeFailure==takes or not slots[s] or slots[s].count<n then return nil end
@@ -59,6 +63,7 @@ end,spawnItem=function(item)
 end}
 require=function(path)
  if path=='/scripts/util.lua' then util={};return end
+ if path=='/scripts/fubeesgenetics/containerutil.lua' then dofile(fixture.repoRoot..'/FUBeesGenetics'..path);return end
  assert(path=='/scripts/kheAA/transferUtil.lua');dofile(fixture.fuRoot..path)
 end
 -- Match native startup: all modules load before engine callbacks are bound.
@@ -70,7 +75,7 @@ for _,path in ipairs(fixture.exchangeConfig.scripts) do dofile(fixture.repoRoot.
 for name,value in pairs(bindings) do _G[name]=value end
 local function fresh(saved,inventory)
  slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={};tags={}
- objectParameters={};transferUtil.vars=nil;init()
+ objectParameters={};transferUtil.vars=nil;slotReads,inventoryReads=0,0;init()
 end
 local function item(name,count,parameters) return {name=name,count=count or 1,parameters=parameters or {}} end
 local function total(name)
@@ -338,5 +343,17 @@ test('E40 item aging module loads before root callbacks without IC',function()
  local objectItem=item('fubeesgenetics_beeexchange')
  assert(same(ageItem(copy(objectItem),1),objectItem))
  require=previousRequire
+end)
+
+test('E41 idle and resource-only slots never request full inventory snapshots',function()
+ for i=1,10 do update(1) end
+ assert(slotReads==160 and inventoryReads==0)
+ fill();slotReads=0;update(1)
+ assert(slotReads==16 and inventoryReads==0 and takes==0)
+end)
+test('E42 a sale uses bulk snapshots without serializing every slot separately',function()
+ slots[15]=item('bee_honey_queen');slotReads,inventoryReads=0,0
+ update(1);assert(total('coalore')==10 and takes==1)
+ assert(inventoryReads==2 and slotReads<30)
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')
