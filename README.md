@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.40-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.41-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -40,7 +40,7 @@ uma unidade por segundo. Ver [detalhes, evidências e roteiro de medição](docs
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.40-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.41-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -145,6 +145,10 @@ ativar o bônus. Sua receita na Bee Station é 1 Large Apiary, 1 A.I. Chip e
 5 Durasteel Bars.
 
 ## Genetic Hybridizer e abelhas híbridas (0.2.20-dev)
+
+A janela do Hybridizer usa moldura compacta de 270×165 pixels, logo próprio e
+favo de mel discreto no canto inferior direito. O cabeçalho segue o alinhamento
+do Analyzer. Ver [layout e diretriz visual](docs/HYBRIDIZER_UI_0_2_41.md).
 
 Cruza Queen e Drone de espécies FU diferentes. Cada tentativa consome **10.000
 unidades de energia a até 24 W** para completar o progresso do experimento.

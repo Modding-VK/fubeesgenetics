@@ -76,6 +76,15 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 
 # Slots da interface
 
+- Nas novas janelas de máquinas próprias, incluir um grupo estático de
+  hexágonos em padrão de favo no canto inferior direito. O desenho deve chegar
+  até o limite interno da janela e ficar visualmente por baixo da moldura,
+  sem cobrir rótulos, valores, alertas ou áreas clicáveis. Gerar o motivo no
+  asset de fundo; não adicionar canvas, scripts ou polling para decoração.
+- Usar o cabeçalho do Genetic Queen Filter como referência para logo à
+  esquerda, título laranja e descrição clara alinhados entre si. Dimensionar
+  cada janela de acordo com seu conteúdo, preservando as margens e a leitura.
+
 - Approved/Input/Rejected usam molduras estáticas independentes, com
   mouseTransparent=true e camada inferior aos slots nativos. Não usar a
   moldura do mod como backingImage que some ao preencher o slot.
