@@ -84,6 +84,9 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 - Usar o cabeçalho do Genetic Queen Filter como referência para logo à
   esquerda, título laranja e descrição clara alinhados entre si. Dimensionar
   cada janela de acordo com seu conteúdo, preservando as margens e a leitura.
+- Padronizar logos de máquinas em emblemas hexagonais de 20×20 pixels, com a
+  mesma moldura metálica e âmbar. Variar apenas o símbolo interno de cada
+  máquina; Analyzer e Hybridizer são as referências atuais.
 
 - Approved/Input/Rejected usam molduras estáticas independentes, com
   mouseTransparent=true e camada inferior aos slots nativos. Não usar a

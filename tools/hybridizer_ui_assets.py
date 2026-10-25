@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from ui_theme import Surface
+from ui_theme import Surface, hex_badge
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,14 +70,7 @@ def build():
                             f"{WIDTH}x{height}+0+{y}", "+repage",
                             f"PNG32:{OUTPUT / name}"], check=True)
         icon = Surface(20, 20)
-        outline = [(10, 1), (17, 5), (17, 14), (10, 18),
-                   (3, 14), (3, 5), (10, 1)]
-        inner = [(10, 3), (15, 6), (15, 13), (10, 16),
-                 (5, 13), (5, 6), (10, 3)]
-        for points, color in [(outline, PALETTE["metalLight"]),
-                              (inner, PALETTE["amber"])]:
-            for (x0, y0), (x1, y1) in zip(points, points[1:]):
-                icon.line(x0, y0, x1, y1, color)
+        hex_badge(icon, PALETTE)
         for y in range(5, 15):
             t = y - 5
             icon.pixel(7 + ((t + 1) % 5), y, PALETTE["cyan"])
