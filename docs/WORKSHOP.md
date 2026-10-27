@@ -92,8 +92,8 @@ A imagem de preview do Workshop é separada do ícone de inventário.
 ## Gerar novamente
 
 Somente a Action **Build development PAK** gera novos arquivos `.pak`. Ela
-roda quando os assets ou scripts do mod mudam e pode ser iniciada manualmente em
-GitHub → Actions → Build development PAK → Run workflow, selecionando `dev`.
+é iniciada somente pelo mantenedor em GitHub → Actions → Build development PAK
+→ Run workflow, selecionando `dev`. Pushes de código ou assets não a iniciam.
 O resultado fica no artefato da execução por 90 dias: PAK com a versão do
 `_metadata`, ZIP com `contents.pak` para Workshop e `SHA256SUMS`. O GitHub baixa
 esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as

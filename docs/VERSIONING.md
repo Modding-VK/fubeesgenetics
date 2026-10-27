@@ -30,7 +30,8 @@ deve se chamar
 `bee-abusive-industry-<versão>.pak`, usando a versão do _metadata. O PAK da
 Workshop continua contents.pak, com os mesmos bytes. Usar links por SHA nos downloads fornecidos ao
 usuário, conservando acesso às versões anteriores. A validação de código é feita
-no CI; o workflow Build development PAK empacota e confere o resultado.
+no CI; o workflow Build development PAK empacota e confere o resultado somente
+quando o mantenedor o inicia manualmente em `dev`.
 Não executar `tools/package.py` localmente.
 
 Comandos de validação disponíveis no CI:

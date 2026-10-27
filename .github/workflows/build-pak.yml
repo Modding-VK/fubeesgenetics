@@ -2,14 +2,6 @@ name: Build development PAK
 
 on:
   workflow_dispatch:
-  push:
-    branches: [dev]
-    paths:
-      - 'FUBeesGenetics/**'
-      - 'tools/package.py'
-      - 'tools/install_pak_tools.py'
-      - 'tools/pak_toolchain.json'
-      - '.github/workflows/build-pak.yml'
 
 permissions:
   contents: read
