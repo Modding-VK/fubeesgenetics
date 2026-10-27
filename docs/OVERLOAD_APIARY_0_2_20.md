@@ -88,3 +88,19 @@ icons follow the Durasteel palette. No scripts, animation state names or
 mechanics changed; normal idle appearance already uses `default` in FU and
 therefore now shows Durasteel too. The archive images above document the older
 art and are not the current game textures.
+
+### Separate powered state (0.2.46-dev)
+
+Both objects now use a local copy of FU's apiary animation with one additional
+`base` state named `powered`. Their sprite sheets have a fifth frame with that
+name; it is pixel-identical to `default` for now. The original four frames,
+their names, canvas sizes, bees, loading and warning parts remain intact.
+
+The existing 12 W `power.consume` result determines both the production bonus
+and the visual state. On a change from unpowered to powered, the script selects
+`powered`; when energy is insufficient, it selects `default`. With no power,
+normal FU production still continues without the 20% bonus. The script adds
+only a boolean comparison on its existing update and sends an animator change
+**only on power transitions**. There is no new polling, timer, cache or
+recurring message. In-game verification is still needed to confirm the
+transition and appearance under a connected FU power network.

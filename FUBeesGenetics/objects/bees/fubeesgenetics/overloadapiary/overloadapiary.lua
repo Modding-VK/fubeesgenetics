@@ -7,9 +7,11 @@ local upstreamInit, upstreamUpdate = init, update2
 local upstreamDroneProduction, upstreamQueenProduction = droneProduction, queenProduction
 local upstreamAgeQueen = ageQueen
 local powered = false
+local displayedPowered = false
 local requiredPower
 
 function init()
+  powered, displayedPowered = false, false
   requiredPower = config.getParameter("isn_requiredPower", 12)
   fubeesContainer.install()
   upstreamInit()
@@ -22,8 +24,14 @@ end
 function update(dt)
   if biome == "unknown" then return end
   power.update(dt)
-  powered = power.consume(requiredPower * dt)
+  powered = power.consume(requiredPower * dt) == true
   upstreamUpdate(dt)
+  -- The powered image currently matches default. Change the animator only
+  -- when power availability changes, using the same decision as production.
+  if powered ~= displayedPowered then
+    animator.setAnimationState("base", powered and "powered" or "default", true)
+    displayedPowered = powered
+  end
 end
 update2 = update
 

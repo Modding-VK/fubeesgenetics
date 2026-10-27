@@ -22,7 +22,7 @@
       "collision": "platform"
     }
   ],
-  "animation": "/bees/objects/apiary.animation",
+  "animation": "/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.animation",
   "animationParts": {
     "base": "small-object.png",
     "bees": "/bees/objects/apiary/bees.png",
