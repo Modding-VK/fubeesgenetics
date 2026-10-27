@@ -1,0 +1,50 @@
+name: Build development PAK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check development version
+        run: python tools/check_version.py --development
+      - name: Read package version
+        id: metadata
+        run: python -c 'import json; print("version=" + json.load(open("FUBeesGenetics/_metadata"))["version"])' >> "$GITHUB_OUTPUT"
+      - name: Restore native PAK tools
+        uses: actions/cache@v4
+        with:
+          path: .cache/pak-tools
+          key: openstarbound-pak-tools-${{ hashFiles('tools/pak_toolchain.json') }}
+      - name: Install lzip if needed
+        run: |
+          if ! command -v lzip >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y lzip
+          fi
+      - name: Install verified OpenStarbound tools
+        run: python tools/install_pak_tools.py
+      - name: Build and verify PAK
+        run: python tools/package.py --output-dir "$RUNNER_TEMP/pak-build"
+      - name: Record package hashes
+        working-directory: ${{ runner.temp }}/pak-build
+        run: sha256sum "bee-abusive-industry-${{ steps.metadata.outputs.version }}.pak" bee-abusive-industry-workshop-content.zip > SHA256SUMS
+      - name: Upload development packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: bee-abusive-industry-${{ steps.metadata.outputs.version }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pak-build/bee-abusive-industry-${{ steps.metadata.outputs.version }}.pak
+            ${{ runner.temp }}/pak-build/bee-abusive-industry-workshop-content.zip
+            ${{ runner.temp }}/pak-build/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 90
