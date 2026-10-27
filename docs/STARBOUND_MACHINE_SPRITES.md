@@ -12,6 +12,14 @@ engine ou no asset; **observação** descreve a amostra; **diretriz do projeto**
 evidência, nesta pesquisa, de um manual oficial que imponha uma única paleta,
 espessura de contorno, perspectiva ou quantidade de frames a todo Starbound.
 
+**Diretriz obrigatória deste projeto para máquinas no mundo:** representar
+**frente e uma face lateral**, sem mostrar **jamais a face superior nem a
+inferior**. O topo do contorno pode receber uma linha de luz ou espessura de
+borda, mas essa linha não pode virar uma superfície horizontal visível. Essa
+regra também vale para conceitos, ícones derivados e prévias de sprites. A
+existência de tampos inclinados em algumas referências não revoga esta escolha
+do mantenedor para as máquinas novas do mod.
+
 ## 1. O que dá identidade a uma máquina
 
 A leitura começa por uma forma reconhecível: bancada com tampo, forno com
@@ -20,7 +28,7 @@ principal comunica a função. As demais explicam sustentação, alimentação,
 controle e saída. Uma caixa retangular com muitos LEDs pode parecer tecnológica,
 mas comunica pouco sobre o processo que executa.
 
-Na amostra, Inventor's Table mantém o tampo inclinado e a área azul ao evoluir
+Na amostra, Inventor's Table mantém a bancada inclinada e a área azul ao evoluir
 de madeira para metal; o forno mantém a cavidade quente nos dois primeiros
 níveis e passa a uma câmara tecnológica no terceiro. A estação de fiação usa
 terminais e condutores; o Terramart usa compartimento, trilhos e placa. Esses
@@ -65,8 +73,8 @@ automaticamente exige revisão pixel a pixel antes de virar sprite de produção
 
 ## 3. Silhueta e distribuição das massas
 
-Separar a máquina em base, corpo funcional e equipamento superior quando isso
-corresponder à função. Pés, tampo, abertura e acessórios devem continuar legíveis
+Separar a máquina em base, corpo funcional e equipamento acima do corpo quando isso
+corresponder à função. Pés, contorno da tampa, abertura e acessórios devem continuar legíveis
 no tamanho nativo. Espaços negativos sob bancadas, entre suportes e ao redor de
 tanques tornam a silhueta mais informativa sem exigir novos detalhes.
 
@@ -82,19 +90,24 @@ decorativa universal.
 
 ## 4. Perspectiva e volume
 
-A câmera do mundo é lateral, mas objetos podem mostrar o tampo e uma face
-secundária. A mesa do inventor e a console Apex sugerem superfícies inclinadas;
-tanques e fornos podem ser quase frontais. A amostra não sustenta impor uma
-grade isométrica a todas as máquinas.
+Para **novas máquinas deste projeto**, usar somente dois planos externos
+visíveis: **frente e uma lateral**. Manter a lateral reconhecível, com cor e
+contorno próprios, em toda a altura coerente do corpo. Não desenhar vista de
+cima da tampa ou do chão sob a máquina. **Faces superior e inferior nunca devem
+aparecer**, nem como trapézios finos, nem por mudança de ponto de fuga. O jogo
+usa vista lateral; a direção de arte escolhida para este mod evita inclinação
+vertical da câmera.
 
-Escolher a convenção da família de referência e manter coerência entre tampo,
-base, painéis e acessórios. Se uma borda mostra espessura de dois pixels,
-bordas equivalentes precisam explicar diferenças de espessura. Linhas paralelas
-e degraus das diagonais devem parecer construídos pelo mesmo processo.
+A amostra pesquisada inclui objetos com superfícies inclinadas, como a mesa do
+inventor. Isso descreve aqueles assets; não serve de exceção à diretriz acima.
+Usar as referências para escala, materiais e função, mas adaptar qualquer
+ângulo que revele o topo ou a base antes de criar conceitos para o mod.
 
-Desenhar volumes com planos de cor: superfície superior, face principal,
-rebaixo e contato. Uma faixa clara no topo ou na quina ajuda a ler metal;
-uma linha escura sob uma peça explica sobreposição. A direção exata da luz
+Alinhar tampa, cintas, base, painéis e acessórios à mesma quina entre frente e
+lateral. As bordas longas da frente ficam horizontais e os montantes ficam
+verticais. Um filete claro na borda superior pode indicar espessura e metal,
+desde que não forme um plano superior visível. Uma linha escura sob uma peça
+pode explicar sobreposição sem expor a face inferior. A direção exata da luz
 pintada varia entre assets; não se deve inventar uma regra universal de luz
 obrigatoriamente no canto superior esquerdo.
 
@@ -274,7 +287,8 @@ constar da ficha de criação; não aumentar a resolução para obter mais detal
 3. Registrar quais observações vêm dessas referências e quais escolhas são
    novas. Consultar os arquivos visuais e técnicos, além dos nomes dos objetos.
 4. Propor massas e paleta no tamanho nativo. Verificar primeiro a silhueta e
-   a separação entre entrada, processamento, controles e saída.
+   a separação entre entrada, processamento, controles e saída. Conferir que
+   aparecem frente e lateral, sem faces superior ou inferior, inclusive no conceito.
 5. Resolver volume, contato e materiais. Acrescentar detalhes somente após
    a função principal continuar legível em 1×.
 6. Preparar ícone, partes emissivas, orientações e folha com origem fixa.
@@ -289,6 +303,7 @@ constar da ficha de criação; não aumentar a resolução para obter mais detal
 | Pergunta de revisão | Sinal de problema | Correção típica |
 | --- | --- | --- |
 | A função aparece em 1×? | Só é entendida com zoom ou legenda | Reforçar a peça funcional dominante |
+| O ângulo segue o projeto? | Tampa ou base revelam faces de cima ou de baixo; lateral desaparece | Mostrar frente e uma lateral, mantendo topo e base apenas como contornos |
 | A escala combina com a vizinhança? | Rebites maiores que componentes de objetos vanilla | Redesenhar na grade nativa |
 | O corpo tem massa e apoio? | Peças pairando sem conexão | Resolver base, contato e suportes |
 | O foco está claro? | Todo canto brilha com a mesma força | Reduzir contraste em áreas secundárias |

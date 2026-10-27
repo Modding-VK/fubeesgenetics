@@ -29,6 +29,8 @@ só os offsets ou a mecânica da máquina nova.
 
 ## Geometria antes de detalhar
 
+- Ângulo obrigatório: frente e uma lateral visíveis; faces superior e inferior ausentes, inclusive no conceito e ícone:
+- Qual lateral aparece e como tampa, cintas e base acompanham a mesma quina sem revelar o topo:
 - Canvas nativo de cada frame, em pixels:
 - Extensão visual aproximada em tiles de 8 px:
 - `spaces` e suporte/anchors planejados:
@@ -67,6 +69,7 @@ só os offsets ou a mecânica da máquina nova.
 - PNGs, `.frames`, `.animation` e objetos afetados:
 - Fonte e método de geração/edição, com resolução final explícita:
 - Inspeção estática realizada (1×, ampliação inteira, transparência, frames):
+- Conferência visual da frente e lateral, sem faces superior ou inferior:
 - Conferências efetivamente realizadas no jogo e ambiente usado:
 - Pendências visuais ou técnicas:
 - Documentação de scanner por espécie, quando um objeto for criado/alterado:

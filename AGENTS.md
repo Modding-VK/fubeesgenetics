@@ -34,6 +34,10 @@
   [starbound-machine-sprites](.agents/skills/starbound-machine-sprites/SKILL.md).
 - Registrar a ficha de função, escala, materiais, estados e integração
   conforme [MACHINE_SPRITE_BRIEF](docs/MACHINE_SPRITE_BRIEF.md).
+- Em sprites e conceitos de máquinas no mundo, mostrar **frente e uma lateral**;
+  **jamais mostrar faces superior ou inferior**. Uma borda de tampa não pode
+  sugerir uma superfície vista de cima. Conferir o ângulo também em ícones e
+  prévias derivados desses sprites.
 - Distinguir observações da amostra de regras do engine e preferências do
   projeto. Logos hexagonais e favos das janelas não impõem formato ou tamanho
   aos sprites das máquinas no mundo.

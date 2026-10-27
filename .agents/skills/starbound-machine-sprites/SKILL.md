@@ -20,7 +20,9 @@ folha de frames, emissividade, orientação ou integração visual do objeto.
    `.animation`. Distinguir observação estética, regra técnica e preferência
    do projeto. Não inventar uma regra oficial para todo Starbound.
 4. Trabalhar a silhueta e a função na resolução final. Preservar origem e
-   canvas entre frames. Verificar o significado das camadas nos arquivos,
+   canvas entre frames. Nas máquinas do projeto, mostrar frente e uma lateral,
+   **jamais faces superior ou inferior**, também em conceitos, ícones e prévias.
+   Não transformar a borda da tampa em plano superior visível. Verificar o significado das camadas nos arquivos,
    sem inferir emissividade pelo nome `lit`.
 5. Aplicar a política de scripting do projeto: decoração estática, animação
    declarativa quando adequada, mudanças de estado comandadas por eventos
