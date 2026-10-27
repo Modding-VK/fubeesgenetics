@@ -188,3 +188,11 @@ they do not emit light into the world. FU's Hydroponics Tray at pinned revision
 on/off sprite without world-light settings. FU's separate Heatlamp Tray uses
 `emitsLightWhenPowered`, `lightColor`, and `object.setLightColor` to illuminate
 its surroundings. No light API call or recurring script work was added here.
+
+### Scanner text cleanup (0.2.51-dev)
+
+The large apiary's eight species-specific and generic scan descriptions now
+explain its powered output and queen wear without mentioning inventory slots,
+frames, or compartment counts. The small apiary's scan descriptions already
+avoided these details. Container capacity and slot configuration remain
+unchanged; this text-only change adds no recurring scripting work.
