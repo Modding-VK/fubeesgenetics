@@ -35,7 +35,7 @@
   "frameCooldown": 67,
   "autoCloseCooldown": 3600,
   "scripts": ["/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua"],
-  "scriptDelta": 5,
+  "scriptDelta": 10,
   "uiConfig": "/bees/interface/apiary/largeapiary.config",
   "slotCount": 20,
   "queenSlot": 1,

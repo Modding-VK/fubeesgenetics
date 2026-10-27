@@ -27,7 +27,8 @@ The addon script loads `/bees/apiary.lua` and wraps its callbacks, so FU retains
 ownership of the bee lifecycle and storage behavior. Resource output scales the
 genetic base production while preserving frame bonuses. Drone breeding scales
 the queen's decoded drone-breeding stat. Power is drawn through
-`/scripts/fupower.lua` at the object's five-tick update interval.
+`/scripts/fupower.lua` at the object's update interval (10 ticks since
+0.2.48-dev).
 
 12 W is the initial balance value, chosen as a moderate industrial draw below
 the FU Centrifuge's documented 24 W. It can be adjusted after in-game balance
@@ -118,7 +119,32 @@ The reference is FU's Hydroponics Tray at commit
 `17868d86c9bb7bc00f92038fb78b48cebd1b41b8`: its `powlight` part has
 separate `off` and `on` frames, with neutral pixels in `off` and cyan pixels in
 `on`. Our existing `powered` base state serves that same visual purpose with
-no extra layer or script. Power is checked on the object's existing 5-tick
-update; the animator changes only on a power transition. This asset edit adds
+no extra layer or script. In 0.2.47-dev power was checked every 5 ticks;
+the animator changes only on a power transition. This asset edit adds
 no script callback, timer, cache, or recurring rendering part. Visual behavior
 under an actual FU power network remains to be checked in game.
+
+### Half-frequency script updates (0.2.48-dev)
+
+Both Overload Apiary objects now use `scriptDelta: 10` instead of 5, reducing
+scheduled `update(dt)` calls from about 12 to 6 per second at 60 game ticks/s.
+The existing FU `power.update(dt)` and `power.consume(12 * dt)` use the actual
+elapsed time: each call requests twice the energy at the nominal cadence, so
+the requested draw remains 12 W per second. The LED can respond up to one
+10-tick interval after a power change instead of one 5-tick interval.
+
+FU's `update2` also subtracts `dt` from its bee timer and accumulates
+`beeTickDelta`, so the configured `beeUpdateInterval` remains one second. The
+per-bee production multiplier (1.2), drone-breeding multiplier (1.2), and
+queen-aging factor (1 / 0.7) therefore stay unchanged: doubling them would
+change output and lifespan because bee ticks were not halved. FU's 1-second
+container refresh and power-network pulse remain time-based. The upstream
+stagger increment derived from `scriptDelta` increases from 0.05 to 0.10
+seconds, keeping nearby hives' work offset rather than synchronized.
+
+This halves callback frequency, not total script CPU: FU still executes its
+bee production and local hive query about once per second. No additional
+polling, network request, cache, or rendering layer was introduced. A loaded
+world with many powered/unpowered hives and shared generators still needs an
+in-game comparison of script time, production, power draw, and queen lifespan;
+there is no server-thread measurement from this static change.
