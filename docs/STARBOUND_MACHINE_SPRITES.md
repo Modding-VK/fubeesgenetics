@@ -20,6 +20,12 @@ regra também vale para conceitos, ícones derivados e prévias de sprites. A
 existência de tampos inclinados em algumas referências não revoga esta escolha
 do mantenedor para as máquinas novas do mod.
 
+**Base obrigatória:** toda aresta inferior do corpo e da base corre na horizontal.
+Na passagem da lateral para a frente, não inclinar a linha de fundo para sugerir
+profundidade. Os pés de uma mesma máquina terminam no mesmo eixo horizontal de
+apoio, mesmo que tenham larguras ou detalhes diferentes. Vale para conceitos,
+ícones, prévias e todos os frames.
+
 ## 1. O que dá identidade a uma máquina
 
 A leitura começa por uma forma reconhecível: bancada com tampo, forno com
@@ -110,6 +116,13 @@ desde que não forme um plano superior visível. Uma linha escura sob uma peça
 pode explicar sobreposição sem expor a face inferior. A direção exata da luz
 pintada varia entre assets; não se deve inventar uma regra universal de luz
 obrigatoriamente no canto superior esquerdo.
+
+Na base, verificar a linha pixel a pixel: a aresta inferior da lateral e a da
+frente devem conservar a mesma altura; a quina de encontro é vertical. Um
+degrau estrutural pode subir e voltar a descer em segmentos ortogonais, mas
+nunca formar uma diagonal no fundo. Conferir a coordenada vertical do último
+pixel de cada pé. Pés em alturas diferentes fazem a máquina parecer inclinada
+ou mal apoiada no chão.
 
 ## 5. Contorno e agrupamento dos pixels
 
@@ -289,6 +302,7 @@ constar da ficha de criação; não aumentar a resolução para obter mais detal
 4. Propor massas e paleta no tamanho nativo. Verificar primeiro a silhueta e
    a separação entre entrada, processamento, controles e saída. Conferir que
    aparecem frente e lateral, sem faces superior ou inferior, inclusive no conceito.
+   Conferir arestas inferiores horizontais e todos os pés na mesma linha de apoio.
 5. Resolver volume, contato e materiais. Acrescentar detalhes somente após
    a função principal continuar legível em 1×.
 6. Preparar ícone, partes emissivas, orientações e folha com origem fixa.
@@ -304,6 +318,7 @@ constar da ficha de criação; não aumentar a resolução para obter mais detal
 | --- | --- | --- |
 | A função aparece em 1×? | Só é entendida com zoom ou legenda | Reforçar a peça funcional dominante |
 | O ângulo segue o projeto? | Tampa ou base revelam faces de cima ou de baixo; lateral desaparece | Mostrar frente e uma lateral, mantendo topo e base apenas como contornos |
+| O fundo e os pés estão alinhados? | Linha inferior diagonal ou pés terminando em alturas diferentes | Nivelar arestas inferiores na horizontal e alinhar o último pixel de todos os pés |
 | A escala combina com a vizinhança? | Rebites maiores que componentes de objetos vanilla | Redesenhar na grade nativa |
 | O corpo tem massa e apoio? | Peças pairando sem conexão | Resolver base, contato e suportes |
 | O foco está claro? | Todo canto brilha com a mesma força | Reduzir contraste em áreas secundárias |

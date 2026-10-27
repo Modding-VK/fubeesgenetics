@@ -22,7 +22,9 @@ folha de frames, emissividade, orientação ou integração visual do objeto.
 4. Trabalhar a silhueta e a função na resolução final. Preservar origem e
    canvas entre frames. Nas máquinas do projeto, mostrar frente e uma lateral,
    **jamais faces superior ou inferior**, também em conceitos, ícones e prévias.
-   Não transformar a borda da tampa em plano superior visível. Verificar o significado das camadas nos arquivos,
+   Não transformar a borda da tampa em plano superior visível. Manter todas as
+   arestas inferiores horizontais, sem diagonais, e nivelar todos os pés no
+   mesmo eixo horizontal em cada frame. Verificar o significado das camadas nos arquivos,
    sem inferir emissividade pelo nome `lit`.
 5. Aplicar a política de scripting do projeto: decoração estática, animação
    declarativa quando adequada, mudanças de estado comandadas por eventos

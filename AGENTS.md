@@ -38,6 +38,10 @@
   **jamais mostrar faces superior ou inferior**. Uma borda de tampa não pode
   sugerir uma superfície vista de cima. Conferir o ângulo também em ícones e
   prévias derivados desses sprites.
+- As arestas inferiores de base e corpo devem ser **inteiramente horizontais**,
+  sem segmentos diagonais na junção da lateral com a frente. Todos os pés da
+  mesma máquina terminam na **mesma linha horizontal** de apoio; conferir isso
+  também em conceitos, ícones, prévias e cada frame de animação.
 - Distinguir observações da amostra de regras do engine e preferências do
   projeto. Logos hexagonais e favos das janelas não impõem formato ou tamanho
   aos sprites das máquinas no mundo.
