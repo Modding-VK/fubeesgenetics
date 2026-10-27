@@ -169,3 +169,22 @@ apiary PNGs, canvas sizes, frame names, animation, script, power draw, and
 production rules are unchanged. Static pixel inspection shows edits confined
 to the belt and icon belt; perspective and appearance in game remain to be
 reviewed by the maintainer.
+
+### Inventory icon alignment (0.2.50-dev)
+
+Both inventory icons now present the same side/front orientation as their
+corresponding world sprites: the darker side is on the left, the brighter front
+on the right. Their belts end at the body edges instead of projecting beyond
+them. The belt's dark side segment meets the front at a vertical corner, and
+the two cyan accent pixels are symmetric on the front. The small icon remains
+24×18 and the large icon remains 24×20. The icon sheets were corrected at native
+resolution using the mod's existing art; world sprites, item IDs, scripts, and
+animation states were not changed. The static inventory icon is decorative and
+does not represent the current live power state.
+
+The Overload Apiaries currently change only their sprite LEDs when energized;
+they do not emit light into the world. FU's Hydroponics Tray at pinned revision
+`17868d86c9bb7bc00f92038fb78b48cebd1b41b8` likewise has a `powlight`
+on/off sprite without world-light settings. FU's separate Heatlamp Tray uses
+`emitsLightWhenPowered`, `lightColor`, and `object.setLightColor` to illuminate
+its surroundings. No light API call or recurring script work was added here.
