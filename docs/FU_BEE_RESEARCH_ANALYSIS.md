@@ -47,7 +47,7 @@ namespaced, siglas únicas, títulos, descrições com tiering laranja (`^orange
 
 | Nó | Pais necessários | Posição | Custo | Blueprints |
 | --- | --- | --- | --- | --- |
-| Industrial Beekeeping | `bees3` (Advanced Beekeeping) | [-155, -50] | 1.000 Research | Genetic Queen Filter, Auto Refugee |
+| Industrial Beekeeping | `bees3` (Advanced Beekeeping) | [-155, -50] | 1.000 Research + 1 A.I. Chip | Genetic Queen Filter, Auto Refugee |
 | Abusive Apiaries | Industrial Beekeeping | [-155, -90] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
 | Unethical Genetic Practices | Abusive Apiaries | [-155, -130] | 2.200 Research + 120 Madness | Genetic Hybridizer |
 

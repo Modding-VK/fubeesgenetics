@@ -141,7 +141,7 @@ def check_assets(root, fu_root, native_root):
         ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary'],
         ['fubeesgenetics_hybridizer']]
     assert [nodes[name]['price'] for name in names] == [
-        [['fuscienceresource',1000]],
+        [['fuscienceresource',1000],['aichip',1]],
         [['fuscienceresource',1400],['fumadnessresource',60]],
         [['fuscienceresource',2200],['fumadnessresource',120]]]
     assert research['acronyms']['fu_agriculture'] == dict(zip(['FUBI1','FUBI2','FUBI3'],names))

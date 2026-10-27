@@ -6,9 +6,9 @@ autor Goblin Man, ícone Cybernetic Queen em fundo laranja e homepage na lista.
 Os registros abaixo preservam os cenários anteriores sem inferir execução
 individual de cada checkbox a partir da confirmação geral.
 
-## Pesquisa do addon — 0.2.30-dev
+## Pesquisa do addon — 0.2.32-dev
 
-- [ ] Industrial Beekeeping aparece após `bees3` (Advanced Beekeeping), custa 1.000 Research e
+- [ ] Industrial Beekeeping aparece após `bees3` (Advanced Beekeeping), custa 1.000 Research e 1 A.I. Chip e
   ensina Genetic Queen Filter e Auto Refugee.
 - [ ] Abusive Apiaries requer Industrial Beekeeping, custa 1.400
   Research e 60 Madness e ensina os dois Overload Apiaries.
