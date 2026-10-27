@@ -71,9 +71,11 @@ For further visual revisions, use the current `large-object.png` as the base,
 not a newly interpreted large hive. The [native concept sheet](reference/overload-large-native-concept.png)
 preserves the four 40×32 frames; the [comparison preview](reference/overload-large-current-vs-concept.png)
 shows current art above and proposed art below at 8× nearest-neighbor.
-Only the lower left side and right feet change: the four-dot panel sits on the
-left side face, the front keeps its existing bee emblem and has no four-dot
-panel, and both right feet move two pixels inward. All four feet still end on
-row 31. The concept alters 58 pixels per frame. These files are review material
+The intended detail is the **long vertical illuminated strip with four points**
+at the upper right of each frame, not a square four-dot panel. The concept
+removes that front/right strip while retaining the corresponding strip on the
+left side face. It adds no square panel. The front retains its existing bee
+emblem, and both right feet move two pixels inward. All four feet still end on
+row 31. The concept changes 64 pixels per frame. These files are review material
 under `docs/reference/`; the game object still uses its existing PNG until the
 concept is adopted.
