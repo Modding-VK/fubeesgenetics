@@ -1,8 +1,10 @@
 {
   "input": [
-    {"item": "aichip", "count": 4},
-    {"item": "titaniumbar", "count": 12},
-    {"item": "glass", "count": 6}
+    {"item": "aichip", "count": 5},
+    {"item": "cellmatter", "count": 10},
+    {"item": "redmatter", "count": 1},
+    {"item": "isogenbar", "count": 5},
+    {"item": "corruptionseed", "count": 1}
   ],
   "output": {
     "item": "fubeesgenetics_hybridizer",
