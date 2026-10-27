@@ -53,29 +53,25 @@ animator base both point to the matching local frame sheet; FU's bees, loading,
 warning and container interface parts remain in use. Inventory icons are local
 variants of the FU icons. No new animation script or recurring work was added.
 
-The small sprite preserves four support feet. The large sprite has four distinct
-feet, two frontal and two recessed; all terminate at the same frame baseline.
-Bottom edges run horizontally, with no visible top or underside planes. These
-are project art constraints, not universal requirements of FU's original art.
+The small sprite preserves four support feet. In 0.2.44-dev the large sprite
+returns to FU's original **solid, floor-flush base**, without distinct feet.
+Bottom edges run horizontally, with no visible top or underside planes.
 
 Source: FU Apiary and Large Apiary PNGs and frame definitions from revision
 `17868d86c9bb7bc00f92038fb78b48cebd1b41b8`, as pinned in
 [SPRITE_SOURCES](SPRITE_SOURCES.md). Adaptation uses direct integer-pixel edits
-on those native canvases. The concept illustration is not a production asset.
-Static inspection checks frame dimensions, state names, preview paths, alpha,
-and foot alignment; rendering beside FU machines still requires an in-game check.
+on those native canvases. Static inspection checks frame dimensions, state
+names, preview paths and alpha; rendering beside FU machines still requires an
+in-game check.
 
-### Large Apiary concept based on the current mod asset
+### Large Apiary correction based on the current mod asset (0.2.44-dev)
 
-For further visual revisions, use the current `large-object.png` as the base,
-not a newly interpreted large hive. The [native concept sheet](reference/overload-large-native-concept.png)
-preserves the four 40×32 frames; the [comparison preview](reference/overload-large-current-vs-concept.png)
-shows current art above and proposed art below at 8× nearest-neighbor.
-The intended detail is the **long vertical illuminated strip with four points**
-at the upper right of each frame, not a square four-dot panel. The concept
-removes that front/right strip while retaining the corresponding strip on the
-left side face. It adds no square panel. The front retains its existing bee
-emblem, and both right feet move two pixels inward. All four feet still end on
-row 31. The concept changes 64 pixels per frame. These files are review material
-under `docs/reference/`; the game object still uses its existing PNG until the
-concept is adopted.
+The [native sheet](reference/overload-large-native-concept.png) matches the
+current game asset. The [comparison preview](reference/overload-large-current-vs-concept.png)
+shows the previous art above and the correction below, at 8× nearest-neighbor.
+Each frame remains 40×32. The right/front illuminated vertical strip is gone;
+the left/side strip remains. The solid lower three rows come directly from the
+corresponding FU frame, eliminating the four feet. The central metal band now
+has a darker side segment and a distinct front segment that meet at a vertical
+corner. The icon's band follows the same division. The bee emblem and FU
+animation states remain intact. No new script or recurring work was added.

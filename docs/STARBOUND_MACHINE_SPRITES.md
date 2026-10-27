@@ -30,8 +30,9 @@ Quando houver pés dianteiros e recuados separados, verificar os **dois pares**:
 cada pé recuado corresponde a um dianteiro na estrutura, com deslocamento de
 profundidade coerente. Se o projeto pedir quatro pés, os quatro precisam ser
 discerníveis, mesmo com ocultação parcial. Todos tocam a mesma linha horizontal
-de apoio. Os conceitos dos dois Overload Apiaries pedem dois pés frontais e
-dois recuados em cada máquina.
+de apoio. Esse critério só se aplica a máquinas com pés separados: o Overload
+Apiary pequeno conserva quatro pés, enquanto o Overload Large Apiary acompanha
+a **base sólida do Large Apiary FU**, encostada no chão, sem pés.
 
 ## 1. O que dá identidade a uma máquina
 
@@ -135,6 +136,12 @@ desde que não forme um plano superior visível. Uma linha escura sob uma peça
 pode explicar sobreposição sem expor a face inferior. A direção exata da luz
 pintada varia entre assets; não se deve inventar uma regra universal de luz
 obrigatoriamente no canto superior esquerdo.
+
+Uma cinta que cruza a quina precisa aparecer **nas duas faces**: trecho lateral
+mais escuro e trecho frontal conforme o material, unidos por uma aresta
+vertical legível. Conferir a continuidade, espessura e altura da cinta em
+todos os frames. No Overload Large Apiary, a cinta central contorna a lateral
+esquerda e a frente; uma faixa uniforme aplicada só sobre a frente não basta.
 
 Na base, verificar a linha pixel a pixel: a aresta inferior da lateral e a da
 frente devem conservar a mesma altura; a quina de encontro é vertical. Um

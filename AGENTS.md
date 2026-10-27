@@ -46,8 +46,9 @@
   mesma máquina terminam na **mesma linha horizontal** de apoio; conferir isso
   também em conceitos, ícones, prévias e cada frame de animação.
 - Se houver pés frontais e recuados separados, conferir os dois pares: posições
-  correspondentes, mesma construção e quantidade correta. Nos conceitos dos
-  dois Overload Apiaries, mostrar **dois pés frontais e dois recuados** em cada.
+  correspondentes, mesma construção e quantidade correta. O Overload Apiary
+  pequeno conserva quatro pés; o **Overload Large Apiary tem base sólida até o
+  chão, como o Large Apiary FU**, sem pés separados.
 - Distinguir observações da amostra de regras do engine e preferências do
   projeto. Logos hexagonais e favos das janelas não impõem formato ou tamanho
   aos sprites das máquinas no mundo.

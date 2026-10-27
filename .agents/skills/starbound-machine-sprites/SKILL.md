@@ -27,8 +27,9 @@ folha de frames, emissividade, orientação ou integração visual do objeto.
    Não transformar a borda da tampa em plano superior visível. Manter todas as
    arestas inferiores horizontais, sem diagonais, e nivelar todos os pés no
    mesmo eixo horizontal em cada frame. Se os pés frontais e recuados forem
-   separados, contar e conferir ambos os pares; nos conceitos dos dois Overload
-   Apiaries, mostrar quatro pés discerníveis. Verificar o significado das camadas nos arquivos,
+   separados, contar e conferir ambos os pares. O Overload Apiary pequeno tem
+   quatro pés; o Large Apiary FU e sua versão Overload têm base sólida sem pés.
+   Verificar o significado das camadas nos arquivos,
    sem inferir emissividade pelo nome `lit`.
 5. Aplicar a política de scripting do projeto: decoração estática, animação
    declarativa quando adequada, mudanças de estado comandadas por eventos
