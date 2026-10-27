@@ -26,6 +26,13 @@ profundidade. Os pés de uma mesma máquina terminam no mesmo eixo horizontal de
 apoio, mesmo que tenham larguras ou detalhes diferentes. Vale para conceitos,
 ícones, prévias e todos os frames.
 
+Quando houver pés dianteiros e recuados separados, verificar os **dois pares**:
+cada pé recuado corresponde a um dianteiro na estrutura, com deslocamento de
+profundidade coerente. Se o projeto pedir quatro pés, os quatro precisam ser
+discerníveis, mesmo com ocultação parcial. Todos tocam a mesma linha horizontal
+de apoio. Os conceitos dos dois Overload Apiaries pedem dois pés frontais e
+dois recuados em cada máquina.
+
 ## 1. O que dá identidade a uma máquina
 
 A leitura começa por uma forma reconhecível: bancada com tampo, forno com
@@ -123,6 +130,12 @@ degrau estrutural pode subir e voltar a descer em segmentos ortogonais, mas
 nunca formar uma diagonal no fundo. Conferir a coordenada vertical do último
 pixel de cada pé. Pés em alturas diferentes fazem a máquina parecer inclinada
 ou mal apoiada no chão.
+
+Ao desenhar quatro apoios, identificar dianteiro esquerdo, dianteiro direito,
+recuado esquerdo e recuado direito. Conferir cada par e comparar os pares:
+mesma linha de apoio, larguras proporcionais e deslocamento lateral coerente
+com a face visível. Um pé recuado parcialmente coberto não deve parecer um
+fragmento solto ou uma quinta perna.
 
 ## 5. Contorno e agrupamento dos pixels
 
@@ -319,6 +332,7 @@ constar da ficha de criação; não aumentar a resolução para obter mais detal
 | A função aparece em 1×? | Só é entendida com zoom ou legenda | Reforçar a peça funcional dominante |
 | O ângulo segue o projeto? | Tampa ou base revelam faces de cima ou de baixo; lateral desaparece | Mostrar frente e uma lateral, mantendo topo e base apenas como contornos |
 | O fundo e os pés estão alinhados? | Linha inferior diagonal ou pés terminando em alturas diferentes | Nivelar arestas inferiores na horizontal e alinhar o último pixel de todos os pés |
+| Os pares de pés condizem? | Falta um pé recuado, aparecem três ou cinco apoios, ou pares deslocados sem lógica | Marcar os dois frontais e os dois recuados, conferir correspondência e apoio comum |
 | A escala combina com a vizinhança? | Rebites maiores que componentes de objetos vanilla | Redesenhar na grade nativa |
 | O corpo tem massa e apoio? | Peças pairando sem conexão | Resolver base, contato e suportes |
 | O foco está claro? | Todo canto brilha com a mesma força | Reduzir contraste em áreas secundárias |

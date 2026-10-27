@@ -32,6 +32,7 @@ só os offsets ou a mecânica da máquina nova.
 - Ângulo obrigatório: frente e uma lateral visíveis; faces superior e inferior ausentes, inclusive no conceito e ícone:
 - Qual lateral aparece e como tampa, cintas e base acompanham a mesma quina sem revelar o topo:
 - Arestas inferiores inteiramente horizontais; pés terminando no mesmo eixo horizontal de apoio:
+- Quantidade de pés e posição correspondente dos pares frontal e recuado, quando separados:
 - Canvas nativo de cada frame, em pixels:
 - Extensão visual aproximada em tiles de 8 px:
 - `spaces` e suporte/anchors planejados:
@@ -72,6 +73,7 @@ só os offsets ou a mecânica da máquina nova.
 - Inspeção estática realizada (1×, ampliação inteira, transparência, frames):
 - Conferência visual da frente e lateral, sem faces superior ou inferior:
 - Conferência pixel a pixel do fundo horizontal e da linha de apoio comum aos pés em cada frame:
+- Conferência dos pares de pés separados: quantidade, posição e coerência de profundidade:
 - Conferências efetivamente realizadas no jogo e ambiente usado:
 - Pendências visuais ou técnicas:
 - Documentação de scanner por espécie, quando um objeto for criado/alterado:
