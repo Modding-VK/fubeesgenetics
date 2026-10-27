@@ -178,7 +178,7 @@ test("No power preserves parents and experiment progress", function()
   equal(e.storage.hybridProgress, 0); equal(e.inventory[0].count, 1); equal(e.inventory[1].count, 1)
 end)
 test("Occupied output pauses experiment progress", function()
-  local e = setup(); e.startMachine(); e.inventory[2] = {name = "dirtmaterial", count = 1, parameters = {}}; e.update(1)
+  local e = setup(); e.startMachine(); e.inventory[3] = {name = "dirtmaterial", count = 1, parameters = {}}; e.update(1)
   equal(e.consumed, 0); equal(e.storage.hybridizerStatus, "WAITING_OUTPUT")
 end)
 test("Slow supply advances experiment gradually and survives init", function()
@@ -188,12 +188,12 @@ end)
 test("Failure consumes exactly 10000 energy and both specimens", function()
   local e = setup(); e.startMachine(); e.roll = .99; e.finish()
   equal(e.consumed, 10000); equal(e.inventory[0], nil); equal(e.inventory[1], nil)
-  equal(e.inventory[2], nil); equal(#e.spawned, 0); equal(e.storage.hybridizationAttempts, 1)
+  equal(e.inventory[3], nil); equal(#e.spawned, 0); equal(e.storage.hybridizationAttempts, 1)
 end)
 for subtype = 1, 2 do
   test("Single larva, native promotion, genome and lineage for subtype " .. subtype, function()
     local e = setup(); e.startMachine(); e.subtype = subtype; e.finish()
-    local larva = e.inventory[2]; equal(larva.name, "bee_hybrid_youngQueen"); equal(larva.count, 1)
+    local larva = e.inventory[3]; equal(larva.name, "bee_hybrid_youngQueen"); equal(larva.count, 1)
     equal(larva.parameters.lifespan, nil); equal(#e.spawned, 0); equal(e.consumed, 10000)
     equal(larva.parameters.hybridLineage.subspecies, subtype)
     e.require("/bees/apiary.lua"); local adult = e.youngQueenToQueen(larva)
@@ -205,13 +205,13 @@ for subtype = 1, 2 do
 end
 test("Old engine insertion return cannot duplicate a larva", function()
   local e = setup(); e.startMachine(); e.reportFull = true; e.finish()
-  equal(e.inventory[2].count, 1); equal(#e.spawned, 0); equal(e.storage.hybridPending, nil)
+  equal(e.inventory[3].count, 1); equal(#e.spawned, 0); equal(e.storage.hybridPending, nil)
 end)
 test("Rejected output is persisted and delivered once after reload", function()
-  local e = setup(); e.startMachine(); e.blockInsert = 2; e.finish()
-  assert(e.storage.hybridPending); equal(e.inventory[2], nil); equal(#e.spawned, 0)
+  local e = setup(); e.startMachine(); e.blockInsert = 3; e.finish()
+  assert(e.storage.hybridPending); equal(e.inventory[3], nil); equal(#e.spawned, 0)
   e.init(); e.blockInsert = nil; e.update(1)
-  equal(e.inventory[2].count, 1); equal(e.storage.hybridPending, nil); equal(e.storage.hybridizationAttempts, 1)
+  equal(e.inventory[3].count, 1); equal(e.storage.hybridPending, nil); equal(e.storage.hybridizationAttempts, 1)
 end)
 test("Partial parent removal refunds and does not spend a second attempt", function()
   local e = setup(); e.startMachine(); local q = copy(e.inventory[0]); e.failTake = 1; e.finish()
@@ -221,7 +221,7 @@ end)
 test("Research discs add the configured success chance and half for rivals", function()
   local e = setup(); e.startMachine()
   for _, case in ipairs({{"researchvoxelsmall", .05}, {"researchvoxel", .10}, {"researchvoxellarge", .60}}) do
-    e.inventory[3] = {name = case[1], count = 2, parameters = {}}
+    e.inventory[2] = {name = case[1], count = 2, parameters = {}}
     local state = e.messages["fubeesgenetics.hybridizer.getState"]()
     assert(math.abs(state.bonus - case[2]) < 1e-9)
     assert(math.abs(state.chance - (.3 + case[2])) < 1e-9)
@@ -234,7 +234,7 @@ test("Research discs add the configured success chance and half for rivals", fun
   e.inventory[0] = e.parent(rival.parentFamilies[1], "queen")
   e.inventory[1] = e.parent(rival.parentFamilies[2], "drone")
   for _, case in ipairs({{"researchvoxelsmall", .025}, {"researchvoxel", .05}, {"researchvoxellarge", .30}}) do
-    e.inventory[3] = {name = case[1], count = 2, parameters = {}}
+    e.inventory[2] = {name = case[1], count = 2, parameters = {}}
     local state = e.messages["fubeesgenetics.hybridizer.getState"]()
     assert(math.abs(state.bonus - case[2]) < 1e-9)
     assert(math.abs(state.chance - (.1 + case[2])) < 1e-9)
@@ -243,27 +243,27 @@ end)
 test("A disc is consumed once on success or failure; unsupported items remain", function()
   for _, case in ipairs({{.5, true}, {.99, false}}) do
     local e = setup(); e.startMachine(); e.roll = case[1]
-    e.inventory[3] = {name = "researchvoxellarge", count = 2, parameters = {}}
+    e.inventory[2] = {name = "researchvoxellarge", count = 2, parameters = {}}
     e.finish()
-    equal(e.inventory[3].count, 1)
-    equal(e.inventory[2] ~= nil, case[2])
+    equal(e.inventory[2].count, 1)
+    equal(e.inventory[3] ~= nil, case[2])
     equal(e.storage.hybridizationAttempts, 1)
   end
   local e = setup(); e.startMachine(); e.roll = .99
-  e.inventory[3] = {name = "dirtmaterial", count = 1, parameters = {}}
+  e.inventory[2] = {name = "dirtmaterial", count = 1, parameters = {}}
   equal(e.messages["fubeesgenetics.hybridizer.getState"]().chance, .3)
   e.finish()
-  equal(e.inventory[3].name, "dirtmaterial")
+  equal(e.inventory[2].name, "dirtmaterial")
 end)
 test("Failed disc removal refunds both parents and preserves the attempt", function()
   local e = setup(); e.startMachine()
-  e.inventory[3] = {name = "researchvoxel", count = 1, parameters = {}}
+  e.inventory[2] = {name = "researchvoxel", count = 1, parameters = {}}
   e.storage.hybridProgress = 10000
-  e.failTake = 3
+  e.failTake = 2
   e.update(1)
   equal(e.inventory[0].count, 1)
   equal(e.inventory[1].count, 1)
-  equal(e.inventory[3].count, 1)
+  equal(e.inventory[2].count, 1)
   equal(e.storage.hybridizationAttempts, 0)
   equal(e.storage.hybridProgress, 10000)
 end)

@@ -36,3 +36,15 @@ Removed the decorative horizontal rule at full-window y=132 from the generated
 background. It crossed the `Power draw` label at the bottom of the pane. The
 other horizontal panel dividers remain. Source and generated assets stay in
 sync; no label coordinates or recurring scripting changed.
+
+### Slot positions (0.2.57-dev)
+
+Queen remains at x=42. Drone moves from x=90 to x=72, reducing the center
+distance from 48 to 30 pixels. Disc is at x=120, 48 pixels after Drone. Larva
+is at x=211, the previous Disc position. All four slots remain at y=81, with
+their labels and independent static frames aligned. The native two-cell
+`outputItemGrid` displays Disc then Larva; the server migrates existing
+container items from the former Larva/Disc order once. Its row and column
+spacing vectors keep the clickable grid bounds inside the 270-pixel window
+while the two native cells remain 91 pixels apart. No additional pane
+scripts or polling are introduced; in-game interaction still needs inspection.

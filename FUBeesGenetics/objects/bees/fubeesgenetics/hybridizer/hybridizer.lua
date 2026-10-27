@@ -4,11 +4,47 @@ require "/scripts/fubeesgenetics/containerutil.lua"
 
 local energyPerAttempt = 10000
 local requiredPower
-local queenSlot, droneSlot, outputSlot, bonusSlot = 1, 2, 3, 4
+local queenSlot, droneSlot, outputSlot, bonusSlot = 1, 2, 4, 3
 local discBonuses = {researchvoxel = 0.10, researchvoxellarge = 0.60, researchvoxelsmall = 0.05}
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
 local function setStatus(value) storage.hybridizerStatus = value end
+
+-- Older machines stored larvae in slot 3 and discs in slot 4. Move complete
+-- descriptors once, with persistent escrow if either insertion must retry.
+local function migrateSlotOrder()
+  if storage.hybridSlotOrder == 2 then return true end
+  local migration = storage.hybridSlotMigration
+  if not migration then
+    migration = {phase = "take", pending = {}}
+    storage.hybridSlotMigration = migration
+  end
+  if migration.phase == "take" then
+    for _, pair in ipairs({{3, 4}, {4, 3}}) do
+      local item = readSlot(pair[1])
+      if item then
+        local taken = world.containerTakeNumItemsAt(entity.id(), pair[1] - 1, item.count)
+        if not taken or taken.count < 1 then return false end
+        migration.pending[#migration.pending + 1] = {slot = pair[2], item = copy(taken)}
+        if readSlot(pair[1]) then return false end
+      end
+    end
+    migration.phase = "put"
+  end
+  while #migration.pending > 0 do
+    local entry = migration.pending[1]
+    local leftover = fubeesContainer.put(entity.id(), entry.item, entry.slot - 1)
+    if leftover then entry.item = leftover; return false end
+    table.remove(migration.pending, 1)
+  end
+  for _, entry in ipairs(storage.hybridPending or {}) do
+    if entry.slot == 3 then entry.slot = 4
+    elseif entry.slot == 4 then entry.slot = 3 end
+  end
+  storage.hybridSlotOrder = 2
+  storage.hybridSlotMigration = nil
+  return true
+end
 
 local function validParents()
   local queen, drone = readSlot(queenSlot), readSlot(droneSlot)
@@ -115,6 +151,7 @@ end
 
 function init()
   requiredPower = config.getParameter("isn_requiredPower", 24)
+  migrateSlotOrder()
   storage.hybridProgress = math.max(0, math.min(energyPerAttempt, storage.hybridProgress or 0))
   storage.hybridCharge = nil -- Retire energy banked by older versions without parents.
   storage.hybridizationAttempts = storage.hybridizationAttempts or 0
@@ -127,6 +164,7 @@ function init()
 end
 
 function update(dt)
+  if not migrateSlotOrder() then setStatus("WAITING_OUTPUT"); return end
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
   local queen, drone, species = validParents()
   if not queen then setStatus("WAITING_INPUT"); return end
@@ -146,6 +184,10 @@ function update(dt)
 end
 
 function die()
+  for _, entry in ipairs(storage.hybridSlotMigration and storage.hybridSlotMigration.pending or {}) do
+    world.spawnItem(entry.item, entity.position())
+  end
+  storage.hybridSlotMigration = nil
   for _, entry in ipairs(storage.hybridPending or {}) do world.spawnItem(entry.item, entity.position()) end
   storage.hybridPending = nil
   world.spawnItem(object.name(), entity.position(), 1)

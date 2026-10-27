@@ -269,19 +269,23 @@ def check_assets(root, fu_root, native_root):
     gui = hybrid_ui['gui']
     assert 'background' in gui and gui['close']['type'] == 'button'
     assert not hybridizer['hasWindowIcon']  # own title, no duplicate native header
-    assert (hybridizer['queenSlot'], hybridizer['droneSlot'], hybridizer['outputSlot'], hybridizer['bonusSlot']) == (1, 2, 3, 4)
-    for offset, name in enumerate(['itemGrid', 'itemGrid2', 'outputItemGrid']):
-        grid, frame = gui[name], gui[name+'Frame']
+    assert (hybridizer['queenSlot'], hybridizer['droneSlot'], hybridizer['outputSlot'], hybridizer['bonusSlot']) == (1, 2, 4, 3)
+    for offset, name, frame_name in [(0, 'itemGrid', 'itemGridFrame'), (1, 'itemGrid2', 'itemGrid2Frame'), (2, 'outputItemGrid', 'discItemGridFrame')]:
+        grid, frame = gui[name], gui[frame_name]
         assert grid['slotOffset'] == offset and grid['dimensions'] == ([2, 1] if name == 'outputItemGrid' else [1, 1])
-        assert grid['spacing'] == ([45, 19] if name == 'outputItemGrid' else [19, 19]) and grid['backingImage'] == ''
+        if name == 'outputItemGrid':
+            assert grid['rowSpacing'] == [91, 0] and grid['columnSpacing'] == [-72, 19]
+        else:
+            assert grid['spacing'] == [19, 19]
+        assert grid['backingImage'] == ''
         assert not grid['showBackingImageWhenEmpty'] and not grid['showBackingImageWhenFull']
         assert frame['mouseTransparent'] and frame['zlevel'] < grid['zlevel']
         assert [v+9 for v in grid['position']] == [v+12 for v in frame['position']]
         assert png_size(mod / frame['file'].lstrip('/')) == (24, 24)
-    bonus_frame = gui['bonusItemGridFrame']
-    assert bonus_frame['position'] == [gui['outputItemGrid']['position'][0] + 42, gui['outputItemGrid']['position'][1] - 3]
-    assert bonus_frame['mouseTransparent'] and bonus_frame['zlevel'] < gui['outputItemGrid']['zlevel']
-    assert png_size(mod / bonus_frame['file'].lstrip('/')) == (24, 24)
+    larva_frame = gui['larvaItemGridFrame']
+    assert larva_frame['position'] == [gui['outputItemGrid']['position'][0] + 88, gui['outputItemGrid']['position'][1] - 3]
+    assert larva_frame['mouseTransparent'] and larva_frame['zlevel'] < gui['outputItemGrid']['zlevel']
+    assert png_size(mod / larva_frame['file'].lstrip('/')) == (24, 24)
     assert not {'queenSlot', 'droneSlot', 'outputSlot', 'bonusSlot', 'bonusItemGrid'} & gui.keys()
     engine = (root / '.cache/ui-reference/openstarbound/source/frontend/StarContainerInterface.cpp').read_text()
     assert 'fetchChild<ItemGridWidget>("itemGrid")->setItemBag(m_itemBag)' in engine

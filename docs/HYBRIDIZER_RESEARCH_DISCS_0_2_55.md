@@ -1,10 +1,14 @@
 # Discos de pesquisa no Genetic Hybridizer — 0.2.55-dev
 
-O Hybridizer tem um quarto slot, rotulado `DISC`, para um disco opcional. Os
-slots anteriores mantêm os índices: rainha 1, drone 2 e larva 3. O disco ocupa
-o índice 4. A interface usa a grade nativa `outputItemGrid` com duas células
+O Hybridizer tem um quarto slot, rotulado `DISC`, para um disco opcional. Na
+versão 0.2.55-dev, os slots tinham os índices: rainha 1, drone 2, larva 3 e
+disco 4. A interface usa a grade nativa `outputItemGrid` com duas células
 visualmente separadas; o OpenStarbound conecta essa grade ao contêiner. Itens
 sem bônus conhecido não são consumidos e não alteram a chance.
+
+Na versão 0.2.57-dev, a posição e os índices de larva e disco foram trocados:
+disco 3, larva 4. Máquinas já colocadas migram os itens guardados uma única vez,
+com devolução persistente se a inserção não terminar no mesmo ciclo.
 
 | Disco FU (ID) | Bônus normal | Bônus com espécies rivais |
 | --- | ---: | ---: |
