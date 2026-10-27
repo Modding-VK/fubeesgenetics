@@ -26,8 +26,8 @@ function update(dt)
   power.update(dt)
   powered = power.consume(requiredPower * dt) == true
   upstreamUpdate(dt)
-  -- The powered image currently matches default. Change the animator only
-  -- when power availability changes, using the same decision as production.
+  -- Change the belt LEDs only when power availability changes, using the
+  -- same decision as production.
   if powered ~= displayedPowered then
     animator.setAnimationState("base", powered and "powered" or "default", true)
     displayedPowered = powered

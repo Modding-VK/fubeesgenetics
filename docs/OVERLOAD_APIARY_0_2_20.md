@@ -104,3 +104,21 @@ only a boolean comparison on its existing update and sends an animator change
 **only on power transitions**. There is no new polling, timer, cache or
 recurring message. In-game verification is still needed to confirm the
 transition and appearance under a connected FU power network.
+
+### Belt power indicators (0.2.47-dev)
+
+The normal `default` frame now uses a muted Durasteel-blue pixel on the belt;
+the existing `powered` frame retains the cyan pixel. The small apiary has one
+belt indicator at (4, 10). The large apiary has two front-belt indicators at
+(11, 17) and (33, 17), using the existing symmetric positions. The disabled
+and infested frames keep their existing colors. All frames retain their native
+size and alignment, and the inventory icons are unchanged.
+
+The reference is FU's Hydroponics Tray at commit
+`17868d86c9bb7bc00f92038fb78b48cebd1b41b8`: its `powlight` part has
+separate `off` and `on` frames, with neutral pixels in `off` and cyan pixels in
+`on`. Our existing `powered` base state serves that same visual purpose with
+no extra layer or script. Power is checked on the object's existing 5-tick
+update; the animator changes only on a power transition. This asset edit adds
+no script callback, timer, cache, or recurring rendering part. Visual behavior
+under an actual FU power network remains to be checked in game.
