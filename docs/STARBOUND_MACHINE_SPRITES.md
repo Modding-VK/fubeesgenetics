@@ -83,6 +83,11 @@ Diretriz: escolher primeiro a ocupação e a escala ao lado de uma referência
 existente. Desenhar na resolução final ou em uma ampliação inteira dela.
 Usar nearest-neighbor na ampliação de inspeção. Uma ilustração grande reduzida
 automaticamente exige revisão pixel a pixel antes de virar sprite de produção.
+Para variantes dos apiários FU, conferir explicitamente os frames originais:
+Apiary **16×24** e Large Apiary **40×32**. A forma larga deve conservar sua
+proporção de **5:4**, e os detalhes acrescentados precisam caber no mesmo
+canvas. Não inferir conformidade dimensional de legendas ou de uma imagem
+conceitual ampliada: verificar os PNGs finais e as grades `.frames`.
 
 ## 3. Silhueta e distribuição das massas
 
@@ -158,6 +163,10 @@ Padrões aleatórios por toda a carcaça tornam a textura mais forte que a forma
 Na composição dos frames vanilla estudados há de **6 a 27 cores RGB opacas**.
 Isso é uma medida da amostra, não limite do engine. Cores de alfa parcial,
 outros frames, iluminação do mundo e pós-processamento não entram nessa conta.
+Os primeiros frames dos Apiaries FU consultados têm 8 cores opacas no pequeno e
+9 no grande. Para uma variante, comparar a quantidade de cores e a densidade de
+detalhes **no frame nativo**, preservando leitura em 1×. Uma ampliação gerada
+com gradientes e milhares de tons não fornece uma paleta utilizável por si só.
 
 | Material/objeto observado | Exemplos reais de cores frequentes | Leitura |
 | --- | --- | --- |

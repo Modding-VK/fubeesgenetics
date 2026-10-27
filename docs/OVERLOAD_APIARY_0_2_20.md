@@ -17,7 +17,8 @@ the FU power network for a continuous draw of **12 W**.
   The recipe stays at the Bee Station: one Normal Apiary,
   one AI Chip, and five Durasteel Bars.
 
-The current object reuses FU's native Apiary art and interface. The item ID is
+The object keeps FU's native interface and animation states. Its base and
+inventory sprites now use native-resolution overload variants. The item ID is
 `fubeesgenetics_overloadapiary`.
 
 ## Implementation notes
@@ -40,3 +41,26 @@ one AI Chip and five Durasteel Bars at the Bee Station. Its item ID is
 20 slots, two drone slots and two frame slots. The same overload script gives
 the 1.2 resource and drone bonus when 12 W is available, normal production
 without power, 70% queen lifespan, and no random capturable bee spawns.
+
+## Native sprite adaptation (0.2.43-dev)
+
+The small object retains FU's **16×24** frame and four named states; the large
+retains **40×32** and the same four states. Their original hive bodies, entrances,
+and bee emblem remain recognizable. The visible additions are restrained metal
+compression bands, copper coils, and small powered indicators. The disabled and
+infested frame colors follow their original states. Object preview and the
+animator base both point to the matching local frame sheet; FU's bees, loading,
+warning and container interface parts remain in use. Inventory icons are local
+variants of the FU icons. No new animation script or recurring work was added.
+
+The small sprite preserves four support feet. The large sprite has four distinct
+feet, two frontal and two recessed; all terminate at the same frame baseline.
+Bottom edges run horizontally, with no visible top or underside planes. These
+are project art constraints, not universal requirements of FU's original art.
+
+Source: FU Apiary and Large Apiary PNGs and frame definitions from revision
+`17868d86c9bb7bc00f92038fb78b48cebd1b41b8`, as pinned in
+[SPRITE_SOURCES](SPRITE_SOURCES.md). Adaptation uses direct integer-pixel edits
+on those native canvases. The concept illustration is not a production asset.
+Static inspection checks frame dimensions, state names, preview paths, alpha,
+and foot alignment; rendering beside FU machines still requires an in-game check.
