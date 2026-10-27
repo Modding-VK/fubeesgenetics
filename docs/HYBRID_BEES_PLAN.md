@@ -95,10 +95,13 @@ espécies híbridas e 1.190 subespécies** sem criar uma família de item difere
 para cada combinação.
 
 No item, o nome visível usa os nomes das subespécies nativas efetivamente
-cruzadas, seguidos de `H1` ou `H2` e da casta. Por exemplo, uma larva pode
-aparecer como `PlatedHoneybee × Carpenter H1 Queen Larva`. O subtítulo mostra
-`Predominant: PlatedHoneybee` em H1, ou `Predominant: Carpenter` em H2. A
-descrição identifica as duas subespécies de origem, sem lista de recursos.
+cruzadas e a casta, sem o marcador genético interno. Por exemplo, uma larva
+pode aparecer como `PlatedHoneybee × Carpenter Queen Larva`. O subtítulo
+mostra `Predominant: PlatedHoneybee` quando prevalece o lado da rainha, ou
+`Predominant: Carpenter` quando prevalece o lado do drone. A descrição
+identifica as duas subespécies de origem, sem lista de recursos. A distinção
+interna entre as duas subespécies continua no gene `subtype`, necessário para
+a prioridade de produção e a identidade da linhagem no Genetic Queen Filter.
 
 ## Aparência e sprites
 

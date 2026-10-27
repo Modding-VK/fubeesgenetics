@@ -45,7 +45,7 @@ function build(directory, config, parameters, level, seed)
   if lifeBar then builtConfig.inventoryIcon[#builtConfig.inventoryIcon + 1] = lifeBar end
   local queenSubtype = parentSubtypeName(lineage.queenFamily, lineage.parentSubtypes[lineage.queenFamily])
   local droneSubtype = parentSubtypeName(lineage.droneFamily, lineage.parentSubtypes[lineage.droneFamily])
-  builtConfig.shortdescription = queenSubtype .. " × " .. droneSubtype .. " H" .. lineage.subspecies .. " " .. caste
+  builtConfig.shortdescription = queenSubtype .. " × " .. droneSubtype .. " " .. caste
   builtConfig.tooltipFields.subTitle = "Predominant: " .. (lineage.subspecies == 1 and queenSubtype or droneSubtype)
   builtConfig.description = string.format("Hybrid %s from %s and %s. Works in FU Apiaries and the Overload Apiary.",
     caste:lower(), queenSubtype, droneSubtype)

@@ -10,8 +10,8 @@ fubeesFilter = {
 fubeesFilter.traitSet = {}
 for _, trait in ipairs(fubeesFilter.traits) do fubeesFilter.traitSet[trait] = true end
 
--- H1/H2 are relative to parental roles. A normalized key also records the
--- actual native subtypes and dominant family, independent of role ordering.
+-- Hybrid subtype 1/2 follows parental roles. The normalized key records the
+-- native parent subtypes and dominant family independently of role ordering.
 function fubeesFilter.hybridIdentity(lineage, subtype, data)
   if type(lineage) ~= "table" or (subtype ~= 1 and subtype ~= 2)
     or type(lineage.parentSubtypes) ~= "table" then return nil end

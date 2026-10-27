@@ -81,3 +81,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.42-dev | Favo estático no Analyzer e logos hexagonais padronizados no Analyzer/Hybridizer | [Detalhes](ANALYZER_UI_0_2_42.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.54-dev | Receita do Genetic Hybridizer alterada para 5 AI Chips, 10 Cell Matter, 1 Red Matter, 5 Isogen Bars e 1 Lasombrium Seed | |
 | 0.2.55-dev | Hybridizer aceita discos de pesquisa consumíveis para elevar a chance de sucesso | [Detalhes](HYBRIDIZER_RESEARCH_DISCS_0_2_55.md) |
+| 0.2.56-dev | Remove H1/H2 do nome visível das híbridas; conserva o gene interno de subespécie para produção e identidade. Mudança apenas no builder do item, sem custo recorrente novo de scripting; desempenho no jogo não medido. | |
