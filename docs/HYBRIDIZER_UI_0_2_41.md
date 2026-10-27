@@ -29,3 +29,10 @@ Não há script recorrente novo, nova mensagem ou alteração de frequência:
 Hybridizer continua em 30 ticks e a interface consulta a cada 2 segundos.
 A composição foi inspecionada pelos assets gerados; tipografia, escala e
 interação ainda precisam de conferência no OpenStarbound.
+
+### Clear space for the power draw label (0.2.53-dev)
+
+Removed the decorative horizontal rule at full-window y=132 from the generated
+background. It crossed the `Power draw` label at the bottom of the pane. The
+other horizontal panel dividers remain. Source and generated assets stay in
+sync; no label coordinates or recurring scripting changed.

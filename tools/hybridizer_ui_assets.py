@@ -39,7 +39,7 @@ def frame():
         for y in [43, 95, 131]:
             canvas.line(x, y, x, y + 12, p["circuit"])
             canvas.line(x, y + 12, x + 3 * direction, y + 15, p["circuit"])
-    for y in [33, 94, 132]:
+    for y in [33, 94]:
         canvas.line(10, y, WIDTH - 11, y, p["blueLine"])
         canvas.line(10, y + 1, WIDTH - 11, y + 1, p["circuit"])
     return canvas
