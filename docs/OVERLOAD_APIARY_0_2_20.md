@@ -66,12 +66,25 @@ in-game check.
 
 ### Large Apiary correction based on the current mod asset (0.2.44-dev)
 
-The [native sheet](reference/overload-large-native-concept.png) matches the
-current game asset. The [comparison preview](reference/overload-large-current-vs-concept.png)
-shows the previous art above and the correction below, at 8× nearest-neighbor.
+The [historical native sheet](reference/overload-large-native-concept.png) records
+the 0.2.44-dev art before the Durasteel recolor. The [comparison preview](reference/overload-large-current-vs-concept.png)
+shows the previous art above and that correction below, at 8× nearest-neighbor.
 Each frame remains 40×32. The right/front illuminated vertical strip is gone;
 the left/side strip remains. The solid lower three rows come directly from the
 corresponding FU frame, eliminating the four feet. The central metal band now
 has a darker side segment and a distinct front segment that meet at a vertical
 corner. The icon's band follows the same division. The bee emblem and FU
 animation states remain intact. No new script or recurring work was added.
+
+### Durasteel color across all states (0.2.45-dev)
+
+Both Overload Apiary sheets now use the blue-violet Durasteel Bar palette as
+their base material in **all four states**: `default`, `disabled`, `infested`
+and `infested2`. The two infested states retain small muted red accents so the
+infection remains legible. The small canvas remains 16×24 per frame and the
+large canvas 40×32. The large sheet also includes the corrected front-band
+indicator symmetry and its right edge aligned to the body. Both inventory
+icons follow the Durasteel palette. No scripts, animation state names or
+mechanics changed; normal idle appearance already uses `default` in FU and
+therefore now shows Durasteel too. The archive images above document the older
+art and are not the current game textures.
