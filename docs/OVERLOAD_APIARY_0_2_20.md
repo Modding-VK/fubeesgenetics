@@ -196,3 +196,9 @@ explain its powered output and queen wear without mentioning inventory slots,
 frames, or compartment counts. The small apiary's scan descriptions already
 avoided these details. Container capacity and slot configuration remain
 unchanged; this text-only change adds no recurring scripting work.
+
+### Large apiary interface title (0.2.52-dev)
+
+The large apiary `shortdescription`, used as the displayed object title, is
+abbreviated to `Ov. L. Apiary` to fit its interface header. Scanner descriptions
+and the crafting recipe are unchanged.
