@@ -80,3 +80,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.41-dev | Janela do Hybridizer compactada, cabeçalho com logo e favo no canto; diretriz para futuras máquinas | [Detalhes](HYBRIDIZER_UI_0_2_41.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.42-dev | Favo estático no Analyzer e logos hexagonais padronizados no Analyzer/Hybridizer | [Detalhes](ANALYZER_UI_0_2_42.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 | 0.2.54-dev | Receita do Genetic Hybridizer alterada para 5 AI Chips, 10 Cell Matter, 1 Red Matter, 5 Isogen Bars e 1 Lasombrium Seed | |
+| 0.2.55-dev | Hybridizer aceita discos de pesquisa consumíveis para elevar a chance de sucesso | [Detalhes](HYBRIDIZER_RESEARCH_DISCS_0_2_55.md) |

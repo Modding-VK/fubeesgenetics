@@ -34,6 +34,11 @@ test('identical snapshots do not rewrite widgets',function()
   u.env.update(2);local nextState=state();nextState.progress=48
   u.requests[3]:resolve(nextState);u.env.update(0);assert(u.writes==6)
 end)
+test('fractional rival disc bonus is shown without rounding away half percent',function()
+  local u=pane();local nextState=state();nextState.chance=.125;nextState.bonus=.025
+  u.requests[1]:resolve(nextState);u.env.update(0)
+  assert(u.texts.chance=='Success: 12.5% (+2.5% disc)')
+end)
 test('failed reply recovers the status even when all other fields stay equal',function()
   local u=pane();u.requests[1]:resolve(state());u.env.update(0)
   u.env.update(2);u.requests[2]:resolve(nil,false);u.env.update(0)

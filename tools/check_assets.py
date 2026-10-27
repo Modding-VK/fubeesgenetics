@@ -260,7 +260,7 @@ def check_assets(root, fu_root, native_root):
         recipes = [d for p, d in docs.items() if p.suffix == '.recipe' and d['output']['item'] == obj['objectName']]
         assert len(recipes) == 1 and 'beestation' in recipes[0]['groups']
     assert overload['isn_requiredPower'] == overload_large['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
-    assert overload['slotCount'] == 12 and overload_large['slotCount'] == 20 and hybridizer['slotCount'] == 3
+    assert overload['slotCount'] == 12 and overload_large['slotCount'] == 20 and hybridizer['slotCount'] == 4
     assert overload_large['scripts'] == overload['scripts']
     assert (overload_large['queenSlot'], overload_large['droneSlots'], overload_large['frameSlots'], overload_large['firstInventorySlot']) == (1, [2,3], [4,5], 6)
     assert overload_large['uiConfig'] == '/bees/interface/apiary/largeapiary.config'
@@ -269,17 +269,23 @@ def check_assets(root, fu_root, native_root):
     gui = hybrid_ui['gui']
     assert 'background' in gui and gui['close']['type'] == 'button'
     assert not hybridizer['hasWindowIcon']  # own title, no duplicate native header
+    assert (hybridizer['queenSlot'], hybridizer['droneSlot'], hybridizer['outputSlot'], hybridizer['bonusSlot']) == (1, 2, 3, 4)
     for offset, name in enumerate(['itemGrid', 'itemGrid2', 'outputItemGrid']):
         grid, frame = gui[name], gui[name+'Frame']
-        assert grid['slotOffset'] == offset and grid['dimensions'] == [1, 1]
-        assert grid['spacing'] == [19, 19] and grid['backingImage'] == ''
+        assert grid['slotOffset'] == offset and grid['dimensions'] == ([2, 1] if name == 'outputItemGrid' else [1, 1])
+        assert grid['spacing'] == ([45, 19] if name == 'outputItemGrid' else [19, 19]) and grid['backingImage'] == ''
         assert not grid['showBackingImageWhenEmpty'] and not grid['showBackingImageWhenFull']
         assert frame['mouseTransparent'] and frame['zlevel'] < grid['zlevel']
         assert [v+9 for v in grid['position']] == [v+12 for v in frame['position']]
         assert png_size(mod / frame['file'].lstrip('/')) == (24, 24)
-    assert not {'queenSlot', 'droneSlot', 'outputSlot'} & gui.keys()
+    bonus_frame = gui['bonusItemGridFrame']
+    assert bonus_frame['position'] == [gui['outputItemGrid']['position'][0] + 42, gui['outputItemGrid']['position'][1] - 3]
+    assert bonus_frame['mouseTransparent'] and bonus_frame['zlevel'] < gui['outputItemGrid']['zlevel']
+    assert png_size(mod / bonus_frame['file'].lstrip('/')) == (24, 24)
+    assert not {'queenSlot', 'droneSlot', 'outputSlot', 'bonusSlot', 'bonusItemGrid'} & gui.keys()
     engine = (root / '.cache/ui-reference/openstarbound/source/frontend/StarContainerInterface.cpp').read_text()
     assert 'fetchChild<ItemGridWidget>("itemGrid")->setItemBag(m_itemBag)' in engine
+    assert 'fetchChild<ItemGridWidget>("outputItemGrid")->setItemBag(m_itemBag)' in engine
     passed('S15 hybridizer native inventory callbacks, independent frames and visible window')
     for caste, tag in [('queen', 'queen'), ('youngQueen', 'youngQueen'), ('drone', 'drone')]:
         item = docs[mod / f'bees/bees/hybrid_{caste}.item']

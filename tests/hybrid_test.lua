@@ -218,6 +218,55 @@ test("Partial parent removal refunds and does not spend a second attempt", funct
   assert(same(e.inventory[0], q)); equal(e.inventory[1].count, 1); equal(e.storage.hybridizationAttempts, 0)
   equal(e.storage.hybridProgress, 10000); equal(#e.spawned, 0)
 end)
+test("Research discs add the configured success chance and half for rivals", function()
+  local e = setup(); e.startMachine()
+  for _, case in ipairs({{"researchvoxelsmall", .05}, {"researchvoxel", .10}, {"researchvoxellarge", .60}}) do
+    e.inventory[3] = {name = case[1], count = 2, parameters = {}}
+    local state = e.messages["fubeesgenetics.hybridizer.getState"]()
+    assert(math.abs(state.bonus - case[2]) < 1e-9)
+    assert(math.abs(state.chance - (.3 + case[2])) < 1e-9)
+  end
+  local rival
+  for _, species in ipairs(fixture.hybridCatalog.hybrids) do
+    if species.parentSpeciesAreRivals then rival = species; break end
+  end
+  assert(rival)
+  e.inventory[0] = e.parent(rival.parentFamilies[1], "queen")
+  e.inventory[1] = e.parent(rival.parentFamilies[2], "drone")
+  for _, case in ipairs({{"researchvoxelsmall", .025}, {"researchvoxel", .05}, {"researchvoxellarge", .30}}) do
+    e.inventory[3] = {name = case[1], count = 2, parameters = {}}
+    local state = e.messages["fubeesgenetics.hybridizer.getState"]()
+    assert(math.abs(state.bonus - case[2]) < 1e-9)
+    assert(math.abs(state.chance - (.1 + case[2])) < 1e-9)
+  end
+end)
+test("A disc is consumed once on success or failure; unsupported items remain", function()
+  for _, case in ipairs({{.5, true}, {.99, false}}) do
+    local e = setup(); e.startMachine(); e.roll = case[1]
+    e.inventory[3] = {name = "researchvoxellarge", count = 2, parameters = {}}
+    e.finish()
+    equal(e.inventory[3].count, 1)
+    equal(e.inventory[2] ~= nil, case[2])
+    equal(e.storage.hybridizationAttempts, 1)
+  end
+  local e = setup(); e.startMachine(); e.roll = .99
+  e.inventory[3] = {name = "dirtmaterial", count = 1, parameters = {}}
+  equal(e.messages["fubeesgenetics.hybridizer.getState"]().chance, .3)
+  e.finish()
+  equal(e.inventory[3].name, "dirtmaterial")
+end)
+test("Failed disc removal refunds both parents and preserves the attempt", function()
+  local e = setup(); e.startMachine()
+  e.inventory[3] = {name = "researchvoxel", count = 1, parameters = {}}
+  e.storage.hybridProgress = 10000
+  e.failTake = 3
+  e.update(1)
+  equal(e.inventory[0].count, 1)
+  equal(e.inventory[1].count, 1)
+  equal(e.inventory[3].count, 1)
+  equal(e.storage.hybridizationAttempts, 0)
+  equal(e.storage.hybridProgress, 10000)
+end)
 test("Invalid names, genomes and same-family crosses are rejected", function()
   local e = setup(); e.startMachine("honey", "honey"); e.update(1); equal(e.consumed, 0)
   e.inventory[0] = {name = "brokenname", count = 1, parameters = {}}; e.update(1); equal(e.consumed, 0)

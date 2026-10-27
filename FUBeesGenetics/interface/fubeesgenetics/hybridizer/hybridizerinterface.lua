@@ -20,6 +20,10 @@ local function setText(name, value)
   end
 end
 
+local function percent(value)
+  return string.format("%g", math.floor(value * 1000 + 0.5) / 10)
+end
+
 function init()
   self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false,
     textValues = {warning = ""}}
@@ -43,8 +47,12 @@ function update(dt)
       setText("warning", result.reworkAlert and "WARNING: New specimen; rework cost 50% progress" or "")
       setText("energy", string.format("Experiment progress: %d / %d", math.floor(result.progress), result.requiredProgress))
       setText("power", string.format("Power draw: up to %d W", result.watts or 24))
-      setText("chance", result.chance and string.format("Success for these parents: %d%%", math.floor(result.chance * 100 + 0.5))
-        or "Success: 30% (10% for rival species)")
+      local chanceText = result.chance and ("Success: " .. percent(result.chance) .. "%")
+        or "Success: 30% (10% for rival species)"
+      if result.bonus and result.bonus > 0 then
+        chanceText = chanceText .. " (+" .. percent(result.bonus) .. "% disc)"
+      end
+      setText("chance", chanceText)
       local lastResult = not result.hasResult and "No result yet"
         or (result.succeeded and "Hybrid queen larva created" or "Failed; parent bees consumed")
       setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))

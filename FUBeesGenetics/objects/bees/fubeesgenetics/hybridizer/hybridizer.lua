@@ -4,7 +4,8 @@ require "/scripts/fubeesgenetics/containerutil.lua"
 
 local energyPerAttempt = 10000
 local requiredPower
-local queenSlot, droneSlot, outputSlot = 1, 2, 3
+local queenSlot, droneSlot, outputSlot, bonusSlot = 1, 2, 3, 4
+local discBonuses = {researchvoxel = 0.10, researchvoxellarge = 0.60, researchvoxelsmall = 0.05}
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
 local function setStatus(value) storage.hybridizerStatus = value end
@@ -20,6 +21,16 @@ end
 
 local function specimen(item)
   return {name = item.name, parameters = copy(item.parameters or {})}
+end
+
+local function bonusFor(item, species)
+  local bonus = item and discBonuses[item.name] or 0
+  if species and species.parentSpeciesAreRivals then bonus = bonus * 0.5 end
+  return bonus
+end
+
+local function crossingChance(species, disc)
+  return math.min(1, hybridbees.successChance(species) + bonusFor(disc, species))
 end
 
 local function bindExperiment(queen, drone)
@@ -51,9 +62,10 @@ local function deliver()
   return true
 end
 
-local function attemptCrossing(queen, drone)
-  local species = hybridbees.speciesForParents(hybridbees.family(queen), hybridbees.family(drone))
-  local succeeded = math.random() < hybridbees.successChance(species)
+local function attemptCrossing(queen, drone, species)
+  local disc = species and readSlot(bonusSlot)
+  local hasBonus = disc and discBonuses[disc.name] ~= nil
+  local succeeded = math.random() < crossingChance(species, disc)
   local result
   if succeeded then
     local genome, exceptions = hybridbees.makeGenome(queen, drone)
@@ -66,7 +78,9 @@ local function attemptCrossing(queen, drone)
   end
 
   local removed = {}
-  for _, source in ipairs({{slot = queenSlot, item = queen}, {slot = droneSlot, item = drone}}) do
+  local sources = {{slot = queenSlot, item = queen}, {slot = droneSlot, item = drone}}
+  if hasBonus then sources[#sources + 1] = {slot = bonusSlot, item = disc} end
+  for _, source in ipairs(sources) do
     local current = readSlot(source.slot)
     if not same(current, source.item) then
       storage.hybridPending = removed; deliver(); setStatus("WAITING_INPUT"); return
@@ -77,7 +91,7 @@ local function attemptCrossing(queen, drone)
       storage.hybridPending = removed; deliver(); setStatus("WAITING_INPUT"); return
     end
   end
-  -- Only commit the attempt after both exact specimens were removed.
+  -- Only commit after both exact specimens and any selected disc were removed.
   storage.hybridProgress = 0
   storage.hybridExperimentParents = nil
   storage.hybridReworkAlert = nil
@@ -89,10 +103,13 @@ end
 
 local function getState()
   local _, _, species = validParents()
+  local disc = species and readSlot(bonusSlot)
+  local bonus = species and bonusFor(disc, species) or 0
   return {progress = storage.hybridProgress or 0, requiredProgress = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
-    chance = species and hybridbees.successChance(species), watts = requiredPower,
+    chance = species and crossingChance(species, disc), bonus = bonus,
+    watts = requiredPower,
     reworkAlert = storage.hybridReworkAlert == true}
 end
 
@@ -111,12 +128,12 @@ end
 
 function update(dt)
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
-  local queen, drone = validParents()
+  local queen, drone, species = validParents()
   if not queen then setStatus("WAITING_INPUT"); return end
   bindExperiment(queen, drone)
   if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
   if storage.hybridProgress >= energyPerAttempt then
-    attemptCrossing(queen, drone)
+    attemptCrossing(queen, drone, species)
     return
   end
   -- Experiment progress pauses without valid parents or a free result slot.
@@ -125,7 +142,7 @@ function update(dt)
   if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
   storage.hybridProgress = math.min(energyPerAttempt, storage.hybridProgress + draw)
   setStatus("IN_PROGRESS")
-  if storage.hybridProgress >= energyPerAttempt then attemptCrossing(queen, drone) end
+  if storage.hybridProgress >= energyPerAttempt then attemptCrossing(queen, drone, species) end
 end
 
 function die()
