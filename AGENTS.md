@@ -32,6 +32,9 @@
   [STARBOUND_MACHINE_SPRITES](docs/STARBOUND_MACHINE_SPRITES.md), suas
   [fontes e medidas](docs/SPRITE_SOURCES.md) e a skill
   [starbound-machine-sprites](.agents/skills/starbound-machine-sprites/SKILL.md).
+- Quando a máquina já tiver sprite no mod, trabalhar o conceito sobre uma cópia
+  do PNG atual, mantendo canvas, estados e pixels fora da mudança pedida.
+  Apresentar original e proposta na mesma escala para revisão.
 - Registrar a ficha de função, escala, materiais, estados e integração
   conforme [MACHINE_SPRITE_BRIEF](docs/MACHINE_SPRITE_BRIEF.md).
 - Em sprites e conceitos de máquinas no mundo, mostrar **frente e uma lateral**;

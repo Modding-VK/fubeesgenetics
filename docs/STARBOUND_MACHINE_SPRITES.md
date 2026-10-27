@@ -83,6 +83,13 @@ Diretriz: escolher primeiro a ocupação e a escala ao lado de uma referência
 existente. Desenhar na resolução final ou em uma ampliação inteira dela.
 Usar nearest-neighbor na ampliação de inspeção. Uma ilustração grande reduzida
 automaticamente exige revisão pixel a pixel antes de virar sprite de produção.
+Ao revisar uma máquina que já tem arte no mod, **partir do PNG vigente no
+repositório**. A proposta conceitual deve ser uma cópia desse PNG com mudanças
+localizadas e conferíveis; manter canvas, sequência de frames e regiões não
+solicitadas, limitando eventuais cores novas ao detalhe pedido. Exibir original
+e proposta lado a lado na mesma escala por
+vizinho mais próximo. Uma geração livre serve para explorar ideias, mas não
+substitui a revisão sobre os pixels que o jogador realmente verá.
 Para variantes dos apiários FU, conferir explicitamente os frames originais:
 Apiary **16×24** e Large Apiary **40×32**. A forma larga deve conservar sua
 proporção de **5:4**, e os detalhes acrescentados precisam caber no mesmo

@@ -64,3 +64,16 @@ Source: FU Apiary and Large Apiary PNGs and frame definitions from revision
 on those native canvases. The concept illustration is not a production asset.
 Static inspection checks frame dimensions, state names, preview paths, alpha,
 and foot alignment; rendering beside FU machines still requires an in-game check.
+
+### Large Apiary concept based on the current mod asset
+
+For further visual revisions, use the current `large-object.png` as the base,
+not a newly interpreted large hive. The [native concept sheet](reference/overload-large-native-concept.png)
+preserves the four 40×32 frames; the [comparison preview](reference/overload-large-current-vs-concept.png)
+shows current art above and proposed art below at 8× nearest-neighbor.
+Only the lower left side and right feet change: the four-dot panel sits on the
+left side face, the front keeps its existing bee emblem and has no four-dot
+panel, and both right feet move two pixels inward. All four feet still end on
+row 31. The concept alters 58 pixels per frame. These files are review material
+under `docs/reference/`; the game object still uses its existing PNG until the
+concept is adopted.

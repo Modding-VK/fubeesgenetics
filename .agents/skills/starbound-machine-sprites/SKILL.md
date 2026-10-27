@@ -18,7 +18,9 @@ folha de frames, emissividade, orientação ou integração visual do objeto.
    sobre decisões já autorizadas.
 3. Abrir as imagens de referência e os contratos `.object`, `.frames` e
    `.animation`. Distinguir observação estética, regra técnica e preferência
-   do projeto. Não inventar uma regra oficial para todo Starbound.
+   do projeto. Não inventar uma regra oficial para todo Starbound. Em revisões
+   de máquina existente, iniciar de cópia dos PNGs vigentes do mod e comparar
+   original e proposta frame a frame na mesma escala.
 4. Trabalhar a silhueta e a função na resolução final. Preservar origem e
    canvas entre frames. Nas máquinas do projeto, mostrar frente e uma lateral,
    **jamais faces superior ou inferior**, também em conceitos, ícones e prévias.
