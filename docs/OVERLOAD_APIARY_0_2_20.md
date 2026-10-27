@@ -148,3 +148,24 @@ polling, network request, cache, or rendering layer was introduced. A loaded
 world with many powered/unpowered hives and shared generators still needs an
 in-game comparison of script time, production, power draw, and queen lifespan;
 there is no server-thread measurement from this static change.
+
+### Small apiary belt correction (0.2.49-dev)
+
+The small Overload Apiary's 16×24 world frames now follow the large variant's
+front/side belt construction. In each of the five states, the two belt rows
+have a darker left-side segment (x=0–6), a vertical corner at x=7, and a
+front segment starting at x=8. The lower edge stays horizontal and the four
+support feet are untouched. The single indicator formerly on the side at
+(4, 10) was replaced by two front indicators at (9, 10) and (14, 10),
+symmetrically inset from the front edges. Their colors retain the established
+state meanings: neutral for `default` and `disabled`, muted red for infestation,
+and cyan for `powered`.
+
+The 24×18 inventory icon's belt now extends one pixel beyond each side of its
+body, with a front/side corner and two front indicators. This replaces its
+oversized belt, which extended farther than the body on both sides. Edits were
+made on copies of the mod's existing PNGs at native resolution; the large
+apiary PNGs, canvas sizes, frame names, animation, script, power draw, and
+production rules are unchanged. Static pixel inspection shows edits confined
+to the belt and icon belt; perspective and appearance in game remain to be
+reviewed by the maintainer.
