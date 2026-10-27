@@ -21,6 +21,12 @@ O mantenedor confirmou todas as alterações anteriores validadas e prontas.
 O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
 A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
 
+## Direção de arte de máquinas
+
+Referência para arte futura: [estética de sprites de máquinas Starbound](docs/STARBOUND_MACHINE_SPRITES.md),
+com [prancha e fontes medidas](docs/SPRITE_SOURCES.md) e
+[ficha de criação para IA](docs/MACHINE_SPRITE_BRIEF.md).
+
 ## Auditoria de scripting — 0.2.38-dev
 
 Todo o conteúdo próprio foi revisado: leituras de inventário da Auto Refugee,

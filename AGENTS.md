@@ -26,6 +26,18 @@
   Action **Build development PAK**. Preservar os PAKs antigos em `dist/` como
   histórico; não criar uma cópia local nova para registrá-la ali.
 
+# Arte de máquinas no mundo
+
+- Ao criar ou revisar sprites de máquinas, consultar
+  [STARBOUND_MACHINE_SPRITES](docs/STARBOUND_MACHINE_SPRITES.md), suas
+  [fontes e medidas](docs/SPRITE_SOURCES.md) e a skill
+  [starbound-machine-sprites](.agents/skills/starbound-machine-sprites/SKILL.md).
+- Registrar a ficha de função, escala, materiais, estados e integração
+  conforme [MACHINE_SPRITE_BRIEF](docs/MACHINE_SPRITE_BRIEF.md).
+- Distinguir observações da amostra de regras do engine e preferências do
+  projeto. Logos hexagonais e favos das janelas não impõem formato ou tamanho
+  aos sprites das máquinas no mundo.
+
 # Textos de scanner dos objetos
 
 - Toda máquina ou objeto próprio do mod deve ter textos de inspeção para cada
