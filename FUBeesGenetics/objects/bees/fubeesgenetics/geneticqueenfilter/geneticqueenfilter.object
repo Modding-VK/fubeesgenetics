@@ -39,5 +39,6 @@
   "hylotlDescription": "A precise instrument for selectively refining the traits of bee queens across generations.",
   "novakidDescription": "This contraption sorts queen bees by their genes. Saves a whole lotta pickin' through 'em by hand.",
   "genericDescription": "Stores a genetic reference and sorts inspected bee queens according to configurable traits.",
+  "lightColor": [24, 112, 120],
   "pointLight": true
 }
