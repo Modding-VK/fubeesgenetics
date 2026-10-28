@@ -1,0 +1,14 @@
+{
+  "itemName": "bee_hybrid_youngQueen",
+  "description": "A hybrid queen larva descended from two different bee species. Matures into a queen in an apiary.",
+  "shortdescription": "Hybrid Queen Larva",
+  "inventoryIcon": "/assetmissing.png",
+  "tooltipKind": "bee",
+  "rarity": "Rare",
+  "maxStack": 1000,
+  "category": "craftingMaterial",
+  "itemTags": ["bee", "youngQueen", "hybrid"],
+  "dropCollision": [-2.5, -2.0, 2.5, 2.0],
+  "builder": "/scripts/fubeesgenetics/hybridbeebuilder.lua",
+  "beeConfig": "/bees/beeData.config"
+}

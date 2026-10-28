@@ -1,8 +1,9 @@
-"""Render native pixel UI primitives; no bitmap mockup or FU assets are resampled."""
+"""Render native pixel UI primitives; resample only the honeycomb decoration."""
 import json
 import math
 from pathlib import Path
 import struct
+import subprocess
 import zlib
 
 
@@ -46,6 +47,45 @@ class Surface:
         return (b'\x89PNG\r\n\x1a\n'
                 + chunk(b'IHDR', struct.pack('>IIBBBBB', self.width, height, 8, 6, 0, 0, 0))
                 + chunk(b'IDAT', zlib.compress(raw, 9)) + chunk(b'IEND', b''))
+
+
+def hex_badge(canvas, palette):
+    outline = [(10, 1), (17, 5), (17, 14), (10, 18),
+               (3, 14), (3, 5), (10, 1)]
+    inner = [(10, 3), (15, 6), (15, 13), (10, 16),
+             (5, 13), (5, 6), (10, 3)]
+    for points, color in [(outline, palette['metalLight']),
+                          (inner, palette['amber'])]:
+        for (x0, y0), (x1, y1) in zip(points, points[1:]):
+            canvas.line(x0, y0, x1, y1, color)
+
+
+def honeycomb(frame, source, x, y, width, height):
+    pixels = subprocess.run(
+        ['magick', str(source), '-filter', 'point', '-resize', f'{width}x{height}!',
+         '-fill', '#c29a49', '-colorize', '100', '-channel', 'A',
+         '-evaluate', 'multiply', '0.25', '+channel', '-depth', '8', 'RGBA:-'],
+        check=True, capture_output=True).stdout
+    if len(pixels) != width * height * 4:
+        raise ValueError('Invalid honeycomb artwork dimensions')
+    # Composite inside the inner blue line, leaving the metal edge untouched.
+    for row in range(height):
+        py = y + row
+        if py < 9 or py >= frame.height - 9:
+            continue
+        for column in range(width):
+            px = x + column
+            if px < 9 or px >= frame.width - 9:
+                continue
+            source_offset = (row * width + column) * 4
+            alpha = pixels[source_offset + 3] / 255
+            if alpha == 0:
+                continue
+            target_offset = (py * frame.width + px) * 4
+            for channel in range(3):
+                frame.pixels[target_offset + channel] = round(
+                    frame.pixels[target_offset + channel] * (1 - alpha)
+                    + pixels[source_offset + channel] * alpha)
 
 
 def theme_assets(root):
@@ -92,6 +132,8 @@ def theme_assets(root):
     for y in spec['rowRules']:
         frame.line(18, y, w-19, y, p['circuit'])
     frame.line(18, 301, w-19, 301, p['circuit'])
+    honeycomb(frame, Path(root) / 'artwork/ui/hybridizer/honeycomb-source.png',
+              192, 244, 112, 86)
     result = {'header.png': frame.png(0, 34), 'body.png': frame.png(34, 286),
               'footer.png': frame.png(320, 12)}
 
@@ -151,13 +193,11 @@ def theme_assets(root):
         result[name+'.png'] = close.png()
 
     dna = Surface(20, 20)
-    dna.rect(0, 0, 19, 19, p['amberShade'], 1)
-    dna.rect(1, 1, 18, 18, p['amber'], 1)
-    dna.rect(2, 2, 17, 17, p['header'])
-    for y in range(4, 16):
-        offset = round(4 * math.cos((y-4) * math.pi / 6))
+    hex_badge(dna, p)
+    for y in range(5, 15):
+        offset = round(3 * math.cos((y-5) * math.pi / 5))
         x1, x2 = 9+offset, 10-offset
-        if y % 3 == 1:
+        if y in [6, 10, 14]:
             dna.line(min(x1, x2), y, max(x1, x2), y, p['metalShade'])
         dna.pixel(x1, y, p['cyan'])
         dna.pixel(x2, y, p['amber'])

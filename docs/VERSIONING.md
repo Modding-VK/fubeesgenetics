@@ -24,15 +24,21 @@ Ver [procedimento GitHub](GITHUB_PUBLICATION.md).
 ## Desenvolvimento
 
 Cada pacote entregue tem uma versão identificável no _metadata e um commit com
-seus assets, PAK e dist/SHA256SUMS. O PAK manual deve se chamar
+seus assets. Novos PAKs são gerados exclusivamente pelo GitHub Actions e ficam
+no artefato da execução; os PAKs antigos em `dist/` são históricos. O PAK manual
+deve se chamar
 `bee-abusive-industry-<versão>.pak`, usando a versão do _metadata. O PAK da
 Workshop continua contents.pak, com os mesmos bytes. Usar links por SHA nos downloads fornecidos ao
-usuário, conservando acesso às versões anteriores. Validar:
+usuário, conservando acesso às versões anteriores. A validação de código é feita
+no CI; o workflow Build development PAK empacota e confere o resultado somente
+quando o mantenedor o inicia manualmente em `dev`.
+Não executar `tools/package.py` localmente.
+
+Comandos de validação disponíveis no CI:
 
 ```sh
 python tools/check_version.py --development
 python tools/run_checks.py --fetch
-python tools/package.py
 ```
 
 O CI executa a validação de versão de desenvolvimento nos pushes de dev. Novos
@@ -40,8 +46,9 @@ pacotes de teste continuam -dev mesmo quando o usuário autoriza implementá-los
 
 ## Produção — somente quando solicitada
 
-Quando o usuário solicitar a promoção, preparar o commit com versão estável e
-seu PAK reconstruído. Validar versão, testes e pacote antes da integração.
+Quando o usuário solicitar a promoção, preparar o commit com versão estável.
+Gerar o PAK estável somente no GitHub Actions, após aprovação da integração.
+Validar versão, código e pacote antes da distribuição.
 Criar o PR apenas quando solicitado explicitamente. Depois do merge autorizado,
 marcar o commit da main com tag anotada vX.Y.Z e manter as tags anteriores.
 
@@ -51,8 +58,10 @@ Exemplo de validação, sem criação de tag ou modificação de refs:
 python tools/check_version.py --release --tag v0.2.0
 ```
 
-Uma tag estável aponta para o commit aprovado de produção, cujo PAK e hashes
-estão versionados. Publicação de release/Steam e envio de tags exigem autorização
+Uma tag estável aponta para o commit aprovado de produção. Preservar o PAK
+estável e seus hashes sem prazo no GitHub quando a promoção for autorizada;
+artefatos temporários do Actions não substituem esse registro. Publicação de
+release/Steam e envio de tags exigem autorização
 para essa operação; não são efeitos automáticos do CI ou de um push em dev.
 
 ## Transição

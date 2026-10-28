@@ -2,8 +2,8 @@
   "name": "FUBeesGenetics",
   "friendlyName": "[oSB][FU] Bee Abusive Industry",
   "author": "Goblin Man",
-  "version": "0.2.19",
-  "description": "Genetic queen filtering and automated bee-to-resource trading. Requires OpenStarbound and Frackin Universe.",
+  "version": "0.2.65",
+  "description": "Bee genetics, automated trading, powered apiaries and hybrid queen larvae. Requires OpenStarbound and Frackin Universe.",
   "requires": [
     "FrackinUniverse"
   ],

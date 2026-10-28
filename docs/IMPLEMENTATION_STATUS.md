@@ -1,16 +1,43 @@
-# Estado do projeto — 2026-10-19
+# Estado atual — 0.2.64-dev
 
-## Release estável — 0.2.19
+Equal e Within range com alvos manuais fixos por atributo e editor na coluna
+Custom. Auto Refugee agrupa lotes de drones, limitada a 200 lotes por ciclo e ao
+espaço disponível, preservando ledger e parâmetros. Ver
+[contrato, migração e reteste](FILTER_TARGETS_AND_BATCHES_0_2_64.md).
+Somente dev; build de PAK reservado ao mantenedor. Os registros abaixo são
+históricos. A interface e o desempenho no engine precisam de reteste no jogo.
 
-A build 0.2.19-dev foi validada ingame pelo mantenedor e promovida para
-0.2.19 em main, com tag anotada v0.2.19. Identidade pública: [oSB][FU] Bee
-Abusive Industry, autor Goblin Man, ícone Cybernetic Queen em fundo laranja e
-homepage. A promoção preserva IDs, scripts, receitas e inventários.
+# Estado atual — 0.2.38-dev
 
-O PAK SBAsset6 e o ZIP com contents.pak foram gerados e conferidos por
-pack/unpack nativo. O upload à Steam Workshop não foi realizado. Ver
-[release](RELEASE_0_2_19.md), [prontidão](RELEASE_READINESS.md) e
-[material de publicação](WORKSHOP.md).
+Auditoria de todo o conteúdo e otimizações na Auto Refugee, apiários, híbridas,
+Hybridizer e interfaces. Balanceamento, registro ITD e garantias de transferência
+preservados. Ver [auditoria e roteiro de medição](SCRIPTING_AUDIT_0_2_38.md).
+A main permanece na 0.2.19. Medições no engine e a suíte IC original opcional
+não foram executadas nesta revisão. Os registros abaixo são históricos.
+
+# Estado atual de desenvolvimento — 0.2.37-dev
+
+A `main` está na versão 0.2.19. A `dev` inclui Overload Apiary pequeno e grande,
+Genetic Hybridizer, 595 combinações híbridas e três pesquisas na árvore Agriculture.
+A 0.2.37-dev otimiza o Filter e distingue linhagens híbridas pelo par parental,
+subtipos e dominância. Modos, slots e recuperação são preservados; somente perfis
+híbridos antigos sem chave recriam a baseline. Ver
+[FILTER_PERFORMANCE_0_2_37](FILTER_PERFORMANCE_0_2_37.md) e [README](../README.md).
+Os recursos novos e o ganho de tempo de script ainda exigem conferência no jogo.
+
+Os registros abaixo são históricos: referências a PR #5 aberto, versões antigas,
+pendências e contagens não representam o estado atual da branch.
+
+# Estado do projeto — 2026-10-17
+
+
+## Situação atual — 0.2.19-dev
+
+Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
+ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
+iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
+nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
+não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
 
 ## Registro da build funcional validada — 0.2.18-dev
 

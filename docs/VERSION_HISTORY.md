@@ -58,12 +58,36 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | Versão | Mudança | Pacote e detalhes |
 | --- | --- | --- |
 | 0.2.19-dev | Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19-dev.pak), [prontidão](RELEASE_READINESS.md) |
+| 0.2.20-dev | Overload Apiary e Genetic Hybridizer com 595 híbridas; sucesso gera larva e apiário não solta abelhas capturáveis | [PAK](../dist/bee-abusive-industry-0.2.20-dev.pak), [detalhes](HYBRID_FIXES_0_2_20.md) |
+| 0.2.21-dev | 595 folhas de sprites próprias, com cores, silhuetas e padrões das progenitoras fundidos | [PAK](../dist/bee-abusive-industry-0.2.21-dev.pak), [prévia](../artwork/hybrids/preview.png) |
+| 0.2.22-dev | Híbridas funcionam nos apiários FU pequeno e grande por patch dos objetos | [PAK](../dist/bee-abusive-industry-0.2.22-dev.pak) |
+| 0.2.23-dev | Catálogo híbrido calculado sob demanda e carregamento dos scripts somente quando necessários | [PAK](../dist/bee-abusive-industry-0.2.23-dev.pak) |
+| 0.2.24-dev | Hybridizer acumula energia antes de receber espécies distintas | [PAK](../dist/bee-abusive-industry-0.2.24-dev.pak) |
+| 0.2.25-dev | Overload Apiary produz sem energia na velocidade normal; receita de 1 AI Chip e 5 Durasteel Bars | [PAK](../dist/bee-abusive-industry-0.2.25-dev.pak) |
+| 0.2.26-dev | Overload Large Apiary: 20 slots, dois drones e dois quadros, com bônus de 20% por 12 W | [PAK](../dist/bee-abusive-industry-0.2.26-dev.pak) |
+| 0.2.31-dev | Textos de scanner por espécie para os três objetos que faltavam; regra documentada para objetos futuros | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.32-dev | Hybridizer atualiza a cada 30 ticks, consulta a janela a cada 2 s e evita verificar energia após a carga completa | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.33-dev | Gene favorável positivo das novas híbridas mantém mínimo 1; evita atributos zerados em cruzamentos comuns | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.34-dev | Penalidade genética proporcional: um terço do menor valor parental para atributos favoráveis | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.35-dev | Nome das híbridas mostra as subespécies nativas de origem e H1/H2; subtítulo mostra somente a subespécie híbrida | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.36-dev | Campo de subespécie da híbrida mostra `Predominant:` com o nome da subespécie nativa priorizada | [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 
-## Release estável
+| 0.2.37-dev | Filter: callbacks reduzidos, polling 1 s, renderização condicional, caches limitados, contrato compartilhado e isolamento de linhagens híbridas | [Detalhes](FILTER_PERFORMANCE_0_2_37.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
 
-| Versão | Mudança | Pacote |
-| --- | --- | --- |
-| 0.2.18 | Ajustes de Reset Profile e listras no HUD | [PAK](../dist/bee-abusive-industry-0.2.18.pak), [detalhes](HUD_ALIGNMENT_0_2_18.md) |
-| 0.2.19 | Release estável da build validada, com identidade Bee Abusive Industry, autor Goblin Man e ícone Cybernetic Queen laranja | [PAK](../dist/bee-abusive-industry-0.2.19.pak), [prontidão](RELEASE_READINESS.md) |
-
-Tag anotada: `v0.2.19`. O envio à Steam Workshop permanece pendente e separado.
+| 0.2.38-dev | Auditoria geral: snapshots bulk e gates na Auto Refugee, detecção híbrida no snapshot FU, flores por tick, caches compartilhados e UI/ponte IC condicionais | [Auditoria](SCRIPTING_AUDIT_0_2_38.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.39-dev | Hybridizer só avança com entradas válidas e saída livre; medidor mostra progresso do experimento | [Detalhes](HYBRIDIZER_PROGRESS_0_2_39.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.40-dev | Hybridizer preserva progresso com a mesma cobaia e perde 50% ao substituí-la, com alerta na janela | [Detalhes](HYBRIDIZER_SPECIMENS_0_2_40.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.41-dev | Janela do Hybridizer compactada, cabeçalho com logo e favo no canto; diretriz para futuras máquinas | [Detalhes](HYBRIDIZER_UI_0_2_41.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.42-dev | Favo estático no Analyzer e logos hexagonais padronizados no Analyzer/Hybridizer | [Detalhes](ANALYZER_UI_0_2_42.md) · [Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) |
+| 0.2.54-dev | Receita do Genetic Hybridizer alterada para 5 AI Chips, 10 Cell Matter, 1 Red Matter, 5 Isogen Bars e 1 Lasombrium Seed | |
+| 0.2.55-dev | Hybridizer aceita discos de pesquisa consumíveis para elevar a chance de sucesso | [Detalhes](HYBRIDIZER_RESEARCH_DISCS_0_2_55.md) |
+| 0.2.56-dev | Remove H1/H2 do nome visível das híbridas; conserva o gene interno de subespécie para produção e identidade. Mudança apenas no builder do item, sem custo recorrente novo de scripting; desempenho no jogo não medido. | |
+| 0.2.57-dev | Aproxima Queen e Drone; Disc fica 48 px após Drone, Larva ocupa a antiga posição do Disc. Migração única troca os itens antigos dos slots 3 e 4, preservando itens pendentes. Sem polling ou custo recorrente novo além de uma checagem simples de versão por atualização; interação e migração no jogo ainda precisam ser conferidas. | |
+| 0.2.58-dev | Texto de sucesso mostra chances comuns e rivais para o disco presente; slot vazio alterna ícones FU dos três discos a 20% de visibilidade e um estado vazio a cada 2 s. Reutiliza a consulta existente da janela. | |
+| 0.2.59-dev | Chance de sucesso movida para cima de Status com a mesma fonte; bloco inferior centralizado entre divisória e moldura. Aviso de retrabalho reposicionado acima dos slots para evitar sobreposição. Mudança estática, sem custo adicional de scripting. | |
+| 0.2.60-dev | Genetic Hybridizer passa de Rare para Essential; Genetic Queen Filter passa de Rare para Legendary. Apenas metadados estáticos dos objetos, sem novo custo de scripting. | |
+| 0.2.61-dev | Hybridizer recebe corpo 40×32 e ícone baseados no Queen Filter, vidro roxo, ocupação 5×4 e luz roxa mínima; remove animação antiga do Apiary FU. | [Sprite](HYBRIDIZER_SPRITE_0_2_61.md) |
+| 0.2.62-dev | Encurta a descrição do item Hybridizer, removendo a menção a 10.000 de progresso; somente texto estático, sem custo recorrente de scripting. | |
+| 0.2.63-dev | Corrige a posição da fonte de luz na orientação do Hybridizer e aumenta a intensidade para um roxo discreto e visível. Sem script novo. | [Detalhes](HYBRIDIZER_SPRITE_0_2_61.md) |
+| 0.2.64-dev | Filter: Equal/Within range fixos e editor por atributo; Auto Refugee: venda agregada de drones com capacidade e cota global | [Detalhes](FILTER_TARGETS_AND_BATCHES_0_2_64.md) · build manual na Action |
+| 0.2.65-dev | Desce 5 pixels os cinco textos inferiores do Hybridizer para afastá-los da divisória e da moldura. Apenas layout estático, sem custo recorrente novo de scripting. | [Detalhes](HYBRIDIZER_UI_0_2_41.md) |

@@ -1,37 +1,22 @@
 require "/bees/genomeLibrary.lua"
+require "/scripts/fubeesgenetics/filtercontract.lua"
+require "/scripts/fubeesgenetics/filtercriteria.lua"
+require "/scripts/fubeesgenetics/containerutil.lua"
 require "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua"
 require "/scripts/kheAA/transferUtil.lua"
 
 local INPUT, APPROVED, REJECTED = 0, 1, 2
-local traits = {
-  "baseProduction", "droneToughness", "droneBreedRate",
-  "queenBreedRate", "queenLifespan", "mutationChance"
-}
-local traitSet = {}
-for _, trait in ipairs(traits) do traitSet[trait] = true end
-local modeSet = {gte = true, lte = true, ignore = true}
+local traits, traitSet = fubeesFilter.traits, fubeesFilter.traitSet
+local modeSet = fubeesFilter.modeToId
 local reasons = {
   INVALID_DESCRIPTOR = "REJECTED_INVALID_ITEM",
   NOT_BEE = "REJECTED_INVALID_ITEM", NOT_QUEEN = "REJECTED_INVALID_ITEM",
   NOT_INSPECTED = "REJECTED_NOT_INSPECTED",
   INVALID_GENOME = "REJECTED_INVALID_GENOME", UNKNOWN_FAMILY = "REJECTED_INVALID_GENOME",
-  INVALID_SUBTYPE = "REJECTED_INVALID_GENOME"
+  INVALID_SUBTYPE = "REJECTED_INVALID_GENOME", INVALID_LINEAGE = "REJECTED_INVALID_GENOME"
 }
 
-local function copy(value)
-  if type(value) ~= "table" then return value end
-  local result = {}
-  for key, child in pairs(value) do result[key] = copy(child) end
-  return result
-end
-
-local function same(left, right)
-  if type(left) ~= type(right) then return false end
-  if type(left) ~= "table" then return left == right end
-  for key, value in pairs(left) do if not same(value, right[key]) then return false end end
-  for key in pairs(right) do if left[key] == nil then return false end end
-  return true
-end
+local copy, same = fubeesContainer.copy, fubeesContainer.same
 
 local function status(value)
   if storage.operationalStatus ~= value then
@@ -53,14 +38,23 @@ end
 
 local function getState()
   refreshStatus()
+  if self.referenceSource ~= storage.references then
+    self.referenceSource, self.referenceDisplay = storage.references, {}
+    if storage.references then
+      for _, trait in ipairs(traits) do
+        self.referenceDisplay[trait] = genelib.statToValue(genelib.numberToStat(storage.references[trait]), trait)
+      end
+    end
+  end
   local state = {
     initialized = storage.profile ~= nil, profile = copy(storage.profile), traits = {},
     operationalStatus = storage.operationalStatus, lastResult = storage.lastResult
   }
   for _, trait in ipairs(traits) do
-    local entry = {mode = storage.modes[trait]}
+    local entry = {mode = storage.modes[trait], customMode = storage.customModes[trait],
+      target = copy(storage.targets[trait])}
     if storage.references then
-      entry.referenceDisplay = genelib.statToValue(genelib.numberToStat(storage.references[trait]), trait)
+      entry.referenceDisplay = self.referenceDisplay[trait]
     end
     state.traits[trait] = entry
   end
@@ -68,28 +62,37 @@ local function getState()
 end
 
 -- Build a proposed result; never change stored references while evaluating.
-local function decide(candidate, profile, references, modes)
+local function decide(candidate, profile, references, modes, targets)
   if not candidate.eligible then
     return REJECTED, reasons[candidate.reason] or "REJECTED_INVALID_ITEM"
   end
-  if not profile then
-    local references = {}
-    for _, trait in ipairs(traits) do references[trait] = candidate.genetics[trait].raw end
-    return APPROVED, "PROFILE_INITIALIZED", copy(candidate.identity), references
-  end
-  if candidate.identity.family ~= profile.family
-    or candidate.identity.subtype ~= profile.subtype then
+  if profile and not fubeesFilter.sameIdentity(candidate.identity, profile) then
     return REJECTED, "REJECTED_INCOMPATIBLE_SUBSPECIES"
   end
   for _, trait in ipairs(traits) do
-    local mode, value, reference = modes[trait], candidate.genetics[trait].raw, references[trait]
-    if (mode == "gte" and value < reference) or (mode == "lte" and value > reference) then
-      return REJECTED, "REJECTED_GENETIC_CRITERIA"
+    local mode, value = modes[trait], candidate.genetics[trait].raw
+    local target = targets[trait]
+    if mode == "eq" or mode == "range" then
+      -- Fixed bounds also apply to the first specimen. Configuration must not
+      -- be bypassed just because family/subtype have not been initialized.
+      if not target or value < target.minRaw or value > target.maxRaw then
+        return REJECTED, "REJECTED_GENETIC_CRITERIA"
+      end
+    elseif profile then
+      local reference = references[trait]
+      if (mode == "gte" and value < reference) or (mode == "lte" and value > reference) then
+        return REJECTED, "REJECTED_GENETIC_CRITERIA"
+      end
     end
+  end
+  if not profile then
+    local initial = {}
+    for _, trait in ipairs(traits) do initial[trait] = candidate.genetics[trait].raw end
+    return APPROVED, "PROFILE_INITIALIZED", copy(candidate.identity), initial
   end
   local references = copy(references)
   for _, trait in ipairs(traits) do
-    if modes[trait] ~= "ignore" then references[trait] = candidate.genetics[trait].raw end
+    if modes[trait] == "gte" or modes[trait] == "lte" then references[trait] = candidate.genetics[trait].raw end
   end
   return APPROVED, "APPROVED", copy(profile), references
 end
@@ -112,20 +115,7 @@ end
 -- OpenStarbound 0.1.14 returns the input descriptor even after a complete put.
 -- Confirm that case against the exact synchronous slot delta before any rollback.
 local function putAt(item, slot)
-  local normalize = fubeesgenetics_beegeneticadapter.normalize
-  local before = normalize(world.containerItemAt(entity.id(), slot))
-  local leftover = world.containerPutItemsAt(entity.id(), item, slot)
-  if not leftover then return nil end
-  local after = normalize(world.containerItemAt(entity.id(), slot))
-  local unit = normalize(item)
-  local function matches(value)
-    return value and value.name == unit.name and same(value.parameters, unit.parameters)
-  end
-  if unit and after and matches(after) and (not before or matches(before))
-    and after.count == (before and before.count or 0) + unit.count then
-    return nil
-  end
-  return leftover
+  return fubeesContainer.putExact(entity.id(), item, slot, fubeesgenetics_beegeneticadapter.normalize)
 end
 
 local function rollback(item)
@@ -183,7 +173,7 @@ local function process()
   status("PROCESSING")
   local candidate = fubeesgenetics_beegeneticadapter.read(snapshot)
   local profile, references, modes = copy(storage.profile), copy(storage.references), copy(storage.modes)
-  local destination, result, nextProfile, nextReferences = decide(candidate, profile, references, modes)
+  local destination, result, nextProfile, nextReferences = decide(candidate, profile, references, modes, storage.targets)
 
   local current = fubeesgenetics_beegeneticadapter.normalize(world.containerItemAt(entity.id(), INPUT))
   if not current or not sameItem(snapshot, current) or not outputsEmpty() then
@@ -211,16 +201,16 @@ local function process()
 end
 
 function init()
-  self = {timer = 0}
+  self = {timer = 0, referenceDisplay = {}}
   storage.stateRevision = nil -- Remove the obsolete development snapshot counter.
-  local function rawValid(v)
-    return type(v) == "number" and v == v and v >= 0 and v <= 1295 and v == math.floor(v)
-  end
+  local rawValid = fubeesCriteria.rawValid
   local p, refs = storage.profile, storage.references
   local valid = type(p) == "table" and type(p.family) == "string" and p.family ~= ""
     and rawValid(p.subtype) and p.subtype >= 1
     and type(p.subspeciesName) == "string" and p.subspeciesName ~= "" and type(refs) == "table"
   for _, trait in ipairs(traits) do valid = valid and rawValid(refs[trait]) end
+  -- Old hybrid profiles cannot distinguish pairs; discard only that baseline.
+  valid = valid and (p.family ~= "hybrid" or (type(p.lineageKey) == "string" and p.lineageKey ~= ""))
   if (p ~= nil or refs ~= nil) and not valid then
     storage.profile, storage.references = nil, nil
     sb.logWarn("[FUBeesGenetics] Incomplete genetic profile cleared; valid modes preserved.")
@@ -232,15 +222,56 @@ function init()
       storage.modes[trait] = "gte"
     end
   end
+  if type(storage.targets) ~= "table" then storage.targets = {} end
+  if type(storage.customModes) ~= "table" then storage.customModes = {} end
+  for _, trait in ipairs(traits) do
+    if not fubeesCriteria.validStored(trait, storage.targets[trait]) then storage.targets[trait] = nil end
+    local mode, custom = storage.modes[trait], storage.customModes[trait]
+    if not fubeesFilter.customModes[custom] then custom = "ignore" end
+    if (mode == "eq" or mode == "range") and (not storage.targets[trait]
+      or mode == "eq" and storage.targets[trait].minRaw ~= storage.targets[trait].maxRaw) then
+      storage.modes[trait], custom = "ignore", "ignore"
+      sb.logWarn("[FUBeesGenetics] Invalid fixed target disabled: %s", trait)
+    elseif fubeesFilter.customModes[mode] then custom = mode end
+    if custom ~= "ignore" and not storage.targets[trait] then custom = "ignore" end
+    storage.customModes[trait] = custom
+  end
   storage.lastResult = storage.lastResult or "NONE"
   refreshStatus()
   message.setHandler("fubeesgenetics.gqf.getState", function() return getState() end)
-  message.setHandler("fubeesgenetics.gqf.setMode", function(_, _, trait, mode)
-    if type(trait) == "string" and type(mode) == "string" and traitSet[trait] and modeSet[mode]
-      and storage.modes[trait] ~= mode then
-      storage.modes[trait] = mode
+  local function response(accepted, err)
+    local state = getState()
+    state.commandAccepted, state.commandError = accepted, err
+    return state
+  end
+  local function configure(trait, mode, minimum, maximum)
+    if type(trait) ~= "string" or not traitSet[trait] or not fubeesFilter.customModes[mode] then
+      return response(false, "Invalid custom criterion.")
     end
-    return getState()
+    if mode ~= "ignore" then
+      local target, err = fubeesCriteria.normalize(trait, mode, minimum, maximum)
+      if not target then return response(false, err) end
+      storage.targets[trait] = target
+    end
+    storage.modes[trait], storage.customModes[trait] = mode, mode
+    return response(true)
+  end
+  message.setHandler("fubeesgenetics.gqf.configureTrait", function(_, _, trait, mode, minimum, maximum)
+    return configure(trait, mode, minimum, maximum)
+  end)
+  message.setHandler("fubeesgenetics.gqf.setMode", function(_, _, trait, mode)
+    if type(trait) ~= "string" or type(mode) ~= "string" or not traitSet[trait] or modeSet[mode] == nil then
+      return response(false, "Invalid mode.")
+    end
+    if mode == "eq" or mode == "range" then
+      local target = storage.targets[trait]
+      local fallback = storage.references and fubeesCriteria.display(storage.references[trait], trait)
+      if not target and fallback == nil then return response(false, "Set a target with + first.") end
+      return configure(trait, mode, target and target.minDisplay or fallback, target and target.maxDisplay or fallback)
+    end
+    storage.modes[trait] = mode
+    if mode == "ignore" then storage.customModes[trait] = mode end
+    return response(true)
   end)
   message.setHandler("fubeesgenetics.gqf.resetProfile", function()
     storage.profile, storage.references, storage.lastResult = nil, nil, "NONE"
@@ -251,9 +282,9 @@ end
 
 function update(dt)
   self.timer = self.timer + dt
-  if self.timer >= 1 then
+  if self.timer >= fubeesFilter.processInterval then
     -- One check per loaded update; do not simulate missed/unloaded cycles.
-    self.timer = self.timer % 1
+    self.timer = self.timer % fubeesFilter.processInterval
     transferUtil.loadSelfContainer()
     process()
   end

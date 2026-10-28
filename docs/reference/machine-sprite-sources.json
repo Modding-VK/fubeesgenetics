@@ -1,0 +1,1900 @@
+{
+  "study_date": "2026-10-27",
+  "project_base_commit": "a7e44c6",
+  "scope": "17 vanilla frame samples across 11 object families, plus one FU apiary frame; FU station/refuge and local machines inspected separately.",
+  "method": {
+    "color_count": "Distinct RGB values of alpha=255 pixels after RGBA source-layer composition; excludes transparent and partial-alpha pixels. Not a global palette rule.",
+    "coordinates": "PNG coordinates from top left; bbox end exclusive.",
+    "composition": "Crop named frame, alpha-composite optional lit/fullbright file above base in the recorded order, display on neutral background. No runtime lighting simulation or proof of engine ordering.",
+    "scale": "Contact sheet nearest-neighbor 3x; relative native size preserved."
+  },
+  "samples": [
+    {
+      "label": "Furnace I",
+      "frame_size": [
+        24,
+        24
+      ],
+      "sheet_size": [
+        96,
+        24
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "opaque_rgb_count": 8,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 524,
+      "top_colors": [
+        {
+          "hex": "#565656",
+          "count": 204
+        },
+        {
+          "hex": "#282828",
+          "count": 134
+        },
+        {
+          "hex": "#7a7a7a",
+          "count": 131
+        },
+        {
+          "hex": "#9f9f9f",
+          "count": 43
+        },
+        {
+          "hex": "#fdd14d",
+          "count": 6
+        },
+        {
+          "hex": "#fd8f4d",
+          "count": 3
+        },
+        {
+          "hex": "#da5302",
+          "count": 2
+        },
+        {
+          "hex": "#fffffe",
+          "count": 1
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.png",
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnacelit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/default.frames"
+    },
+    {
+      "label": "Furnace II",
+      "frame_size": [
+        24,
+        24
+      ],
+      "sheet_size": [
+        96,
+        24
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "opaque_rgb_count": 8,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 533,
+      "top_colors": [
+        {
+          "hex": "#303030",
+          "count": 202
+        },
+        {
+          "hex": "#151515",
+          "count": 161
+        },
+        {
+          "hex": "#555555",
+          "count": 119
+        },
+        {
+          "hex": "#808080",
+          "count": 39
+        },
+        {
+          "hex": "#fdd14d",
+          "count": 6
+        },
+        {
+          "hex": "#fd8f4d",
+          "count": 3
+        },
+        {
+          "hex": "#da5302",
+          "count": 2
+        },
+        {
+          "hex": "#fffffe",
+          "count": 1
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2.png",
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2lit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/default.frames"
+    },
+    {
+      "label": "Furnace III",
+      "frame_size": [
+        24,
+        24
+      ],
+      "sheet_size": [
+        336,
+        24
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "opaque_rgb_count": 20,
+      "partial_alpha_pixels": 214,
+      "nontransparent_pixels": 508,
+      "top_colors": [
+        {
+          "hex": "#303030",
+          "count": 81
+        },
+        {
+          "hex": "#808080",
+          "count": 68
+        },
+        {
+          "hex": "#555555",
+          "count": 65
+        },
+        {
+          "hex": "#b5b5b5",
+          "count": 23
+        },
+        {
+          "hex": "#454545",
+          "count": 10
+        },
+        {
+          "hex": "#666666",
+          "count": 7
+        },
+        {
+          "hex": "#c8f6ff",
+          "count": 6
+        },
+        {
+          "hex": "#2b74b8",
+          "count": 4
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.png",
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3lit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.frames"
+    },
+    {
+      "label": "Inventor I",
+      "frame_size": [
+        32,
+        40
+      ],
+      "sheet_size": [
+        32,
+        40
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        3,
+        32,
+        40
+      ],
+      "opaque_rgb_count": 13,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 961,
+      "top_colors": [
+        {
+          "hex": "#251c0b",
+          "count": 286
+        },
+        {
+          "hex": "#463818",
+          "count": 197
+        },
+        {
+          "hex": "#5588d4",
+          "count": 148
+        },
+        {
+          "hex": "#6d6330",
+          "count": 81
+        },
+        {
+          "hex": "#344495",
+          "count": 75
+        },
+        {
+          "hex": "#96cbe7",
+          "count": 59
+        },
+        {
+          "hex": "#1a1c51",
+          "count": 51
+        },
+        {
+          "hex": "#897c4c",
+          "count": 50
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/default.frames"
+    },
+    {
+      "label": "Inventor II",
+      "frame_size": [
+        32,
+        40
+      ],
+      "sheet_size": [
+        32,
+        40
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        3,
+        32,
+        40
+      ],
+      "opaque_rgb_count": 27,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 879,
+      "top_colors": [
+        {
+          "hex": "#251c0b",
+          "count": 123
+        },
+        {
+          "hex": "#141414",
+          "count": 118
+        },
+        {
+          "hex": "#373737",
+          "count": 112
+        },
+        {
+          "hex": "#5588d4",
+          "count": 84
+        },
+        {
+          "hex": "#463818",
+          "count": 79
+        },
+        {
+          "hex": "#344495",
+          "count": 64
+        },
+        {
+          "hex": "#6b6b6b",
+          "count": 49
+        },
+        {
+          "hex": "#1a1c51",
+          "count": 45
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable2.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/default.frames"
+    },
+    {
+      "label": "Inventor III",
+      "frame_size": [
+        32,
+        40
+      ],
+      "sheet_size": [
+        256,
+        40
+      ],
+      "frame": "default.1",
+      "bbox": [
+        0,
+        3,
+        32,
+        40
+      ],
+      "opaque_rgb_count": 15,
+      "partial_alpha_pixels": 113,
+      "nontransparent_pixels": 850,
+      "top_colors": [
+        {
+          "hex": "#373737",
+          "count": 162
+        },
+        {
+          "hex": "#151515",
+          "count": 146
+        },
+        {
+          "hex": "#7b7b7b",
+          "count": 130
+        },
+        {
+          "hex": "#60b8ea",
+          "count": 95
+        },
+        {
+          "hex": "#96cbe7",
+          "count": 83
+        },
+        {
+          "hex": "#e6e6e6",
+          "count": 42
+        },
+        {
+          "hex": "#b6b6b6",
+          "count": 37
+        },
+        {
+          "hex": "#5588d4",
+          "count": 19
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.png",
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3lit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.frames"
+    },
+    {
+      "label": "Anvil I",
+      "frame_size": [
+        48,
+        24
+      ],
+      "sheet_size": [
+        48,
+        28
+      ],
+      "frame": "default",
+      "bbox": [
+        1,
+        5,
+        47,
+        24
+      ],
+      "opaque_rgb_count": 17,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 647,
+      "top_colors": [
+        {
+          "hex": "#251c0b",
+          "count": 129
+        },
+        {
+          "hex": "#463818",
+          "count": 87
+        },
+        {
+          "hex": "#282828",
+          "count": 60
+        },
+        {
+          "hex": "#2e2e2e",
+          "count": 59
+        },
+        {
+          "hex": "#0f0f0f",
+          "count": 49
+        },
+        {
+          "hex": "#6d6330",
+          "count": 49
+        },
+        {
+          "hex": "#161616",
+          "count": 45
+        },
+        {
+          "hex": "#565656",
+          "count": 44
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/default.frames"
+    },
+    {
+      "label": "Anvil II",
+      "frame_size": [
+        48,
+        24
+      ],
+      "sheet_size": [
+        576,
+        28
+      ],
+      "frame": "default.1",
+      "bbox": [
+        1,
+        0,
+        47,
+        24
+      ],
+      "opaque_rgb_count": 14,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 734,
+      "top_colors": [
+        {
+          "hex": "#2e2e2e",
+          "count": 151
+        },
+        {
+          "hex": "#0f0f0f",
+          "count": 141
+        },
+        {
+          "hex": "#282828",
+          "count": 121
+        },
+        {
+          "hex": "#565656",
+          "count": 109
+        },
+        {
+          "hex": "#463818",
+          "count": 51
+        },
+        {
+          "hex": "#251c0b",
+          "count": 38
+        },
+        {
+          "hex": "#7a7a7a",
+          "count": 37
+        },
+        {
+          "hex": "#6d6330",
+          "count": 27
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.frames"
+    },
+    {
+      "label": "Anvil III",
+      "frame_size": [
+        48,
+        24
+      ],
+      "sheet_size": [
+        192,
+        24
+      ],
+      "frame": "default",
+      "bbox": [
+        0,
+        0,
+        48,
+        24
+      ],
+      "opaque_rgb_count": 9,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 778,
+      "top_colors": [
+        {
+          "hex": "#676f83",
+          "count": 162
+        },
+        {
+          "hex": "#24232f",
+          "count": 132
+        },
+        {
+          "hex": "#3d3d51",
+          "count": 126
+        },
+        {
+          "hex": "#5588d4",
+          "count": 84
+        },
+        {
+          "hex": "#344495",
+          "count": 76
+        },
+        {
+          "hex": "#96cbe7",
+          "count": 64
+        },
+        {
+          "hex": "#1a1c51",
+          "count": 52
+        },
+        {
+          "hex": "#0f0f0f",
+          "count": 42
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.png",
+        "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3lit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.frames"
+    },
+    {
+      "label": "Refinery",
+      "frame_size": [
+        32,
+        32
+      ],
+      "sheet_size": [
+        128,
+        32
+      ],
+      "frame": "default.0",
+      "bbox": [
+        1,
+        0,
+        32,
+        32
+      ],
+      "opaque_rgb_count": 6,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 675,
+      "top_colors": [
+        {
+          "hex": "#616161",
+          "count": 201
+        },
+        {
+          "hex": "#9e9e9e",
+          "count": 152
+        },
+        {
+          "hex": "#383838",
+          "count": 149
+        },
+        {
+          "hex": "#171717",
+          "count": 91
+        },
+        {
+          "hex": "#cccccc",
+          "count": 73
+        },
+        {
+          "hex": "#da5302",
+          "count": 9
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/refinery/refinery.png",
+        "assets/packed/objects/crafting/refinery/refinerylit.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/refinery/refinery.frames"
+    },
+    {
+      "label": "Pixel Compressor",
+      "frame_size": [
+        48,
+        32
+      ],
+      "sheet_size": [
+        384,
+        32
+      ],
+      "frame": "default.0",
+      "bbox": [
+        0,
+        0,
+        48,
+        32
+      ],
+      "opaque_rgb_count": 9,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 1133,
+      "top_colors": [
+        {
+          "hex": "#596473",
+          "count": 262
+        },
+        {
+          "hex": "#25282a",
+          "count": 243
+        },
+        {
+          "hex": "#bed0d4",
+          "count": 145
+        },
+        {
+          "hex": "#555555",
+          "count": 124
+        },
+        {
+          "hex": "#383838",
+          "count": 121
+        },
+        {
+          "hex": "#151515",
+          "count": 101
+        },
+        {
+          "hex": "#909eaa",
+          "count": 60
+        },
+        {
+          "hex": "#171717",
+          "count": 40
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/pixelcompressor/pixelcompressor.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/pixelcompressor/pixelcompressor.frames"
+    },
+    {
+      "label": "Wiring Station",
+      "frame_size": [
+        32,
+        32
+      ],
+      "sheet_size": [
+        192,
+        32
+      ],
+      "frame": "default.0",
+      "bbox": [
+        0,
+        6,
+        32,
+        32
+      ],
+      "opaque_rgb_count": 22,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 634,
+      "top_colors": [
+        {
+          "hex": "#8b8b8b",
+          "count": 140
+        },
+        {
+          "hex": "#616161",
+          "count": 102
+        },
+        {
+          "hex": "#1b1d1e",
+          "count": 79
+        },
+        {
+          "hex": "#383838",
+          "count": 56
+        },
+        {
+          "hex": "#c30000",
+          "count": 44
+        },
+        {
+          "hex": "#171717",
+          "count": 36
+        },
+        {
+          "hex": "#b8b8b8",
+          "count": 34
+        },
+        {
+          "hex": "#ff4d4d",
+          "count": 26
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/crafting/wiringstation/wiringstation.png"
+      ],
+      "frames_path": "assets/packed/objects/crafting/wiringstation/wiringstation.frames"
+    },
+    {
+      "label": "Apex console",
+      "frame_size": [
+        32,
+        32
+      ],
+      "sheet_size": [
+        128,
+        32
+      ],
+      "frame": "off",
+      "bbox": [
+        0,
+        0,
+        32,
+        32
+      ],
+      "opaque_rgb_count": 14,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 790,
+      "top_colors": [
+        {
+          "hex": "#7a7a7a",
+          "count": 217
+        },
+        {
+          "hex": "#565656",
+          "count": 158
+        },
+        {
+          "hex": "#171717",
+          "count": 143
+        },
+        {
+          "hex": "#282828",
+          "count": 107
+        },
+        {
+          "hex": "#9f9f9f",
+          "count": 70
+        },
+        {
+          "hex": "#b90000",
+          "count": 20
+        },
+        {
+          "hex": "#c6d2d4",
+          "count": 17
+        },
+        {
+          "hex": "#ff3535",
+          "count": 15
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/apex/apexconsole1/apexconsole1.png"
+      ],
+      "frames_path": "assets/packed/objects/apex/apexconsole1/apexconsole1.frames"
+    },
+    {
+      "label": "Apex pod",
+      "frame_size": [
+        32,
+        64
+      ],
+      "sheet_size": [
+        64,
+        64
+      ],
+      "frame": "default.on",
+      "bbox": [
+        0,
+        1,
+        32,
+        64
+      ],
+      "opaque_rgb_count": 22,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 1558,
+      "top_colors": [
+        {
+          "hex": "#41c90c",
+          "count": 271
+        },
+        {
+          "hex": "#92e945",
+          "count": 260
+        },
+        {
+          "hex": "#178b01",
+          "count": 192
+        },
+        {
+          "hex": "#7a7a7a",
+          "count": 156
+        },
+        {
+          "hex": "#282828",
+          "count": 148
+        },
+        {
+          "hex": "#565656",
+          "count": 126
+        },
+        {
+          "hex": "#9f9f9f",
+          "count": 84
+        },
+        {
+          "hex": "#d1ffa0",
+          "count": 84
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/apex/apexpod/apexpod.png",
+        "assets/packed/objects/apex/apexpod/apexpodlit.png"
+      ],
+      "frames_path": "assets/packed/objects/apex/apexpod/apexpod.frames"
+    },
+    {
+      "label": "Shield Generator",
+      "frame_size": [
+        16,
+        16
+      ],
+      "sheet_size": [
+        48,
+        16
+      ],
+      "frame": "off",
+      "bbox": [
+        0,
+        0,
+        16,
+        16
+      ],
+      "opaque_rgb_count": 10,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 256,
+      "top_colors": [
+        {
+          "hex": "#303030",
+          "count": 90
+        },
+        {
+          "hex": "#151515",
+          "count": 50
+        },
+        {
+          "hex": "#808080",
+          "count": 42
+        },
+        {
+          "hex": "#555555",
+          "count": 16
+        },
+        {
+          "hex": "#b5b5b5",
+          "count": 16
+        },
+        {
+          "hex": "#e2c344",
+          "count": 12
+        },
+        {
+          "hex": "#a46e06",
+          "count": 12
+        },
+        {
+          "hex": "#932625",
+          "count": 10
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/wired/shieldgenerator/shieldgenerator.png"
+      ],
+      "frames_path": "assets/packed/objects/wired/shieldgenerator/shieldgenerator.frames"
+    },
+    {
+      "label": "Medieval furnace",
+      "frame_size": [
+        48,
+        40
+      ],
+      "sheet_size": [
+        240,
+        40
+      ],
+      "frame": "default.0",
+      "bbox": [
+        1,
+        0,
+        47,
+        40
+      ],
+      "opaque_rgb_count": 15,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 1494,
+      "top_colors": [
+        {
+          "hex": "#0f0f0f",
+          "count": 394
+        },
+        {
+          "hex": "#383738",
+          "count": 267
+        },
+        {
+          "hex": "#1c1d1c",
+          "count": 237
+        },
+        {
+          "hex": "#5b5c5b",
+          "count": 215
+        },
+        {
+          "hex": "#6e473c",
+          "count": 93
+        },
+        {
+          "hex": "#868586",
+          "count": 89
+        },
+        {
+          "hex": "#b06235",
+          "count": 42
+        },
+        {
+          "hex": "#3d2b1b",
+          "count": 38
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/glitch/medievalfurnace/medievalfurnace.png",
+        "assets/packed/objects/glitch/medievalfurnace/medievalfurnacelit.png"
+      ],
+      "frames_path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnace.frames"
+    },
+    {
+      "label": "Terramart",
+      "frame_size": [
+        64,
+        80
+      ],
+      "sheet_size": [
+        2304,
+        80
+      ],
+      "frame": "ready.1",
+      "bbox": [
+        4,
+        11,
+        61,
+        80
+      ],
+      "opaque_rgb_count": 24,
+      "partial_alpha_pixels": 0,
+      "nontransparent_pixels": 2986,
+      "top_colors": [
+        {
+          "hex": "#435868",
+          "count": 488
+        },
+        {
+          "hex": "#64859c",
+          "count": 427
+        },
+        {
+          "hex": "#c3bfb3",
+          "count": 290
+        },
+        {
+          "hex": "#20150b",
+          "count": 213
+        },
+        {
+          "hex": "#26323b",
+          "count": 208
+        },
+        {
+          "hex": "#151515",
+          "count": 207
+        },
+        {
+          "hex": "#4b150f",
+          "count": 183
+        },
+        {
+          "hex": "#897c4c",
+          "count": 171
+        }
+      ],
+      "layers": [
+        "assets/packed/objects/generic/cropshipper/cropshipper.png",
+        "assets/packed/objects/generic/cropshipper/cropshipperfullbright.png"
+      ],
+      "frames_path": "assets/packed/objects/generic/cropshipper/default.frames"
+    },
+    {
+      "label": "FU Apiary",
+      "frame_size": [
+        16,
+        24
+      ],
+      "sheet_size": [
+        64,
+        24
+      ],
+      "frame": "default",
+      "layers": [
+        "bees/objects/apiary/object.png"
+      ],
+      "frames_path": "bees/objects/apiary/object.frames",
+      "source": "FU"
+    }
+  ],
+  "files": [
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexconsole1/apexconsole1.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexconsole1/apexconsole1.frames",
+      "sha256": "600e4aa0fc444807db43a35167280768f95c43597a9d2a8cad9521beaceb5201",
+      "bytes": 401
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexconsole1/apexconsole1.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexconsole1/apexconsole1.object",
+      "sha256": "c073c904bc8dcb937a12a3a43de976f7cf260b8f83c39ca4ce408630363b2d12",
+      "bytes": 1648
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexconsole1/apexconsole1.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexconsole1/apexconsole1.png",
+      "sha256": "bf49055e5e22c33b169921543934080f10639dbaef5aeb87a6569d65effe3c29",
+      "bytes": 1091
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexconsole1/apexconsole1icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexconsole1/apexconsole1icon.png",
+      "sha256": "5f9449ae6fb8f8fdeca46e73241faeb52d9297ade369fe3f80f3784e5d1ff5b7",
+      "bytes": 268
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpod.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpod.frames",
+      "sha256": "e78e25fa40996c4ec610289ba051ca34999ca7cbf9e6afb07c6a1eded96efd8c",
+      "bytes": 196
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpod.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpod.object",
+      "sha256": "320b273665a54d740a1ae33f7a2389a7085160833bd130c6e6c6e8f5262feebd",
+      "bytes": 2054
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpod.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpod.png",
+      "sha256": "50d8b7b8de47822678e9699d6288879fbbed2bbefb5f2f99237d3622402dc68f",
+      "bytes": 1367
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpodicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpodicon.png",
+      "sha256": "577e73087fdad59bad5d6365b355c564087784f639f21643e8ec75e50cc5058b",
+      "bytes": 239
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpodlit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpodlit.frames",
+      "sha256": "e78e25fa40996c4ec610289ba051ca34999ca7cbf9e6afb07c6a1eded96efd8c",
+      "bytes": 196
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/apex/apexpod/apexpodlit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/apex/apexpod/apexpodlit.png",
+      "sha256": "54b672bc87cd582538e572ba28b2ec0a03354e6215be7e0a249ec408bc03ab4f",
+      "bytes": 1394
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/pixelcompressor/pixelcompressor.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/pixelcompressor/pixelcompressor.frames",
+      "sha256": "8eb88ee1d3c54af6239688f4bed8b330d6521ca09670c20f07e2434b384eea9f",
+      "bytes": 270
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/pixelcompressor/pixelcompressor.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/pixelcompressor/pixelcompressor.object",
+      "sha256": "86e61d03fd42fbf942977816a151f025fe42167c2d92ee369fcc0c5bc584cc21",
+      "bytes": 1232
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/pixelcompressor/pixelcompressor.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/pixelcompressor/pixelcompressor.png",
+      "sha256": "bcde8458e47bc20d18d67fb158b73cdc72983643c504f722167d1774fbd72e51",
+      "bytes": 1419
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/pixelcompressor/pixelcompressoricon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/pixelcompressor/pixelcompressoricon.png",
+      "sha256": "b902b74fb8ae204bc471efedd138d34afd34e16587b6d8ebbcd4c505ca24fffd",
+      "bytes": 268
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refinery.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refinery.frames",
+      "sha256": "ea7c015ae85456ed2fec96cc064158cc756cf67cd870011b3a80164fab3dd7aa",
+      "bytes": 217
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refinery.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refinery.object",
+      "sha256": "851c70c258ab01807055b961b4f687e49d126f97122ec1285601d1b80d2bba29",
+      "bytes": 2581
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refinery.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refinery.png",
+      "sha256": "2fcb5bb06d9ce8c651db82963278d8d87c8500a27c0ad8c06a6c55182960590a",
+      "bytes": 628
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refineryicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refineryicon.png",
+      "sha256": "35d8d54de5b402e89c21eaa37459d32f6366e59add0d0baa88e18842222666db",
+      "bytes": 234
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refinerylit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refinerylit.frames",
+      "sha256": "ea7c015ae85456ed2fec96cc064158cc756cf67cd870011b3a80164fab3dd7aa",
+      "bytes": 217
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/refinery/refinerylit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/refinery/refinerylit.png",
+      "sha256": "f1eeac0f4e5665b6b0d75c18371bca9322f5e458c5f68e919a610b666163ec7c",
+      "bytes": 766
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.animation",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.animation",
+      "sha256": "49b985af4fd9ea28298f2cdfca3498e638fc6e40075c4d573b904c6e7ab79e61",
+      "bytes": 4768
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.object",
+      "sha256": "24ded90b4e340b477e01dcff43477dcc76054a0bed5828d952f459efe94849ef",
+      "bytes": 9828
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil.png",
+      "sha256": "57f1b7a20d7cb443bfdebacc170850b61717a9e7ee94d14c96a5230f2d835c70",
+      "bytes": 24546
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.frames",
+      "sha256": "7ffe8fb58a68de53adfdad28de22d5e14d7c4844816514a8eb76c6891712dfc7",
+      "bytes": 325
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2.png",
+      "sha256": "1be2096a8e527aaa932004df0be4a174bdb496d31a306e352d6fc89f1d0ee915",
+      "bytes": 25921
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil2icon.png",
+      "sha256": "7da45ca097563e8544b9600f153cf1f3703cdf7b8bb6a22fae4bf63d9fe601ad",
+      "bytes": 15593
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.frames",
+      "sha256": "54b8539a84b2f819365db4c86b7b735a5c618aa1db2f3a71ce0656ce83851014",
+      "bytes": 185
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3.png",
+      "sha256": "f94ac30fcc89c1fa254854a331a954dd4de3a206a3aeea86b5aefc155fe456c7",
+      "bytes": 16350
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3icon.png",
+      "sha256": "6535365eef5ba611c4973961ae696c3663945d9c9468e9c1661d0a199a5b8a77",
+      "bytes": 14801
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3lit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3lit.frames",
+      "sha256": "54b8539a84b2f819365db4c86b7b735a5c618aa1db2f3a71ce0656ce83851014",
+      "bytes": 185
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3lit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvil3lit.png",
+      "sha256": "6f8530664f7551d134016cb7daeec77ddce330ffc416d4d9b8c4506daec19615",
+      "bytes": 16157
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvilicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/craftinganvilicon.png",
+      "sha256": "d0b1ce807ca5212ecebc35738548291e1a597df8d42935175adef77404f7018b",
+      "bytes": 14715
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/default.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftinganvil/default.frames",
+      "sha256": "f7d56d86ffeddbf45fd4347a8c458986b82c0c12a0a18d9afd487cd3f2a3dcd3",
+      "bytes": 118
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.animation",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.animation",
+      "sha256": "ff66f4b3de0bc1c1937f13b11cbdbb5991d79623833cfca77683ebbf61b92a00",
+      "bytes": 3373
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.object",
+      "sha256": "965ad13cbe9dffcbfb404d0d62b293308f47c728a797b31ed28c4f20ad1d1ea1",
+      "bytes": 7885
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace.png",
+      "sha256": "74663dbe82461ae0d0ec3671b5f7c8a2cefd2c1170ac48d28ed30235dcddfa6b",
+      "bytes": 16968
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2.png",
+      "sha256": "96b7231da267f489cb0e71f370cadb88031f7cd8c01b2381cfe57c9b367eb00a",
+      "bytes": 464
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2icon.png",
+      "sha256": "5fc878ce1d9327dbf0660626373db5b4184d27e13da2b8ec0453ccee43464fe1",
+      "bytes": 224
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2lit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace2lit.png",
+      "sha256": "9d48bbc1d5aef65cdf10301aa9d739f003cd8c6126ff1f19a5c14f30ffe57d68",
+      "bytes": 3112
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.frames",
+      "sha256": "97afeed22b1d3be18ff2cce9ebbd6258988ddf42a7892d460ee693812b1915a4",
+      "bytes": 354
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3.png",
+      "sha256": "e4a5a4415ce33b0e07374b70897aef1a8219dfe668c87d90c8f5afbb7b5e7c78",
+      "bytes": 17225
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3icon.png",
+      "sha256": "35cd618ab57e5add548ed8540ce4e67dffb7b6e3e6e3b23eb7776b3bfc9b8dd6",
+      "bytes": 279
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3lit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3lit.frames",
+      "sha256": "4bf48804f419e2add3714d4e24539bc0780e8d110a2376651ce740373677ef50",
+      "bytes": 353
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3lit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnace3lit.png",
+      "sha256": "a4e12f170b62fc120e4b2afec9d394ec51501c7f2674f8d769a37cde28085d9d",
+      "bytes": 16553
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnaceicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnaceicon.png",
+      "sha256": "f11dd00e86fb40c5c52110a908799fc1787b2cd2362e39a81ef9dea0f228c1cf",
+      "bytes": 211
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnacelit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/craftingfurnacelit.png",
+      "sha256": "c590d985ba931434a5da929a2ea177927b6f7b74c6d317f4aa4729ada5a1a53f",
+      "bytes": 16822
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/default.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/craftingfurnace/default.frames",
+      "sha256": "3857c9e91cfa24f65eceecf66e27312ff68ad938f34a05e2ee7e6132090465bc",
+      "bytes": 218
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/default.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/default.frames",
+      "sha256": "c047e93a136d979111793ea2f8dd25ec6c40b8ecbd06e47871a7e697a0b9ab20",
+      "bytes": 179
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.animation",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.animation",
+      "sha256": "4edc627bc1522452d30d27c7f581ccc7bf195a3713784ac549fd15b7951b324e",
+      "bytes": 2595
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.object",
+      "sha256": "03ad522c2eb68e172e8d625e16a009f901e729c618116c292b164106f2458ba3",
+      "bytes": 7051
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable.png",
+      "sha256": "6967e8595444d44bc9c4ee3e7677e04ff6e289d8cfe49d9b29dfafd35239d753",
+      "bytes": 1004
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable2.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable2.png",
+      "sha256": "7601ce2f06edc1edc6e7a440cffdf47c81435e437b93c06716002ac0b59f66ee",
+      "bytes": 1397
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable2icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable2icon.png",
+      "sha256": "8a58471ec610d0f58ab200b0d73e01c35a1b0a66ab99b3d726e732d123c6c8dd",
+      "bytes": 15716
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.frames",
+      "sha256": "e8c3d83f1d7c42e740f603965f1f9e11f486744eeb3a37843d131ad6e957d1c3",
+      "bytes": 270
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3.png",
+      "sha256": "b9dd42aa530359dee126e94cc40a997de72c7f8922caaf7de7c40e025ac06ff3",
+      "bytes": 1563
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3icon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3icon.png",
+      "sha256": "7db6157e06b0df4619185feb0cc68927dd1f2f9d6bcc30dc6bf8f0c49b9b1c5c",
+      "bytes": 17437
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3lit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3lit.frames",
+      "sha256": "e8c3d83f1d7c42e740f603965f1f9e11f486744eeb3a37843d131ad6e957d1c3",
+      "bytes": 270
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3lit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstable3lit.png",
+      "sha256": "3ca44f76ddaae396c7836282eb71c134324584f6b32bcfdd13fc8bcd9b649f8e",
+      "bytes": 954
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstableicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/upgradeablecraftingobjects/inventorstable/inventorstableicon.png",
+      "sha256": "3d562409840e5503b3ecb84b309bb314666bbd968fc89e8bd8bff4e947f9ac30",
+      "bytes": 15649
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/wiringstation/wiringstation.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/wiringstation/wiringstation.frames",
+      "sha256": "0b8403a087d061d9c01ffec0a40773b5258686621f42233a4670c62debb63b82",
+      "bytes": 245
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/wiringstation/wiringstation.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/wiringstation/wiringstation.object",
+      "sha256": "876c79720c9271828b103664d3bd9012ae3ec7549abf27757a778a0d39bc8743",
+      "bytes": 1616
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/wiringstation/wiringstation.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/wiringstation/wiringstation.png",
+      "sha256": "81e63538b033cb7e79fc27fcf8252befd608148d4a6750acf69feecbc6c7b67e",
+      "bytes": 1127
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/crafting/wiringstation/wiringstationicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/crafting/wiringstation/wiringstationicon.png",
+      "sha256": "accc1aabe63c851cc21ae8a92aa13ae7fe62a3cc61f188912dcec503065ef4cc",
+      "bytes": 364
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipper.animation",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipper.animation",
+      "sha256": "b07627887e155460a49e9e0b59c93528cf3d5bd1382927483270f5ad40d538e8",
+      "bytes": 4357
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipper.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipper.object",
+      "sha256": "64a9ad7673378395c3bd7a7ec0f3ffa2548189850ec1b076992a06332a23e326",
+      "bytes": 2246
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipper.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipper.png",
+      "sha256": "24a70846728215c5fc8a6bd240281d82e4b46984533a9d5dada1b3cca96db840",
+      "bytes": 9464
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipperfullbright.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipperfullbright.png",
+      "sha256": "b731496f9bfc5be0f83e0f632c3ece3cc84d68eda9153655601816945e9a0a8f",
+      "bytes": 8571
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshippericon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshippericon.png",
+      "sha256": "17cbb409ce4749b40e9531396855b271af2df6ba6e33790af91f0d4950df990e",
+      "bytes": 340
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipperleft.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipperleft.png",
+      "sha256": "dd57ad9c1c5fbc505573db565449866d81e90476425075812bd441aec226c828",
+      "bytes": 11322
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/cropshipperleftfullbright.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/cropshipperleftfullbright.png",
+      "sha256": "d02b9dd441554643cae6ff88de5bd3129d4f51dc1960137620abdfe758070b84",
+      "bytes": 8548
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/generic/cropshipper/default.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/generic/cropshipper/default.frames",
+      "sha256": "504762c599d3c73eb43e0d55e2f258b558084fdd9ad980e008d40abbfeca041f",
+      "bytes": 667
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnace.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnace.frames",
+      "sha256": "221e8999e6b0e3ff3b25fd949e21007919992257fc4b88804a412023739ee475",
+      "bytes": 233
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnace.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnace.object",
+      "sha256": "1a7ef6e16e22a0e458f3a79902e33c748200120dc6ef5935932cd610881e696a",
+      "bytes": 2357
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnace.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnace.png",
+      "sha256": "ad042baac417c7af70be96996911b7809f4109cb73ac6dcabb8fee74e0755175",
+      "bytes": 1569
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnaceicon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnaceicon.png",
+      "sha256": "9b8feaab63384c6df4d7b44c1cececfb0326f2c91a77bc33feb9fbd4f0040a1d",
+      "bytes": 292
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnacelit.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnacelit.frames",
+      "sha256": "fdd151deb8435e849cbef7f2772c3b740ee1fb64607059a17c2bd2ee35289ed0",
+      "bytes": 235
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/glitch/medievalfurnace/medievalfurnacelit.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/glitch/medievalfurnace/medievalfurnacelit.png",
+      "sha256": "bfbb9131df67f6a0e7c27f69cfb458a9ed1258c4f43d89efb14ef0f697759260",
+      "bytes": 1298
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/wired/shieldgenerator/shieldgenerator.frames",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/wired/shieldgenerator/shieldgenerator.frames",
+      "sha256": "ed682d357fdc25bf7302334e4df97236b917ffec897f3e0d0cbbca2f85b33455",
+      "bytes": 324
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/wired/shieldgenerator/shieldgenerator.object",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/wired/shieldgenerator/shieldgenerator.object",
+      "sha256": "ac98fbe28ac48e5b2e250e81907b01a7320429e1a700658ae24b01755aaef7bc",
+      "bytes": 1504
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/wired/shieldgenerator/shieldgenerator.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/wired/shieldgenerator/shieldgenerator.png",
+      "sha256": "ed9d891d69a2086701492cbb375f09a1a8040d46c335ebe0e8c7a9a907eea2ea",
+      "bytes": 399
+    },
+    {
+      "source": "vanilla-assets",
+      "repository": "FerreiraJGB/Starbound",
+      "commit": "3b370d25c27923155badb38c414a664e1ee2abfc",
+      "path": "assets/packed/objects/wired/shieldgenerator/shieldgeneratoricon.png",
+      "url": "https://raw.githubusercontent.com/FerreiraJGB/Starbound/3b370d25c27923155badb38c414a664e1ee2abfc/assets/packed/objects/wired/shieldgenerator/shieldgeneratoricon.png",
+      "sha256": "de5c1f296b7250b3ee56b1febf59cb1f4819f55067f648992d45ac2c08e93973",
+      "bytes": 202
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beestation/beestation.object",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beestation/beestation.object",
+      "sha256": "7fc780d016aeb3c0147109479ee135d35cfdd4b0702b0b1bcdd51f82a5a89d4e",
+      "bytes": 1699
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beestation/beestation.png",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beestation/beestation.png",
+      "sha256": "5a82323b4debe72fd3c9028b2b0d03b3eb3e947558a7a21ccafdade6d5432fe1",
+      "bytes": 303
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beestation/beestationicon.png",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beestation/beestationicon.png",
+      "sha256": "d743fd91292967d020783469a3bc917869a7ea34d7fba275d44f544b26b0be08",
+      "bytes": 120
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beerefuge/beerefuge.object",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beerefuge/beerefuge.object",
+      "sha256": "788c140b20cb2631058cce88a407ade39116e1a7a31aa0da23102e73f1c6f483",
+      "bytes": 831
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beerefuge/beerefuge.png",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beerefuge/beerefuge.png",
+      "sha256": "73710e0c51161858631799dd5eac0d4e630741beeedef9067c91ea94119d49c8",
+      "bytes": 2108
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "objects/bees/beerefuge/beerefugelit.png",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/objects/bees/beerefuge/beerefugelit.png",
+      "sha256": "b24953ca13c184d888466f2696752d19c026606858848fec1b4303393488d396",
+      "bytes": 2115
+    },
+    {
+      "source": "engine",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "path": "source/game/StarGameTypes.hpp",
+      "url": "https://raw.githubusercontent.com/OpenStarbound/OpenStarbound/e604e078e89310f1212dd20f5cd01bd59d25300b/source/game/StarGameTypes.hpp",
+      "sha256": "34e3fff67f69567bfe7b04662082fd5aa8b9bc0deae9adb49d0ab5fcb937aa09",
+      "bytes": 5204
+    },
+    {
+      "source": "engine",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "path": "source/game/StarObject.cpp",
+      "url": "https://raw.githubusercontent.com/OpenStarbound/OpenStarbound/e604e078e89310f1212dd20f5cd01bd59d25300b/source/game/StarObject.cpp",
+      "sha256": "b2fc63e62681b00b9c5f1ec106d4a0f10fd9f43b25972894f6079cedf112cfd8",
+      "bytes": 50364
+    },
+    {
+      "source": "engine",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "path": "source/game/StarObjectDatabase.cpp",
+      "url": "https://raw.githubusercontent.com/OpenStarbound/OpenStarbound/e604e078e89310f1212dd20f5cd01bd59d25300b/source/game/StarObjectDatabase.cpp",
+      "sha256": "59393af4bafcff245d55a3245e5151ca62bdbeb156a0ac8717ba6d6d4edb6562",
+      "bytes": 27286
+    },
+    {
+      "source": "engine",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "path": "source/base/StarAnimatedPartSet.cpp",
+      "url": "https://raw.githubusercontent.com/OpenStarbound/OpenStarbound/e604e078e89310f1212dd20f5cd01bd59d25300b/source/base/StarAnimatedPartSet.cpp",
+      "sha256": "f813f82e9b771d2281aa8936a12aa17a2a71b930054bcdb1c78edb398e72acc1",
+      "bytes": 18789
+    },
+    {
+      "source": "engine",
+      "repository": "OpenStarbound/OpenStarbound",
+      "commit": "e604e078e89310f1212dd20f5cd01bd59d25300b",
+      "path": "source/game/StarImageMetadataDatabase.cpp",
+      "url": "https://raw.githubusercontent.com/OpenStarbound/OpenStarbound/e604e078e89310f1212dd20f5cd01bd59d25300b/source/game/StarImageMetadataDatabase.cpp",
+      "sha256": "9838f35e7cb3c773192103eb4852ed84553688a3403936906426e35f78b5cbaa",
+      "bytes": 7757
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "bees/objects/apiary/object.png",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/objects/apiary/object.png",
+      "sha256": "e3236414a70cd7b512fae5247f662fc2707509d6f050e8b312f7c04940d43cc2",
+      "bytes": 440
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "bees/objects/apiary/object.frames",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/objects/apiary/object.frames",
+      "sha256": "f34d2eda2c6f1a7ce51f9d7b23989aa3b5f36c38406cd737a1382d39c8ab0f61",
+      "bytes": 136
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "bees/objects/apiary/apiary.object",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/objects/apiary/apiary.object",
+      "sha256": "249c417748c824974c155a98f73db54ad64a5a2d7a7e37e3e4e71962e46e61d6",
+      "bytes": 1296
+    },
+    {
+      "source": "fu",
+      "repository": "sayterdarkwynd/FrackinUniverse",
+      "commit": "17868d86c9bb7bc00f92038fb78b48cebd1b41b8",
+      "path": "bees/objects/apiary.animation",
+      "url": "https://raw.githubusercontent.com/sayterdarkwynd/FrackinUniverse/17868d86c9bb7bc00f92038fb78b48cebd1b41b8/bees/objects/apiary.animation",
+      "sha256": "cc02fb71680fe1f85eea24010def7da7382ef678c974d9a51c0f6b5cc6731777",
+      "bytes": 1910
+    }
+  ]
+}

@@ -11,6 +11,7 @@ local function same(a,b)
 end
 local base='/objects/bees/fubeesgenetics/beeexchange/'
 local slots,faults,puts,takes,drops,logs,animations,tags
+local slotReads, inventoryReads=0,0
 local facing=1
 local objectParameters={}
 object={direction=function() return facing end,
@@ -33,7 +34,10 @@ config={getParameter=function(name) return copy(objectParameters[name]~=nil and 
 sb={logInfo=function() end,logError=function(...) logs[#logs+1]={...} end,printJson=function() return 'descriptor' end}
 animator={setGlobalTag=function(name,value) tags[name]=value end,setAnimationState=function(kind,state) assert(kind=='machine');animations[#animations+1]=state end}
 world={containerItemAt=function(id,s)
- assert(id==42 and s>=0 and s<16);return copy(slots[s])
+ slotReads=slotReads+1;assert(id==42 and s>=0 and s<16);return copy(slots[s])
+end,containerItems=function(id)
+ inventoryReads=inventoryReads+1;assert(id==42)
+ local result={};for i=0,15 do result[i+1]=copy(slots[i]) end;return result
 end,containerTakeNumItemsAt=function(id,s,n)
  takes=takes+1
  if faults.takeFailure==takes or not slots[s] or slots[s].count<n then return nil end
@@ -59,6 +63,7 @@ end,spawnItem=function(item)
 end}
 require=function(path)
  if path=='/scripts/util.lua' then util={};return end
+ if path:match('^/scripts/fubeesgenetics/') then dofile(fixture.repoRoot..'/FUBeesGenetics'..path);return end
  assert(path=='/scripts/kheAA/transferUtil.lua');dofile(fixture.fuRoot..path)
 end
 -- Match native startup: all modules load before engine callbacks are bound.
@@ -70,7 +75,7 @@ for _,path in ipairs(fixture.exchangeConfig.scripts) do dofile(fixture.repoRoot.
 for name,value in pairs(bindings) do _G[name]=value end
 local function fresh(saved,inventory)
  slots=copy(inventory or {});storage=copy(saved or {});faults={};puts=0;takes=0;drops={};logs={};animations={};tags={}
- objectParameters={};transferUtil.vars=nil;init()
+ objectParameters={};transferUtil.vars=nil;slotReads,inventoryReads=0,0;init()
 end
 local function item(name,count,parameters) return {name=name,count=count or 1,parameters=parameters or {}} end
 local function total(name)
@@ -338,5 +343,75 @@ test('E40 item aging module loads before root callbacks without IC',function()
  local objectItem=item('fubeesgenetics_beeexchange')
  assert(same(ageItem(copy(objectItem),1),objectItem))
  require=previousRequire
+end)
+
+test('E41 idle and resource-only slots never request full inventory snapshots',function()
+ for i=1,10 do update(1) end
+ assert(slotReads==160 and inventoryReads==0)
+ fill();slotReads=0;update(1)
+ assert(slotReads==16 and inventoryReads==0 and takes==0)
+end)
+test('E42 a sale uses bulk snapshots without serializing every slot separately',function()
+ slots[15]=item('bee_honey_queen');slotReads,inventoryReads=0,0
+ update(1);assert(total('coalore')==10 and takes==1)
+ assert(inventoryReads==2 and slotReads<30)
+end)
+
+test('E43 full drone stack becomes 1400 Pixels in one bounded transaction',function()
+ slots[0]=item('bee_honey_drone',1000,{genome='A'});slotReads,inventoryReads=0,0
+ update(1);assert(total('bee_honey_drone')==0 and total('money')==1400)
+ assert(takes==1 and puts==2 and slotReads<30 and inventoryReads==3)
+ for _,v in pairs(slots) do assert(v.count<=1000) end
+end)
+test('E44 batch aggregation preserves the exact genetic remainder',function()
+ slots[0]=item('bee_honey_drone',3,{genome='A'});slots[1]=item('bee_honey_drone',1002,{genome='B'})
+ update(1);assert(total('money')==1400 and total('bee_honey_drone')==5)
+ assert(slots[1].count==5 and slots[1].parameters.genome=='B')
+end)
+test('E45 global budget and rotating priority prevent unlimited repeated batches',function()
+ slots[0]=item('bee_honey_drone',1000);slots[1]=item('bee_artisan_drone',1000)
+ update(1);assert(total('money')==1400 and total('bee_artisan_drone')==1000)
+ update(1);assert(total('money')==2800 and total('bee_artisan_drone')==0)
+end)
+test('E46 planner accounts for slots freed only after multiple batches',function()
+ fill();slots[0]=item('bee_honey_drone',10);update(1)
+ assert(total('bee_honey_drone')==0 and slots[0].name=='money' and total('money')==14)
+end)
+test('E47 capacity can limit a sale without discarding the remaining drones',function()
+ fill();slots[0]=item('bee_honey_drone',11,{genome='keep'});slots[1]=item('money',993)
+ update(1);assert(slots[0].count==6 and slots[0].parameters.genome=='keep' and total('money')==1000)
+ update(1);assert(slots[0].count==6 and total('money')==1000)
+end)
+test('E48 native stack limits and legacy returns cannot duplicate batched rewards',function()
+ slots[0]=item('bee_honey_drone',1000);faults.legacyPutReturn=true;update(1)
+ assert(total('money')==1400 and not storage.exchangePending and #drops==0)
+ fresh();fill();slots[0]=item('bee_honey_drone',1000);slots[1]=nil;faults.maxStack=8
+ update(1);assert(total('bee_honey_drone')==995 and total('money')==7)
+end)
+test('E49 interrupted large multi-stack withdrawal refunds exact descriptors',function()
+ slots[0]=item('bee_honey_drone',600,{genome='A'});slots[1]=item('bee_honey_drone',400,{genome='B'})
+ faults.takeFailure=2;update(1)
+ assert(total('bee_honey_drone')==1000 and total('money')==0)
+ assert(slots[0].count==600 and slots[0].parameters.genome=='A' and slots[1].parameters.genome=='B')
+end)
+test('E50 batched debt survives reload and emits only native-sized drops',function()
+ slots[0]=item('bee_honey_drone',1000);faults.putFailure=true;update(1)
+ assert(storage.exchangePending and #storage.exchangePending==2 and total('money')==1400)
+ local saved,inventory=copy(storage),copy(slots)
+ fresh(saved,inventory);update(1);assert(total('money')==1400 and not storage.exchangePending)
+ update(1);assert(total('money')==1400)
+ fresh(saved,inventory);die();assert(#drops==2 and total('money')==1400)
+ for _,v in ipairs(drops) do assert(v.count<=1000) end
+end)
+test('E51 batched trades keep the live FU recipe ratio',function()
+ for _,path in ipairs(paths) do local recipe=fixture.tradeRecipes[path]
+  if recipe.input[1].item=='bee_honey_drone' then
+   local oldInput,oldOutput=recipe.input[1].count,recipe.output.count
+   recipe.input[1].count,recipe.output.count=4,9
+   fresh();slots[0]=item('bee_honey_drone',100);update(1)
+   assert(total('money')==225 and total('bee_honey_drone')==0)
+   recipe.input[1].count,recipe.output.count=oldInput,oldOutput
+  end
+ end
 end)
 print('Bee Exchange: '..groups..' test groups passed (engine bindings mocked).')

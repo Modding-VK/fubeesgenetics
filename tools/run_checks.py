@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check the recovered MVP against pinned FU sources using Python's standard library."""
 import argparse
+import copy
 import ctypes
 import ctypes.util
 import hashlib
@@ -23,7 +24,14 @@ def asset_json(text):
     text = tokens.sub(lambda m: m[0] if m[0].startswith('"') else '', text)
     trailing = re.compile(r'"(?:\\.|[^"\\])*"|,\s*([}\]])')
     text = trailing.sub(lambda m: m[1] if m[1] else m[0], text)
-    return json.loads(text)
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f'Duplicate JSON key: {key}')
+            result[key] = value
+        return result
+    return json.loads(text, object_pairs_hook=unique)
 
 
 def lua(value):
@@ -97,7 +105,7 @@ def main():
             raise RuntimeError(f"Upstream blob mismatch: {path} ({actual} != {expected})")
     from check_container_ui import load_references
     native_root = load_references(ROOT, args.fetch)
-    metadata = json.loads((ROOT / "FUBeesGenetics/_metadata").read_text())
+    metadata = asset_json((ROOT / "FUBeesGenetics/_metadata").read_text())
     dependency = asset_json((fu_root / ".metadata").read_text())["name"]
     assert metadata["name"] == "FUBeesGenetics"
     assert metadata["requires"] == [dependency] == ["FrackinUniverse"]
@@ -126,13 +134,37 @@ def main():
         script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                           + "dofile(" + lua(str(ROOT / "tests/adapter_test.lua")) + ")\n")
         run_lua(script)
-        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua"]:
+        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua", "exchange_batch_test.lua"]:
             script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)
     if args.ic_root:
         from check_storage_compat import run_storage_checks
         run_storage_checks(ROOT, args.ic_root, fixture, native_root)
+    from generate_hybrids import generate
+    hybrid_catalog = asset_json((ROOT / 'docs/HYBRID_SPECIES_CATALOG.json').read_text())
+    assert hybrid_catalog == generate(fu_root), 'Hybrid runtime catalog is stale'
+    hybrid_plants = asset_json((ROOT / 'FUBeesGenetics/bees/hybridPlants.config').read_text())
+    expected_plants = asset_json((ROOT / 'tools/hybrid_plants.json').read_text())
+    assert hybrid_plants == {family: {'id': plant['id'], 'likeness': plant['likeness']}
+                             for family, plant in expected_plants.items()}
+    from build_hybrid_sprites import generate_sprites
+    generate_sprites(fu_root, check=True)
+    hybrid_data = copy.deepcopy(bee_data)
+    for op in asset_json((ROOT / 'FUBeesGenetics/bees/beeData.config.patch').read_text()):
+        section, name = op['path'].strip('/').split('/')
+        hybrid_data[section][name] = op['value']
+    fixture.update(hybridBeeData=hybrid_data, hybridCatalog=hybrid_catalog, hybridPlants=hybrid_plants,
+                   hybridizerConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/hybridizer/hybridizer.object').read_text()),
+                   overloadConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.object').read_text()),
+                   hybridItems={d['itemName']: d for p in (ROOT / 'FUBeesGenetics/bees/bees').glob('hybrid*.item')
+                                for d in [asset_json(p.read_text())]})
+    with tempfile.TemporaryDirectory(prefix='hybrid-checks-') as directory:
+        script = Path(directory) / 'run.lua'
+        for name in ['hybrid_test.lua', 'hybrid_interface_test.lua', 'storage_gui_test.lua']:
+            script.write_text('fixture = ' + lua(fixture) + '\n' +
+                              'dofile(' + lua(str(ROOT / 'tests' / name)) + ')\n')
+            run_lua(script)
     from check_assets import check_assets
     check_assets(ROOT, fu_root, native_root)
     print("Lua syntax, metadata and upstream blob integrity: PASS", flush=True)

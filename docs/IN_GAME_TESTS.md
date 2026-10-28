@@ -6,6 +6,20 @@ autor Goblin Man, ícone Cybernetic Queen em fundo laranja e homepage na lista.
 Os registros abaixo preservam os cenários anteriores sem inferir execução
 individual de cada checkbox a partir da confirmação geral.
 
+## Pesquisa do addon — 0.2.32-dev
+
+- [ ] Industrial Beekeeping aparece após `bees3` (Advanced Beekeeping), custa 1.000 Research e 1 A.I. Chip e
+  ensina Genetic Queen Filter e Auto Refugee.
+- [ ] Abusive Apiaries requer Industrial Beekeeping, custa 1.400
+  Research e 60 Madness e ensina os dois Overload Apiaries.
+- [ ] Unethical Genetic Practices requer Abusive Apiaries, custa
+  2.200 Research e 120 Madness e ensina o Genetic Hybridizer.
+- [ ] Conferir ícone, título, descrição, linhas e posição dos três nós; pagar
+  custos uma vez, salvar/recarregar e confirmar a persistência.
+- [ ] Coletar Bee Station em personagem novo não ensina os cinco blueprints;
+  receitas permanecem na aba Functional depois da pesquisa. Um personagem antigo
+  conserva blueprints já aprendidos.
+
 ## Estado atual e reteste 0.2.14-dev
 
 O usuário validou a correção das texturas na 0.2.13. Isso não confirma a abertura
@@ -76,8 +90,9 @@ resultado e trechos de starbound.log. Não marcar como executado por mocks.
 - [ ] Tooltips: quatro textos individuais em headers/controles e referências,
   delay 0,35 s, sem capturar mouse/teclado ou bloquear tooltips de itens; clipping,
   escala, fontes, todas as opções e Reset legíveis.
-- [ ] U1: obter/reobter Bee Station ensina blueprint permanentemente; retirar estação
-  do inventário não apaga aprendizado; craft segue exigindo Bee Station/Functional.
+- [ ] U1: em personagem novo, coletar Bee Station não ensina os cinco blueprints
+  do addon; concluir cada nó na Agriculture ensina somente suas receitas. A
+  fabricação continua exigindo Bee Station/Functional.
 - [ ] Receita: 2 aichip, 5 laserdiode, 5 skathreinforcedglass, 10 titaniumbar,
   10 liquidhealing, 5 liquidsulphuricacid e 2 unknowngene; manter
   blueprints de outros mods e ausência de rota Pixel Printer.

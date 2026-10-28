@@ -60,6 +60,9 @@ vincula o perfil Steam. A conta logada no uploader será a proprietária do item
 Ícone da lista: metadata.icon referencia a Cybernetic Queen do FU e usa diretivas
 nativas para fundo laranja. Não é a imagem da Workshop nem o ícone dos itens.
 Imagem de apresentação: artwork/branding/workshop-preview.png (512×512).
+Imagem adicional da galeria: artwork/workshop/hybrid-queens-gallery-1920x1080.png
+(1920×1080, fundo branco, 144 rainhas híbridas distintas). Gerar novamente com
+`python3 tools/build_workshop_queens_gallery.py`.
 Texto pronto para a página: artwork/workshop/description.bbcode.txt.
 Definição de título/dependência: artwork/workshop/publication.json.
 
@@ -88,19 +91,19 @@ realizado. A imagem de preview do Workshop é separada do ícone de inventário.
 
 ## Gerar novamente
 
-Requer Python e asset_packer/asset_unpacker da instalação Starbound/OpenStarbound.
-Os executáveis não são redistribuídos. Exemplo (substituir caminhos):
-
-```sh
-python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
-```
-
-Windows: usar os caminhos dos executáveis .exe. O script aceita ferramentas no
-PATH ou na pasta de cache local, e procura unpacker ao lado de packer quando
-seu caminho não foi informado. O script gera PAK, desempacota em pasta temporária,
-confere lista de arquivos, bytes dos assets e valores do metadata, e só depois
-gera os pacotes de entrega. A raiz virtual é /objects, /scripts, /interface etc.,
-sem uma pasta FUBeesGenetics extra dentro do PAK.
+Somente a Action **Build development PAK** gera novos arquivos `.pak`. Ela
+é iniciada somente pelo mantenedor em GitHub → Actions → Build development PAK
+→ Run workflow, selecionando `dev`. Pushes de código ou assets não a iniciam.
+O resultado fica no artefato da execução por 90 dias: PAK com a versão do
+`_metadata`, ZIP com `contents.pak` para Workshop e `SHA256SUMS`. O GitHub baixa
+esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as
+ferramentas OpenStarbound fixadas em `tools/pak_toolchain.json`, confere seus
+hashes, desempacota o PAK para conferir os arquivos e não publica release,
+Steam Workshop ou commits. Os pacotes já versionados em `dist/` são históricos.
+Para obter um novo pacote, usar o artefato da execução correspondente no GitHub.
+O workflow gera o PAK, desempacota em pasta temporária e confere lista de
+arquivos, bytes dos assets e valores do metadata. A raiz virtual é /objects,
+/scripts, /interface etc., sem uma pasta FUBeesGenetics extra dentro do PAK.
 
 Ferramentas usadas nesta entrega: OpenStarbound v0.1.15.1 para Starbound 1.4.4,
 Source ID e hashes registrados em [pak_toolchain.json](../tools/pak_toolchain.json).

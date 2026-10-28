@@ -1,4 +1,69 @@
+# Requisito obrigatório de eficiência de scripting
+
+- Por determinação do mantenedor, **todo item ou conteúdo criado ou alterado
+  neste mod deve considerar e minimizar o consumo da fila de scripting**.
+  Isso abrange objetos, máquinas, itens de inventário, interfaces, builders
+  e patches, inclusive alterações em conteúdo existente.
+- Antes de implementar, ler e aplicar a política
+  [SCRIPTING_PERFORMANCE](docs/SCRIPTING_PERFORMANCE.md) e a skill
+  [starbound-scripting-performance](.agents/skills/starbound-scripting-performance/SKILL.md).
+  Esta instrução também vale para chats que acessem os arquivos via GitHub.
+- Justificar scripts e frequências, evitar trabalho ocioso e consultas
+  redundantes, limitar caches e comunicação, atualizar UI somente quando
+  necessário e carregar dependências pesadas sob demanda.
+- Preservar correção, itens, persistência e contratos FU/ITD. Otimização não
+  autoriza remover revalidações, rollback ou escrow.
+- Documentar evidências e limites. Não confundir redução de chamadas com ganho
+  de CPU medido no jogo. Conteúdo estático deve evitar scripting desnecessário;
+  não adicionar loops ou testes artificiais para cumprir o requisito.
+
 # Operação de Git e entregas
+
+- Instrução geral atual: gerar novos arquivos `.pak` exclusivamente no GitHub
+  Actions. Não executar `tools/package.py`, `asset_packer` nem outro gerador de
+  PAK no workspace local. O script de empacotamento só aceita o ambiente do CI.
+  A Action **Build development PAK** só pode ser iniciada manualmente pelo
+  mantenedor com `workflow_dispatch` na branch `dev`; pushes não a iniciam.
+  Não acionar a Action pelo agente nem enviar novas imagens de arte ao
+  repositório sem solicitação explícita do mantenedor. Preservar os PAKs
+  antigos em `dist/` como histórico; não criar uma cópia local nova ali.
+
+# Arte de máquinas no mundo
+
+- Ao criar ou revisar sprites de máquinas, consultar
+  [STARBOUND_MACHINE_SPRITES](docs/STARBOUND_MACHINE_SPRITES.md), suas
+  [fontes e medidas](docs/SPRITE_SOURCES.md) e a skill
+  [starbound-machine-sprites](.agents/skills/starbound-machine-sprites/SKILL.md).
+- Quando a máquina já tiver sprite no mod, trabalhar o conceito sobre uma cópia
+  do PNG atual, mantendo canvas, estados e pixels fora da mudança pedida.
+  Apresentar original e proposta na mesma escala para revisão.
+- Registrar a ficha de função, escala, materiais, estados e integração
+  conforme [MACHINE_SPRITE_BRIEF](docs/MACHINE_SPRITE_BRIEF.md).
+- Em sprites e conceitos de máquinas no mundo, mostrar **frente e uma lateral**;
+  **jamais mostrar faces superior ou inferior**. Uma borda de tampa não pode
+  sugerir uma superfície vista de cima. Conferir o ângulo também em ícones e
+  prévias derivados desses sprites.
+- As arestas inferiores de base e corpo devem ser **inteiramente horizontais**,
+  sem segmentos diagonais na junção da lateral com a frente. Todos os pés da
+  mesma máquina terminam na **mesma linha horizontal** de apoio; conferir isso
+  também em conceitos, ícones, prévias e cada frame de animação.
+- Se houver pés frontais e recuados separados, conferir os dois pares: posições
+  correspondentes, mesma construção e quantidade correta. O Overload Apiary
+  pequeno conserva quatro pés; o **Overload Large Apiary tem base sólida até o
+  chão, como o Large Apiary FU**, sem pés separados.
+- Distinguir observações da amostra de regras do engine e preferências do
+  projeto. Logos hexagonais e favos das janelas não impõem formato ou tamanho
+  aos sprites das máquinas no mundo.
+
+# Textos de scanner dos objetos
+
+- Toda máquina ou objeto próprio do mod deve ter textos de inspeção para cada
+  espécie jogável: `humanDescription`, `apexDescription`, `avianDescription`,
+  `floranDescription`, `glitchDescription`, `hylotlDescription` e
+  `novakidDescription`, além de `genericDescription` para outras espécies.
+- Ao criar ou alterar objetos, escrever textos coerentes com a voz de cada
+  espécie e com a mecânica real do objeto. Preservar os textos existentes e
+  atualizar qualquer texto que fique incorreto após uma mudança de mecânica.
 
 Instruções explícitas do mantenedor, recebidas nesta conversa:
 
@@ -39,6 +104,18 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 - Auto Refugee já está implementada; consultar ROADMAP e RELEASE_READINESS.
 
 # Slots da interface
+
+- Nas novas janelas de máquinas próprias, incluir um grupo estático de
+  hexágonos em padrão de favo no canto inferior direito. O desenho deve chegar
+  até o limite interno da janela e ficar visualmente por baixo da moldura,
+  sem cobrir rótulos, valores, alertas ou áreas clicáveis. Gerar o motivo no
+  asset de fundo; não adicionar canvas, scripts ou polling para decoração.
+- Usar o cabeçalho do Genetic Queen Filter como referência para logo à
+  esquerda, título laranja e descrição clara alinhados entre si. Dimensionar
+  cada janela de acordo com seu conteúdo, preservando as margens e a leitura.
+- Padronizar logos de máquinas em emblemas hexagonais de 20×20 pixels, com a
+  mesma moldura metálica e âmbar. Variar apenas o símbolo interno de cada
+  máquina; Analyzer e Hybridizer são as referências atuais.
 
 - Approved/Input/Rejected usam molduras estáticas independentes, com
   mouseTransparent=true e camada inferior aos slots nativos. Não usar a

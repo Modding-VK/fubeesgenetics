@@ -57,7 +57,7 @@ require=function(p)
  if p=='/scripts/util.lua' then util={};return end
  if p=='/bees/genomeLibrary.lua' then if not genelib then dofile(fixture.fuRoot..p) end;return end
  if p=='/scripts/kheAA/transferUtil.lua' then dofile(fixture.fuRoot..p);return end
- assert(p=='/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua')
+ assert(p:match('^/scripts/fubeesgenetics/'))
  dofile(fixture.repoRoot..'/FUBeesGenetics'..p)
 end
 local engineRoot = root
@@ -286,5 +286,130 @@ test('M40 legacy full put return clears recovered escrow exactly once',function(
  fresh({recoveryEscrow=bee()});faults.legacyPutReturn=true;update(1)
  assert(slots[0].count==1 and not storage.recoveryEscrow and #drops==0 and not storage.profile)
  update(1);assert(not slots[0] and slots[1].count==1 and storage.profile and #drops==0)
+end)
+
+test('M41 reference display is decoded only after reference changes',function()
+ baseline();local old=genelib.statToValue;local conversions=0
+ genelib.statToValue=function(...) conversions=conversions+1;return old(...) end
+ call('getState');assert(conversions==6)
+ for i=1,20 do call('getState') end
+ assert(conversions==6)
+ call('setMode','baseProduction','ignore');assert(conversions==6)
+ call('resetProfile');assert(not call('getState').traits.baseProduction.referenceDisplay)
+ genelib.statToValue=old
+ tick(bee());assert(call('getState').traits.baseProduction.referenceDisplay~=nil)
+end)
+test('M42 old ambiguous hybrid baseline clears without touching modes, escrow or slots',function()
+ fresh({profile={family='hybrid',subtype=1,subspeciesName='hybridA'},references={baseProduction=1,
+  droneToughness=1,droneBreedRate=1,queenBreedRate=1,queenLifespan=1,mutationChance=1},
+  modes={baseProduction='ignore'},recoveryEscrow=bee()})
+ assert(not storage.profile and not storage.references and storage.modes.baseProduction=='ignore')
+ assert(storage.recoveryEscrow and storage.operationalStatus=='RECOVERY_HOLD')
+end)
+test('M43 exact transfers never invoke item builders',function()
+ local old=root.createItem;root.createItem=function() error('Filter must not rebuild specimens') end
+ fresh();faults.legacyPutReturn=true;local q=bee();q.parameters.extra={deep={x=7}}
+ tick(q);assert(same(slots[1].parameters,q.parameters) and storage.profile)
+ root.createItem=old
+end)
+test('M44 hybrid filter rejects unrelated pairs even with all traits ignored',function()
+ fixture.beeData.stats.hybrid={{name='hybridA'},{name='hybridB'}}
+ fixture.tags.bee_hybrid_queen={bee=true,queen=true}
+ local function hybrid(a,b,subtype)
+  local q=bee(nil,'queen',subtype,'hybrid');local x,y=a,b;if x>y then x,y=y,x end
+  q.parameters.hybridLineage={queenFamily=a,droneFamily=b,speciesId='hybrid_'..x..'_'..y,
+   parentSubtypes={[a]=1,[b]=1}}
+  return q
+ end
+ fresh();tick(hybrid('honey','carpenter',1));assert(storage.profile.lineageKey)
+ for _,trait in ipairs(traits) do call('setMode',trait,'ignore') end
+ tick(hybrid('honey','mason',1));assert(storage.lastResult=='REJECTED_INCOMPATIBLE_SUBSPECIES')
+ tick(hybrid('honey','carpenter',2));assert(storage.lastResult=='REJECTED_INCOMPATIBLE_SUBSPECIES')
+ tick(hybrid('carpenter','honey',2));assert(storage.lastResult=='APPROVED')
+ local saved=copy(storage);fresh(saved);assert(same(saved.profile,storage.profile))
+ fixture.beeData.stats.hybrid=nil
+end)
+
+test('M45 fixed equality applies before baseline and never follows approvals',function()
+ fresh();local reply=call('configureTrait','queenBreedRate','eq',40)
+ assert(reply.commandAccepted and storage.modes.queenBreedRate=='eq')
+ tick(bee({queenBreedRate=41}));assert(slots[2] and not storage.profile)
+ tick(bee({queenBreedRate=40}));assert(slots[1] and storage.profile)
+ tick(bee({queenBreedRate=39}));assert(slots[2])
+ tick(bee({queenBreedRate=40}));assert(storage.lastResult=='APPROVED')
+ assert(storage.targets.queenBreedRate.minRaw==40 and storage.references.queenBreedRate==40)
+end)
+test('M46 inclusive fixed range prevents drift and keeps adaptive traits',function()
+ fresh();assert(call('configureTrait','queenBreedRate','range',35,45).commandAccepted)
+ tick(bee({queenBreedRate=34}));assert(slots[2] and not storage.profile)
+ tick(bee({queenBreedRate=35}));assert(slots[1])
+ tick(bee({queenBreedRate=45,baseProduction=101}));assert(slots[1])
+ tick(bee({queenBreedRate=36,baseProduction=101}));assert(slots[1])
+ tick(bee({queenBreedRate=46,baseProduction=102}));assert(slots[2])
+ assert(storage.references.queenBreedRate==35 and storage.references.baseProduction==101)
+ local t=storage.targets.queenBreedRate;assert(t.minRaw==35 and t.maxRaw==45)
+end)
+test('M47 invalid configuration is atomic and snapshots cannot edit fixed limits',function()
+ baseline();call('configureTrait','queenBreedRate','range',35,45)
+ local old=copy(storage)
+ for _,args in ipairs({{'queenBreedRate','range',46,35},{'queenBreedRate','eq',40.5},
+   {'queenBreedRate','eq',math.huge},{'queenBreedRate','eq',0/0},
+   {'bad','range',1,2},{'queenBreedRate','bad',1,2},{'queenBreedRate','range','35','45'}}) do
+  local r=call('configureTrait',table.unpack(args));assert(not r.commandAccepted and r.commandError)
+  assert(same(storage,old))
+ end
+ local r=call('getState');r.traits.queenBreedRate.target.minRaw=0
+ assert(storage.targets.queenBreedRate.minRaw==35)
+end)
+test('M48 FU mutation percentages resolve exact and ranged raw boundaries',function()
+ fresh();assert(call('configureTrait','mutationChance','eq',3).commandAccepted)
+ tick(bee({mutationChance=39}));assert(slots[1])
+ tick(bee({mutationChance=40}));assert(slots[2])
+ assert(not call('configureTrait','mutationChance','eq',3.01).commandAccepted)
+ assert(call('configureTrait','mutationChance','range',3.01,3.09).commandAccepted)
+ assert(storage.targets.mutationChance.minRaw==40 and storage.targets.mutationChance.maxRaw==40)
+ tick(bee({mutationChance=40}));assert(slots[1])
+ tick(bee({mutationChance=39}));assert(slots[2])
+end)
+test('M49 targets and remembered custom choices survive reload and Reset',function()
+ baseline();call('configureTrait','queenBreedRate','range',35,45)
+ call('setMode','queenBreedRate','gte');local saved=copy(storage);fresh(saved)
+ assert(same(storage.profile,saved.profile) and storage.customModes.queenBreedRate=='range')
+ assert(call('setMode','queenBreedRate','range').commandAccepted)
+ call('resetProfile');assert(not storage.profile and storage.modes.queenBreedRate=='range')
+ assert(storage.targets.queenBreedRate.minRaw==35)
+ tick(bee({queenBreedRate=46}));assert(slots[2] and not storage.profile)
+ tick(bee({queenBreedRate=40}));assert(slots[1])
+ saved=copy(storage);saved.targets.queenBreedRate.minRaw=0;fresh(saved)
+ assert(storage.profile and not storage.targets.queenBreedRate and storage.modes.queenBreedRate=='ignore')
+end)
+test('M50 fixed modes freeze adaptive references for later reactivation',function()
+ baseline();assert(call('setMode','queenBreedRate','eq').commandAccepted)
+ assert(storage.targets.queenBreedRate.minRaw==100)
+ call('configureTrait','queenBreedRate','range',35,45)
+ tick(bee({queenBreedRate=40}));assert(slots[1] and storage.references.queenBreedRate==100)
+ call('setMode','queenBreedRate','gte');tick(bee({queenBreedRate=40}));assert(slots[2])
+ fresh();local r=call('setMode','queenBreedRate','eq');assert(not r.commandAccepted and storage.modes.queenBreedRate=='gte')
+end)
+test('M51 failed transfers cannot initialize or move a fixed profile',function()
+ fresh();call('configureTrait','queenBreedRate','range',35,45)
+ slots[0]=bee({queenBreedRate=40});faults.failOutput=true;update(1)
+ assert(slots[0] and not storage.profile and storage.lastResult=='NONE')
+ assert(storage.targets.queenBreedRate.minRaw==35 and not storage.recoveryEscrow)
+end)
+test('M52 exact FU display values round-trip through fixed criteria',function()
+ for _,trait in ipairs(traits) do
+  for _,raw in ipairs({0,1,38,39,40,100,647,1295}) do
+   local shown=fubeesCriteria.display(raw,trait)
+   local target=fubeesCriteria.normalize(trait,'eq',shown)
+   assert(target and target.minRaw==raw and target.maxRaw==raw)
+  end
+ end
+ assert(not fubeesCriteria.normalize('queenBreedRate','eq',40.00000001))
+ assert(not fubeesCriteria.normalize('mutationChance','eq',3.00000001))
+ local small=fubeesCriteria.normalize('queenBreedRate','range',1e-8,1)
+ assert(small.minRaw==1 and small.maxRaw==1)
+ local t=fubeesCriteria.normalize('queenBreedRate','range',35.5,44.5)
+ assert(t.minRaw==36 and t.maxRaw==44)
 end)
 print('Machine: '..count..' test groups passed (engine bindings mocked).')

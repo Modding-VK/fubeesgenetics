@@ -1,0 +1,12 @@
+{
+  "input": [
+    {"item": "normalalveary", "count": 1},
+    {"item": "aichip", "count": 1},
+    {"item": "durasteelbar", "count": 5}
+  ],
+  "output": {
+    "item": "fubeesgenetics_overloadlargeapiary",
+    "count": 1
+  },
+  "groups": ["mod", "beestation", "tools", "all", "functional"]
+}

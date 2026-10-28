@@ -28,14 +28,42 @@ As fontes do FU foram auditadas no commit fixado em tools/upstream.json:
 105 receitas do Bee Refuge; Terramart Shipments 3.5 usa o ID cropshipper_kheAA2
 e 40 slots. A Bee Exchange atualmente usa 16 slots compartilhados e lê as receitas reais
 do FU em runtime. Crafting: 1 beerefuge + 1 cropshipper_kheAA2 + 2 aichip,
-na Bee Station, com desbloqueio ao obtê-la. Não há dependência adicional de mod.
+na Bee Station, com desbloqueio em Industrial Beekeeping. Não há dependência adicional de mod.
 
 Ver [especificação, tabela e testes](BEE_EXCHANGE_0_2_0.md).
 O mantenedor confirmou todas as alterações anteriores validadas e prontas.
 O novo ícone de apresentação ainda precisa de conferência visual no jogo.
 Ver [estado e prontidão](RELEASE_READINESS.md).
 
+## Apiário de sobrecarga — implementado em `dev`
+
+Implementação iniciada em **0.2.20-dev**. O novo Apiário reutiliza o ciclo
+genético nativo do FU, requer **12 W**, multiplica produção de recursos e drones
+por **1,2×** e reduz a vida útil da rainha para **0,7×**. A receita melhora um
+Apiário normal com dois AI Chips e oito Titanium Bars. Ver
+[especificação e detalhes](OVERLOAD_APIARY_0_2_20.md).
+Não gera abelhas entidades capturáveis aleatórias.
+
+## Abelhas híbridas — implementadas em `dev`
+
+A primeira implementação já inclui a máquina de hibridização, Queen/Young
+Queen/Drone genéricos com metadados de linhagem, produção dinâmica no Overload
+Apiary e nos apiários nativos pequeno e grande do FU, além de folhas de sprites
+próprias com formas, marcas e cores parentais
+fundidas. O catálogo deriva
+**595 espécies / 1.190 subespécies** das 35 famílias FU. A validação dentro do
+jogo ainda está pendente. A hibridizadora entrega uma larva de rainha
+(`bee_hybrid_youngQueen`), que amadurece no apiário com a mesma genética e
+linhagem. Os valores de balanceamento estão no
+[plano](HYBRID_BEES_PLAN.md) e no [catálogo completo](HYBRID_SPECIES_CATALOG.json).
+Desde 0.2.23-dev, o catálogo completo é usado apenas na documentação e nos
+checks; o jogo calcula o par quando necessário e carrega o script de produção
+somente ao inserir uma híbrida no apiário.
+
 ## Fluxo de trabalho
+
+Os cinco blueprints são desbloqueados pelos três nós de pesquisa descritos
+em [Pesquisas de abelhas no FU](FU_BEE_RESEARCH_ANALYSIS.md).
 
 Planejamento e desenvolvimento permanecem em dev. Não criar PR ou promover
 para main sem solicitação explícita. O planejamento não representa publicação
