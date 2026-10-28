@@ -405,6 +405,10 @@ test('M52 exact FU display values round-trip through fixed criteria',function()
    assert(target and target.minRaw==raw and target.maxRaw==raw)
   end
  end
+ assert(not fubeesCriteria.normalize('queenBreedRate','eq',40.00000001))
+ assert(not fubeesCriteria.normalize('mutationChance','eq',3.00000001))
+ local small=fubeesCriteria.normalize('queenBreedRate','range',1e-8,1)
+ assert(small.minRaw==1 and small.maxRaw==1)
  local t=fubeesCriteria.normalize('queenBreedRate','range',35.5,44.5)
  assert(t.minRaw==36 and t.maxRaw==44)
 end)

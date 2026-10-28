@@ -5,7 +5,7 @@ require "/scripts/fubeesgenetics/filtercontract.lua"
 -- FU's mutation percentage is discrete and rounded; bounds are resolved with
 -- the real decoder instead of assuming every displayed decimal is a gene.
 fubeesCriteria = {}
-local C, epsilon = fubeesCriteria, 1e-7
+local C, epsilon = fubeesCriteria, 1e-12
 local function finite(n)
   return type(n) == "number" and n == n and n > -math.huge and n < math.huge
 end
@@ -19,6 +19,14 @@ function C.normalize(trait, mode, minimum, maximum)
   local ceiling = C.display(1295, trait)
   if not finite(minimum) or not finite(maximum) or minimum < 0 or maximum > ceiling + epsilon
     or minimum > maximum then return nil, string.format("Use ordered values between 0 and %g.", ceiling) end
+  if mode == "eq" then
+    local scale = trait == "mutationChance" and 100 or 1
+    local canonical = math.floor(minimum * scale + 0.5) / scale
+    if math.abs(minimum - canonical) > epsilon then
+      return nil, "Equal requires FU's displayed precision and a representable value."
+    end
+    minimum, maximum = canonical, canonical
+  end
   local function bound(value, upper)
     local left, right = 0, 1296
     while left < right do
