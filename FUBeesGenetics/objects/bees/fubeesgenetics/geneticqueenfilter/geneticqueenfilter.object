@@ -106,7 +106,11 @@
       "anchors": [
         "bottom"
       ],
-      "dualImage": "geneticqueenfilter.png"
+      "dualImage": "geneticqueenfilter.png",
+      "lightPosition": [
+        2,
+        2
+      ]
     }
   ],
   "scripts": [
@@ -133,5 +137,11 @@
   "glitchDescription": "Analytical. This machine compares the genetic traits of queen bees against a stored reference profile.",
   "hylotlDescription": "A precise instrument for selectively refining the traits of bee queens across generations.",
   "novakidDescription": "This contraption sorts queen bees by their genes. Saves a whole lotta pickin' through 'em by hand.",
-  "genericDescription": "Stores a genetic reference and sorts inspected bee queens according to configurable traits."
+  "genericDescription": "Stores a genetic reference and sorts inspected bee queens according to configurable traits.",
+  "lightColor": [
+    24,
+    112,
+    120
+  ],
+  "pointLight": true
 }
