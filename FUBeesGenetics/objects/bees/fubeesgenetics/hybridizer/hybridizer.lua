@@ -161,10 +161,6 @@ function init()
   storage.hybridCharge = nil -- Retire energy banked by older versions without parents.
   storage.hybridizationAttempts = storage.hybridizationAttempts or 0
   power.init()
-  animator.setAnimationState("base", "default")
-  animator.setAnimationState("bees", "off")
-  animator.setAnimationState("loading", "off")
-  animator.setAnimationState("warning", "off")
   message.setHandler("fubeesgenetics.hybridizer.getState", function() return getState() end)
 end
 

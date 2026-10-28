@@ -86,3 +86,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.58-dev | Texto de sucesso mostra chances comuns e rivais para o disco presente; slot vazio alterna ícones FU dos três discos a 20% de visibilidade e um estado vazio a cada 2 s. Reutiliza a consulta existente da janela. | |
 | 0.2.59-dev | Chance de sucesso movida para cima de Status com a mesma fonte; bloco inferior centralizado entre divisória e moldura. Aviso de retrabalho reposicionado acima dos slots para evitar sobreposição. Mudança estática, sem custo adicional de scripting. | |
 | 0.2.60-dev | Genetic Hybridizer passa de Rare para Essential; Genetic Queen Filter passa de Rare para Legendary. Apenas metadados estáticos dos objetos, sem novo custo de scripting. | |
+| 0.2.61-dev | Hybridizer recebe corpo 40×32 e ícone baseados no Queen Filter, vidro roxo, ocupação 5×4 e luz roxa mínima; remove animação antiga do Apiary FU. | [Sprite](HYBRIDIZER_SPRITE_0_2_61.md) |

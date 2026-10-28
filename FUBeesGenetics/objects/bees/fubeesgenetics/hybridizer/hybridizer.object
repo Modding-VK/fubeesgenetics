@@ -14,28 +14,29 @@
   "health": 0.1,
   "slotCount": 4,
   "hasWindowIcon": false,
-  "inventoryIcon": "/bees/objects/apiary/icon.png",
+  "inventoryIcon": "hybridizericon.png",
+  "lightColor": [14, 2, 22],
+  "lightPosition": [2, 2],
   "openFrameIndex": 0,
   "frameCooldown": 1,
   "autoCloseCooldown": 3600,
   "uiConfig": "/interface/fubeesgenetics/hybridizer/hybridizer.config",
   "orientations": [
     {
-      "dualImage": "/bees/objects/apiary/object.png:default",
+      "dualImage": "hybridizer.png",
       "imagePosition": [0, 0],
+      "frames": 1,
+      "spaces": [
+        [0, 0], [0, 1], [0, 2], [0, 3],
+        [1, 0], [1, 1], [1, 2], [1, 3],
+        [2, 0], [2, 1], [2, 2], [2, 3],
+        [3, 0], [3, 1], [3, 2], [3, 3],
+        [4, 0], [4, 1], [4, 2], [4, 3]
+      ],
       "spaceScan": 0.1,
-      "anchors": ["bottom"],
-      "collision": "platform"
+      "anchors": ["bottom"]
     }
   ],
-  "animation": "/bees/objects/apiary.animation",
-  "animationParts": {
-    "base": "/bees/objects/apiary/object.png",
-    "bees": "/bees/objects/apiary/bees.png",
-    "loading": "/bees/objects/apiary/loading.png",
-    "warning": "/bees/objects/apiary/warning.png"
-  },
-  "animationPosition": [0, 0],
   "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
   "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
   "scripts": ["/objects/bees/fubeesgenetics/hybridizer/hybridizer.lua"],
@@ -45,7 +46,7 @@
   "outputSlot": 4,
   "bonusSlot": 3,
   "inputNodes": [[0, 0]],
-  "outputNodes": [[1, 0]],
+  "outputNodes": [[4, 0]],
   "powertype": "input",
   "isn_requiredPower": 24,
   "humanDescription": "Different-species parents may yield a hybrid larva. An optional Research Disc improves the odds; each attempt consumes both bees and the disc.",
