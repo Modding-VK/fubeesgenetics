@@ -91,3 +91,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.63-dev | Corrige a posição da fonte de luz na orientação do Hybridizer e aumenta a intensidade para um roxo discreto e visível. Sem script novo. | [Detalhes](HYBRIDIZER_SPRITE_0_2_61.md) |
 | 0.2.64-dev | Filter: Equal/Within range fixos e editor por atributo; Auto Refugee: venda agregada de drones com capacidade e cota global | [Detalhes](FILTER_TARGETS_AND_BATCHES_0_2_64.md) · build manual na Action |
 | 0.2.65-dev | Desce 5 pixels os cinco textos inferiores do Hybridizer para afastá-los da divisória e da moldura. Apenas layout estático, sem custo recorrente novo de scripting. | [Detalhes](HYBRIDIZER_UI_0_2_41.md) |
+| 0.2.66-dev | Nomes dos dois Overload Apiaries usam a cor padrão branca, sem código de cor laranja no `shortdescription`. Somente texto estático; nenhum custo recorrente novo de scripting. | |
