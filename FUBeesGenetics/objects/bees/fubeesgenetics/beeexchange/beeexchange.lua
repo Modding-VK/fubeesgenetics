@@ -1,5 +1,6 @@
 require "/scripts/kheAA/transferUtil.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
+require "/scripts/fubeesgenetics/exchangebatch.lua"
 
 local BASE = "/objects/bees/fubeesgenetics/beeexchange/"
 local copy, same, matches = fubeesContainer.copy, fubeesContainer.same, fubeesContainer.matches
@@ -31,7 +32,7 @@ local function destinations(slots, item)
         if count > 0 then
           plan[#plan + 1] = {slot = slot, count = count}
           remaining = remaining - count
-          if remaining == 0 then return plan end
+          if remaining == 0 then return plan, limit end
         end
       end
     end
@@ -73,17 +74,36 @@ local function deliver()
   return true
 end
 
-local function exchange(slot)
+local function exchange(slot, droneBudget, seen)
   -- A hint only: a real trade still takes a fresh complete snapshot and
   -- revalidates every physical source before withdrawal. Empty/reward/junk
   -- slots do not need to serialize the other fifteen slots.
   local hint = world.containerItemAt(entity.id(), slot)
   if not hint or not self.trades[hint.name] then return false end
+  if hint.name:match("_drone$") and (seen[hint.name] or droneBudget <= 0) then return false end
   local slots = contents()
   local candidate = slots[slot]
   local trade = candidate and self.trades[candidate.name]
   if not trade then return false end
-  local sources, needed = {}, trade.input.count
+  local isDrone = candidate.name:match("_drone$") ~= nil
+  local batches, reward = 1, copy(trade.output)
+  if isDrone then
+    if seen[candidate.name] or droneBudget <= 0 then return false end
+    seen[candidate.name] = true
+    local total = 0
+    for _, item in pairs(slots) do
+      if item.name == candidate.name and integer(item.count) then total = total + item.count end
+    end
+    local possible = math.min(droneBudget, math.floor(total / trade.input.count))
+    if possible < 1 then return false end
+    local probe = copy(reward); probe.count = probe.count * possible
+    local limit = maxStack(probe)
+    if not integer(limit) then return false end
+    batches = fubeesBatch.select(slots, slot, self.size, candidate.name, trade.input.count, reward, limit, possible)
+    if batches < 1 then return false end
+    reward.count = reward.count * batches
+  end
+  local sources, needed = {}, trade.input.count * batches
   -- A drone batch can span stacks with different genetic parameters.
   for offset = 0, self.size - 1 do
     local index = (slot + offset) % self.size
@@ -97,7 +117,17 @@ local function exchange(slot)
       if needed == 0 then break end
     end
   end
-  if needed > 0 or not destinations(slots, trade.output) then return false end
+  if needed > 0 then return false end
+  local plan, limit = destinations(slots, reward)
+  if not plan then return false end
+  -- Persist owed rewards in native-sized chunks, including the 1,400 Pixels
+  -- for a standard 1,000-drone stack. Breaking the object must not spawn an
+  -- oversized stack. The preflight guarantees at most size such chunks.
+  local owed, remaining = {}, reward.count
+  while remaining > 0 do
+    local chunk = copy(reward); chunk.count = math.min(limit, remaining)
+    owed[#owed + 1] = chunk; remaining = remaining - chunk.count
+  end
 
   local removed = {}
   for _, source in ipairs(sources) do
@@ -117,9 +147,9 @@ local function exchange(slot)
   end
   -- All exact inputs were taken synchronously. The reward is now owed, even if
   -- an output binding unexpectedly fails. Persist it before trying insertion.
-  storage.exchangePending = {copy(trade.output)}
+  storage.exchangePending = owed
   deliver()
-  return true
+  return true, isDrone and batches or 0
 end
 
 -- Share one work cycle across simultaneous sales; never restart mid-teleport.
@@ -183,12 +213,16 @@ function update(dt)
   -- already owed delivery regardless of switch state.
   local logicNode = transferUtil.vars.logicNode
   if object.isInputNodeConnected(logicNode) and not object.getInputNodeLevel(logicNode) then return end
-  -- One recipe per slot per second, no offline catch-up. Rotate priority so a
+  -- Queens keep one recipe per slot per second. Drones aggregate once per
+  -- species with a shared budget of 200 batches per loaded cycle. No catch-up.
+  -- Rotate priority so a
   -- continually refilled early slot cannot monopolize limited output capacity.
   local start = self.cursor
   self.cursor = (start + 1) % self.size
+  local droneBudget, seen = 200, {}
   for offset = 0, self.size - 1 do
-    if exchange((start + offset) % self.size) then animateSale() end
+    local sold, used = exchange((start + offset) % self.size, droneBudget, seen)
+    if sold then droneBudget = droneBudget - used; animateSale() end
     if storage.exchangePending then return end
   end
 end

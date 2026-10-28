@@ -134,7 +134,7 @@ def main():
         script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                           + "dofile(" + lua(str(ROOT / "tests/adapter_test.lua")) + ")\n")
         run_lua(script)
-        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua"]:
+        for name in ["machine_test.lua", "interface_test.lua", "exchange_test.lua", "exchange_batch_test.lua"]:
             script.write_text(compilation + "fixture = " + lua(fixture) + "\n"
                               + "dofile(" + lua(str(ROOT / "tests" / name)) + ")\n")
             run_lua(script)

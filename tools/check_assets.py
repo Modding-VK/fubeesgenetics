@@ -116,7 +116,11 @@ def check_assets(root, fu_root, native_root):
         assert sum(bool(b.get('selected')) for b in group['buttons']) == 1
     for w in gui.values():
         if isinstance(w,dict) and w.get('type')=='button': assert 'press' not in w and 'pressed' in w
-    assert set(ui['scriptWidgetCallbacks'])=={'modeChanged','resetProfile'}
+    assert set(ui['scriptWidgetCallbacks'])=={'modeChanged','resetProfile','editCriterion','cycleCustomMode','editorChanged','applyCustom','cancelCustom'}
+    assert gui['ignoreHeader']['value']=='Custom'
+    assert all(gui[t+'Edit']['callback']=='editCriterion' for t in ['baseProduction','droneToughness','droneBreedRate','queenBreedRate','queenLifespan','mutationChance'])
+    assert gui['editorMin']['type']==gui['editorMax']['type']=='textbox'
+    assert all(gui[name]['visible'] is False for name in ui['criterionEditorWidgets'])
     passed('S6 exclusive selectors, callbacks and pressed artwork')
     recipe = next(d for p,d in docs.items() if p.suffix=='.recipe' and d['output']['item']==ident)
     assert {v['item']:v['count'] for v in recipe['input']} == {'aichip':2,'laserdiode':5,'skathreinforcedglass':5,'titaniumbar':10,
@@ -159,8 +163,8 @@ def check_assets(root, fu_root, native_root):
     assert ui['helpTexts']=={
         'gte':'Accept if candidate value is equal to or greater than the reference.',
         'lte':'Accept if candidate value is equal to or lower than the reference.',
-        'ignore':'Ignore this trait. Its stored reference will not change.',
-        'reference':'Genetic value currently used for comparison.'}
+        'ignore':'Custom criterion: Indifferent, Equal or Within range. Use + to configure.',
+        'reference':'Adaptive reference, fixed target (=) or fixed interval (min..max).'}
     assert len(ui['helpRegions'])==28
     for region in ui['helpRegions']:
         assert region['key'] in ui['helpTexts']

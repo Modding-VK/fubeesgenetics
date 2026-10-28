@@ -2,7 +2,8 @@
 fubeesFilter = {
   traits = {"baseProduction", "droneToughness", "droneBreedRate",
     "queenBreedRate", "queenLifespan", "mutationChance"},
-  modeToId = {gte = 0, lte = 1, ignore = 2},
+  modeToId = {gte = 0, lte = 1, ignore = 2, eq = 2, range = 2},
+  customModes = {ignore = true, eq = true, range = true},
   idToMode = {[0] = "gte", [1] = "lte", [2] = "ignore"},
   processInterval = 1,
   pollInterval = 1

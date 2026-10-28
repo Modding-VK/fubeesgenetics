@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.42-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.64-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -43,11 +43,17 @@ par parental/subtipos/dominância. Perfis híbridos antigos sem identidade compl
 recriam apenas a baseline; modos e itens são preservados. A vazão continua em
 uma unidade por segundo. Ver [detalhes, evidências e roteiro de medição](docs/FILTER_PERFORMANCE_0_2_37.md).
 
+## Critérios fixos e venda em lote — 0.2.64-dev
+
+Equal e Within range permitem alvos fixos por gene, sem alargar a janela. A
+Auto Refugee agrupa os lotes de drones, com capacidade e trabalho por ciclo
+limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND_BATCHES_0_2_64.md).
+
 ## Instalação
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.42-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.64-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -86,8 +92,13 @@ por seis traits, com referências adaptativas e comparadores configuráveis.
   10 Healing Water, 5 Sulphuric Acid e 2 Unknown Gene.
 - Use o Input central. A primeira abelha válida estabelece a referência e vai
   para Approved. Todas as condições ativas precisam passar; igualdade é aceita.
-- Escolha **Equal or higher**, **Equal or lower** ou **Indifferent** por trait.
-  Indifferent congela a referência. Os modos podem ser definidos antes da baseline.
+- Escolha **Equal or higher**, **Equal or lower** ou a coluna **Custom** por trait.
+  O botão **+** abre o editor individual: **Indifferent**, **Equal** ou **Within range**.
+  Informe o alvo ou os limites inclusivos em unidades exibidas pelo jogo e clique **Apply**.
+  Equal e Within range são fixos: aprovações não movem seus valores. Indifferent
+  não compara o gene e congela a referência. Os modos podem ser definidos antes da baseline.
+  Na coluna **REF / TARGET**, `=40` mostra igualdade e `35..45` mostra intervalo.
+  Valores de Mutation Chance usam porcentagem e respeitam a discretização genética FU.
 - Qualquer saída ocupada bloqueia o próximo ciclo. Reset Profile limpa o perfil
   e o último resultado, preservando modos, slots e eventual item em recuperação.
 - **Offsets ITD: Input 0, Approved 1, Rejected 2.**

@@ -1,3 +1,12 @@
+# Estado atual — 0.2.64-dev
+
+Equal e Within range com alvos manuais fixos por atributo e editor na coluna
+Custom. Auto Refugee agrupa lotes de drones, limitada a 200 lotes por ciclo e ao
+espaço disponível, preservando ledger e parâmetros. Ver
+[contrato, migração e reteste](FILTER_TARGETS_AND_BATCHES_0_2_64.md).
+Somente dev; build de PAK reservado ao mantenedor. Os registros abaixo são
+históricos. A interface e o desempenho no engine precisam de reteste no jogo.
+
 # Estado atual — 0.2.38-dev
 
 Auditoria de todo o conteúdo e otimizações na Auto Refugee, apiários, híbridas,

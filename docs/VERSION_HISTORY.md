@@ -89,3 +89,5 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.61-dev | Hybridizer recebe corpo 40×32 e ícone baseados no Queen Filter, vidro roxo, ocupação 5×4 e luz roxa mínima; remove animação antiga do Apiary FU. | [Sprite](HYBRIDIZER_SPRITE_0_2_61.md) |
 | 0.2.62-dev | Encurta a descrição do item Hybridizer, removendo a menção a 10.000 de progresso; somente texto estático, sem custo recorrente de scripting. | |
 | 0.2.63-dev | Corrige a posição da fonte de luz na orientação do Hybridizer e aumenta a intensidade para um roxo discreto e visível. Sem script novo. | [Detalhes](HYBRIDIZER_SPRITE_0_2_61.md) |
+
+| 0.2.64-dev | Filter: Equal/Within range fixos e editor por atributo; Auto Refugee: venda agregada de drones com capacidade e cota global | [Detalhes](FILTER_TARGETS_AND_BATCHES_0_2_64.md) · build manual na Action |

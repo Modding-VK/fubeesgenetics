@@ -10,7 +10,7 @@ local function state(mode,initialized)
  return s
 end
 local function ui(destroyed)
- local u={texts={},selected={},requests={},env={},mouse={-100,-100},helpDraws={},destroyed=destroyed}
+ local u={texts={},visible={},selected={},requests={},env={},mouse={-100,-100},helpDraws={},destroyed=destroyed}
  local e=u.env;setmetatable(e,{__index=_G})
  e.require=function(path)
   assert(path=='/scripts/fubeesgenetics/filtercontract.lua')
@@ -35,7 +35,7 @@ local function ui(destroyed)
  function c:drawRect(rect,color) u.draws=u.draws+1;u.helpDraws[#u.helpDraws+1]={rect=rect,color=color} end
  function c:drawText(text,positioning,size,color) u.helpDraws[#u.helpDraws+1]={text=text,positioning=positioning,size=size,color=color} end
  e.pane={containerEntityId=function() return 42 end,dismiss=function() u.dismissed=true end}
- e.widget={setText=function(n,t) u.textWrites=u.textWrites+1;u.texts[n]=t end,getSelectedOption=function(n) return u.selected[n] end,
+ e.widget={blur=function(n) if u.focused==n then u.focused=nil end end,getText=function(n) return u.texts[n] or "" end,setVisible=function(n,v) u.visible[n]=v end,setText=function(n,t) u.textWrites=u.textWrites+1;u.texts[n]=t end,getSelectedOption=function(n) return u.selected[n] end,
   setSelectedOption=function(n,id) u.modeWrites=u.modeWrites+1;u:click(n,id) end,
   bindCanvas=function(n) assert(n=='helpCanvas');return c end}
  e.world={entityExists=function() return not u.destroyed end,sendEntityMessage=function(id,name,...)
@@ -210,5 +210,70 @@ test('U23 idle polling stays at one query per second and commands add no follow-
  u:click('baseProductionModes',1);local command=u.requests[#u.requests];local sent=#u.requests
  command:resolve(state('lte'));u.env.update(0)
  assert(#u.requests==sent and u.selected.baseProductionModes==1)
+end)
+
+local function fixedState(mode,trait,lo,hi)
+ local s=state();local entry=s.traits[trait]
+ entry.mode,entry.customMode=mode,mode
+ entry.target={minDisplay=lo,maxDisplay=hi or lo,minRaw=lo,maxRaw=hi or lo}
+ s.commandAccepted=true;return s
+end
+test('U24 equality is edited locally and applied with one authoritative command',function()
+ local u=boot();u.env.editCriterion('queenBreedRateEdit')
+ assert(u.env.self.editing=='queenBreedRate' and u.visible.queenBreedRateModes==false)
+ u.env.cycleCustomMode();u.texts.editorMin='40';u.env.applyCustom()
+ assert(#u.requests==2 and u.requests[2].name=='fubeesgenetics.gqf.configureTrait')
+ assert(u.requests[2].args[1]=='queenBreedRate' and u.requests[2].args[2]=='eq' and u.requests[2].args[3]==40)
+ u.requests[2]:resolve(fixedState('eq','queenBreedRate',40));u.env.update(0)
+ assert(not u.env.self.editing and u.selected.queenBreedRateModes==2 and #u.requests==2)
+ assert(u.texts.queenBreedRateReference=='=40' and u.visible.queenBreedRateModes)
+end)
+test('U25 range displays fixed limits rather than the most recent reference',function()
+ local u=boot();u.env.editCriterion('queenBreedRateEdit');u.env.cycleCustomMode();u.env.cycleCustomMode()
+ u.texts.editorMin,u.texts.editorMax='35','45';u.env.applyCustom()
+ local confirmed=fixedState('range','queenBreedRate',35,45)
+ u.requests[2]:resolve(confirmed);u.env.update(0)
+ assert(u.texts.queenBreedRateReference=='35..45')
+ u.env.update(1);confirmed.traits.queenBreedRate.referenceDisplay=43;u.requests[3]:resolve(confirmed);u.env.update(0)
+ assert(u.texts.queenBreedRateReference=='35..45')
+end)
+test('U26 invalid numeric input never sends non-finite JSON numbers',function()
+ local u=boot();u.env.editCriterion('queenBreedRateEdit');u.env.cycleCustomMode()
+ for _,text in ipairs({'','hello','1e999'}) do
+  u.texts.editorMin=text;u.env.applyCustom();assert(#u.requests==1 and u.env.self.editing)
+ end
+ u.texts.editorMin='40';u.env.applyCustom()
+ local rejected=state();rejected.commandAccepted=false;rejected.commandError='Invalid interval'
+ u.requests[2]:resolve(rejected);u.env.update(0)
+ assert(u.env.self.editing and u.texts.editorError=='Invalid interval' and u.selected.queenBreedRateModes==0)
+end)
+test('U27 drafts survive polling but are discarded on Cancel and reopen',function()
+ local u=boot();u.env.editCriterion('queenBreedRateEdit');u.env.cycleCustomMode();u.texts.editorMin='40'
+ u.env.update(1);u.requests[2]:resolve(state());u.env.update(0);assert(u.texts.editorMin=='40')
+ u.focused='editorMin';u.env.cancelCustom();assert(not u.focused and not u.env.self.editing and #u.requests==2)
+ u.env.editCriterion('queenBreedRateEdit');assert(u.texts.editorMin=='0')
+end)
+test('U28 custom selector restores the remembered criterion for its own row',function()
+ local u=ui();local s=fixedState('range','queenBreedRate',35,45);s.traits.queenBreedRate.mode='gte'
+ u.requests[1]:resolve(s);u.env.update(0);u:click('queenBreedRateModes',2)
+ assert(u.requests[2].args[1]=='queenBreedRate' and u.requests[2].args[2]=='range')
+end)
+test('U29 mutation targets use percent once and retain the configured limits',function()
+ local u=ui();u.requests[1]:resolve(fixedState('eq','mutationChance',49.92));u.env.update(0)
+ assert(u.texts.mutationChanceReference=='=49.92%')
+ u.env.update(1);u.requests[2]:resolve(fixedState('range','mutationChance',3.01,3.09));u.env.update(0)
+ assert(u.texts.mutationChanceReference=='3.01..3.09%')
+end)
+test('U30 stale reads cannot overwrite a newly applied target',function()
+ local u=boot();u.env.update(1);local stale=u.requests[2]
+ u.env.editCriterion('queenBreedRateEdit');u.env.cycleCustomMode();u.texts.editorMin='40';u.env.applyCustom()
+ u.requests[3]:resolve(fixedState('eq','queenBreedRate',40));u.env.update(0)
+ stale:resolve(state());u.env.update(0)
+ assert(u.texts.queenBreedRateReference=='=40' and u.selected.queenBreedRateModes==2)
+end)
+test('U31 local editor changes add no scripting messages',function()
+ local u=boot();u.env.editCriterion('queenBreedRateEdit')
+ for i=1,12 do u.env.cycleCustomMode();u.env.editorChanged() end
+ assert(#u.requests==1);u.env.cancelCustom();assert(#u.requests==1)
 end)
 print('Interface: '..count..' test groups passed (engine bindings mocked).')

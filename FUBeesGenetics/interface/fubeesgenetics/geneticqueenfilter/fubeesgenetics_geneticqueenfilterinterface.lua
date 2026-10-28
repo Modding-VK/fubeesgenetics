@@ -17,6 +17,7 @@ local results = {
 
 local function updateHelp(dt)
   local canvas = self.helpCanvas
+  if self.editing then return end
   local pos = canvas:mousePosition()
   local mx, my = pos and pos[1], pos and pos[2]
   local key = self.helpKey
@@ -63,6 +64,32 @@ local function setText(name, value)
   end
 end
 
+local customLabels = {ignore="Indifferent", eq="Equal", range="Within range"}
+local traitLabels = {baseProduction="Production", droneToughness="Drone Toughness",
+  droneBreedRate="Drone Breed Rate", queenBreedRate="Queen Breed Rate",
+  queenLifespan="Queen Lifespan", mutationChance="Mutation Chance"}
+local function numberText(value) return string.format("%.6g", value) end
+local function editorVisibility(open)
+  if not open then widget.blur("editorMin"); widget.blur("editorMax") end
+  for _, name in ipairs(self.viewWidgets) do widget.setVisible(name, not open) end
+  for _, name in ipairs(self.editorWidgets) do widget.setVisible(name, open) end
+  self.helpCanvas:clear()
+  self.helpVisible, self.helpKey, self.helpElapsed, self.helpMouseKnown = false, nil, 0, false
+end
+local function closeEditor()
+  self.editing = nil
+  editorVisibility(false)
+end
+local function showEditorMode()
+  setText("editorMode", customLabels[self.editMode])
+  setText("editorMinLabel", self.editMode == "eq" and "Value" or "Minimum")
+  local active = self.editMode ~= "ignore"
+  if not active then widget.blur("editorMin") end
+  if self.editMode ~= "range" then widget.blur("editorMax") end
+  widget.setVisible("editorMin", active); widget.setVisible("editorMinLabel", active)
+  widget.setVisible("editorMax", self.editMode == "range"); widget.setVisible("editorMaxLabel", self.editMode == "range")
+end
+
 local function render(state)
   if type(state) ~= "table" then return end
   self.state = state
@@ -76,6 +103,11 @@ local function render(state)
     if entry.referenceDisplay ~= nil then
       display = trait == "mutationChance" and string.format("%.2f%%", entry.referenceDisplay)
         or tostring(entry.referenceDisplay)
+    end
+    if entry.target and (entry.mode == "eq" or entry.mode == "range") then
+      display = entry.mode == "eq" and ("=" .. numberText(entry.target.minDisplay))
+        or (numberText(entry.target.minDisplay) .. ".." .. numberText(entry.target.maxDisplay))
+      if trait == "mutationChance" then display = display .. "%" end
     end
     setText(trait .. "Reference", display)
     local selected = modeToId[entry.mode]
@@ -91,17 +123,33 @@ end
 
 local function receive(promise)
   if promise:succeeded() then
-    render(promise:result())
+    local state = promise:result()
+    if type(state) ~= "table" or type(state.traits) ~= "table" then
+      setText("status", "Status: Connection unavailable; retrying...")
+      if self.applying then self.applying = false; setText("editorError", "Invalid reply. Check the confirmed state before retrying.") end
+      return false
+    end
+    render(state)
+    if self.applying then
+      self.applying = false
+      if state.commandAccepted then closeEditor()
+      else setText("editorError", state.commandError or "Target was not changed.") end
+    end
     return true
   else
     setText("status", "Status: Connection unavailable; retrying...")
+    if self.applying then
+      self.applying = false
+      setText("editorError", "Reply unavailable. Check the confirmed state before retrying.")
+    end
   end
 end
 
 local function command(name, ...)
-  if self.closed or self.pendingCommand then return end
+  if self.closed or self.pendingCommand then return false end
   self.discardRead = self.pendingRead ~= nil
   self.pendingCommand = world.sendEntityMessage(self.containerId, name, ...)
+  return true
 end
 
 function init()
@@ -111,7 +159,11 @@ function init()
   self.helpSize = config.getParameter("gui").helpCanvas.size
   self.helpTexts, self.helpRegions = config.getParameter("helpTexts"), config.getParameter("helpRegions")
   self.helpElapsed = 0
-  for _, trait in ipairs(traits) do self.traitByWidget[trait .. "Modes"] = trait end
+  self.viewWidgets, self.editorWidgets = config.getParameter("criterionViewWidgets"), config.getParameter("criterionEditorWidgets")
+  self.traitByEdit = {}
+  for _, trait in ipairs(traits) do
+    self.traitByWidget[trait .. "Modes"], self.traitByEdit[trait .. "Edit"] = trait, trait
+  end
   if world.entityExists(self.containerId) then requestState() end
 end
 
@@ -168,11 +220,55 @@ function modeChanged(widgetName, widgetData)
   widget.setSelectedOption(groupName, self.state and modeToId[self.state.traits[trait].mode] or 0)
   self.rendering = false
   if self.state and idToMode[selected] then
-    command("fubeesgenetics.gqf.setMode", trait, idToMode[selected])
+    local mode = idToMode[selected]
+    if selected == 2 then mode = self.state.traits[trait].customMode or "ignore" end
+    command("fubeesgenetics.gqf.setMode", trait, mode)
   end
 end
 
 function resetProfile()
   if not alive() then return end
   command("fubeesgenetics.gqf.resetProfile")
+end
+
+function editCriterion(widgetName, widgetData)
+  if not alive() or not self.state or self.pendingCommand then return end
+  local trait = type(widgetData) == "table" and widgetData.trait or self.traitByEdit[widgetName]
+  if type(trait) ~= "string" or not fubeesFilter.traitSet[trait] then return end
+  local entry = self.state.traits[trait]
+  self.editing, self.editMode = trait, entry.customMode or "ignore"
+  editorVisibility(true)
+  setText("editorTitle", traitLabels[trait])
+  setText("editorError", "")
+  -- Editable text is not a rendering cache: cancelled drafts must not leak
+  -- into the next opening, and passive snapshots must never overwrite typing.
+  widget.setText("editorMin", numberText(entry.target and entry.target.minDisplay or entry.referenceDisplay or 0))
+  widget.setText("editorMax", numberText(entry.target and entry.target.maxDisplay or entry.referenceDisplay or 0))
+  showEditorMode()
+end
+function cycleCustomMode()
+  if not self.editing or self.pendingCommand then return end
+  self.editMode = ({ignore="eq", eq="range", range="ignore"})[self.editMode]
+  setText("editorError", "")
+  showEditorMode()
+end
+function editorChanged()
+  if self and self.editing then setText("editorError", "") end
+end
+function applyCustom()
+  if not self.editing or not alive() or self.pendingCommand then return end
+  local minimum, maximum
+  if self.editMode ~= "ignore" then
+    minimum = tonumber(widget.getText("editorMin"))
+    maximum = self.editMode == "eq" and minimum or tonumber(widget.getText("editorMax"))
+    if not minimum or not maximum or minimum ~= minimum or maximum ~= maximum
+      or math.abs(minimum) == math.huge or math.abs(maximum) == math.huge then
+      setText("editorError", "Enter finite numeric values before applying."); return
+    end
+  end
+  self.applying = command("fubeesgenetics.gqf.configureTrait", self.editing, self.editMode, minimum, maximum)
+end
+function cancelCustom()
+  if not self.editing or self.pendingCommand then return end
+  closeEditor()
 end
