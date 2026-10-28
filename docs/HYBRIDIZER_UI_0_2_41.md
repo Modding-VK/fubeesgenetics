@@ -71,3 +71,12 @@ The long no-disc prompt may wrap onto a second line; the rework warning moves
 to y=122 between the header and slot labels so it cannot collide with the
 status group. These are static layout changes with no extra scripting work.
 Text wrapping and spacing still require inspection in OpenStarbound.
+
+### Lower text clearance (0.2.65-dev)
+
+Move the five lower labels down by 5 pixels: chance, status, experiment
+progress, power draw and attempts now use y=59, 42, 32, 22 and 12. Their
+relative spacing stays the same. This clears the chance text from the divider
+above it and leaves the attempts text above the footer's inner edge. The
+background artwork, scripting and two-second UI polling remain unchanged.
+Visual clearance at the player's UI scale still needs in-game confirmation.
