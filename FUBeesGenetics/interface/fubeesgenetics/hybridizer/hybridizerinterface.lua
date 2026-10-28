@@ -6,6 +6,11 @@ local statusLabels = {
   SUCCESS = "Hybrid queen larva created",
   FAILURE = "Hybridization failed; both bees were lost"
 }
+local discHints = {
+  "/items/active/unsorted/researchvoxel/researchvoxelsmall.png?multiply=ffffff33",
+  "/items/active/unsorted/researchvoxel/researchvoxel.png?multiply=ffffff33",
+  "/items/active/unsorted/researchvoxel/researchvoxellarge.png?multiply=ffffff33"
+}
 
 local function requestState()
   if not self.pending and not self.closed then
@@ -24,9 +29,22 @@ local function percent(value)
   return string.format("%g", math.floor(value * 1000 + 0.5) / 10)
 end
 
+local function updateDiscHint()
+  local image = not self.discPresent and discHints[self.discHintPhase] or nil
+  if image == self.discHintImage then return end
+  self.discHintImage = image
+  if image then
+    widget.setImage("discHint", image)
+    widget.setVisible("discHint", true)
+  else
+    widget.setVisible("discHint", false)
+  end
+end
+
 function init()
   self = {containerId = pane.containerEntityId(), elapsed = 0, pending = nil, closed = false,
-    textValues = {warning = ""}}
+    textValues = {warning = ""}, discPresent = true, discHintPhase = 1}
+  widget.setVisible("discHint", false)
   if world.entityExists(self.containerId) then requestState() end
 end
 
@@ -47,12 +65,12 @@ function update(dt)
       setText("warning", result.reworkAlert and "WARNING: New specimen; rework cost 50% progress" or "")
       setText("energy", string.format("Experiment progress: %d / %d", math.floor(result.progress), result.requiredProgress))
       setText("power", string.format("Power draw: up to %d W", result.watts or 24))
-      local chanceText = result.chance and ("Success: " .. percent(result.chance) .. "%")
-        or "Success: 30% (10% for rival species)"
-      if result.bonus and result.bonus > 0 then
-        chanceText = chanceText .. " (+" .. percent(result.bonus) .. "% disc)"
-      end
+      local chanceText = "Success: " .. percent(result.normalChance or 0.3)
+        .. "% (" .. percent(result.rivalChance or 0.1) .. "% for rival species)"
+      if not result.discBonus or result.discBonus <= 0 then chanceText = chanceText .. " - Add disc for bonus" end
       setText("chance", chanceText)
+      self.discPresent = result.discPresent == true
+      updateDiscHint()
       local lastResult = not result.hasResult and "No result yet"
         or (result.succeeded and "Hybrid queen larva created" or "Failed; parent bees consumed")
       setText("result", string.format("Attempts: %d | %s", result.attempts, lastResult))
@@ -62,6 +80,8 @@ function update(dt)
   end
   if self.elapsed >= 2 then
     self.elapsed = self.elapsed % 2
+    self.discHintPhase = self.discHintPhase % 4 + 1
+    updateDiscHint()
     requestState()
   end
 end

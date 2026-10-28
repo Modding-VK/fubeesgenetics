@@ -3,13 +3,16 @@ local passed = 0
 local function test(name, fn) fn(); passed = passed + 1; print('PASS HU' .. passed .. ' ' .. name) end
 local function state()
   return {status='IN_PROGRESS',progress=24,requiredProgress=10000,watts=24,chance=.3,
+    normalChance=.3,rivalChance=.1,discPresent=false,discBonus=0,
     hasResult=false,attempts=0}
 end
 local function pane()
   local u={requests={},texts={},writes=0,exists=0}
   local e=setmetatable({}, {__index=_G});u.env=e
   e.pane={containerEntityId=function() return 42 end,dismiss=function() u.dismissed=true end}
-  e.widget={setText=function(key,value) u.writes=u.writes+1;u.texts[key]=value end}
+  e.widget={setText=function(key,value) u.writes=u.writes+1;u.texts[key]=value end,
+    setImage=function(key,value) u.images=u.images or {};u.images[key]=value end,
+    setVisible=function(key,value) u.visible=u.visible or {};u.visible[key]=value end}
   e.world={entityExists=function(id) assert(id==42);u.exists=u.exists+1;return not u.gone end,
     sendEntityMessage=function(id,name)
       assert(id==42 and name=='fubeesgenetics.hybridizer.getState')
@@ -36,8 +39,9 @@ test('identical snapshots do not rewrite widgets',function()
 end)
 test('fractional rival disc bonus is shown without rounding away half percent',function()
   local u=pane();local nextState=state();nextState.chance=.125;nextState.bonus=.025
+  nextState.normalChance=.35;nextState.rivalChance=.125;nextState.discBonus=.05;nextState.discPresent=true
   u.requests[1]:resolve(nextState);u.env.update(0)
-  assert(u.texts.chance=='Success: 12.5% (+2.5% disc)')
+  assert(u.texts.chance=='Success: 35% (12.5% for rival species)')
 end)
 test('failed reply recovers the status even when all other fields stay equal',function()
   local u=pane();u.requests[1]:resolve(state());u.env.update(0)

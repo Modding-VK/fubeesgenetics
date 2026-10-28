@@ -6,6 +6,7 @@ local energyPerAttempt = 10000
 local requiredPower
 local queenSlot, droneSlot, outputSlot, bonusSlot = 1, 2, 4, 3
 local discBonuses = {researchvoxel = 0.10, researchvoxellarge = 0.60, researchvoxelsmall = 0.05}
+local rivalSpecies = {parentSpeciesAreRivals = true}
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
 local function setStatus(value) storage.hybridizerStatus = value end
@@ -139,12 +140,16 @@ end
 
 local function getState()
   local _, _, species = validParents()
-  local disc = species and readSlot(bonusSlot)
+  local disc = readSlot(bonusSlot)
   local bonus = species and bonusFor(disc, species) or 0
+  local discBonus = bonusFor(disc)
   return {progress = storage.hybridProgress or 0, requiredProgress = energyPerAttempt,
     status = storage.hybridizerStatus or "WAITING_INPUT", succeeded = storage.lastHybridizationSucceeded,
     hasResult = storage.lastHybridizationSucceeded ~= nil, attempts = storage.hybridizationAttempts or 0,
     chance = species and crossingChance(species, disc), bonus = bonus,
+    normalChance = math.min(1, hybridbees.successChance(nil) + discBonus),
+    rivalChance = math.min(1, hybridbees.successChance(rivalSpecies) + discBonus * 0.5),
+    discPresent = disc ~= nil, discBonus = discBonus,
     watts = requiredPower,
     reworkAlert = storage.hybridReworkAlert == true}
 end

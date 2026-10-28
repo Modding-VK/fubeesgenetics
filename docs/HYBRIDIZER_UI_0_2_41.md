@@ -48,3 +48,15 @@ container items from the former Larva/Disc order once. Its row and column
 spacing vectors keep the clickable grid bounds inside the 270-pixel window
 while the two native cells remain 91 pixels apart. No additional pane
 scripts or polling are introduced; in-game interaction still needs inspection.
+
+### Disc hints and success text (0.2.58-dev)
+
+The empty Disc slot cycles through the original FU Microdisc, Holodisc and
+Megadisc 16×16 icons, then a blank state, changing every two seconds. The
+icons use `?multiply=ffffff33` for 20% alpha and render below the native item
+grid. A real item hides the hint. The pane reuses its existing two-second
+timer and only changes the image or visibility when needed. The machine's
+existing state reply includes disc presence and both calculated chances; it
+reads the Disc slot once per reply even if no parents are present. There is no
+new world polling cycle. Layout, alpha and interaction still need in-game
+visual inspection.

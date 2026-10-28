@@ -21,6 +21,10 @@ as chances resultantes são 35%, 40% e 90% para espécies comuns; 12,5%, 15%
 e 40% para rivais, respectivamente. A janela apresenta a chance final e o
 bônus aplicado. Sem disco, a chance anterior permanece.
 
+Desde 0.2.58-dev, o texto da janela apresenta as duas chances resultantes
+(espécies comuns e rivais) para o disco inserido. Com o slot vazio, informa
+`Add disc for bonus`; a chance real da tentativa segue a mesma regra anterior.
+
 Uma unidade do disco válido é consumida em cada tentativa, mesmo quando a
 hibridização falha. O consumo ocorre junto com os dois pais após o resultado
 estar pronto para confirmação. Se uma remoção falhar, os itens já retirados
