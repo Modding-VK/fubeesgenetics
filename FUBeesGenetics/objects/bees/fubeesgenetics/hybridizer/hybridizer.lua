@@ -5,7 +5,7 @@ require "/scripts/fubeesgenetics/containerutil.lua"
 local energyPerAttempt = 10000
 local requiredPower
 local queenSlot, droneSlot, outputSlot, bonusSlot = 1, 2, 4, 3
-local discBonuses = {researchvoxel = 0.10, researchvoxellarge = 0.60, researchvoxelsmall = 0.05}
+local discBonuses = {researchvoxel = 0.25, researchvoxellarge = 0.30, researchvoxelsmall = 0.15}
 local rivalSpecies = {parentSpeciesAreRivals = true}
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
