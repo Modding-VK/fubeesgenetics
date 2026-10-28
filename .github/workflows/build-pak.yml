@@ -1,4 +1,4 @@
-name: Build development PAK
+name: Build PAK
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +16,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check development version
+        if: github.ref == 'refs/heads/dev'
         run: python tools/check_version.py --development
+      - name: Check release version
+        if: github.ref == 'refs/heads/main'
+        run: python tools/check_version.py --release
       - name: Read package version
         id: metadata
         run: python -c 'import json; print("version=" + json.load(open("FUBeesGenetics/_metadata"))["version"])' >> "$GITHUB_OUTPUT"
@@ -38,7 +42,7 @@ jobs:
       - name: Record package hashes
         working-directory: ${{ runner.temp }}/pak-build
         run: sha256sum "bee-abusive-industry-${{ steps.metadata.outputs.version }}.pak" bee-abusive-industry-workshop-content.zip > SHA256SUMS
-      - name: Upload development packages
+      - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
           name: bee-abusive-industry-${{ steps.metadata.outputs.version }}-${{ github.sha }}
