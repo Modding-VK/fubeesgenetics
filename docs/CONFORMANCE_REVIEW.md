@@ -1,5 +1,10 @@
 # Conformidade da reconstrução
 
+Registro histórico da recuperação. O mantenedor posteriormente confirmou todas
+as alterações funcionais validadas. A situação da candidata, os testes atuais e
+as operações de publicação restantes estão em [RELEASE_READINESS](RELEASE_READINESS.md).
+Os números e pendências abaixo descrevem a fase histórica em que foram registrados.
+
 A implementação foi confrontada com o MD original e com as alterações v1.1/v1.2
 preservadas no histórico. O anexo integral mais recente e a arte final não foram
 recuperados; não se declara equivalência byte a byte com o projeto anterior.

@@ -9,9 +9,10 @@ gerar um PAK não autoriza, por si só, promover para main.
 ## Estado atual
 
 - Repositório: https://github.com/Modding-VK/fubeesgenetics.
-- Código e PAK atuais: **0.2.19-dev**, armazenados em dev.
+- Candidata estável 0.2.18 em release/0.2.18, PR #5 aberto para main.
+- Identidade integrada da dev cc30138dd2d7b0a713d0722829374118eae0957d (0.2.19-dev).
   Base preservada: `6de1050114e865e119a434698c25b4ec4ed67b13` (0.2.18-dev).
-  [Pacote](../dist/bee-abusive-industry-0.2.19-dev.pak) e
+  [Pacote](../dist/bee-abusive-industry-0.2.18.pak) e
   [identidade e prontidão](RELEASE_READINESS.md).
 - Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
 - PR #5 já solicitado e aberto: release/0.2.18 → main. Candidata atualizada

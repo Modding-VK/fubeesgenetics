@@ -171,3 +171,11 @@ Veja docs/HUD_HEADER_0_2_17.md.
 A 0.2.18 centraliza Reset Profile entre a divisória superior e a barra STAT,
 com margens iguais de 11 pixels. As duas listras foram baixadas 3 pixels para
 ficarem na faixa metálica inferior. Ver docs/HUD_ALIGNMENT_0_2_18.md.
+
+## Release estável 0.2.19
+
+Os pacotes históricos `bee-abusive-industry-0.2.19.pak`,
+`bee-abusive-industry-mod.zip` e `bee-abusive-industry-source.zip`
+vieram da branch `main`. O ZIP `bee-abusive-industry-workshop-content.zip`
+continua sendo o pacote de desenvolvimento 0.2.26-dev descrito acima.
+A release estável não foi enviada à Steam Workshop.
