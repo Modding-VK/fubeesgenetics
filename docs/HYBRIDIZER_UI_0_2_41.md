@@ -60,3 +60,14 @@ existing state reply includes disc presence and both calculated chances; it
 reads the Disc slot once per reply even if no parents are present. There is no
 new world polling cycle. Layout, alpha and interaction still need in-game
 visual inspection.
+
+### Status area alignment (0.2.59-dev)
+
+The success chance label moves below the lower divider and above Status, using
+the same 7-pixel font as Status. The labels occupy y=64, 47, 37, 27 and 17
+for chance, status, experiment progress, power draw and attempts. This centers
+the group between the divider at approximately y=70 and the footer at y=12.
+The long no-disc prompt may wrap onto a second line; the rework warning moves
+to y=122 between the header and slot labels so it cannot collide with the
+status group. These are static layout changes with no extra scripting work.
+Text wrapping and spacing still require inspection in OpenStarbound.
