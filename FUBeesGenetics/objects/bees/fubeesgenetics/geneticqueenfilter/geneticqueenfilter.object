@@ -5,7 +5,7 @@
   "description": "Filters inspected Queens and Young Queens using configurable genetic criteria.",
   "race": "generic",
   "category": "storage",
-  "rarity": "rare",
+  "rarity": "legendary",
   "price": 1200,
   "printable": false,
   "slotCount": 3,
