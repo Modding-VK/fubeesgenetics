@@ -14,11 +14,22 @@ troca de paleta. Fonte: `geneticqueenfilter.png` e
 `geneticqueenfiltericon.png`, ambos no mod. Não foram adicionadas formas nem
 frames. A cor funcional roxa diferencia a câmara de hibridização do filtro.
 
-A luz do mundo usa `lightColor` [14,2,22] e `lightPosition` [2,2]: um brilho
-roxo mínimo e constante. O sprite não usa animação nem emissividade separada.
+A primeira versão usava `lightColor` [14,2,22] e `lightPosition` [2,2] no nível
+externo do objeto; a seção de correção abaixo substitui essa configuração.
+O sprite não usa animação nem emissividade separada.
 As chamadas antigas do animator do Apiary FU foram removidas. Não existe
 novo script, polling, cache, mensagem ou custo recorrente para a aparência.
 
 Os PNGs finais foram inspecionados em 1×. O resultado no mundo, o alcance da
 luz e a colocação junto a outras máquinas ainda precisam de conferência no
 OpenStarbound. O PAK fica para a Action manual do mantenedor.
+
+## Correção da luz — 0.2.63-dev
+
+A captura no jogo não mostrou luz perceptível. No OpenStarbound, `lightColor`
+é lido no nível do objeto, mas `lightPosition` é lido dentro de cada
+orientação; a posição anterior estava no lugar errado. A intensidade
+`[14,2,22]` também era baixa demais. A configuração atual usa
+`lightColor: [80,24,120]`, `pointLight: true` e `lightPosition: [2,2]` na
+orientação, perto do centro do vidro. A correção é declarativa, sem script ou
+polling. A cor e o alcance precisam de conferência no jogo.

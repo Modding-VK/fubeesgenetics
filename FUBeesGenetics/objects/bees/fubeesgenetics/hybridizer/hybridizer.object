@@ -15,8 +15,8 @@
   "slotCount": 4,
   "hasWindowIcon": false,
   "inventoryIcon": "hybridizericon.png",
-  "lightColor": [14, 2, 22],
-  "lightPosition": [2, 2],
+  "lightColor": [80, 24, 120],
+  "pointLight": true,
   "openFrameIndex": 0,
   "frameCooldown": 1,
   "autoCloseCooldown": 3600,
@@ -25,6 +25,7 @@
     {
       "dualImage": "hybridizer.png",
       "imagePosition": [0, 0],
+      "lightPosition": [2, 2],
       "frames": 1,
       "spaces": [
         [0, 0], [0, 1], [0, 2], [0, 3],
