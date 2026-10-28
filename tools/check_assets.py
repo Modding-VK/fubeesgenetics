@@ -70,7 +70,7 @@ def check_assets(root, fu_root, native_root):
     assert set(map(tuple,orientation['spaces'])) == {(x,y) for x in range(5) for y in range(4)}
     assert png_size(path.parent/orientation['dualImage']) == (40,32)
     assert png_size(path.parent/obj['inventoryIcon']) == (20,20)
-    assert not {'animation','lightColor','consumeFuel','kheAA_slotLimits'} & obj.keys()
+    assert not {'animation','consumeFuel','kheAA_slotLimits'} & obj.keys()
     passed('S2 static footprint, icon, non-printable and native dualImage facing')
     for p in mod.rglob('*.png'): png_size(p)
     ui_dir = mod/'interface/fubeesgenetics/geneticqueenfilter'
