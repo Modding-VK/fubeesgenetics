@@ -39,3 +39,16 @@ estado a cada 2 s. A nova consulta ao slot ocorre ao confirmar uma tentativa
 ou ao responder à janela aberta. Não há polling adicional, cache persistente
 ou nova consulta à rede de energia. O custo real na thread do mundo precisa
 ser observado no jogo com várias máquinas ativas.
+
+## Novos bônus (0.2.67-dev)
+
+| Disco FU (ID) | Bônus normal | Bônus com espécies rivais | Chance final normal | Chance final rival |
+| --- | ---: | ---: | ---: | ---: |
+| Research Microdisc (`researchvoxelsmall`) | +15 pontos | +7,5 pontos | 45% | 17,5% |
+| Research Holodisc (`researchvoxel`) | +25 pontos | +12,5 pontos | 55% | 22,5% |
+| Research Megadisc (`researchvoxellarge`) | +30 pontos | +15 pontos | 60% | 25% |
+
+As taxas sem disco continuam 30% e 10%. A tabela de bônus do objeto é a mesma
+usada no cálculo da tentativa e dos valores mostrados na interface. Não há
+novas consultas ou custo recorrente de script; o comportamento no jogo ainda
+precisa ser conferido após gerar o pacote manualmente pelo Actions.

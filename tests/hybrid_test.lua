@@ -220,7 +220,7 @@ test("Partial parent removal refunds and does not spend a second attempt", funct
 end)
 test("Research discs add the configured success chance and half for rivals", function()
   local e = setup(); e.startMachine()
-  for _, case in ipairs({{"researchvoxelsmall", .05}, {"researchvoxel", .10}, {"researchvoxellarge", .60}}) do
+  for _, case in ipairs({{"researchvoxelsmall", .15}, {"researchvoxel", .25}, {"researchvoxellarge", .30}}) do
     e.inventory[2] = {name = case[1], count = 2, parameters = {}}
     local state = e.messages["fubeesgenetics.hybridizer.getState"]()
     assert(math.abs(state.bonus - case[2]) < 1e-9)
@@ -233,7 +233,7 @@ test("Research discs add the configured success chance and half for rivals", fun
   assert(rival)
   e.inventory[0] = e.parent(rival.parentFamilies[1], "queen")
   e.inventory[1] = e.parent(rival.parentFamilies[2], "drone")
-  for _, case in ipairs({{"researchvoxelsmall", .025}, {"researchvoxel", .05}, {"researchvoxellarge", .30}}) do
+  for _, case in ipairs({{"researchvoxelsmall", .075}, {"researchvoxel", .125}, {"researchvoxellarge", .15}}) do
     e.inventory[2] = {name = case[1], count = 2, parameters = {}}
     local state = e.messages["fubeesgenetics.hybridizer.getState"]()
     assert(math.abs(state.bonus - case[2]) < 1e-9)

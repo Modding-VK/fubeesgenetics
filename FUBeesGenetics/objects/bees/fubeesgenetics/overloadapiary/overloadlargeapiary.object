@@ -3,7 +3,7 @@
   "colonyTags": ["hive", "bees", "insects"],
   "rarity": "rare",
   "description": "A larger apiary that pushes bees beyond their limits. ^cyan;12W power^reset; boosts resources and drones by 20%; without power, production continues at normal speed. Queen lifespan is reduced to 70%.",
-  "shortdescription": "^orange;Ov. L. Apiary^reset;",
+  "shortdescription": "Ov. L. Apiary",
   "race": "generic",
   "subtitle": "Maximum output. Minimum mercy.",
   "category": "crafting",
