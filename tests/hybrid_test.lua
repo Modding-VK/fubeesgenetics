@@ -420,13 +420,23 @@ test("Overload apiary skips offline catchup and continues without power", functi
   e.supply = 100; for _ = 1, 20 do e.update(.1) end; assert(ticks > unpoweredTicks)
   e.uninit(); equal(e.storage.lastActive, nil); equal(e.storage.unfinishedTicks, nil)
 end)
-test("Larva matures and establishes drones without a native starter", function()
+test("Hybrid larva follows native drone starter and no-queen decay", function()
   local e = setup(); e.startApiary()
   local h = e.hybrid("honey", "carpenter"); h.name = "bee_hybrid_youngQueen"; h.parameters.lifespan = nil
   e.inventory[0] = e.root.createItem(h)
   for _ = 1, 300 do e.update(1) end
+  assert(not e.inventory[1], "hybrid queen must not bootstrap drones without a starter")
+  local starter = e.hybrid("honey", "carpenter")
+  starter.name = "bee_hybrid_drone"; starter.count = 1; starter.parameters.lifespan = nil
+  e.inventory[1] = e.root.createItem(starter)
+  for _ = 1, 300 do e.update(1) end
   assert(e.inventory[1] and e.inventory[1].name == "bee_hybrid_drone")
-  assert(e.hybridbees.compatible(e.inventory[0], e.inventory[1])); assert(e.consumed > 0)
+  assert(e.inventory[1].count > 1); assert(e.hybridbees.compatible(e.inventory[0], e.inventory[1]))
+  e.inventory[0] = nil
+  local beforeDecay = e.inventory[1].count
+  for _ = 1, 1000 do e.update(1) end
+  assert(e.inventory[1] == nil or e.inventory[1].count < beforeDecay, "drones must decay without a queen")
+  assert(e.consumed > 0)
 end)
 test("Zero-gene production works with no NaN and old return semantics", function()
   local e = setup(); e.startApiary(); e.reportFull = true
