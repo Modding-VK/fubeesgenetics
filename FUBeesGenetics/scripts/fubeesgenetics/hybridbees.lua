@@ -418,8 +418,9 @@ function M.install(multiplier)
     ageQueen()
   end
   beeTick = function(dt)
-    -- Native FU otherwise requires existing drones before allowing any births.
-    if M.lineage(queen) then hasDrones = true end
+    -- Keep FU's authoritative cycle gate: queen production requires drones
+    -- already present in the apiary. The native tick also owns no-queen drone
+    -- decay, so hybrid bees must pass through the same checks.
     inBeeTick = true
     -- Clear even on an engine exception; never reuse world data on another
     -- tick, a direct helper call, or an offline simulation iteration.

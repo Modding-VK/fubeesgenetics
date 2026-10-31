@@ -93,3 +93,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.65-dev | Desce 5 pixels os cinco textos inferiores do Hybridizer para afastá-los da divisória e da moldura. Apenas layout estático, sem custo recorrente novo de scripting. | [Detalhes](HYBRIDIZER_UI_0_2_41.md) |
 | 0.2.66-dev | Nomes dos dois Overload Apiaries usam a cor padrão branca, sem código de cor laranja no `shortdescription`. Somente texto estático; nenhum custo recorrente novo de scripting. | |
 | 0.2.67-dev | Bônus dos discos do Hybridizer: Micro +15, Holo +25 e Mega +30 pontos; espécies rivais recebem metade. Mesma tabela atende tentativa e interface, sem custo recorrente novo. | [Detalhes](HYBRIDIZER_RESEARCH_DISCS_0_2_55.md) |
+| 0.2.68-dev | Remove o bypass que permitia à rainha híbrida gerar drones sem drones previamente presentes; o ciclo e a decadência de drones sem rainha voltam a seguir as validações nativas do FU. | |
