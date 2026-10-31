@@ -223,3 +223,18 @@ Hybrid bees follow the Frackin Universe apiary cycle gate. A queen cannot start
 producing drones by itself: valid drones must already be present for the apiary
 to advance queen production. The native no-queen timer and drone decay rules are
 also preserved, so drones do not remain indefinitely after their queen is removed.
+
+
+## 14. Hybridizer status outputs
+
+The Hybridizer exposes four binary output nodes for automation:
+
+| Node | Signal condition |
+| --- | --- |
+| 0 | A valid experiment is actively accumulating progress |
+| 1 | A supported research disc is present in the disc slot |
+| 2 | The larva result slot is occupied |
+| 3 | Valid parents are present, the result slot is free, and the machine can accept progress |
+
+The signals are updated only when their state changes. The existing power input
+remains separate from these status outputs.
