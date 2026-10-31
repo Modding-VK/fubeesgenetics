@@ -215,3 +215,11 @@ resource, their quantities are combined using those same weights.
 
 This is a planned correction to the production system. The final integer rounding
 and the exact apiary integration still need to be implemented and verified.
+
+
+## 13. Apiary cycle compatibility
+
+Hybrid bees follow the Frackin Universe apiary cycle gate. A queen cannot start
+producing drones by itself: valid drones must already be present for the apiary
+to advance queen production. The native no-queen timer and drone decay rules are
+also preserved, so drones do not remain indefinitely after their queen is removed.
