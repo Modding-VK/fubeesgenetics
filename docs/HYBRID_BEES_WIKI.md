@@ -183,3 +183,35 @@ When progress reaches 10,000 points, the Hybridizer performs an attempt:
 
 This page describes the trait logic used by hybrid bees and deliberately excludes
 the 'miteResistance' gene, which is outside this consolidation.
+
+
+## 12. Planned hybrid production rule
+
+The hybrid production model is planned to combine both parent production profiles
+using the predominant parent as the weight.
+
+If parent A produces:
+
+- 5 of resource E;
+- 2 of resource F;
+- 6 of resource G;
+- 1 of resource H;
+
+and parent B produces:
+
+- 3 of resource X;
+- 6 of resource Y;
+- 10 of resource Z;
+
+then a hybrid with the same production capacity and parent A as predominant uses:
+
+- 2/3 of parent A's production;
+- 1/3 of parent B's production.
+
+The hybrid therefore receives the union of both parents' resource profiles. Resources
+that only parent A produces are weighted by the 2/3 share. Resources that only
+parent B produces are weighted by the 1/3 share. If both parents produce the same
+resource, their quantities are combined using those same weights.
+
+This is a planned correction to the production system. The final integer rounding
+and the exact apiary integration still need to be implemented and verified.
