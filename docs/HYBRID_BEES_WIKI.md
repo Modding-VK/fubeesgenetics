@@ -187,7 +187,7 @@ the 'miteResistance' gene, which is outside this consolidation.
 
 ## 12. Planned hybrid production rule
 
-The hybrid production model is planned to combine both parent production profiles
+The hybrid production model combines both parent production profiles
 using the predominant parent as the weight.
 
 If parent A produces:
@@ -213,7 +213,7 @@ that only parent A produces are weighted by the 2/3 share. Resources that only
 parent B produces are weighted by the 1/3 share. If both parents produce the same
 resource, their quantities are combined using those same weights.
 
-This is a planned correction to the production system. The final integer rounding
+The weighted production rule is implemented. The final integer rounding
 and the exact apiary integration still need to be implemented and verified.
 
 
