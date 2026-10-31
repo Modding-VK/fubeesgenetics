@@ -51,6 +51,7 @@ jobs:
           path: |
             ${{ runner.temp }}/pak-build/bee-abusive-industry-${{ steps.metadata.outputs.version }}.pak
             ${{ runner.temp }}/pak-build/bee-abusive-industry-workshop-content.zip
+            ${{ runner.temp }}/pak-build/bee-abusive-industry-mod.zip
             ${{ runner.temp }}/pak-build/SHA256SUMS
           if-no-files-found: error
           retention-days: 90
