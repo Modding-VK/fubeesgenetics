@@ -97,3 +97,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.69-dev | Atualiza o teste H29 para validar o ciclo nativo de drones híbridos: exige um drone inicial e verifica a decadência após remover a rainha. | |
 | 0.2.70-dev | Inicia a produção híbrida ponderada em 2/3 para a linhagem predominante e 1/3 para a recessiva; adiciona quatro saídas de status ao Hybridizer. | |
 | 0.2.71-dev | Adiciona à descrição e às inspeções do Hybridizer o mapeamento dos quatro nós de status: ativo, disco, larva e pronto. | |
+| 0.2.72-dev | Overload Apiary passa a ter 12 slots de output em 3×4; Overload Large passa a ter 20 slots de output em 4×5. Interfaces próprias preservam os slots nativos. | |

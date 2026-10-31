@@ -147,7 +147,7 @@ ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
 Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
 atualizar. As versões atuais já usam os mesmos 16 slots.
 
-## Overload Apiary (0.2.20-dev)
+## Overload Apiary (0.2.72-dev)
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
 vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
@@ -157,10 +157,11 @@ Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
 como itens no inventário.
 Consulte a [especificação](docs/OVERLOAD_APIARY_0_2_20.md).
 
-O **Overload Large Apiary** tem 20 slots, dois espaços para drones e dois para
-quadros. Usa a mesma regra de produção e desgaste, e também consome 12 W para
-ativar o bônus. Sua receita na Bee Station é 1 Large Apiary, 1 A.I. Chip e
-5 Durasteel Bars.
+O pequeno tem 12 slots de output em 3 linhas de 4, além dos slots de rainha,
+drone e quadro. O **Overload Large Apiary** tem 20 slots de output em 5 linhas
+de 4, além de dois espaços para drones e dois para quadros. Ambos usam a mesma
+regra de produção e desgaste e consomem 12 W para ativar o bônus. A receita do
+Large na Bee Station é 1 Large Apiary, 1 A.I. Chip e 5 Durasteel Bars.
 
 ## Genetic Hybridizer e abelhas híbridas (0.2.71-dev)
 
