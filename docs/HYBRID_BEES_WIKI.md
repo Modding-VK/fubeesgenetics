@@ -1,187 +1,185 @@
-# Wiki de Abelhas Híbridas
+# Hybrid Bees Mechanics Wiki
 
-Esta página explica, em linguagem direta, como o cruzamento de abelhas funciona no
-Genetic Hybridizer.
+This page explains, in plain language, how bee crossbreeding works in the Genetic Hybridizer.
 
-## 1. O que entra no Hybridizer
+## 1. What goes into the Hybridizer
 
-O equipamento recebe:
+The machine accepts:
 
-- uma abelha rainha de uma espécie;
-- um drone de outra espécie;
-- opcionalmente, um Research Microdisc, Holodisc ou Megadisc.
+- a queen bee from one species;
+- a drone from another species;
+- optionally, a Research Microdisc, Holodisc, or Megadisc.
 
-O resultado de uma tentativa bem-sucedida é uma **larva de rainha híbrida**, e não
-uma rainha adulta.
+A successful attempt produces a **hybrid queen larva**, not an adult queen.
 
-Os dois progenitores são consumidos em toda tentativa. Um disco válido também é
-consumido, independentemente do sucesso ou da falha.
+Both parent bees are consumed on every attempt. A valid disc is also consumed,
+regardless of whether the attempt succeeds or fails.
 
-## 2. Chance de sucesso
+## 2. Success chance
 
-Sem disco, a chance base é:
+Without a disc, the base chance is:
 
-- espécies comuns: 30%;
-- espécies rivais: 10%.
+- ordinary species: 30%;
+- rival species: 10%.
 
-Os discos aumentam essa chance:
+Discs increase this chance:
 
-| Disco | Bônus normal | Bônus contra espécies rivais |
+| Disc | Normal bonus | Bonus against rival species |
 | --- | ---: | ---: |
-| Research Microdisc | +15 pontos percentuais | +7,5 pontos |
-| Research Holodisc | +25 pontos percentuais | +12,5 pontos |
-| Research Megadisc | +30 pontos percentuais | +15 pontos |
+| Research Microdisc | +15 percentage points | +7.5 points |
+| Research Holodisc | +25 percentage points | +12.5 points |
+| Research Megadisc | +30 percentage points | +15 points |
 
-A chance nunca ultrapassa 100%.
+The chance cannot exceed 100%.
 
-Exemplos:
+Examples:
 
-- espécie comum + Microdisc: 45%;
-- espécie comum + Holodisc: 55%;
-- espécie comum + Megadisc: 60%;
-- espécie rival + Microdisc: 17,5%;
-- espécie rival + Holodisc: 22,5%;
-- espécie rival + Megadisc: 25%.
+- ordinary species + Microdisc: 45%;
+- ordinary species + Holodisc: 55%;
+- ordinary species + Megadisc: 60%;
+- rival species + Microdisc: 17.5%;
+- rival species + Holodisc: 22.5%;
+- rival species + Megadisc: 25%.
 
-## 3. Como os traits são herdados
+## 3. How traits are inherited
 
-Cada trait é calculado separadamente a partir dos genes da rainha e do drone.
+Each trait is calculated separately from the queen's and drone's genes.
 
-Na regra geral:
+The general rule is:
 
-1. o Hybridizer lê o valor do trait nos dois progenitores;
-2. escolhe o menor valor parental como base;
-3. aplica uma redução de um terço, mantendo aproximadamente dois terços do valor;
-4. arredonda para a unidade genética mais próxima;
-5. se a base era maior que zero, o resultado mínimo é 1;
-6. se os dois valores eram zero, o resultado permanece zero.
+1. the Hybridizer reads the trait value from both parents;
+2. it uses the lower parental value as the base;
+3. it applies a one-third reduction, keeping approximately two-thirds of the value;
+4. it rounds to the nearest genetic unit;
+5. if the original base was above zero, the result cannot be lower than 1;
+6. if both values were zero, the result remains zero.
 
-Assim, a híbrida não recebe automaticamente a média dos dois valores. O resultado
-é uma versão reduzida do trait mais fraco entre os progenitores.
+The hybrid therefore does not automatically receive the average of both values. The
+result is a reduced version of the weaker parental trait.
 
-### Exemplo
+### Example
 
-Se os valores de um trait forem 3 e 1:
+If a trait has values 3 and 1:
 
-- menor valor: 1;
-- dois terços de 1: 0,67;
-- arredondamento e mínimo positivo: 1;
-- resultado: 1.
+- lower value: 1;
+- two-thirds of 1: 0.67;
+- rounding and the positive minimum: 1;
+- result: 1.
 
-Se forem 6 e 3:
+If the values are 6 and 3:
 
-- menor valor: 3;
-- dois terços de 3: 2;
-- resultado: 2.
+- lower value: 3;
+- two-thirds of 3: 2;
+- result: 2.
 
-## 4. Traits com regras próprias
+## 4. Traits with special rules
 
-Alguns genes não usam a regra geral.
+Some genes do not use the general rule.
 
-### Subespécie
+### Subspecies
 
-A larva recebe aleatoriamente uma das duas subespécies híbridas disponíveis.
-As duas subespécies têm a mesma aparência, mas priorizam a produção de recursos
-de progenitores diferentes.
+The larva randomly receives one of the two available hybrid subspecies. Both
+subspecies have the same appearance, but each prioritizes resources associated
+with a different parent.
 
-O campo visível de subespécie informa:
+The visible subspecies field reports:
 
-'Predominant: [subespécie]'
+'Predominant: [subspecies]'
 
-O jogador usa esse campo para saber qual linhagem de produção foi priorizada.
+The player can use this field to identify which production lineage was prioritized.
 
 ### Work time
 
-O tempo de trabalho possui uma regra própria para preservar combinações válidas
-e evitar resultados extremos incompatíveis.
+Work time has its own rule to preserve valid combinations and avoid incompatible
+extreme results.
 
 ### Mutation chance
 
-A chance de mutação parte do maior valor parental e recebe um incremento de uma
-unidade genética, respeitando o limite interno do gene.
+Mutation chance starts from the higher parental value and receives a one-unit
+genetic increase, within the gene's internal limit.
 
-## 5. Biomas e intolerâncias
+## 5. Biomes and intolerances
 
-As intolerâncias ou dislikes dos dois progenitores são mantidas juntas na híbrida.
-Quando os dois têm um valor explícito para o mesmo bioma, o resultado é um
-meio-termo entre os valores.
+The intolerances or dislikes from both parents are retained by the hybrid. When both
+parents have an explicit value for the same biome, the result is the midpoint
+between those values.
 
-A regra pode ser resumida assim:
+The rule can be summarized as:
 
-- intolerâncias dos dois pais são preservadas;
-- valores conflitantes no mesmo bioma são combinados por meio-termo;
-- um valor positivo continua representando uma condição favorável;
-- um valor negativo ou extremo continua representando intolerância ou perigo,
-  conforme a escala usada pelo Frackin Universe.
+- both parents' intolerances are preserved;
+- conflicting values for the same biome are combined at the midpoint;
+- a positive value continues to represent a favorable condition;
+- a negative or extreme value continues to represent intolerance or danger,
+  according to the scale used by Frackin Universe.
 
-A herança de bioma é independente da escolha de subespécie.
+Biome inheritance is independent of the subspecies choice.
 
-## 6. Plantas preferenciais
+## 6. Preferred plants
 
-A híbrida recebe uma planta preferencial de cada progenitor.
+The hybrid receives one preferred plant from each parent.
 
-Quando as preferências entram em conflito, o likeness é combinado por meio-termo.
-A espécie híbrida não recebe uma lista ilimitada de preferências: é selecionada
-uma preferência de cada lado do cruzamento.
+When preferences conflict, likeness is combined at the midpoint. The hybrid does
+not receive an unlimited preference list: one preference is selected from each
+side of the cross.
 
-## 7. Rivalidades
+## 7. Rivalries
 
-Uma espécie híbrida é considerada rival quando a combinação dos progenitores
-envolve espécies rivais.
+A hybrid species is considered rival when the parent combination involves rival
+species.
 
-As rivalidades também se propagam para cruzamentos posteriores:
+Rivalries also carry into later crosses:
 
-- a híbrida mantém a rivalidade derivada dos progenitores;
-- espécies rivais têm chance de hibridização menor;
-- uma híbrida rival pode tornar-se uma das partes rivais de cruzamentos futuros.
+- the hybrid retains rivalry derived from its parents;
+- rival species have a lower hybridization chance;
+- a rival hybrid can become one of the rival participants in future crosses.
 
-## 8. Produção nos apiários
+## 8. Production in apiaries
 
-A tabela de recursos e quantidades pertence ao apiário do Frackin Universe. A abelha
-fornece identidade, subespécie e genética para que o apiário aplique seus cálculos.
+The resource and quantity table belongs to the Frackin Universe apiary. The bee
+provides identity, subspecies, and genetics for the apiary to use in its calculations.
 
-Por isso:
+Therefore:
 
-- o apiário define recursos base, velocidade, slots e regras de processamento;
-- a abelha fornece os dados genéticos e a linhagem consultados pelo apiário;
-- a subespécie predominante determina qual produção da híbrida é priorizada;
-- a híbrida pode produzir recursos associados às duas espécies progenitoras,
-  com redução conforme as regras de herança e produção.
+- the apiary defines base resources, speed, slots, and processing rules;
+- the bee provides the genetic data and lineage consulted by the apiary;
+- the predominant subspecies determines which hybrid production line is prioritized;
+- the hybrid can produce resources associated with both parent species, with
+  reductions according to inheritance and production rules.
 
-## 9. Aparência
+## 9. Appearance
 
-Cada espécie híbrida possui seu próprio sprite. A aparência mistura cores, padrões
-e traços visuais das duas progenitoras.
+Each hybrid species has its own sprite. Its appearance combines colors, patterns,
+and visual traits from both parents.
 
-As duas subespécies da mesma espécie híbrida usam a mesma aparência. A diferença
-entre elas está na genética, na subespécie predominante e na prioridade de produção.
+The two subspecies of the same hybrid species share the same appearance. Their
+difference lies in genetics, predominant subspecies, and production priority.
 
-## 10. Progresso e troca de cobaias
+## 10. Progress and specimen changes
 
-O Hybridizer acumula progresso somente com:
+The Hybridizer accumulates progress only when it has:
 
-- rainha válida;
-- drone válido de espécie diferente;
-- saída livre para a larva;
-- energia disponível.
+- a valid queen;
+- a valid drone from a different species;
+- an empty larva output slot;
+- available power.
 
-Se uma entrada for retirada, o experimento pausa. Recolocar exatamente a mesma
-abelha permite continuar.
+If an input is removed, the experiment pauses. Reinserting the exact same bee lets
+the experiment continue.
 
-Se uma das cobaias for trocada:
+If one of the specimens is replaced:
 
-- o progresso existente é reduzido em 50%;
-- a máquina exibe um alerta de retrabalho;
-- o experimento continua usando o novo par.
+- existing progress is reduced by 50%;
+- the machine shows a rework warning;
+- the experiment continues with the new pair.
 
-## 11. Resultado da tentativa
+## 11. Attempt result
 
-Ao atingir 10.000 pontos de progresso, o Hybridizer executa uma tentativa:
+When progress reaches 10,000 points, the Hybridizer performs an attempt:
 
-- sucesso: cria uma larva de rainha híbrida;
-- falha: os progenitores são consumidos e nenhuma larva é criada;
-- disco inserido: o disco é consumido junto com a tentativa;
-- depois do resultado: o ciclo de progresso reinicia.
+- success: creates a hybrid queen larva;
+- failure: consumes both parents and creates no larva;
+- disc inserted: consumes the disc with the attempt;
+- after the result: the progress cycle resets.
 
-Esta página descreve a lógica de traits usada pelas híbridas e deliberadamente não
-inclui o gene 'miteResistance', que fica fora desta consolidação.
+This page describes the trait logic used by hybrid bees and deliberately excludes
+the 'miteResistance' gene, which is outside this consolidation.
