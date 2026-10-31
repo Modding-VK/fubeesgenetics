@@ -184,7 +184,7 @@ This guide deliberately excludes the miteResistance gene.
 
 [h2]12. Planned hybrid production rule[/h2]
 
-The planned production model combines both parent production profiles, using the predominant parent as the larger share.
+The production model combines both parent production profiles, using the predominant parent as the larger share.
 
 Example:
 
@@ -215,3 +215,18 @@ If the hybrid has the same production capacity and Parent A is predominant, the 
 The hybrid receives the combined resource profile of both parents. A resource produced only by Parent A uses the 2/3 share. A resource produced only by Parent B uses the 1/3 share. If both parents produce the same resource, their quantities are combined using these same weights.
 
 This is a planned correction to the production system. Final integer rounding and exact apiary integration still need to be implemented and verified.
+
+
+[h2]13. Hybridizer status outputs[/h2]
+
+The Genetic Hybridizer exposes four binary output nodes for automation:
+
+[table]
+[tr][th]Node[/th][th]Signal condition[/th][/tr]
+[tr][td]0[/td][td]A valid experiment is actively accumulating progress[/td][/tr]
+[tr][td]1[/td][td]A supported research disc is present[/td][/tr]
+[tr][td]2[/td][td]The larva output slot is occupied[/td][/tr]
+[tr][td]3[/td][td]Valid parents are present, the output is free, and the machine can accept progress[/td][/tr]
+[/table]
+
+Signals are updated only when their state changes. The power input remains separate from these status outputs.
