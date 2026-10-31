@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.67-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.71-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -53,7 +53,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.67-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.71-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -162,7 +162,7 @@ quadros. Usa a mesma regra de produção e desgaste, e também consome 12 W para
 ativar o bônus. Sua receita na Bee Station é 1 Large Apiary, 1 A.I. Chip e
 5 Durasteel Bars.
 
-## Genetic Hybridizer e abelhas híbridas (0.2.20-dev)
+## Genetic Hybridizer e abelhas híbridas (0.2.71-dev)
 
 A janela do Hybridizer usa moldura compacta de 270×165 pixels, logo próprio e
 favo de mel discreto no canto inferior direito. O cabeçalho segue o alinhamento
@@ -189,9 +189,12 @@ Cada cruzamento tem duas subespécies com prioridade de produção alternada e
 uma folha de sprites própria para Queen, larva e Drone, que funde formas,
 marcas e cores parentais. As duas usam a mesma aparência. A Queen híbrida
 transmite sua linhagem a Young Queens e Drones.
-O nome do item mostra as subespécies nativas dos dois progenitores e `H1` ou
-`H2` para a subespécie híbrida. O subtítulo mostra `Predominant:` seguido da
-subespécie nativa cuja produção tem maior peso.
+O subtítulo mostra `Predominant:` seguido da subespécie nativa cuja produção tem
+maior peso. A produção combina 2/3 da linhagem predominante e 1/3 da recessiva,
+preservando a união dos recursos dos dois progenitores.
+
+O Hybridizer tem quatro saídas de automação: 1 indica experimento ativo, 2 indica
+Research Disc inserido, 3 indica larva na saída e 4 indica máquina pronta.
 
 - Blueprint desbloqueado por **Unethical Genetic Practices**; receita na Bee Station.
 - Produção híbrida disponível no **Overload Apiary** e nos apiários nativos
