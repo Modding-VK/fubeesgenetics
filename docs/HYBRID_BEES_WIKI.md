@@ -238,3 +238,13 @@ The Hybridizer exposes four binary output nodes for automation:
 
 The signals are updated only when their state changes. The existing power input
 remains separate from these status outputs.
+
+## 12. Apiary breeding with mixed-species drones
+
+When a hybrid queen breeds inside an FU apiary, the larva genome follows the
+same averaging rule as native FU breeding. Every drone in a configured drone
+slot contributes its genome, including drones from another species with
+different trait values. The queen genome is included in the average, then FU's
+mutation chance is applied. Species compatibility remains relevant to hybrid
+resource production and rivalries; it does not remove a valid drone genome from
+larva inheritance.

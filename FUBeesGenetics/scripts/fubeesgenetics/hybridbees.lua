@@ -375,7 +375,14 @@ function M.install(multiplier)
     local genomes = {}
     for _, slot in ipairs(droneSlots) do
       local drone = contents[slot]
-      if M.compatible(queen, drone) then genomes[#genomes + 1] = drone.parameters.genome end
+      -- Match FU's native breeding calculation: every drone in a drone slot
+      -- contributes its genome, even when it belongs to another species.
+      -- Compatibility still controls hybrid resource production and rivalry;
+      -- it must not silently remove a valid genome from larva inheritance.
+      if drone and root.itemHasTag(drone.name, "drone") and drone.parameters
+        and type(drone.parameters.genome) == "string" then
+        genomes[#genomes + 1] = drone.parameters.genome
+      end
     end
     local genome = genelib.evolveGenome(genelib.getAvarageGenome(queen.parameters.genome, genomes), frameBonuses.mutationChance)
     local child = {name = "bee_hybrid_youngQueen", count = 1,
@@ -392,7 +399,10 @@ function M.install(multiplier)
     local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
     if bv < 0 or fv < 0 then return end
     local hasMate = false
-    for _, slot in ipairs(droneSlots) do if M.compatible(queen, contents[slot]) then hasMate = true end end
+    for _, slot in ipairs(droneSlots) do
+      local drone = contents[slot]
+      if drone and root.itemHasTag(drone.name, "drone") then hasMate = true; break end
+    end
     local randomness = math.random(beeData.productionRandomModifierRange[1], beeData.productionRandomModifierRange[2]) * 0.01
     -- Unfertilized queens can establish their own drones; young queens need a
     -- compatible mate. A small floor keeps a zero breeding gene viable.
