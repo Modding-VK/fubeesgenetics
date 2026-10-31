@@ -1,0 +1,121 @@
+[h1]Auto Refugee[/h1]
+
+This guide explains how the Auto Refugee accepts bees and automatically exchanges them for the rewards defined by the Frackin' Universe Bee Refuge.
+
+[h2]1. What goes into the machine[/h2]
+
+[list]
+[*]A Queen or Young Queen from Frackin' Universe
+[*]Drones from Frackin' Universe
+[*]Items from any other category are ignored and remain in storage
+[/list]
+
+The machine reads the bee's species and caste from its item parameters. It does not exchange an item merely because its name contains the word bee.
+
+[h2]2. Queen and Young Queen exchanges[/h2]
+
+A valid Queen is exchanged according to the matching Bee Refuge recipe for its species. A Young Queen uses the same species reward as the corresponding adult Queen.
+
+[table]
+[tr][th]Input[/th][th]Result[/th][/tr]
+[tr][td]Queen[/td][td]The species-specific Bee Refuge resource[/td][/tr]
+[tr][td]Young Queen[/td][td]The same species-specific resource as its adult Queen[/td][/tr]
+[tr][td]Unrecognized or invalid bee[/td][td]No exchange; the item remains available[/td][/tr]
+[/table]
+
+The machine uses the live FU recipe data rather than a second reward table. This keeps the exchange aligned with the installed version of Frackin' Universe.
+
+[h2]3. Drone exchanges[/h2]
+
+Five Drones of the same species are exchanged together for [b]7 Pixels[/b]. The drones must form one matching group.
+
+[list]
+[*]Four drones are not enough.
+[*]Drones from different species do not form a group.
+[*]Genetic values may differ; the species must match.
+[*]An incomplete group remains in storage and is not consumed.
+[/list]
+
+[b]Example[/b]
+
+[list]
+[*]Five drones of one species: one exchange for 7 Pixels.
+[*]Three drones of one species and two of another: no exchange.
+[*]Ten drones of one species: two exchanges, provided output space is available.
+[/list]
+
+[h2]4. Output and safety[/h2]
+
+The Auto Refugee never consumes a bee unless the expected output can be delivered. If output storage is full or the reward cannot be resolved, the input is preserved for a later attempt.
+
+Rewards remain in the machine until they are taken or transferred through an item network. A sale can finish delivering an already-confirmed reward when the machine is switched off; new sales do not begin while it is disabled.
+
+[h2]5. Slots and item placement[/h2]
+
+The machine has 16 shared storage slots in the native container interface. Items are centered by the Starbound container UI and can be moved normally, including through supported storage-management tools.
+
+[table]
+[tr][th]Storage[/th][th]Use[/th][/tr]
+[tr][td]Slots 0-15[/td][td]Bee inputs and pending/output items[/td][/tr]
+[tr][td]Non-bee items[/td][td]Ignored by the exchange logic and kept in storage[/td][/tr]
+[/table]
+
+[h2]6. Automatic operation[/h2]
+
+The Auto Refuge checks its inventory while loaded and sells eligible inputs automatically. It does not require the interface to remain open. Unloaded time is not simulated as missed sales.
+
+When a sale starts, the lower display changes from its blue ready state to the yellow upward shipment indicator. The glass chamber shows the insect teleport animation and returns to its idle state after delivery.
+
+[h2]7. Nodes and item networks[/h2]
+
+The machine follows the Terramart Shipments 3.5 node arrangement:
+
+[table]
+[tr][th]Node[/th][th]Function[/th][/tr]
+[tr][td]Upper input node[/td][td]On/Off switch[/td][/tr]
+[tr][td]Lower input node[/td][td]Item Network Input[/td][/tr]
+[tr][td]Output node[/td][td]Item Network Output[/td][/tr]
+[/table]
+
+The upper switch is automatic when it is unwired. A connected low signal pauses new exchanges; a connected high signal allows sales. Disconnecting the switch restores automatic operation.
+
+[h2]8. Improved Containers[/h2]
+
+Improved Containers 2.11 is optional. When installed, the Auto Refugee keeps the native 16-slot window and supports the mod's sorting, search, and quick-stack actions.
+
+The machine waits for storage-management acknowledgements before converting items. This protects bee parameters and prevents a sort or quick-stack action from being mistaken for a sale.
+
+Breaking and replacing the machine preserves ordinary contents and any confirmed pending reward. Other Improved Containers machines keep their normal behavior.
+
+[h2]9. Crafting and unlock[/h2]
+
+The Auto Refugee is crafted at the Bee Station / Functional group with:
+
+[list]
+[*]1 Bee Refuge
+[*]1 Terramart Shipments 3.5
+[*]2 AI Chips
+[/list]
+
+The recipe unlock follows the same Bee Station progression used by the Queen Analyzer.
+
+[h2]10. Installation and updates[/h2]
+
+Use one copy of the development PAK and keep the game closed while replacing an older copy. The stable object ID is:
+
+[code]fubeesgenetics_beeexchange[/code]
+
+Existing machines keep their identity and inventory when updating. The visible name is [b]Auto Refugee[/b], matching the machine's plaque; the internal ID remains unchanged for save compatibility.
+
+[h2]11. Practical checks[/h2]
+
+[list]
+[*]Test a Queen with its species-specific Bee Refuge recipe.
+[*]Test a Young Queen of the same species and confirm the adult reward is used.
+[*]Insert five matching drones and confirm the 7 Pixel shipment.
+[*]Insert fewer than five drones or mixed species and confirm they remain.
+[*]Connect the switch node and verify low pauses new sales while high resumes them.
+[*]If Improved Containers is installed, sort and quick-stack the machine before testing a sale.
+[/list]
+
+[b]Bee Abusive Industry — Auto Refugee[/b]
