@@ -318,8 +318,12 @@ function M.install(multiplier)
     return nativeBiome(name)
   end
   getFlowerLikeness = function(subtype)
-    local lineage = M.lineage(queen)
-    if lineage then return M.flowerFavor(lineage) end
+    -- FU asks for the drone's species/subspecies here. A native drone must
+    -- retain its own flower preference even when the queen is hybrid.
+    if subtype == "hybrid" then
+      local lineage = M.lineage(queen)
+      if lineage then return M.flowerFavor(lineage) end
+    end
     return nativeFlower(subtype)
   end
   isSameQueen = function(a, b)
@@ -329,9 +333,8 @@ function M.install(multiplier)
     return nativeSame(a, b)
   end
   isDroneActive = function(drone)
-    if M.isHybrid(drone) or M.isHybrid(queen) then
-      if not M.compatible(drone, queen) then return false end
-    end
+    -- Activity depends on the drone's own work-time gene and the apiary
+    -- frame. FU does not require the drone and queen to share a species.
     return nativeActive(drone)
   end
   checkRivalries = function()
@@ -480,9 +483,12 @@ function M.install(multiplier)
     return result
   end
   droneProduction = function(drone)
-    if not M.isHybrid(drone) and not M.isHybrid(queen) then return nativeDrone(drone) end
-    if not M.compatible(drone, queen) then return end
+    -- Production belongs to the drone species. Native drones retain FU's
+    -- native production with hybrid queens, while hybrid drones use their own
+    -- lineage and genes with either native or hybrid queens.
+    if not M.isHybrid(drone) then return nativeDrone(drone) end
     local lineage = M.lineage(drone)
+    if not lineage then return end
     local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
     if bv < 0 or fv < 0 then return end
     local efficiency = ((drone.count / 1000) + math.min(1 / ((1 + hivesAroundHive) * 0.75), 1) + fv + bv) / 4 * 0.5
