@@ -39,7 +39,9 @@ review without changing the bee mechanics.
 The Overload Large Apiary upgrades one FU Large Apiary (`normalalveary`) with
 one AI Chip and five Durasteel Bars at the Bee Station. Its item ID is
 `fubeesgenetics_overloadlargeapiary`. It retains the native large interface,
-20 slots, two drone slots and two frame slots. The same overload script gives
+20 output slots in a 4×5 grid, two drone slots and two frame slots. The small
+variant has 15 output slots in a 5×3 grid, in addition to its queen, drone and
+frame slots. The same overload script gives
 the 1.2 resource and drone bonus when 12 W is available, normal production
 without power, 70% queen lifespan, and no random capturable bee spawns.
 

@@ -242,7 +242,10 @@ function M.productionRates(lineage, genome, frameBonus, multiplier)
   local priority = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
   for _, family in ipairs(lineage.parentFamilies) do
     local parent = nativeData.stats[family][lineage.parentSubtypes[family]]
-    local weight = family == priority and 0.5 or 0.25
+    -- A predominant parent contributes two thirds of the profile; the
+    -- recessive parent contributes one third. Keep the native genetic and
+    -- frame scaling after this lineage weighting.
+    local weight = family == priority and (2 / 3) or (1 / 3)
     local factor = ((genetic + 1) * (multiplier or 1) + (frameBonus or 0)) / (math.max(0, parent.baseProduction) + 1)
     for product, requirement in pairs(parent.production) do
       if requirement > 0 then rates[product] = (rates[product] or 0) + math.max(0, weight * parent.baseProduction / requirement * factor) end
@@ -315,8 +318,12 @@ function M.install(multiplier)
     return nativeBiome(name)
   end
   getFlowerLikeness = function(subtype)
-    local lineage = M.lineage(queen)
-    if lineage then return M.flowerFavor(lineage) end
+    -- FU asks for the drone's species/subspecies here. A native drone must
+    -- retain its own flower preference even when the queen is hybrid.
+    if subtype == "hybrid" then
+      local lineage = M.lineage(queen)
+      if lineage then return M.flowerFavor(lineage) end
+    end
     return nativeFlower(subtype)
   end
   isSameQueen = function(a, b)
@@ -326,9 +333,8 @@ function M.install(multiplier)
     return nativeSame(a, b)
   end
   isDroneActive = function(drone)
-    if M.isHybrid(drone) or M.isHybrid(queen) then
-      if not M.compatible(drone, queen) then return false end
-    end
+    -- Activity depends on the drone's own work-time gene and the apiary
+    -- frame. FU does not require the drone and queen to share a species.
     return nativeActive(drone)
   end
   checkRivalries = function()
@@ -372,7 +378,14 @@ function M.install(multiplier)
     local genomes = {}
     for _, slot in ipairs(droneSlots) do
       local drone = contents[slot]
-      if M.compatible(queen, drone) then genomes[#genomes + 1] = drone.parameters.genome end
+      -- Match FU's native breeding calculation: every drone in a drone slot
+      -- contributes its genome, even when it belongs to another species.
+      -- Compatibility still controls hybrid resource production and rivalry;
+      -- it must not silently remove a valid genome from larva inheritance.
+      if drone and root.itemHasTag(drone.name, "drone") and drone.parameters
+        and type(drone.parameters.genome) == "string" then
+        genomes[#genomes + 1] = drone.parameters.genome
+      end
     end
     local genome = genelib.evolveGenome(genelib.getAvarageGenome(queen.parameters.genome, genomes), frameBonuses.mutationChance)
     local child = {name = "bee_hybrid_youngQueen", count = 1,
@@ -389,7 +402,10 @@ function M.install(multiplier)
     local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
     if bv < 0 or fv < 0 then return end
     local hasMate = false
-    for _, slot in ipairs(droneSlots) do if M.compatible(queen, contents[slot]) then hasMate = true end end
+    for _, slot in ipairs(droneSlots) do
+      local drone = contents[slot]
+      if drone and root.itemHasTag(drone.name, "drone") then hasMate = true; break end
+    end
     local randomness = math.random(beeData.productionRandomModifierRange[1], beeData.productionRandomModifierRange[2]) * 0.01
     -- Unfertilized queens can establish their own drones; young queens need a
     -- compatible mate. A small floor keeps a zero breeding gene viable.
@@ -408,18 +424,56 @@ function M.install(multiplier)
       droneProgress = droneProgress % beeData.droneProductionRequirement
       local params = copy(queen.parameters); params.lifespan = nil; params.wild = nil
       local item = {name = "bee_hybrid_drone", count = count, parameters = params}
+
+      -- Keep FU's drone-slot priority exactly: first stack matching the
+      -- current queen receives the production and ends this cycle, even when
+      -- that stack is already full. Empty drone slots are considered only if
+      -- no matching stack exists. This prevents production from silently
+      -- jumping to a later drone slot or output while the first queen stack
+      -- is the active one.
       for _, slot in ipairs(droneSlots) do
-        item = world.containerPutItemsAt(entity.id(), item, slot - 1)
-        contents[slot] = world.containerItemAt(entity.id(), slot - 1)
-        if not item then break end
+        local slotItem = world.containerItemAt(entity.id(), slot - 1)
+        if slotItem and slotItem.name == item.name and same(slotItem.parameters, item.parameters) then
+          world.containerPutItemsAt(entity.id(), item, slot - 1)
+          contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+          ageQueen()
+          return
+        end
       end
-      if item then putOutput(item) end
+      for _, slot in ipairs(droneSlots) do
+        local slotItem = world.containerItemAt(entity.id(), slot - 1)
+        if not slotItem then
+          world.containerPutItemsAt(entity.id(), item, slot - 1)
+          contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+          ageQueen()
+          return
+        end
+      end
+
+      -- With all drone slots occupied, FU checks existing compatible stacks
+      -- in the general inventory. A total of 1000 stops drone production;
+      -- otherwise the item is stacked/added through the native container API.
+      local existingSlot, total = nil, 0
+      for slot = firstInventorySlot, slotCount do
+        local slotItem = contents[slot]
+        if slotItem and slotItem.name == item.name and same(slotItem.parameters, item.parameters) then
+          total = total + slotItem.count
+          if total >= 1000 then ageQueen(); return end
+          existingSlot = slot
+        end
+      end
+      if existingSlot then
+        world.containerStackItems(entity.id(), item)
+      else
+        world.containerAddItems(entity.id(), item)
+      end
     end
     ageQueen()
   end
   beeTick = function(dt)
-    -- Native FU otherwise requires existing drones before allowing any births.
-    if M.lineage(queen) then hasDrones = true end
+    -- Keep FU's authoritative cycle gate: queen production requires drones
+    -- already present in the apiary. The native tick also owns no-queen drone
+    -- decay, so hybrid bees must pass through the same checks.
     inBeeTick = true
     -- Clear even on an engine exception; never reuse world data on another
     -- tick, a direct helper call, or an offline simulation iteration.
@@ -429,9 +483,12 @@ function M.install(multiplier)
     return result
   end
   droneProduction = function(drone)
-    if not M.isHybrid(drone) and not M.isHybrid(queen) then return nativeDrone(drone) end
-    if not M.compatible(drone, queen) then return end
+    -- Production belongs to the drone species. Native drones retain FU's
+    -- native production with hybrid queens, while hybrid drones use their own
+    -- lineage and genes with either native or hybrid queens.
+    if not M.isHybrid(drone) then return nativeDrone(drone) end
     local lineage = M.lineage(drone)
+    if not lineage then return end
     local bv, fv = biomeFavor(lineage), M.flowerFavor(lineage)
     if bv < 0 or fv < 0 then return end
     local efficiency = ((drone.count / 1000) + math.min(1 / ((1 + hivesAroundHive) * 0.75), 1) + fv + bv) / 4 * 0.5

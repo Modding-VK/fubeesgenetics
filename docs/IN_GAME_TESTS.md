@@ -1,5 +1,17 @@
 # Validação no OpenStarbound
 
+## Reteste da dev 0.2.71
+
+- [ ] Confirmar que uma rainha híbrida não inicia drones sem um drone compatível
+  previamente presente no apiário.
+- [ ] Confirmar que drones híbridos decaem quando a rainha é removida.
+- [ ] Conferir produção com recursos exclusivos e compartilhados usando 2/3 da
+  linhagem predominante e 1/3 da recessiva; registrar o arredondamento observado.
+- [ ] Conferir os quatro nós do Hybridizer: ativo, disco, larva e pronto.
+- [ ] Confirmar os nós depois de inserir/remover pais, disco, energia e larva,
+  além de save/reload.
+- [ ] Confirmar a luz roxa e o posicionamento dos textos da janela do Hybridizer.
+
 O mantenedor confirmou todas as alterações funcionais anteriores validadas.
 A identidade pública foi atualizada: conferir nome [oSB][FU] Bee Abusive Industry,
 autor Goblin Man, ícone Cybernetic Queen em fundo laranja e homepage na lista.

@@ -420,13 +420,23 @@ test("Overload apiary skips offline catchup and continues without power", functi
   e.supply = 100; for _ = 1, 20 do e.update(.1) end; assert(ticks > unpoweredTicks)
   e.uninit(); equal(e.storage.lastActive, nil); equal(e.storage.unfinishedTicks, nil)
 end)
-test("Larva matures and establishes drones without a native starter", function()
+test("Hybrid larva follows native drone starter and no-queen decay", function()
   local e = setup(); e.startApiary()
   local h = e.hybrid("honey", "carpenter"); h.name = "bee_hybrid_youngQueen"; h.parameters.lifespan = nil
   e.inventory[0] = e.root.createItem(h)
   for _ = 1, 300 do e.update(1) end
+  assert(not e.inventory[1], "hybrid queen must not bootstrap drones without a starter")
+  local starter = e.hybrid("honey", "carpenter")
+  starter.name = "bee_hybrid_drone"; starter.count = 1; starter.parameters.lifespan = nil
+  e.inventory[1] = e.root.createItem(starter)
+  for _ = 1, 300 do e.update(1) end
   assert(e.inventory[1] and e.inventory[1].name == "bee_hybrid_drone")
-  assert(e.hybridbees.compatible(e.inventory[0], e.inventory[1])); assert(e.consumed > 0)
+  assert(e.inventory[1].count > 1); assert(e.hybridbees.compatible(e.inventory[0], e.inventory[1]))
+  e.inventory[0] = nil
+  local beforeDecay = e.inventory[1].count
+  for _ = 1, 1000 do e.update(1) end
+  assert(e.inventory[1] == nil or e.inventory[1].count < beforeDecay, "drones must decay without a queen")
+  assert(e.consumed > 0)
 end)
 test("Zero-gene production works with no NaN and old return semantics", function()
   local e = setup(); e.startApiary(); e.reportFull = true
@@ -440,10 +450,12 @@ test("Zero-gene production works with no NaN and old return semantics", function
   for slot = 3, 11 do local item = e.inventory[slot]; if item then assert(finite(item.count)); total = total + item.count end end
   assert(total > 0); equal(#e.spawned, 0)
 end)
-test("Cross-species native drones cannot produce hybrid resources", function()
+test("Cross-species native drones retain their native production", function()
   local e = setup(); e.startApiary(); activateHybrid(e, e.hybrid("honey", "carpenter"))
-  e.droneProduction(e.parent("honey", "drone")); equal(next(e.droneProductionProgress), nil)
-  assert(not e.isDroneActive(e.parent("honey", "drone")))
+  local native = e.parent("honey", "drone")
+  e.droneProduction(native)
+  assert(next(e.droneProductionProgress) ~= nil)
+  assert(e.isDroneActive(native))
 end)
 test("Queen/drone rivalry works with the single drone slot", function()
   local e = setup(); e.startApiary(); activateHybrid(e, e.hybrid("carpenter", "mason"))
@@ -502,6 +514,10 @@ test("Native small and large apiaries produce hybrid resources and preserve line
     local larva = copy(h); larva.name = "bee_hybrid_youngQueen"; larva.parameters.lifespan = nil
     e.inventory[0] = e.root.createItem(larva)
     e.inventory[e.settings.frameSlots[1] - 1] = {name = "basicframe", count = 1, parameters = {}}
+    -- Hybrid apiaries follow FU's native starter rule: a compatible drone
+    -- must already be present before the first production cycle can run.
+    local starter = copy(h); starter.name = "bee_hybrid_drone"; starter.count = 1
+    e.inventory[1] = starter
     for _ = 1, 100 do e.beeTick(1) end
     local drone = e.inventory[1]
     assert(drone and e.hybridbees.compatible(e.inventory[0], drone))
