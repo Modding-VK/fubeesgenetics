@@ -1,4 +1,4 @@
-# Estado atual — 0.2.79-dev
+# Estado atual — 0.2.80-dev
 
 A `dev` contém a produção híbrida ponderada (2/3 para a linhagem predominante e
 1/3 para a recessiva), quatro saídas de status no Genetic Hybridizer e a
