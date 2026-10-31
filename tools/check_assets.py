@@ -264,10 +264,10 @@ def check_assets(root, fu_root, native_root):
         recipes = [d for p, d in docs.items() if p.suffix == '.recipe' and d['output']['item'] == obj['objectName']]
         assert len(recipes) == 1 and 'beestation' in recipes[0]['groups']
     assert overload['isn_requiredPower'] == overload_large['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
-    assert overload['slotCount'] == 12 and overload_large['slotCount'] == 20 and hybridizer['slotCount'] == 4
+    assert overload['slotCount'] == 18 and overload_large['slotCount'] == 25 and hybridizer['slotCount'] == 4
     assert overload_large['scripts'] == overload['scripts']
     assert (overload_large['queenSlot'], overload_large['droneSlots'], overload_large['frameSlots'], overload_large['firstInventorySlot']) == (1, [2,3], [4,5], 6)
-    assert overload_large['uiConfig'] == '/bees/interface/apiary/largeapiary.config'
+    assert overload_large['uiConfig'] == '/objects/bees/fubeesgenetics/overloadapiary/largeapiary.config'
     passed('S14 powered objects, Bee Station recipes and all direct asset references')
     hybrid_ui = docs[mod / hybridizer['uiConfig'].lstrip('/')]
     gui = hybrid_ui['gui']

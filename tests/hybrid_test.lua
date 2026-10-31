@@ -512,6 +512,10 @@ test("Native small and large apiaries produce hybrid resources and preserve line
     local larva = copy(h); larva.name = "bee_hybrid_youngQueen"; larva.parameters.lifespan = nil
     e.inventory[0] = e.root.createItem(larva)
     e.inventory[e.settings.frameSlots[1] - 1] = {name = "basicframe", count = 1, parameters = {}}
+    -- Hybrid apiaries follow FU's native starter rule: a compatible drone
+    -- must already be present before the first production cycle can run.
+    local starter = copy(h); starter.name = "bee_hybrid_drone"; starter.count = 1
+    e.inventory[1] = starter
     for _ = 1, 100 do e.beeTick(1) end
     local drone = e.inventory[1]
     assert(drone and e.hybridbees.compatible(e.inventory[0], drone))
