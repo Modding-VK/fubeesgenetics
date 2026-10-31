@@ -14,7 +14,7 @@ This guide explains how the Genetic Queen Filter evaluates analyzed Queens and Y
 [tr][th]Slot[/th][th]Purpose[/th][/tr]
 [tr][td]1 - Input[/td][td]Specimen waiting for evaluation[/td][/tr]
 [tr][td]2 - Approved[/td][td]Specimen that passed every active condition[/td][/tr]
-[tr][td]3 - Rejected[/td][td>Specimen that failed or was invalid[/td][/tr]
+[tr][td]3 - Rejected[/td][td]Specimen that failed or was invalid[/td][/tr]
 [/table]
 
 [h2]2. First profile[/h2]
