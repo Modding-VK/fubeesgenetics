@@ -10,6 +10,25 @@ local rivalSpecies = {parentSpeciesAreRivals = true}
 local copy, same = fubeesContainer.copy, fubeesContainer.same
 local function readSlot(slot) return world.containerItemAt(entity.id(), slot - 1) end
 local function setStatus(value) storage.hybridizerStatus = value end
+local outputNodeState = {}
+local function setOutputNode(index, level)
+  if outputNodeState[index] == level then return end
+  outputNodeState[index] = level
+  if object.setOutputNodeLevel then object.setOutputNodeLevel(index, level) end
+end
+
+local function updateOutputNodes(queen, drone)
+  local disc = readSlot(bonusSlot)
+  local output = readSlot(outputSlot)
+  local valid = queen ~= nil and drone ~= nil and hybridbees.speciesForParents(
+    hybridbees.family(queen), hybridbees.family(drone)) ~= nil
+  local active = valid and not output and (storage.hybridProgress or 0) > 0
+  local ready = valid and not output and (storage.hybridProgress or 0) < energyPerAttempt
+  setOutputNode(0, active)
+  setOutputNode(1, disc ~= nil)
+  setOutputNode(2, output ~= nil)
+  setOutputNode(3, ready)
+end
 
 -- Older machines stored larvae in slot 3 and discs in slot 4. Move complete
 -- descriptors once, with persistent escrow if either insertion must retry.
@@ -161,6 +180,8 @@ function init()
   storage.hybridCharge = nil -- Retire energy banked by older versions without parents.
   storage.hybridizationAttempts = storage.hybridizationAttempts or 0
   power.init()
+  outputNodeState = {}
+  updateOutputNodes(nil, nil)
   message.setHandler("fubeesgenetics.hybridizer.getState", function() return getState() end)
 end
 
@@ -168,6 +189,7 @@ function update(dt)
   if not migrateSlotOrder() then setStatus("WAITING_OUTPUT"); return end
   if not deliver() then setStatus("WAITING_OUTPUT"); return end
   local queen, drone, species = validParents()
+  updateOutputNodes(queen, drone)
   if not queen then setStatus("WAITING_INPUT"); return end
   bindExperiment(queen, drone)
   if readSlot(outputSlot) then setStatus("WAITING_OUTPUT"); return end
@@ -180,6 +202,7 @@ function update(dt)
   local draw = math.min(requiredPower * dt, energyPerAttempt - storage.hybridProgress, power.getTotalEnergy())
   if draw <= 0 or not power.consume(draw) then setStatus("NO_POWER"); return end
   storage.hybridProgress = math.min(energyPerAttempt, storage.hybridProgress + draw)
+  updateOutputNodes(queen, drone)
   setStatus("IN_PROGRESS")
   if storage.hybridProgress >= energyPerAttempt then attemptCrossing(queen, drone, species) end
 end

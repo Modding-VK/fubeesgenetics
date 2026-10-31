@@ -242,7 +242,10 @@ function M.productionRates(lineage, genome, frameBonus, multiplier)
   local priority = lineage.subspecies == 1 and lineage.queenFamily or lineage.droneFamily
   for _, family in ipairs(lineage.parentFamilies) do
     local parent = nativeData.stats[family][lineage.parentSubtypes[family]]
-    local weight = family == priority and 0.5 or 0.25
+    -- A predominant parent contributes two thirds of the profile; the
+    -- recessive parent contributes one third. Keep the native genetic and
+    -- frame scaling after this lineage weighting.
+    local weight = family == priority and (2 / 3) or (1 / 3)
     local factor = ((genetic + 1) * (multiplier or 1) + (frameBonus or 0)) / (math.max(0, parent.baseProduction) + 1)
     for product, requirement in pairs(parent.production) do
       if requirement > 0 then rates[product] = (rates[product] or 0) + math.max(0, weight * parent.baseProduction / requirement * factor) end

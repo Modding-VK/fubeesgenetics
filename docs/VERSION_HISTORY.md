@@ -95,3 +95,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.67-dev | Bônus dos discos do Hybridizer: Micro +15, Holo +25 e Mega +30 pontos; espécies rivais recebem metade. Mesma tabela atende tentativa e interface, sem custo recorrente novo. | [Detalhes](HYBRIDIZER_RESEARCH_DISCS_0_2_55.md) |
 | 0.2.68-dev | Remove o bypass que permitia à rainha híbrida gerar drones sem drones previamente presentes; o ciclo e a decadência de drones sem rainha voltam a seguir as validações nativas do FU. | |
 | 0.2.69-dev | Atualiza o teste H29 para validar o ciclo nativo de drones híbridos: exige um drone inicial e verifica a decadência após remover a rainha. | |
+| 0.2.70-dev | Inicia a produção híbrida ponderada em 2/3 para a linhagem predominante e 1/3 para a recessiva; adiciona quatro saídas de status ao Hybridizer. | |

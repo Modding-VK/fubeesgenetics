@@ -47,7 +47,7 @@
   "outputSlot": 4,
   "bonusSlot": 3,
   "inputNodes": [[0, 0]],
-  "outputNodes": [[4, 0]],
+  "outputNodes": [[4, 0], [4, 1], [4, 2], [4, 3]],
   "powertype": "input",
   "isn_requiredPower": 24,
   "humanDescription": "Different-species parents may yield a hybrid larva. An optional Research Disc improves the odds; each attempt consumes both bees and the disc.",
