@@ -1,8 +1,9 @@
-"""Render native pixel UI primitives; no bitmap mockup or FU assets are resampled."""
+"""Render native pixel UI primitives; resample only the honeycomb decoration."""
 import json
 import math
 from pathlib import Path
 import struct
+import subprocess
 import zlib
 
 
@@ -48,6 +49,45 @@ class Surface:
                 + chunk(b'IDAT', zlib.compress(raw, 9)) + chunk(b'IEND', b''))
 
 
+def hex_badge(canvas, palette):
+    outline = [(10, 1), (17, 5), (17, 14), (10, 18),
+               (3, 14), (3, 5), (10, 1)]
+    inner = [(10, 3), (15, 6), (15, 13), (10, 16),
+             (5, 13), (5, 6), (10, 3)]
+    for points, color in [(outline, palette['metalLight']),
+                          (inner, palette['amber'])]:
+        for (x0, y0), (x1, y1) in zip(points, points[1:]):
+            canvas.line(x0, y0, x1, y1, color)
+
+
+def honeycomb(frame, source, x, y, width, height):
+    pixels = subprocess.run(
+        ['magick', str(source), '-filter', 'point', '-resize', f'{width}x{height}!',
+         '-fill', '#c29a49', '-colorize', '100', '-channel', 'A',
+         '-evaluate', 'multiply', '0.25', '+channel', '-depth', '8', 'RGBA:-'],
+        check=True, capture_output=True).stdout
+    if len(pixels) != width * height * 4:
+        raise ValueError('Invalid honeycomb artwork dimensions')
+    # Composite inside the inner blue line, leaving the metal edge untouched.
+    for row in range(height):
+        py = y + row
+        if py < 9 or py >= frame.height - 9:
+            continue
+        for column in range(width):
+            px = x + column
+            if px < 9 or px >= frame.width - 9:
+                continue
+            source_offset = (row * width + column) * 4
+            alpha = pixels[source_offset + 3] / 255
+            if alpha == 0:
+                continue
+            target_offset = (py * frame.width + px) * 4
+            for channel in range(3):
+                frame.pixels[target_offset + channel] = round(
+                    frame.pixels[target_offset + channel] * (1 - alpha)
+                    + pixels[source_offset + channel] * alpha)
+
+
 def theme_assets(root):
     spec = json.loads((Path(root) / 'artwork/ui-theme.json').read_text())
     p = spec['palette']
@@ -69,8 +109,9 @@ def theme_assets(root):
             frame.rect(x, y, x+2, y+2, p['amber'])
     frame.rect(w-62, 1, w-12, 4, p['amberShade'])
     frame.line(w-60, 1, w-12, 1, p['amber'])
-    frame.line(w-126, h-5, w-122, h-9, p['amber'])
-    frame.line(w-122, h-5, w-118, h-9, p['amber'])
+    # Keep both parallel accents entirely on the bottom metal rail (rows h-6..h-2).
+    frame.line(w-126, h-2, w-122, h-6, p['amber'])
+    frame.line(w-122, h-2, w-118, h-6, p['amber'])
     for y in [18, 153, h-21]:
         for x in [2, w-4]:
             frame.rect(x, y, x+1, y+2, p['edge'])
@@ -84,13 +125,15 @@ def theme_assets(root):
     # One header, one table, no decorative controls or text in the background.
     frame.line(10, 33, w-11, 33, p['blueLine'])
     frame.line(10, 34, w-11, 34, p['circuit'])
-    frame.rect(14, 77, w-15, 102, p['blueLine'])
-    frame.rect(15, 78, w-16, 101, p['header'])
-    for y in range(79, 102, 2):
+    frame.rect(14, 77, w-15, 105, p['blueLine'])
+    frame.rect(15, 78, w-16, 104, p['header'])
+    for y in range(79, 105, 2):
         frame.line(16, y, w-17, y, p['scanline'])
     for y in spec['rowRules']:
         frame.line(18, y, w-19, y, p['circuit'])
     frame.line(18, 301, w-19, 301, p['circuit'])
+    honeycomb(frame, Path(root) / 'artwork/ui/hybridizer/honeycomb-source.png',
+              192, 244, 112, 86)
     result = {'header.png': frame.png(0, 34), 'body.png': frame.png(34, 286),
               'footer.png': frame.png(320, 12)}
 
@@ -150,13 +193,11 @@ def theme_assets(root):
         result[name+'.png'] = close.png()
 
     dna = Surface(20, 20)
-    dna.rect(0, 0, 19, 19, p['amberShade'], 1)
-    dna.rect(1, 1, 18, 18, p['amber'], 1)
-    dna.rect(2, 2, 17, 17, p['header'])
-    for y in range(4, 16):
-        offset = round(4 * math.cos((y-4) * math.pi / 6))
+    hex_badge(dna, p)
+    for y in range(5, 15):
+        offset = round(3 * math.cos((y-5) * math.pi / 5))
         x1, x2 = 9+offset, 10-offset
-        if y % 3 == 1:
+        if y in [6, 10, 14]:
             dna.line(min(x1, x2), y, max(x1, x2), y, p['metalShade'])
         dna.pixel(x1, y, p['cyan'])
         dna.pixel(x2, y, p['amber'])

@@ -1,9 +1,54 @@
+# Estado atual — 0.2.64-dev
+
+Equal e Within range com alvos manuais fixos por atributo e editor na coluna
+Custom. Auto Refugee agrupa lotes de drones, limitada a 200 lotes por ciclo e ao
+espaço disponível, preservando ledger e parâmetros. Ver
+[contrato, migração e reteste](FILTER_TARGETS_AND_BATCHES_0_2_64.md).
+Somente dev; build de PAK reservado ao mantenedor. Os registros abaixo são
+históricos. A interface e o desempenho no engine precisam de reteste no jogo.
+
+# Estado atual — 0.2.38-dev
+
+Auditoria de todo o conteúdo e otimizações na Auto Refugee, apiários, híbridas,
+Hybridizer e interfaces. Balanceamento, registro ITD e garantias de transferência
+preservados. Ver [auditoria e roteiro de medição](SCRIPTING_AUDIT_0_2_38.md).
+A main permanece na 0.2.19. Medições no engine e a suíte IC original opcional
+não foram executadas nesta revisão. Os registros abaixo são históricos.
+
+# Estado atual de desenvolvimento — 0.2.37-dev
+
+A `main` está na versão 0.2.19. A `dev` inclui Overload Apiary pequeno e grande,
+Genetic Hybridizer, 595 combinações híbridas e três pesquisas na árvore Agriculture.
+A 0.2.37-dev otimiza o Filter e distingue linhagens híbridas pelo par parental,
+subtipos e dominância. Modos, slots e recuperação são preservados; somente perfis
+híbridos antigos sem chave recriam a baseline. Ver
+[FILTER_PERFORMANCE_0_2_37](FILTER_PERFORMANCE_0_2_37.md) e [README](../README.md).
+Os recursos novos e o ganho de tempo de script ainda exigem conferência no jogo.
+
+Os registros abaixo são históricos: referências a PR #5 aberto, versões antigas,
+pendências e contagens não representam o estado atual da branch.
+
 # Estado do projeto — 2026-10-17
 
 
-## Situação atual — 0.2.15-dev
+## Situação atual — 0.2.19-dev
 
-A 0.2.15 corrige o nome padrão do item e da interface para **Auto Refugee**.
+Identidade pública aplicada: [oSB][FU] Bee Abusive Industry, autor Goblin Man,
+ícone Cybernetic Queen em fundo laranja e homepage. Os IDs e scripts permanecem
+iguais. O mantenedor confirmou a funcionalidade anterior; conferir somente a
+nova apresentação na lista do OpenStarbound. PR #5 ainda aberto; release oficial
+não publicada. Ver [auditoria de prontidão](RELEASE_READINESS.md).
+
+## Registro da build funcional validada — 0.2.18-dev
+
+A 0.2.18 centraliza Reset Profile entre as barras (margens 11/11) e baixa
+as listras para a faixa metálica inferior. Ver [detalhes](HUD_ALIGNMENT_0_2_18.md).
+O cabeçalho com logo centralizado, título laranja e descrição da 0.2.17
+está preservado.
+A compactação 304×332, coluna de referências centralizada, slots próximos e
+tooltips da 0.2.16 permanecem iguais. O usuário confirmou melhora significativa
+no layout compacto; o novo cabeçalho ainda precisa de conferência no jogo.
+A correção do nome Auto Refugee da 0.2.15 está preservada.
 
 Código e PAK entregues somente em dev. O usuário confirmou o funcionamento do
 Analyzer e do ITD nas versões anteriores e validou as correções da textura da
@@ -15,8 +60,10 @@ lotes de cinco por espécie, vidro/teleporte, texturas direcionais legíveis, í
 próprio, I/O e chave on/off. Inspeções raciais explicam os nodes. A integração IC
 é opcional e preserva recompensas pendentes e conteúdo ao quebrar/recolocar.
 
-Na 0.2.14 passaram 135 grupos básicos + 13 com o Lua original do IC, com bindings
-simulados. O pacote de 52 arquivos foi conferido por pack/unpack nativo.
+Nesta entrega passaram 135 grupos básicos, com bindings simulados. Os 13 testes
+opcionais IC da 0.2.14 não foram repetidos, pois o PAK original não está neste
+ambiente. A máquina Auto Refugee permanece byte a byte igual à base 0.2.15.
+O pacote de 52 arquivos foi conferido por pack/unpack nativo.
 Isso não conclui os gates de jogo, multiplayer ou publicação Steam.
 Ver [correção da GUI](BEE_EXCHANGE_0_2_14.md) e [reteste](IN_GAME_TESTS.md).
 Os registros abaixo preservam a evolução das entregas anteriores; suas contagens

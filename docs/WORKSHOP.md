@@ -6,21 +6,21 @@ O addon usa PAK padrão Starbound 1.4.4 (SBAsset6); não exige instalador própr
 Seu runtime continua sendo OpenStarbound com FU, por causa da interface scriptável.
 
 O nome do PAK manual inclui automaticamente a versão do _metadata, no formato
-`fubeesgenetics-mvp-<versão>.pak`. Exemplo atual: 0.1.6-dev. O arquivo instalado
+`bee-abusive-industry-<versão>.pak`. A release estável atual é 0.2.19. O arquivo instalado
 pela Workshop mantém o nome padrão contents.pak.
 
 ## Arquivos entregues
 
 | Arquivo | Finalidade |
 | --- | --- |
-| fubeesgenetics-mvp-0.1.6-dev.pak | Instalação manual em Starbound/mods |
-| fubeesgenetics-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
-| fubeesgenetics-mvp-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
-| fubeesgenetics-mvp-source.zip | Projeto completo com ferramentas/testes/documentação |
+| bee-abusive-industry-0.2.19.pak | Instalação manual em Starbound/mods |
+| bee-abusive-industry-workshop-content.zip | Extrair para obter contents.pak, cópia idêntica pronta para fluxo pré-empacotado |
+| bee-abusive-industry-mod.zip | Pasta FUBeesGenetics aberta para Mod Uploader, inspeção ou desenvolvimento |
+| bee-abusive-industry-source.zip | Projeto completo com ferramentas/testes/documentação |
 
 ## Instalação
 
-Manual: copiar fubeesgenetics-mvp-0.1.6-dev.pak para Starbound/mods e iniciar pelo
+Manual: copiar bee-abusive-industry-0.2.19.pak para Starbound/mods e iniciar pelo
 OpenStarbound configurado para carregar essa instalação, com FU disponível.
 Não instalar junto uma pasta FUBeesGenetics antiga ou cópia Workshop do addon.
 
@@ -51,6 +51,21 @@ Adapte a unidade à instalação. Não use apenas a raiz 211820: o scanner não
 percorre recursivamente cada contents.pak. Não remova requires para contornar
 a dependência. Quando ambos estiverem na Workshop, serão descobertos juntos.
 
+## Identidade e material de publicação
+
+Título: **[oSB][FU] Bee Abusive Industry**. Autor exibido: **Goblin Man**.
+O campo author do _metadata muda o texto no OpenStarbound; não consulta nem
+vincula o perfil Steam. A conta logada no uploader será a proprietária do item.
+
+Ícone da lista: metadata.icon referencia a Cybernetic Queen do FU e usa diretivas
+nativas para fundo laranja. Não é a imagem da Workshop nem o ícone dos itens.
+Imagem de apresentação: artwork/branding/workshop-preview.png (512×512).
+Imagem adicional da galeria: artwork/workshop/hybrid-queens-gallery-1920x1080.png
+(1920×1080, fundo branco, 144 rainhas híbridas distintas). Gerar novamente com
+`python3 tools/build_workshop_queens_gallery.py`.
+Texto pronto para a página: artwork/workshop/description.bbcode.txt.
+Definição de título/dependência: artwork/workshop/publication.json.
+
 ## Publicar
 
 **Mod Uploader:** selecionar a pasta aberta FUBeesGenetics/ do ZIP do mod ou do
@@ -59,7 +74,7 @@ pasta contendo apenas contents.pak nesse uploader: ele esperaria assets abertos
 e poderia criar um PAK contendo outro PAK. Esse fluxo é diferente de um publisher
 que aceite conteúdo pré-empacotado.
 
-**Conteúdo pré-empacotado:** extrair fubeesgenetics-workshop-content.zip para uma
+**Conteúdo pré-empacotado:** extrair bee-abusive-industry-workshop-content.zip para uma
 pasta de conteúdo que terá somente contents.pak. Usar essa pasta no fluxo de
 upload escolhido que envie arquivos prontos, por exemplo workshop_build_item
 com VDF corretamente configurado. AppID Starbound: 211820. publishedfileid=0
@@ -71,28 +86,28 @@ Preparar preview/título/descrição e marcar FU como item requerido na página.
 Declarar explicitamente OpenStarbound e a build testada; requires do metadata
 refere-se a FrackinUniverse e não cria uma dependência entre itens Steam.
 Preservar steamContentId/link gerados pelo uploader para atualizar o mesmo item.
-Não publicar como release validada antes dos testes no jogo e da arte final.
-A imagem de preview do Workshop é separada do ícone de inventário.
+A release 0.2.19 foi validada ingame pelo mantenedor; seu upload ainda não foi
+realizado. A imagem de preview do Workshop é separada do ícone de inventário.
 
 ## Gerar novamente
 
-Requer Python e asset_packer/asset_unpacker da instalação Starbound/OpenStarbound.
-Os executáveis não são redistribuídos. Exemplo (substituir caminhos):
-
-```sh
-python3 tools/package.py --asset-packer /caminho/asset_packer --asset-unpacker /caminho/asset_unpacker
-```
-
-Windows: usar os caminhos dos executáveis .exe. O script aceita ferramentas no
-PATH ou na pasta de cache local, e procura unpacker ao lado de packer quando
-seu caminho não foi informado. O script gera PAK, desempacota em pasta temporária,
-confere lista de arquivos, bytes dos assets e valores do metadata, e só depois
-gera os pacotes de entrega. A raiz virtual é /objects, /scripts, /interface etc.,
-sem uma pasta FUBeesGenetics extra dentro do PAK.
+Somente a Action **Build development PAK** gera novos arquivos `.pak`. Ela
+é iniciada somente pelo mantenedor em GitHub → Actions → Build development PAK
+→ Run workflow, selecionando `dev`. Pushes de código ou assets não a iniciam.
+O resultado fica no artefato da execução por 90 dias: PAK com a versão do
+`_metadata`, ZIP com `contents.pak` para Workshop e `SHA256SUMS`. O GitHub baixa
+esse artefato como ZIP; extraia o PAK antes de instalar. A Action usa as
+ferramentas OpenStarbound fixadas em `tools/pak_toolchain.json`, confere seus
+hashes, desempacota o PAK para conferir os arquivos e não publica release,
+Steam Workshop ou commits. Os pacotes já versionados em `dist/` são históricos.
+Para obter um novo pacote, usar o artefato da execução correspondente no GitHub.
+O workflow gera o PAK, desempacota em pasta temporária e confere lista de
+arquivos, bytes dos assets e valores do metadata. A raiz virtual é /objects,
+/scripts, /interface etc., sem uma pasta FUBeesGenetics extra dentro do PAK.
 
 Ferramentas usadas nesta entrega: OpenStarbound v0.1.15.1 para Starbound 1.4.4,
 Source ID e hashes registrados em [pak_toolchain.json](../tools/pak_toolchain.json).
-Foram restaurados 29 arquivos: 26 assets byte a byte e metadata JSON equivalente.
+Foram restaurados 53 arquivos: 52 assets byte a byte e metadata JSON equivalente.
 Isso valida empacotamento e paths; não executa o mod no jogo.
 
 ## Fontes primárias

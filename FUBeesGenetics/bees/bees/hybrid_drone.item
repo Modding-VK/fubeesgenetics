@@ -1,0 +1,14 @@
+{
+  "itemName": "bee_hybrid_drone",
+  "description": "A hybrid drone descended from two different bee species.",
+  "shortdescription": "Hybrid Drone",
+  "inventoryIcon": "/assetmissing.png",
+  "tooltipKind": "bee",
+  "rarity": "Rare",
+  "maxStack": 1000,
+  "category": "craftingMaterial",
+  "itemTags": ["bee", "drone", "hybrid"],
+  "dropCollision": [-2.5, -2.0, 2.5, 2.0],
+  "builder": "/scripts/fubeesgenetics/hybridbeebuilder.lua",
+  "beeConfig": "/bees/beeData.config"
+}

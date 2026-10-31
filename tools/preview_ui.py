@@ -21,6 +21,8 @@ def main():
     images = {p.name: 'data:image/png;base64,' + base64.b64encode(p.read_bytes()).decode()
               for p in UI.glob('*.png')}
     sizes = {p.name: list(struct.unpack('>II', p.read_bytes()[16:24])) for p in UI.glob('*.png')}
+    width = sizes['body.png'][0]
+    height = sum(sizes[name][1] for name in ['header.png', 'body.png', 'footer.png'])
     # Own inventory icon is an illustrative occupied-slot fixture, not a live item.
     sample = ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/geneticqueenfilter/geneticqueenfiltericon.png'
     images['sample-item.png'] = 'data:image/png;base64,' + base64.b64encode(sample.read_bytes()).decode()
@@ -28,7 +30,7 @@ def main():
 <title>Genetic Queen Filter — native assets review __VERSION__</title>
 <style>
 *{box-sizing:border-box}body{margin:0;padding:24px;background:#161b23;color:#dce7f1;font:14px monospace}
-#review{width:1164px;height:996px;position:relative}#pane{width:388px;height:332px;
+#review{width:__REVIEW_WIDTH__px;height:__REVIEW_HEIGHT__px;position:relative}#pane{width:__WIDTH__px;height:__HEIGHT__px;
 position:relative;transform:scale(3);transform-origin:top left;image-rendering:pixelated}
 #pane>*{position:absolute}img{image-rendering:pixelated;pointer-events:none}
 .label{white-space:pre;line-height:1;pointer-events:none}.button{border:0;padding:0;
@@ -39,7 +41,7 @@ background:transparent;color:#dce7f1;font:8px monospace;cursor:pointer;image-ren
 .slot-demo>img{position:absolute;left:1px;bottom:1px;width:20px;height:20px}
 p{max-width:1164px;color:#aab9ca}a{color:#64d8ed}
 </style><div id="review"><div id="pane"></div></div>
-<p>Offline layout review using the shipped 388×332 assets, enlarged 3×. Browser text is
+<p>Offline layout review using the shipped __WIDTH__×__HEIGHT__ assets, enlarged 3×. Browser text is
 an approximation of the in-game font. Example profile/values; controls only change this preview.</p>
 <p>Click slots to toggle an example inventory icon. Frames are separate static images.
 The example icon belongs to this mod; this page does not run the game.</p>
@@ -52,7 +54,8 @@ queenBreedRateReference:'21',queenLifespanReference:'982',mutationChanceReferenc
 const sizes=__SIZES__;
 const image=(file)=>{let e=document.createElement('img');e.src=images[file.split('/').pop()];return e};
 function place(e,x,y,w,h,z=0){e.style.left=x+'px';e.style.bottom=y+'px';e.style.zIndex=z;if(w)e.style.width=w+'px';if(h)e.style.height=h+'px';pane.append(e)}
-for(const [file,y] of [['header.png',298],['body.png',12],['footer.png',0]]){let [w,h]=sizes[file];place(image(file),0,y,w,h)}
+let backgroundY=0;
+for(const file of ['footer.png','body.png','header.png']){let [w,h]=sizes[file];place(image(file),0,backgroundY,w,h);backgroundY+=h}
 const radios={};
 for(const [name,w] of Object.entries(config.gui)){
  if(!w.position)continue;
@@ -99,6 +102,8 @@ window.layoutReady=true;
 </script></html>'''
     html = (html.replace('__CONFIG__', json.dumps(config)).replace('__IMAGES__', json.dumps(images))
             .replace('__SIZES__', json.dumps(sizes)).replace('__VERSION__', version))
+    html = (html.replace('__WIDTH__', str(width)).replace('__HEIGHT__', str(height))
+            .replace('__REVIEW_WIDTH__', str(width * 3)).replace('__REVIEW_HEIGHT__', str(height * 3)))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html)
     print(args.output)

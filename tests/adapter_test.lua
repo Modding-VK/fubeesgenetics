@@ -37,7 +37,7 @@ require = function(path)
   if path == "/bees/genomeLibrary.lua" then
     if not genelib then dofile(fixture.fuRoot .. path) end
     return
-  elseif path == "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua" then
+  elseif path == "/scripts/fubeesgenetics/itemtags.lua" or path == "/scripts/fubeesgenetics/filtercontract.lua" or path == "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua" then
     dofile(fixture.repoRoot .. "/FUBeesGenetics" .. path)
     return
   end
@@ -221,5 +221,43 @@ end)
 test("unusable subtype name is INVALID_GENOME", function()
   local entry=fixture.beeData.stats.honey[1];local name=entry.name
   entry.name="";reject(queen,"INVALID_GENOME");entry.name=nil;reject(queen,"INVALID_GENOME");entry.name=name
+end)
+
+test("A23 hybrid pairs, native subtypes and dominance have distinct identities", function()
+  fixture.beeData.stats.hybrid = {{name="hybridA"}, {name="hybridB"}}
+  fixture.tags.bee_hybrid_queen = {bee=true,queen=true}
+  local function hybrid(a,b,subtype,as,bs)
+    local item=changed("bee_hybrid_queen", {genome=genelib.numberToStat(subtype)..genome:sub(3)})
+    local x,y=a,b;if x>y then x,y=y,x end
+    item.parameters.hybridLineage={speciesId="hybrid_"..x.."_"..y,queenFamily=a,droneFamily=b,
+      parentSubtypes={[a]=as or 1,[b]=bs or 1}}
+    return item
+  end
+  local a=read(hybrid('honey','carpenter',1));assert(a.eligible)
+  local samePair=read(hybrid('carpenter','honey',2));assert(samePair.eligible)
+  assert(fubeesFilter.sameIdentity(a.identity,samePair.identity))
+  for _,q in ipairs({hybrid('honey','mason',1),hybrid('honey','carpenter',2),hybrid('honey','carpenter',1,2,1)}) do
+    local b=read(q);assert(b.eligible and not fubeesFilter.sameIdentity(a.identity,b.identity))
+  end
+  local malformed=hybrid('honey','carpenter',1);malformed.parameters.hybridLineage.speciesId='wrong'
+  reject(malformed,'INVALID_LINEAGE')
+  malformed.parameters.hybridLineage=nil;reject(malformed,'INVALID_LINEAGE')
+  malformed=hybrid('honey','carpenter',1);malformed.parameters.hybridLineage.parentSubtypes.honey='bad'
+  reject(malformed,'INVALID_LINEAGE')
+  fixture.beeData.stats.hybrid=nil
+end)
+test("A24 tag cache is bounded and never caches specimen inspection", function()
+  local old=root.itemHasTag;local calls=0
+  root.itemHasTag=function(...) calls=calls+1;return old(...) end
+  for i=1,140 do
+    local name='cache_probe_'..i
+    reject(changed(name),'NOT_BEE')
+  end
+  local before=calls;validate(queen);local first=calls-before
+  assert(first==3,'Evicted tags must be reloaded')
+  for i=1,10 do validate(queen) end
+  assert(calls==before+3,'Repeated names must reuse cached tags')
+  reject(changed(nil,{genomeInspected=false}),'NOT_INSPECTED')
+  root.itemHasTag=old
 end)
 print("Adapter: " .. count .. " test groups passed; engine smoke test still required.")

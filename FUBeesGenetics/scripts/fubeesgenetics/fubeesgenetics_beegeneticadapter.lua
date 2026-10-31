@@ -1,5 +1,7 @@
 -- Read-only normalization of FU ItemDescriptors. No inventory or machine state.
 require "/bees/genomeLibrary.lua"
+require "/scripts/fubeesgenetics/filtercontract.lua"
+require "/scripts/fubeesgenetics/itemtags.lua"
 
 local genomeLibrary = genelib
 -- Engine callbacks (including root) are attached after top-level scripts load.
@@ -8,10 +10,7 @@ local beeData
 -- Export a namespaced table, following FU's genelib/transferUtil convention.
 fubeesgenetics_beegeneticadapter = {}
 local adapter = fubeesgenetics_beegeneticadapter
-local traits = {
-  "baseProduction", "droneToughness", "droneBreedRate",
-  "queenBreedRate", "queenLifespan", "mutationChance"
-}
+local traits = fubeesFilter.traits
 
 local function failure(reason)
   return {eligible = false, reason = reason}
@@ -45,15 +44,17 @@ function adapter.normalize(item)
   return {name = item.name, count = item.count or 1, parameters = item.parameters or {}}
 end
 
+local hasTag = fubeesItemTags.has
+
 function adapter.read(item)
   item = adapter.normalize(item)
   if not item then return failure("INVALID_DESCRIPTOR") end
 
   -- Unknown item names can raise through engine bindings; never crash the caller.
-  local ok, isBee = pcall(root.itemHasTag, item.name, "bee")
+  local ok, isBee = hasTag(item.name, "bee")
   if not ok or not isBee then return failure("NOT_BEE") end
-  local queenOk, isQueen = pcall(root.itemHasTag, item.name, "queen")
-  local youngOk, isYoungQueen = pcall(root.itemHasTag, item.name, "youngQueen")
+  local queenOk, isQueen = hasTag(item.name, "queen")
+  local youngOk, isYoungQueen = hasTag(item.name, "youngQueen")
   if not queenOk or not youngOk or not (isQueen or isYoungQueen) then
     return failure("NOT_QUEEN")
   end
@@ -82,10 +83,16 @@ function adapter.read(item)
     return failure("INVALID_GENOME")
   end
 
+  local lineageKey
+  if family == "hybrid" then
+    lineageKey = fubeesFilter.hybridIdentity(parameters.hybridLineage, subtype, beeData)
+    if not lineageKey then return failure("INVALID_LINEAGE") end
+  end
+
   local genetics = {}
   for _, trait in ipairs(traits) do
     local raw = genomeLibrary.statFromGenomeToDecimal(genome, trait)
-    local display = genomeLibrary.statFromGenomeToValue(genome, trait)
+    local display = genomeLibrary.statToValue(genomeLibrary.numberToStat(raw), trait)
     if not finiteNumber(raw) or raw < 0 or raw > 1295
       or raw ~= math.floor(raw) or not finiteNumber(display) then
       return failure("INVALID_GENOME")
@@ -95,7 +102,7 @@ function adapter.read(item)
 
   return {
     eligible = true,
-    identity = {family = family, subtype = subtype, subspeciesName = subspecies.name},
+    identity = {family = family, subtype = subtype, subspeciesName = subspecies.name, lineageKey = lineageKey},
     genetics = genetics
   }
 end

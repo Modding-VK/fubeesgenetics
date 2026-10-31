@@ -1,12 +1,58 @@
-# Arquivos de distribuição de desenvolvimento — 0.2.15-dev
+# Distribuição atual — Bee Abusive Industry 0.2.26-dev
 
-- fubeesgenetics-mvp-0.2.15-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
+- bee-abusive-industry-0.2.26-dev.pak: instalação manual Starbound/mods.
+- bee-abusive-industry-workshop-content.zip: o mesmo PAK como contents.pak.
+- SHA256SUMS: hashes da entrega atual; demais pacotes são históricos.
+
+Novos PAKs são gerados somente pelo GitHub Actions. Os arquivos deste diretório
+foram empacotados antes dessa regra e permanecem disponíveis como histórico.
+
+Autor exibido: Goblin Man. Nome: [oSB][FU] Bee Abusive Industry.
+O nome técnico FUBeesGenetics e os IDs permanecem iguais. Substituir o PAK antigo;
+não instalar as duas marcas simultaneamente. Não precisa resetar o perfil.
+
+Na 0.2.23-dev, 172 grupos básicos e 13 casos opcionais com IC 2.11 passaram.
+O mantenedor testou as novas máquinas no jogo: o Overload Apiary parou sem
+energia na versão anterior; o Hybridizer permaneceu em zero com progenitores da
+mesma espécie. Na 0.2.24-dev, o Hybridizer passa a carregar antes dos insumos.
+O reteste dessa mudança no OpenStarbound ainda está pendente.
+Os 669 arquivos do PAK 0.2.26-dev foram conferidos por empacotamento e extração
+nativos. O comportamento dos apiários Overload nesta versão ainda precisa de
+reteste no jogo.
+Ver docs/RELEASE_READINESS.md para separar pacote pronto de publicação oficial.
+
+A série 0.2.20 acrescentou o Overload Apiary e o Genetic Hybridizer. O sucesso
+da hibridização entrega uma larva de rainha. O Overload Apiary não gera
+abelhas entidades capturáveis aleatórias. Ver
+docs/HYBRID_FIXES_0_2_20.md para os detalhes e a validação pendente no jogo.
+Esta 0.2.21-dev acrescenta 595 folhas de sprites próprias para as híbridas;
+o PAK anterior 0.2.20-dev continua preservado no histórico.
+Esta 0.2.22-dev acrescenta suporte às híbridas nos apiários FU pequeno e grande;
+o PAK 0.2.21-dev também permanece preservado.
+Esta 0.2.23-dev retira o catálogo expandido de 1 MB do PAK e carrega os scripts
+híbridos nos apiários somente quando uma híbrida está presente. O PAK
+0.2.22-dev permanece preservado.
+Esta 0.2.24-dev permite carregar o Hybridizer sem progenitores válidos. O PAK
+0.2.23-dev permanece preservado.
+Esta 0.2.25-dev mantém o Overload Apiary ativo sem energia, com velocidade
+normal de recursos e drones; seus 12 W concedem o bônus de 20%. A rainha
+continua envelhecendo mais rápido. Receita: 1 Normal Apiary, 1 AI Chip e
+5 Durasteel Bars. O PAK 0.2.24-dev permanece preservado.
+Esta 0.2.26-dev adiciona o Overload Large Apiary, com 20 slots, dois drones,
+dois quadros e as mesmas regras de energia e desgaste. A receita usa 1 Large
+Apiary, 1 AI Chip e 5 Durasteel Bars. O PAK 0.2.25-dev permanece preservado.
+
+## Registros anteriores
+
+# Arquivos de distribuição de desenvolvimento — 0.2.18-dev
+
+- fubeesgenetics-mvp-0.2.18-dev.pak: formato nativo Starbound SBAsset6 para instalação manual.
 - fubeesgenetics-workshop-content.zip: o mesmo PAK chamado contents.pak.
 - SHA256SUMS: hashes dos dois arquivos.
 
 Use Raw/Download no GitHub para baixar o arquivo binário. O ZIP do projeto pode
 ser obtido pelo botão Code / Download ZIP na branch dev.
-Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.15-dev.pak, executando OpenStarbound
+Instalação manual: Starbound/mods/fubeesgenetics-mvp-0.2.18-dev.pak, executando OpenStarbound
 com FU instalado. Evite duplicar com pasta aberta ou assinatura Workshop.
 
 Esta é uma build de desenvolvimento. Empacotamento nativo validado por round-trip
@@ -110,3 +156,26 @@ sem recriar a máquina. 148 grupos locais passaram; conferência no jogo pendent
 A 0.2.15 corrige o nome exibido na interface e no item para Auto Refugee.
 IDs, inventários, sprites e lógica permanecem iguais. 148 grupos locais passaram;
 52 arquivos conferidos por pack/unpack nativo.
+
+A 0.2.16 compacta o Filter de 388 para 304 pixels de largura, centraliza
+as referências, aproxima os slots e baixa o cabeçalho em 3 pixels.
+135 grupos básicos passaram; o IC opcional não foi repetido neste ambiente.
+Detalhes em docs/HUD_COMPACT_0_2_16.md. Pacotes anteriores são históricos;
+instale apenas uma versão do addon por vez.
+
+A 0.2.17 centraliza o logo entre contorno e divisória, alinha o nome laranja ao
+topo do logo e acrescenta “Sort queens by genetic traits.” em cor clara.
+135 grupos básicos e pack/unpack nativo de 52 arquivos passaram.
+Veja docs/HUD_HEADER_0_2_17.md.
+
+A 0.2.18 centraliza Reset Profile entre a divisória superior e a barra STAT,
+com margens iguais de 11 pixels. As duas listras foram baixadas 3 pixels para
+ficarem na faixa metálica inferior. Ver docs/HUD_ALIGNMENT_0_2_18.md.
+
+## Release estável 0.2.19
+
+Os pacotes históricos `bee-abusive-industry-0.2.19.pak`,
+`bee-abusive-industry-mod.zip` e `bee-abusive-industry-source.zip`
+vieram da branch `main`. O ZIP `bee-abusive-industry-workshop-content.zip`
+continua sendo o pacote de desenvolvimento 0.2.26-dev descrito acima.
+A release estável não foi enviada à Steam Workshop.

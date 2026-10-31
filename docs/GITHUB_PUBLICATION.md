@@ -9,13 +9,17 @@ gerar um PAK não autoriza, por si só, promover para main.
 ## Estado atual
 
 - Repositório: https://github.com/Modding-VK/fubeesgenetics.
-- Código e PAK atuais: **0.2.15-dev**, commit de entrega
-  `1035754fbe9fde087c9343ae9e2b015ccd8ed4f2`, armazenados em dev.
+- Candidata estável 0.2.18 em release/0.2.18, PR #5 aberto para main.
+- Identidade integrada da dev cc30138dd2d7b0a713d0722829374118eae0957d (0.2.19-dev).
+  Base preservada: `6de1050114e865e119a434698c25b4ec4ed67b13` (0.2.18-dev).
+  [Pacote](../dist/bee-abusive-industry-0.2.18.pak) e
+  [identidade e prontidão](RELEASE_READINESS.md).
 - Main preservada em `54afbe59309ca6481fc4f835f07f92706e5a14b9`.
-- Não há nova release, tag estável, PR ou publicação Steam nesta atualização.
-- A revisão documental posterior à entrega não muda o metadata nem os bytes do PAK.
-- Validação da entrega: 148 grupos locais e pack/unpack nativo de 52 arquivos.
-  O resultado do CI remoto não foi afirmado nesta revisão.
+- PR #5 já solicitado e aberto: release/0.2.18 → main. Candidata atualizada
+  com a identidade pública. Não houve merge, tag estável ou publicação Steam.
+- Nome público, autor, ícone e pacote foram atualizados; IDs/scripts iguais.
+- Validação local: 135 grupos básicos e pack/unpack nativo de 53 arquivos.
+  Os 13 testes IC opcionais não foram repetidos neste ambiente. O CI valida o push.
 
 ## Procedimento vigente
 

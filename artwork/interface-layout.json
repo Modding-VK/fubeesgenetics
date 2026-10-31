@@ -19,7 +19,7 @@
       "base": "/interface/fubeesgenetics/geneticqueenfilter/close.png",
       "hover": "/interface/fubeesgenetics/geneticqueenfilter/closehover.png",
       "position": [
-        360,
+        276,
         308
       ],
       "pressed": "/interface/fubeesgenetics/geneticqueenfilter/closehover.png"
@@ -29,11 +29,13 @@
       "value": "Genetic Queen Filter",
       "position": [
         42,
-        313
+        322
       ],
       "hAnchor": "left",
       "fontSize": 10,
-      "color": "#dce7f1"
+      "color": "#ff9b3d",
+      "vAnchor": "top",
+      "lineSpacing": 1.0
     },
     "section": {
       "type": "label",
@@ -73,8 +75,8 @@
       "base": "/interface/fubeesgenetics/geneticqueenfilter/reset.png",
       "hover": "/interface/fubeesgenetics/geneticqueenfilter/resethover.png",
       "position": [
-        268,
-        258
+        184,
+        266
       ],
       "caption": "Reset Profile",
       "fontSize": 8,
@@ -91,7 +93,7 @@
       "value": "STAT",
       "position": [
         18,
-        239
+        236
       ],
       "hAnchor": "left",
       "fontSize": 7,
@@ -101,10 +103,10 @@
       "type": "label",
       "value": "REFERENCE",
       "position": [
-        233,
-        239
+        142,
+        236
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 7,
       "color": "#dce7f1"
     },
@@ -112,8 +114,8 @@
       "type": "label",
       "value": "Equal or\nhigher",
       "position": [
-        259,
-        233
+        182,
+        230
       ],
       "hAnchor": "mid",
       "fontSize": 6,
@@ -125,8 +127,8 @@
       "type": "label",
       "value": "Equal or\nlower",
       "position": [
-        303,
-        233
+        224,
+        230
       ],
       "hAnchor": "mid",
       "fontSize": 6,
@@ -138,8 +140,8 @@
       "type": "label",
       "value": "Indifferent",
       "position": [
-        347,
-        239
+        266,
+        236
       ],
       "hAnchor": "mid",
       "fontSize": 6,
@@ -161,7 +163,7 @@
       "type": "label",
       "value": "Approved",
       "position": [
-        72,
+        96,
         65
       ],
       "hAnchor": "mid",
@@ -172,7 +174,7 @@
       "type": "label",
       "value": "Input",
       "position": [
-        192,
+        152,
         65
       ],
       "hAnchor": "mid",
@@ -183,7 +185,7 @@
       "type": "label",
       "value": "Rejected",
       "position": [
-        312,
+        208,
         65
       ],
       "hAnchor": "mid",
@@ -227,17 +229,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         217
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "baseProductionModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         208
       ],
       "callback": "modeChanged",
@@ -262,7 +264,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -273,7 +275,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -298,17 +300,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         195
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "droneToughnessModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         186
       ],
       "callback": "modeChanged",
@@ -333,7 +335,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -344,7 +346,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -369,17 +371,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         173
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "droneBreedRateModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         164
       ],
       "callback": "modeChanged",
@@ -404,7 +406,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -415,7 +417,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -440,17 +442,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         151
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "queenBreedRateModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         142
       ],
       "callback": "modeChanged",
@@ -475,7 +477,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -486,7 +488,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -511,17 +513,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         129
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "queenLifespanModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         120
       ],
       "callback": "modeChanged",
@@ -546,7 +548,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -557,7 +559,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -582,17 +584,17 @@
       "type": "label",
       "value": "—",
       "position": [
-        233,
+        142,
         107
       ],
-      "hAnchor": "right",
+      "hAnchor": "mid",
       "fontSize": 8,
       "color": "#dce7f1"
     },
     "mutationChanceModes": {
       "type": "radioGroup",
       "position": [
-        250,
+        173,
         98
       ],
       "callback": "modeChanged",
@@ -617,7 +619,7 @@
         {
           "id": 1,
           "position": [
-            44,
+            42,
             0
           ],
           "selected": false,
@@ -628,7 +630,7 @@
         {
           "id": 2,
           "position": [
-            88,
+            84,
             0
           ],
           "selected": false,
@@ -642,7 +644,7 @@
       "type": "itemgrid",
       "slotOffset": 1,
       "position": [
-        63,
+        87,
         38
       ],
       "dimensions": [
@@ -662,7 +664,7 @@
       "type": "itemgrid",
       "slotOffset": 0,
       "position": [
-        183,
+        143,
         38
       ],
       "dimensions": [
@@ -682,7 +684,7 @@
       "type": "itemgrid",
       "slotOffset": 2,
       "position": [
-        303,
+        199,
         38
       ],
       "dimensions": [
@@ -705,7 +707,7 @@
         0
       ],
       "size": [
-        388,
+        304,
         332
       ],
       "captureMouseEvents": false,
@@ -718,15 +720,17 @@
       "file": "/interface/fubeesgenetics/geneticqueenfilter/dna.png",
       "position": [
         14,
-        304
+        302
       ],
-      "mouseTransparent": true
+      "mouseTransparent": true,
+      "centered": false,
+      "trim": false
     },
     "approvedFrame": {
       "type": "image",
       "file": "/interface/fubeesgenetics/geneticqueenfilter/approvedslot.png",
       "position": [
-        60,
+        84,
         35
       ],
       "centered": false,
@@ -738,7 +742,7 @@
       "type": "image",
       "file": "/interface/fubeesgenetics/geneticqueenfilter/inputslot.png",
       "position": [
-        180,
+        140,
         35
       ],
       "centered": false,
@@ -750,7 +754,7 @@
       "type": "image",
       "file": "/interface/fubeesgenetics/geneticqueenfilter/rejectedslot.png",
       "position": [
-        300,
+        196,
         35
       ],
       "centered": false,
@@ -762,8 +766,8 @@
       "type": "image",
       "file": "/interface/fubeesgenetics/geneticqueenfilter/arrowup.png",
       "position": [
-        256,
-        247
+        179,
+        244
       ],
       "centered": false,
       "trim": false,
@@ -773,12 +777,25 @@
       "type": "image",
       "file": "/interface/fubeesgenetics/geneticqueenfilter/arrowdown.png",
       "position": [
-        300,
-        247
+        221,
+        244
       ],
       "centered": false,
       "trim": false,
       "mouseTransparent": true
+    },
+    "description": {
+      "type": "label",
+      "value": "Sort queens by genetic traits.",
+      "position": [
+        42,
+        309
+      ],
+      "hAnchor": "left",
+      "vAnchor": "top",
+      "fontSize": 7,
+      "lineSpacing": 1.0,
+      "color": "#dce7f1"
     }
   },
   "helpTexts": {
@@ -791,252 +808,252 @@
     {
       "key": "reference",
       "rect": [
-        174,
-        231,
-        235,
-        254
+        118,
+        228,
+        163,
+        252
       ]
     },
     {
       "key": "gte",
       "rect": [
-        238,
-        231,
-        280,
-        254
+        165,
+        228,
+        199,
+        252
       ]
     },
     {
       "key": "lte",
       "rect": [
-        282,
-        231,
-        324,
-        254
+        207,
+        228,
+        241,
+        252
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        326,
-        231,
-        368,
-        254
+        249,
+        228,
+        283,
+        252
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         211,
-        235,
+        163,
         226
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         208,
-        268,
+        191,
         226
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         208,
-        312,
+        233,
         226
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         208,
-        356,
+        275,
         226
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         189,
-        235,
+        163,
         204
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         186,
-        268,
+        191,
         204
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         186,
-        312,
+        233,
         204
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         186,
-        356,
+        275,
         204
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         167,
-        235,
+        163,
         182
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         164,
-        268,
+        191,
         182
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         164,
-        312,
+        233,
         182
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         164,
-        356,
+        275,
         182
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         145,
-        235,
+        163,
         160
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         142,
-        268,
+        191,
         160
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         142,
-        312,
+        233,
         160
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         142,
-        356,
+        275,
         160
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         123,
-        235,
+        163,
         138
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         120,
-        268,
+        191,
         138
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         120,
-        312,
+        233,
         138
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         120,
-        356,
+        275,
         138
       ]
     },
     {
       "key": "reference",
       "rect": [
-        174,
+        118,
         101,
-        235,
+        163,
         116
       ]
     },
     {
       "key": "gte",
       "rect": [
-        250,
+        173,
         98,
-        268,
+        191,
         116
       ]
     },
     {
       "key": "lte",
       "rect": [
-        294,
+        215,
         98,
-        312,
+        233,
         116
       ]
     },
     {
       "key": "ignore",
       "rect": [
-        338,
+        257,
         98,
-        356,
+        275,
         116
       ]
     }

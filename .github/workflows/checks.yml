@@ -10,8 +10,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python -m pip install -r requirements-build.txt
       - run: sudo apt-get update && sudo apt-get install -y lua5.4
       - name: Validate development version
         if: github.ref == 'refs/heads/dev'
         run: python tools/check_version.py --development
+      - name: Validate release version
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.head_ref, 'release/')
+        run: python tools/check_version.py --release
+      - run: python tools/build_research_icons.py --check
       - run: python tools/run_checks.py --fetch

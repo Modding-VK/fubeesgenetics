@@ -1,0 +1,84 @@
+[h1]Genetic Queen Filter / Bee Analyzer[/h1]
+
+This guide explains how the Genetic Queen Filter evaluates analyzed Queens and Young Queens.
+
+[h2]1. Input and inventory[/h2]
+
+[list]
+[*]Place one analyzed Queen or Young Queen from Frackin' Universe in the central Input slot.
+[*]The machine processes one unit per cycle and preserves the rest of the stack.
+[*]Uninspected bees and invalid genomes are rejected.
+[/list]
+
+[table]
+[tr][th]Slot[/th][th]Purpose[/th][/tr]
+[tr][td]1 - Input[/td][td]Specimen waiting for evaluation[/td][/tr]
+[tr][td]2 - Approved[/td][td]Specimen that passed every active condition[/td][/tr]
+[tr][td]3 - Rejected[/td][td]Specimen that failed or was invalid[/td][/tr]
+[/table]
+
+[h2]2. First profile[/h2]
+
+The first valid specimen establishes the family, subspecies, and genetic reference profile. It is placed in Approved. A candidate from another family, subspecies, or incompatible hybrid lineage is rejected.
+
+Equal and Within range targets are checked even before a profile exists. A fixed condition cannot be bypassed to initialize the Analyzer.
+
+[h2]3. Traits[/h2]
+
+The Analyzer evaluates Production, Drone Toughness, Drone Breed Rate, Queen Breed Rate, Queen Lifespan, and Mutation Chance. Five traits use the integer values shown by FU. Mutation Chance uses the percentage decoded by FU.
+
+[h2]4. Adaptive modes[/h2]
+
+[table]
+[tr][th]Mode[/th][th]Condition[/th][th]After approval[/th][/tr]
+[tr][td]Equal or higher[/td][td]Candidate >= reference[/td][td]The approved gene becomes the new reference[/td][/tr]
+[tr][td]Equal or lower[/td][td]Candidate <= reference[/td][td]The approved gene becomes the new reference[/td][/tr]
+[/table]
+
+All active conditions must pass. References change only after the item reaches Approved.
+
+[h2]5. Custom modes[/h2]
+
+Use the [+] button in a trait row to open its editor:
+
+[list]
+[*]Indifferent ignores that trait and freezes its current adaptive reference.
+[*]Equal requires one exact fixed target, shown as [code]=40[/code].
+[*]Within range accepts an inclusive interval, shown as [code]35..45[/code].
+[/list]
+
+Fixed targets do not drift after approvals. Returning to an adaptive mode resumes the reference that was frozen previously. Each trait remembers its own Custom mode and target.
+
+[h2]6. Mutation Chance[/h2]
+
+Mutation Chance is displayed as a percentage, but FU stores discrete internal genes. Equal accepts only a percentage that maps to a real FU gene. Within range accepts every real gene inside the inclusive limits. The current decoded maximum is 99.92%.
+
+[h2]7. Identity and hybrid bees[/h2]
+
+Family, subspecies, and hybrid lineage identity are checked before genetic criteria. This prevents unrelated populations from sharing a baseline. Incomplete legacy hybrid identities are not silently merged with another lineage.
+
+[h2]8. Results and output safety[/h2]
+
+A candidate is Approved only when it is valid, compatible, and passes every active condition. It is Rejected when it is invalid, incompatible, or outside an active criterion.
+
+If either output is occupied, processing pauses before reading Input. The profile is committed only after the physical transfer succeeds.
+
+[h2]9. Reset Profile[/h2]
+
+Reset Profile clears the family, subspecies, adaptive references, and last result. It preserves Custom modes, saved targets, machine items, and recovery data.
+
+[h2]10. Transfer recovery[/h2]
+
+The Analyzer confirms the item before taking it and confirms the destination after delivery. Interrupted transfers are returned to Input when possible. An uncertain world drop suspends automatic retries for that load; a one-unit recovery escrow preserves the item until safe recovery.
+
+[h2]11. Processing and scripting[/h2]
+
+The machine processes one unit per second while loaded. The open pane polls passively once per second and redraws only changed fields. Typing and mode cycling remain local until Apply is pressed; Cancel discards the draft. Unloaded time is not simulated as missed cycles.
+
+[h2]12. Practical setup[/h2]
+
+For adaptive selection, let the first valid specimen establish the profile, choose Equal or higher / Equal or lower for traits to improve, and leave unrelated traits Indifferent.
+
+For fixed selection, press [+], choose Equal or Within range, enter displayed values, press Apply, and verify REF / TARGET. Keep both output slots available.
+
+[b]Bee Abusive Industry — Genetic Queen Filter[/b]

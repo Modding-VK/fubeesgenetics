@@ -1,13 +1,15 @@
 {
   "name": "FUBeesGenetics",
-  "friendlyName": "FU Bees Genetics",
-  "author": "ViniKoerich",
-  "version": "0.2.15-dev",
-  "description": "Genetic Queen Filter and automatic Bee Exchange for Frackin Universe. Development build awaiting in-game validation.",
+  "friendlyName": "[oSB][FU] Bee Abusive Industry",
+  "author": "Goblin Man",
+  "version": "0.2.67-dev",
+  "description": "Bee genetics, automated trading, powered apiaries and hybrid queen larvae. Requires OpenStarbound and Frackin Universe.",
   "requires": [
     "FrackinUniverse"
   ],
   "includes": [
     "Improved Containers"
-  ]
+  ],
+  "icon": "/bees/bees/cybernetic.png:queen?crop=4;6;20;22?scalenearest=0.75?border=14;ff9b3d;ff9b3d?crop=13;13;27;27",
+  "link": "https://github.com/Modding-VK/fubeesgenetics"
 }
