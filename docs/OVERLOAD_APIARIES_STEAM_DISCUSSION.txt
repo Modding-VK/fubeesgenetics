@@ -49,7 +49,7 @@ The apiary uses the normal Frackin Universe production system and bee genetics.
 [*]Hybrid bees use their inherited lineage and predominant subspecies when production is calculated.
 [/list]
 
-The Overload Apiary does not randomly create capturable bee entities in the world. Bees remain managed by the apiary instead of being spawned as collectible entities.
+The Overload Apiary does not randomly create capturable bee entities in the world. Bees remain managed by the apiary instead of being spawned as collectible entities. Captives till death!
 
 [h2]Small Overload Apiary[/h2]
 
@@ -62,18 +62,6 @@ It requires 12 W for the +20% powered bonus.
 The Large model uses the larger Frackin Universe apiary layout for bigger colonies. It supports two drone lines and two frame lines.
 
 It also requires 12 W and applies the same +20% powered bonus. Its larger capacity does not change the queen lifespan penalty.
-
-[h2]Automation notes[/h2]
-
-The apiaries can be connected to power networks through their power input node.
-
-The useful states for automation are:
-
-[list]
-[*]Powered: the 20% production bonus is active.
-[*]Unpowered: the machine continues at normal speed.
-[*]Working: the apiary continues processing bees according to its normal cycle.
-[/list]
 
 [h2]Summary[/h2]
 
