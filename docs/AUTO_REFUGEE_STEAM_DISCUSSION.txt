@@ -14,6 +14,8 @@ The machine reads the bee's species and caste from its item parameters. It does 
 
 [h2]2. Queen and Young Queen exchanges[/h2]
 
+Attention: Hybrid bees being untradeable is intentional!
+
 A valid Queen is exchanged according to the matching Bee Refuge recipe for its species. A Young Queen uses the same species reward as the corresponding adult Queen.
 
 [table]
@@ -52,19 +54,13 @@ Rewards remain in the machine until they are taken or transferred through an ite
 
 [h2]5. Slots and item placement[/h2]
 
-The machine has 16 shared storage slots in the native container interface. Items are centered by the Starbound container UI and can be moved normally, including through supported storage-management tools.
+The machine has 16 shared storage slots in the native container interface.
 
 [table]
 [tr][th]Storage[/th][th]Use[/th][/tr]
 [tr][td]Slots 0-15[/td][td]Bee inputs and pending/output items[/td][/tr]
 [tr][td]Non-bee items[/td][td]Ignored by the exchange logic and kept in storage[/td][/tr]
 [/table]
-
-[h2]6. Automatic operation[/h2]
-
-The Auto Refuge checks its inventory while loaded and sells eligible inputs automatically. It does not require the interface to remain open. Unloaded time is not simulated as missed sales.
-
-When a sale starts, the lower display changes from its blue ready state to the yellow upward shipment indicator. The glass chamber shows the insect teleport animation and returns to its idle state after delivery.
 
 [h2]7. Nodes and item networks[/h2]
 
@@ -89,33 +85,7 @@ Breaking and replacing the machine preserves ordinary contents and any confirmed
 
 [h2]9. Crafting and unlock[/h2]
 
-The Auto Refugee is crafted at the Bee Station / Functional group with:
+The Auto Refugee is crafted at the Bee Station.
 
-[list]
-[*]1 Bee Refuge
-[*]1 Terramart Shipments 3.5
-[*]2 AI Chips
-[/list]
-
-The recipe unlock follows the same Bee Station progression used by the Queen Analyzer.
-
-[h2]10. Installation and updates[/h2]
-
-Use one copy of the development PAK and keep the game closed while replacing an older copy. The stable object ID is:
-
-[code]fubeesgenetics_beeexchange[/code]
-
-Existing machines keep their identity and inventory when updating. The visible name is [b]Auto Refugee[/b], matching the machine's plaque; the internal ID remains unchanged for save compatibility.
-
-[h2]11. Practical checks[/h2]
-
-[list]
-[*]Test a Queen with its species-specific Bee Refuge recipe.
-[*]Test a Young Queen of the same species and confirm the adult reward is used.
-[*]Insert five matching drones and confirm the 7 Pixel shipment.
-[*]Insert fewer than five drones or mixed species and confirm they remain.
-[*]Connect the switch node and verify low pauses new sales while high resumes them.
-[*]If Improved Containers is installed, sort and quick-stack the machine before testing a sale.
-[/list]
 
 [b]Bee Abusive Industry — Auto Refugee[/b]
