@@ -8,7 +8,7 @@ They are designed for higher throughput, with a permanent cost to queen lifespan
 
 [table]
 [tr][th]Feature[/th][th]Overload Apiary[/th][th]Overload Large Apiary[/th][/tr]
-[tr][td]Output slots[/td][td]12 (4x3)[/td][td]20 (4x5)[/td][/tr]
+[tr][td]Output slots[/td][td]15 (5x3)[/td][td]20 (4x5)[/td][/tr]
 [tr][td]Power requirement[/td][td]12 W[/td][td]12 W[/td][/tr]
 [tr][td]Powered production bonus[/td][td]+20% resources and drones[/td][td]+20% resources and drones[/td][/tr]
 [tr][td]Unpowered production[/td][td]Normal speed[/td][td]Normal speed[/td][/tr]
@@ -54,7 +54,7 @@ The Overload Apiary does not randomly create capturable bee entities in the worl
 
 [h2]Small Overload Apiary[/h2]
 
-The small model is the compact version for standard colonies. It has 12 output slots arranged in 3 rows of 4, plus one queen slot, one drone line, and one frame line.
+The small model is the compact version for standard colonies. It has 15 output slots arranged in 3 rows of 5, plus one queen slot, one drone line, and one frame line.
 
 It requires 12 W for the +20% powered bonus.
 

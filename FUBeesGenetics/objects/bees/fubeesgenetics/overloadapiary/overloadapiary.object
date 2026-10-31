@@ -37,7 +37,7 @@
   "scripts": ["/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua"],
   "scriptDelta": 10,
   "uiConfig": "/objects/bees/fubeesgenetics/overloadapiary/smallapiary.config",
-  "slotCount": 15,
+  "slotCount": 18,
   "queenSlot": 1,
   "droneSlots": [2],
   "frameSlots": [3],
