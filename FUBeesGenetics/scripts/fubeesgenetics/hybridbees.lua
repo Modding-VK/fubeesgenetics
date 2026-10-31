@@ -421,12 +421,49 @@ function M.install(multiplier)
       droneProgress = droneProgress % beeData.droneProductionRequirement
       local params = copy(queen.parameters); params.lifespan = nil; params.wild = nil
       local item = {name = "bee_hybrid_drone", count = count, parameters = params}
+
+      -- Keep FU's drone-slot priority exactly: first stack matching the
+      -- current queen receives the production and ends this cycle, even when
+      -- that stack is already full. Empty drone slots are considered only if
+      -- no matching stack exists. This prevents production from silently
+      -- jumping to a later drone slot or output while the first queen stack
+      -- is the active one.
       for _, slot in ipairs(droneSlots) do
-        item = world.containerPutItemsAt(entity.id(), item, slot - 1)
-        contents[slot] = world.containerItemAt(entity.id(), slot - 1)
-        if not item then break end
+        local slotItem = world.containerItemAt(entity.id(), slot - 1)
+        if slotItem and slotItem.name == item.name and same(slotItem.parameters, item.parameters) then
+          world.containerPutItemsAt(entity.id(), item, slot - 1)
+          contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+          ageQueen()
+          return
+        end
       end
-      if item then putOutput(item) end
+      for _, slot in ipairs(droneSlots) do
+        local slotItem = world.containerItemAt(entity.id(), slot - 1)
+        if not slotItem then
+          world.containerPutItemsAt(entity.id(), item, slot - 1)
+          contents[slot] = world.containerItemAt(entity.id(), slot - 1)
+          ageQueen()
+          return
+        end
+      end
+
+      -- With all drone slots occupied, FU checks existing compatible stacks
+      -- in the general inventory. A total of 1000 stops drone production;
+      -- otherwise the item is stacked/added through the native container API.
+      local existingSlot, total = nil, 0
+      for slot = firstInventorySlot, slotCount do
+        local slotItem = contents[slot]
+        if slotItem and slotItem.name == item.name and same(slotItem.parameters, item.parameters) then
+          total = total + slotItem.count
+          if total >= 1000 then ageQueen(); return end
+          existingSlot = slot
+        end
+      end
+      if existingSlot then
+        world.containerStackItems(entity.id(), item)
+      else
+        world.containerAddItems(entity.id(), item)
+      end
     end
     ageQueen()
   end
