@@ -6,7 +6,7 @@ This guide explains how the Genetic Queen Filter evaluates analyzed Queens and Y
 
 [list]
 [*]Place one analyzed Queen or Young Queen from Frackin' Universe in the central Input slot.
-[*]The machine processes one unit per cycle and preserves the rest of the stack.
+[*]The machine processes one unit per cycle and preserves the rest of the stack. (hybrid larvae can stack)
 [*]Uninspected bees and invalid genomes are rejected.
 [/list]
 
