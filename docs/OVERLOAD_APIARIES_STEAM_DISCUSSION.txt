@@ -1,0 +1,89 @@
+[h1]Overload Apiaries[/h1]
+
+The Overload Apiaries force bees to work beyond what their bodies can safely endure.
+
+They are designed for higher throughput, with a permanent cost to queen lifespan.
+
+[h2]At a glance[/h2]
+
+[table]
+[tr][th]Feature[/th][th]Overload Apiary[/th][th]Overload Large Apiary[/th][/tr]
+[tr][td]Power requirement[/td][td]12 W[/td][td]12 W[/td][/tr]
+[tr][td]Powered production bonus[/td][td]+20% resources and drones[/td][td]+20% resources and drones[/td][/tr]
+[tr][td]Unpowered production[/td][td]Normal speed[/td][td]Normal speed[/td][/tr]
+[tr][td]Queen lifespan[/td][td]70% of normal[/td][td]70% of normal[/td][/tr]
+[tr][td]Bee spawning[/td][td]No capturable bees[/td][td]No capturable bees[/td][/tr]
+[/table]
+
+[h2]Power behavior[/h2]
+
+Power is used to provide the speed bonus.
+
+[list]
+[*]With 12 W available, resource and drone production are increased by 20%.
+[*]If power is interrupted, the apiary keeps operating at normal speed.
+[*]A power failure does not stop production.
+[*]A power failure does not restore the queen's lost lifespan.
+[*]The machine's belt LEDs indicate whether the power bonus is currently active.
+[/list]
+
+The power system only controls the bonus. It is not required for the apiary to continue working.
+
+[h2]Queen lifespan[/h2]
+
+The Overload Apiary accelerates queen aging as part of its core mechanic.
+
+The queen has [b]70% of the normal lifespan[/b], whether the machine is powered or unpowered.
+
+This penalty is intentional: the machine trades queen longevity for production throughput.
+
+[h2]Production[/h2]
+
+The apiary uses the normal Frackin Universe production system and bee genetics.
+
+[list]
+[*]The apiary defines the resource tables and base production rules.
+[*]The bee provides its species, subspecies, genes, and production data.
+[*]Powered operation applies the 20% production bonus.
+[*]Unpowered operation uses normal production speed.
+[*]Hybrid bees use their inherited lineage and predominant subspecies when production is calculated.
+[/list]
+
+The Overload Apiary does not randomly create capturable bee entities in the world. Bees remain managed by the apiary instead of being spawned as collectible entities.
+
+[h2]Small Overload Apiary[/h2]
+
+The small model is the compact version for standard colonies. It uses the small apiary interface and supports one queen, one drone line, and one frame line.
+
+It requires 12 W for the +20% powered bonus.
+
+[h2]Overload Large Apiary[/h2]
+
+The Large model uses the larger Frackin Universe apiary layout for bigger colonies. It supports two drone lines and two frame lines.
+
+It also requires 12 W and applies the same +20% powered bonus. Its larger capacity does not change the queen lifespan penalty.
+
+[h2]Automation notes[/h2]
+
+The apiaries can be connected to power networks through their power input node.
+
+The useful states for automation are:
+
+[list]
+[*]Powered: the 20% production bonus is active.
+[*]Unpowered: the machine continues at normal speed.
+[*]Working: the apiary continues processing bees according to its normal cycle.
+[/list]
+
+[h2]Summary[/h2]
+
+[list]
+[*]12 W enables the speed bonus.
+[*]Power increases resource and drone production by 20%.
+[*]Without power, production continues normally.
+[*]Queen lifespan is always reduced to 70%.
+[*]No random capturable bees are spawned.
+[*]The Large model provides more colony capacity, but keeps the same power and lifespan rules.
+[/list]
+
+[b]Bee Abusive Industry — Overload Apiaries[/b]
