@@ -96,3 +96,4 @@ Versões dev não representam aprovação de release ou publicação na Steam.
 | 0.2.68-dev | Remove o bypass que permitia à rainha híbrida gerar drones sem drones previamente presentes; o ciclo e a decadência de drones sem rainha voltam a seguir as validações nativas do FU. | |
 | 0.2.69-dev | Atualiza o teste H29 para validar o ciclo nativo de drones híbridos: exige um drone inicial e verifica a decadência após remover a rainha. | |
 | 0.2.70-dev | Inicia a produção híbrida ponderada em 2/3 para a linhagem predominante e 1/3 para a recessiva; adiciona quatro saídas de status ao Hybridizer. | |
+| 0.2.71-dev | Adiciona à descrição e às inspeções do Hybridizer o mapeamento dos quatro nós de status: ativo, disco, larva e pronto. | |
