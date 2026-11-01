@@ -11,7 +11,12 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements-build.txt
-      - run: sudo apt-get update && sudo apt-get install -y lua5.4
+      - name: Install Lua if needed
+        run: |
+          if ! command -v lua5.4 >/dev/null 2>&1; then
+            timeout 180s sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update
+            timeout 120s sudo apt-get install -y lua5.4
+          fi
       - name: Validate development version
         if: github.ref == 'refs/heads/dev'
         run: python tools/check_version.py --development
