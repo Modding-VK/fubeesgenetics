@@ -11,5 +11,6 @@
     "Improved Containers"
   ],
   "icon": "/bees/bees/cybernetic.png:queen?crop=4;6;20;22?scalenearest=0.75?border=14;ff9b3d;ff9b3d?crop=13;13;27;27",
-  "link": "https://github.com/Modding-VK/fubeesgenetics"
+  "link": "https://github.com/Modding-VK/fubeesgenetics",
+  "steamContentId": "3822748368"
 }
