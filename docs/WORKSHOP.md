@@ -66,6 +66,10 @@ Imagem adicional da galeria: artwork/workshop/hybrid-queens-gallery-1920x1080.pn
 Texto pronto para a página: artwork/workshop/description.bbcode.txt.
 Definição de título/dependência: artwork/workshop/publication.json.
 
+## Item Workshop publicado
+
+O item oficial do mod é [Bee Abusive Industry](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368), com `publishedfileid` `3822748368`. Para atualizar esse item, use a conta Steam proprietária e selecione o item existente no Mod Uploader. Não use `publishedfileid=0`, pois isso cria um item novo.
+
 ## Publicar
 
 **Mod Uploader:** selecionar a pasta aberta FUBeesGenetics/ do ZIP do mod ou do
@@ -85,9 +89,8 @@ normal do jogo. Nenhum login ou upload é executado pelas ferramentas do projeto
 Preparar preview/título/descrição e marcar FU como item requerido na página.
 Declarar explicitamente OpenStarbound e a build testada; requires do metadata
 refere-se a FrackinUniverse e não cria uma dependência entre itens Steam.
-Preservar steamContentId/link gerados pelo uploader para atualizar o mesmo item.
-A release 0.2.19 foi validada ingame pelo mantenedor; seu upload ainda não foi
-realizado. A imagem de preview do Workshop é separada do ícone de inventário.
+Preservar o `steamContentId`/link e o ID `3822748368` gerados pelo uploader para atualizar o mesmo item.
+A release atual foi validada ingame pelo mantenedor; o item Workshop oficial já está publicado no ID `3822748368`. A imagem de preview do Workshop é separada do ícone de inventário.
 
 ## Gerar novamente
 
