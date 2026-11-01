@@ -5,7 +5,7 @@ Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 
 **Versão de desenvolvimento: 0.2.85. Autor: Goblin Man.**
 
-[Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) ·
+[Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
@@ -61,7 +61,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 [dist/SHA256SUMS](dist/SHA256SUMS) identifica o último pacote histórico em `dist/`.
 O artefato da Action contém os hashes do pacote atual.
 O ZIP Workshop contém os mesmos bytes com o nome padrão `contents.pak`.
-Isso não representa publicação na Steam; veja [WORKSHOP](docs/WORKSHOP.md).
+O item oficial está publicado na [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368); veja o fluxo de atualização em [WORKSHOP](docs/WORKSHOP.md).
 
 ## Pesquisa na árvore Agriculture
 
