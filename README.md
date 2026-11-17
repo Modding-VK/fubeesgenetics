@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.90-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 0.2.91-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -53,7 +53,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.90-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.91-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -177,7 +177,7 @@ Durasteel Bars).
 
 ## Genetic Hybridizer e abelhas híbridas (0.2.71-dev)
 
-O **Genetic Stabilizer**, desbloqueado em Unethical Genetics, trata uma abelha
+O **Genetic Stabilizer**, desbloqueado em Genetic Stabilization, trata uma abelha
 por vez em 10 segundos e reduz sua chance genética de mutação pela metade,
 arredondada ao valor representável mais próximo. Cada tratamento tem 40% de
 chance de destruir a abelha. A receita na Bee Station usa 5 AI Chips, 10

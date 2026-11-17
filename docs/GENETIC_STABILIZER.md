@@ -10,7 +10,7 @@ An occupied output prevents processing. Replacing the specimen, unloading the
 machine or blocking the output resets the unfinished cycle. It requires no
 power. The Bee Station recipe uses five AI Chips, ten Durasteel Bars, ten Cell
 Matter, five Isogen Bars, five Lunari Crystals (`solaricrystal`) and five
-Unknown Genes; Unethical Genetics unlocks it.
+Unknown Genes; Genetic Stabilization unlocks it.
 This recipe-only adjustment adds no recurring scripting work.
 
 The stabilizer interface reuses the 120×101 FU Bee Examiner window and the
