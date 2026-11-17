@@ -40,3 +40,7 @@ rampa âmbar de mel, nas duas orientações e no ícone. Silhueta, resolução,
 alfa, deslocamento e `spaceScan` são preservados. A alteração é estática e
 não acrescenta scripts ou consultas recorrentes. A aparência no engine ainda
 precisa ser conferida em jogo.
+
+## Janela compacta
+
+A janela usa o fundo compacto 120×101 do microscópio FU, com corpo sem ícones de recompensas. Input e Analyzed conservam offsets 0 e 1 e molduras independentes. A explicação fica abaixo dos slots, alinhada à esquerda em fonte 6. A mudança é estática, sem script ou polling adicional; disposição e legibilidade exigem conferência no jogo.
