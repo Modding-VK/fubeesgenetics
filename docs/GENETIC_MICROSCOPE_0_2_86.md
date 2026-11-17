@@ -44,3 +44,6 @@ precisa ser conferida em jogo.
 ## Janela compacta
 
 A janela usa o fundo compacto 120×101 do microscópio FU, com corpo sem ícones de recompensas. Input e Analyzed conservam offsets 0 e 1 e molduras independentes. A explicação fica abaixo dos slots, alinhada à esquerda em fonte 6. A mudança é estática, sem script ou polling adicional; disposição e legibilidade exigem conferência no jogo.
+
+
+A janela compacta oculta o símbolo de research original por substituição de cores nativa; rótulos, slots e texto foram deslocados 5 px para baixo. O cabeçalho referencia o ícone de inventário do microscópio, incluindo sua paleta de mel. Os offsets e o alinhamento das molduras são preservados. Não há script novo; a apresentação requer conferência no jogo.
