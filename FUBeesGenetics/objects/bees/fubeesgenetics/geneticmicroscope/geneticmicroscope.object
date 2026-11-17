@@ -13,17 +13,21 @@
   "health": 0.1,
   "slotCount": 2,
   "hasWindowIcon": false,
-  "inventoryIcon": "/bees/objects/beeexaminer/icon3.png",
+  "inventoryIcon": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2icon.png",
   "autoCloseCooldown": 3600,
   "frameCooldown": 1,
   "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
   "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
   "orientations": [
     {
-      "dualImage": "/bees/objects/beeexaminer/object3.png",
-      "imagePosition": [0, 0],
+      "leftImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2left.png",
+      "rightImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2right.png",
+      "imagePosition": [-8, 0],
+      "frames": 1,
+      "animationCycle": 0.5,
       "spaceScan": 0.1,
-      "anchors": ["bottom"]
+      "anchors": ["bottom"],
+      "collision": "platform"
     }
   ],
   "scripts": ["/objects/bees/fubeesgenetics/geneticmicroscope/geneticmicroscope.lua"],

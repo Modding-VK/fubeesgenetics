@@ -23,9 +23,9 @@ decoração.
 ## Crafting e arte
 
 Receita: 1 N. Electron Microscope (`electronmicroscope2`), 5 A.I. Chips e
-20 Laser Diodes. A máquina reutiliza a arte do Advanced Microscope do
-Frackin Universe por referência de asset, evitando duplicar PNG enquanto a
-arte própria do móvel não for revisada. A procedência do sprite é o FU fixado
+20 Laser Diodes. A máquina reutiliza as imagens direcionais e o ícone do N. Electron Microscope
+do Frackin Universe por referência de asset. Sua orientação, deslocamento,
+spaceScan, suporte e colisão seguem o objeto original. A procedência do sprite é o FU fixado
 em `17868d86c9bb7bc00f92038fb78b48cebd1b41b8`.
 
 A máquina possui descrições de scanner para as sete raças vanilla e uma
