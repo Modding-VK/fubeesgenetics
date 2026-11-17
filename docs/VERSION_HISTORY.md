@@ -1,3 +1,7 @@
+## 0.2.86-dev
+
+Added Bee Genetic Microscope: instant bee-only genome revelation with two slots, no currency or research output, and a recipe using 1 N. Electron Microscope, 5 A.I. Chips and 20 Laser Diodes.
+
 # Histórico das entregas de desenvolvimento
 
 Cada versão preserva sua identificação no _metadata. Os links por SHA apontam

@@ -56,7 +56,6 @@ end
 
 function init()
   storage.recoveryEscrow = storage.recoveryEscrow
-  transferUtil = nil
   script.setUpdateDelta(config.getParameter("scriptDelta", 5))
 end
 
