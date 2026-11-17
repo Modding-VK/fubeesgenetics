@@ -60,7 +60,7 @@ function update(dt)
   local taken = world.containerTakeNumItemsAt(entity.id(), input, 1)
   if not taken then return end
   if not same(normalize(taken), current) then recover(taken); return end
-  if math.random() < 0.30 then return end
+  if math.random() < 0.40 then return end
   local genome = current.parameters.genome
   local raw = genelib.statFromGenomeToDecimal(genome, "mutationChance")
   current.parameters.genome = genelib.modifyGenomeStat(genome, "mutationChance", math.floor(raw / 2 + 0.5) - raw)
