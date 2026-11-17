@@ -69,6 +69,10 @@ Instruções explícitas do mantenedor, recebidas nesta conversa:
 
 - `dev` é a branch de desenvolvimento. Alterações, correções, documentação e
   novos PAKs devem ser armazenados nela por padrão.
+- Ao concluir alterações solicitadas, atualizar a `dev` remota por padrão,
+  verificando antes o histórico remoto e preservando suas mudanças. A preferência
+  do mantenedor vale para trabalhos futuros; não autoriza PR, merge em `main`,
+  publicação na Steam ou acionamento da Action de PAK.
 - `main` é produção. Não promover conteúdo de `dev`, criar pull requests ou
   fazer merge sem solicitação explícita do usuário para essa operação.
   Pedidos de implementação ou geração de PAK não autorizam PR/promoção.
