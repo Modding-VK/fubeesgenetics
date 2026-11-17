@@ -13,6 +13,12 @@ Matter, five Isogen Bars, five Lunari Crystals (`solaricrystal`) and five
 Unknown Genes; Unethical Genetics unlocks it.
 This recipe-only adjustment adds no recurring scripting work.
 
+The stabilizer interface reuses the 120×101 FU Bee Examiner window and the
+mod's native slot frames. Its two slots, title, icon and risk/cycle text fit in
+the compact window. These are static layout changes with no additional UI
+script or polling. Positioning and text readability still require in-game
+verification.
+
 The world appearance references FU's Advanced Xenolab, using the original
 48×45 frame and light layer with a yellow replacement palette. The standard
 48×45 silhouette and position remain unchanged. The inventory icon currently
