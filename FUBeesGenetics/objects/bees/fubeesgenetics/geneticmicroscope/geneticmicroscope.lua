@@ -1,3 +1,4 @@
+require "/scripts/kheAA/transferUtil.lua"
 require "/scripts/fubeesgenetics/containerutil.lua"
 require "/scripts/fubeesgenetics/fubeesgenetics_beegeneticadapter.lua"
 require "/scripts/fubeesgenetics/itemtags.lua"
@@ -32,6 +33,9 @@ local function process()
     return
   end
 
+  -- Finish escrow recovery before pausing new analysis.
+  local logicNode = transferUtil.vars.logicNode
+  if object.isInputNodeConnected(logicNode) and not object.getInputNodeLevel(logicNode) then return end
   if world.containerItemAt(entity.id(), ANALYZED) then return end
   local source = validBee(world.containerItemAt(entity.id(), INPUT))
   if not source then return end
@@ -55,11 +59,17 @@ local function process()
 end
 
 function init()
-  storage.recoveryEscrow = storage.recoveryEscrow
+  self.networkTimer = 0
+  transferUtil.loadSelfContainer()
   script.setUpdateDelta(config.getParameter("scriptDelta", 5))
 end
 
-function update()
+function update(dt)
+  self.networkTimer = self.networkTimer + dt
+  if self.networkTimer >= 1 then
+    self.networkTimer = self.networkTimer % 1
+    transferUtil.loadSelfContainer()
+  end
   process()
 end
 
