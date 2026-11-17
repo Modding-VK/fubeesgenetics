@@ -1,9 +1,12 @@
 {
   "objectName": "fubeesgenetics_geneticmicroscope",
   "objectType": "container",
-  "colonyTags": ["bees", "research"],
+  "colonyTags": [
+    "bees",
+    "research"
+  ],
   "shortdescription": "Bee Genetic Microscope",
-  "description": "Instantly reveals the genetic data of bees without producing research, currency, or other rewards.",
+  "description": "Instantly reveals the genetic data of bees without producing research, currency, or other rewards.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
   "subtitle": "Reveal bee genetics",
   "race": "generic",
   "category": "crafting",
@@ -16,29 +19,59 @@
   "inventoryIcon": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2icon.png?replace;831616=83530e;bb1414=bb8014",
   "autoCloseCooldown": 3600,
   "frameCooldown": 1,
-  "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
-  "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
+  "openSounds": [
+    "/sfx/objects/woodenbox_open.ogg"
+  ],
+  "closeSounds": [
+    "/sfx/objects/woodenbox_close.ogg"
+  ],
   "orientations": [
     {
       "leftImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2left.png?replace;571212=57350d;761c1c=764a10;71312f=71500e;7f312f=7f5712;9e312f=9e6b12;b0312f=b07a13;d5312f=d5a020;eb3433=ebc047",
       "rightImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2right.png?replace;571212=57350d;761c1c=764a10;71312f=71500e;7f312f=7f5712;9e312f=9e6b12;b0312f=b07a13;d5312f=d5a020;eb3433=ebc047",
-      "imagePosition": [-8, 0],
+      "imagePosition": [
+        -8,
+        0
+      ],
       "frames": 1,
       "animationCycle": 0.5,
       "spaceScan": 0.1,
-      "anchors": ["bottom"],
+      "anchors": [
+        "bottom"
+      ],
       "collision": "platform"
     }
   ],
-  "scripts": ["/objects/bees/fubeesgenetics/geneticmicroscope/geneticmicroscope.lua"],
+  "scripts": [
+    "/objects/bees/fubeesgenetics/geneticmicroscope/geneticmicroscope.lua"
+  ],
   "scriptDelta": 5,
   "uiConfig": "/interface/fubeesgenetics/geneticmicroscope/geneticmicroscope.config",
-  "humanDescription": "A compact microscope that reveals bee genetics instantly, without turning knowledge into a payout.",
-  "apexDescription": "A focused genetic viewer. It exposes bee data while producing no research or currency.",
-  "avianDescription": "A careful lens for reading the hidden traits of bees. Nothing is extracted except information.",
-  "floranDescription": "Microscope showsss bee genesss. No rewardsss, just knowingss.",
-  "glitchDescription": "Analytical. This instrument reveals a bee's genetic data without generating a material reward.",
-  "hylotlDescription": "A restrained scientific instrument that reveals genetic structure without commodifying the specimen.",
-  "novakidDescription": "A little lens that tells you what a bee is carrying genetically. No payout attached.",
-  "genericDescription": "Reveals the genetic data of bee items instantly and returns the same bee with its original parameters."
+  "humanDescription": "A compact microscope that reveals bee genetics instantly, without turning knowledge into a payout.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "apexDescription": "A focused genetic viewer. It exposes bee data while producing no research or currency.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "avianDescription": "A careful lens for reading the hidden traits of bees. Nothing is extracted except information.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "floranDescription": "Microscope showsss bee genesss. No rewardsss, just knowingss.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "glitchDescription": "Analytical. This instrument reveals a bee's genetic data without generating a material reward.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "hylotlDescription": "A restrained scientific instrument that reveals genetic structure without commodifying the specimen.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "novakidDescription": "A little lens that tells you what a bee is carrying genetically. No payout attached.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "genericDescription": "Reveals the genetic data of bee items instantly and returns the same bee with its original parameters.\n^blue;Upper input: On/Off (unwired = on)^reset;\n^blue;Lower input: Item network input^reset;\n^blue;Output: Item network output^reset;",
+  "inputNodes": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "outputNodes": [
+    [
+      1,
+      0
+    ]
+  ],
+  "kheAA_logicNode": 0,
+  "kheAA_inDataNode": 1,
+  "kheAA_outDataNode": 0
 }

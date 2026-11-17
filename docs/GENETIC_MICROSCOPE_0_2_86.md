@@ -47,3 +47,7 @@ A janela usa o fundo compacto 120×101 do microscópio FU, com corpo sem ícones
 
 
 A janela compacta oculta o símbolo de research original por substituição de cores nativa; rótulos, slots e texto foram deslocados 5 px para baixo. O cabeçalho referencia o ícone de inventário do microscópio, incluindo sua paleta de mel. Os offsets e o alinhamento das molduras são preservados. Não há script novo; a apresentação requer conferência no jogo.
+
+## Automação
+
+Entrada superior: controle lógico, desconectado ligado; conectado baixo pausa novas análises e alto permite operar. Entrada inferior e saída: rede de itens FU. A recuperação pendente é tentada antes do bloqueio. Registro FU ocorre na inicialização e a cada segundo; análise mantém scriptDelta 5. A rede expõe o contêiner de dois slots; use filtros de slot no transporte para inserir no slot 1 e extrair do slot 2. A janela não acrescenta polling. Sem medições no engine: testar liga/desliga, reconexão, transferência e recuperação no jogo.
