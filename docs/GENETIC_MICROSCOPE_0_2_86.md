@@ -51,3 +51,6 @@ A janela compacta oculta o símbolo de research original por substituição de c
 ## Automação
 
 Entrada superior: controle lógico, desconectado ligado; conectado baixo pausa novas análises e alto permite operar. Entrada inferior e saída: rede de itens FU. A recuperação pendente é tentada antes do bloqueio. Registro FU ocorre na inicialização e a cada segundo; análise mantém scriptDelta 5. A rede expõe o contêiner de dois slots; use filtros de slot no transporte para inserir no slot 1 e extrair do slot 2. A janela não acrescenta polling. Sem medições no engine: testar liga/desliga, reconexão, transferência e recuperação no jogo.
+
+
+O cabeçalho usa título tamanho 7 e moldura estática de 24×24 atrás do ícone; rótulos e slots foram baixados 3 px, mantendo a centralização dos grids. Texto explicativo desceu 2 px. Sem scripting de UI adicional. Conferir título, quadro, encaixe e espaçamento no jogo.
