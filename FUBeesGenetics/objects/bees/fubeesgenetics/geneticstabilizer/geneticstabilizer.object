@@ -1,0 +1,31 @@
+{
+  "objectName": "fubeesgenetics_geneticstabilizer",
+  "objectType": "container",
+  "colonyTags": ["bees", "research"],
+  "shortdescription": "Genetic Stabilizer",
+  "description": "Halves a bee's mutation chance in 10 seconds. Each treatment has a 30% chance to destroy the bee.",
+  "subtitle": "Risky genetic treatment",
+  "race": "generic", "category": "crafting", "rarity": "rare", "price": 1800,
+  "printable": false, "health": 0.1, "slotCount": 2, "hasWindowIcon": false,
+  "inventoryIcon": "/objects/crafting/xenostationadvnew/xenostationadvicon.png",
+  "orientations": [{
+    "imageLayers": [
+      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnewlit.png:default.0", "fullbright": true},
+      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnew.png:default.0?replace;303030=76580b;555555=a87e0e;808080=d4a51d;b8b8b8=efd05e"}
+    ],
+    "imagePosition": [0, 0], "spaceScan": 0.1, "anchors": ["bottom"]
+  }],
+  "scripts": ["/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.lua"],
+  "scriptDelta": 30,
+  "uiConfig": "/interface/fubeesgenetics/geneticstabilizer/geneticstabilizer.config",
+  "autoCloseCooldown": 3600, "frameCooldown": 67,
+  "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
+  "humanDescription": "This treatment halves a bee's mutation chance, but three in ten specimens are lost.",
+  "apexDescription": "A hazardous genetic treatment: mutation chance is halved, with a thirty percent mortality rate.",
+  "avianDescription": "The machine calms a bee's unstable genes, though many specimens do not survive.",
+  "floranDescription": "Machine makesss bee genesss stable. Sssometimes bee doesss not survive.",
+  "glitchDescription": "Cautionary. Each treatment halves mutation chance and has a thirty percent chance of specimen loss.",
+  "hylotlDescription": "A powerful but dangerous treatment that reduces mutation at considerable risk to the bee.",
+  "novakidDescription": "Cuts a bee's mutation chance in half, if the critter survives the treatment.",
+  "genericDescription": "Halves a bee's mutation chance after ten seconds. Each treatment has a 30% chance of destroying the bee."
+}

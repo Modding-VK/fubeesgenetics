@@ -1,0 +1,5 @@
+{
+  "input": [{"item": "xenostationadvnew", "count": 1}, {"item": "aichip", "count": 5}, {"item": "durasteelbar", "count": 10}],
+  "output": {"item": "fubeesgenetics_geneticstabilizer", "count": 1},
+  "groups": ["mod", "beestation", "tools", "all", "functional"]
+}
