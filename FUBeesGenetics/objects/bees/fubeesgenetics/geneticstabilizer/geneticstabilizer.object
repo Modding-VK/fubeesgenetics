@@ -10,7 +10,7 @@
   "inventoryIcon": "/objects/crafting/xenostationadvnew/xenostationadvicon.png",
   "orientations": [{
     "imageLayers": [
-      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnewlit.png:default.0", "fullbright": true},
+      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnewlit.png:default.0", "fullbright": false},
       {"image": "/objects/crafting/xenostationadvnew/xenostationadvnew.png:default.0?replace;303030=76580b;555555=a87e0e;808080=d4a51d;b8b8b8=efd05e"}
     ],
     "imagePosition": [0, 0], "spaceScan": 0.1, "anchors": ["bottom"]

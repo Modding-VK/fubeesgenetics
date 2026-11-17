@@ -33,10 +33,10 @@ or scripting queue measurements have been made in the engine. For measurement,
 compare many loaded idle, processing and blocked machines, with UI closed and
 open, and verify the unloaded/reloaded cycle and automation transfers.
 
-During a valid, unblocked cycle the animator draws a blue fullbright layer
-derived from the gray areas of FU's Xenolab sprite, alongside the three-frame
-animated light from the same source. The original body and light remain
-separate layers. It returns to idle on completion, invalid input, blocked
+During a valid, unblocked cycle the animator draws blue fullbright overlays
+only over the three marked display areas, cropped from FU's three-frame
+Xenolab animation. The remaining body and animation are not fullbright.
+It returns to idle on completion, invalid input, blocked
 output or recovery. Only transitions call the animator; the existing 30-tick
 update selects the state and the renderer loops the frames without another
 timer or world query. Color, alignment and transitions need an in-game check.
