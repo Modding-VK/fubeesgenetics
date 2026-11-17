@@ -2,7 +2,7 @@
 
 A partir de Advanced Beekeeping, Industrial Beekeeping inicia duas linhas:
 Abusive Apiaries leva a Advanced Frame Management (Framekeeper e Tri-Frame);
-Bee Genetic Microscopy leva a Genetic Stabilization e Unethical Genetic Practices.
+Efficient Bee Microscopy leva a Genetic Stabilization e Unethical Genetic Practices.
 As posições formam o contorno de um favo, sem dependência circular.
 
 As siglas FUBI1–FUBI3 e os blueprints já aprendidos são preservados; FUBI4–FUBI6
