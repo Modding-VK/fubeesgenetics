@@ -31,3 +31,12 @@ em `17868d86c9bb7bc00f92038fb78b48cebd1b41b8`.
 A máquina possui descrições de scanner para as sete raças vanilla e uma
 descrição genérica. O objeto permanece em `dev`; nenhum PAK foi gerado ou
 Action de build iniciada.
+
+## Cor do tanque
+
+A aparência usa os PNGs originais do N. Electron Microscope por referência,
+com diretivas nativas de substituição das cores vermelhas do tanque por uma
+rampa âmbar de mel, nas duas orientações e no ícone. Silhueta, resolução,
+alfa, deslocamento e `spaceScan` são preservados. A alteração é estática e
+não acrescenta scripts ou consultas recorrentes. A aparência no engine ainda
+precisa ser conferida em jogo.

@@ -13,15 +13,15 @@
   "health": 0.1,
   "slotCount": 2,
   "hasWindowIcon": false,
-  "inventoryIcon": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2icon.png",
+  "inventoryIcon": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2icon.png?replace;831616=83530e;bb1414=bb8014",
   "autoCloseCooldown": 3600,
   "frameCooldown": 1,
   "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
   "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
   "orientations": [
     {
-      "leftImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2left.png",
-      "rightImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2right.png",
+      "leftImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2left.png?replace;571212=57350d;761c1c=764a10;71312f=71500e;7f312f=7f5712;9e312f=9e6b12;b0312f=b07a13;d5312f=d5a020;eb3433=ebc047",
+      "rightImage": "/objects/generic/labfurniture/electronmicroscope/electronmicroscope2right.png?replace;571212=57350d;761c1c=764a10;71312f=71500e;7f312f=7f5712;9e312f=9e6b12;b0312f=b07a13;d5312f=d5a020;eb3433=ebc047",
       "imagePosition": [-8, 0],
       "frames": 1,
       "animationCycle": 0.5,
