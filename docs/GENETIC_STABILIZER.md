@@ -7,7 +7,8 @@ Each cycle has an independent 30% chance to consume the bee without output.
 An occupied output prevents processing. Replacing the specimen, unloading the
 machine or blocking the output resets the unfinished cycle. It requires no
 power. The Bee Station recipe uses five AI Chips, ten Durasteel Bars, ten Cell
-Matter, five Isogen Bars and ten Laser Diodes; Unethical Genetics unlocks it.
+Matter, five Isogen Bars, five Lunari Crystals (`solaricrystal`) and five
+Unknown Genes; Unethical Genetics unlocks it.
 This recipe-only adjustment adds no recurring scripting work.
 
 The world appearance references FU's Advanced Xenolab, using the original
