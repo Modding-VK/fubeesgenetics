@@ -132,6 +132,13 @@ transition and appearance under a connected FU power network.
 
 ### Belt power indicators (0.2.47-dev)
 
+The powered frame has two cyan LED pixels on each size. A separate animator
+part isolates those pixels with an image directive and draws them fullbright
+only in the powered state. The original sheets and placement remain unchanged;
+the existing power transition controls the layer without new scripting or
+polling. Appearance in darkness and power transitions still require an in-game
+check. `fullbright` does not illuminate the surrounding world.
+
 The normal `default` frame now uses a muted Durasteel-blue pixel on the belt;
 the existing `powered` frame retains the cyan pixel. The small apiary has one
 belt indicator at (4, 10). The large apiary has two front-belt indicators at

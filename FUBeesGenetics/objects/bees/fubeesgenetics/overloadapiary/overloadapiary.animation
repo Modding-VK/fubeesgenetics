@@ -49,6 +49,14 @@
 		},
 
 		"parts" : {
+			"powerLed" : {
+				"properties" : { "centered" : false, "zLevel" : 0.5, "fullbright" : true },
+				"partStates" : {
+					"base" : {
+						"powered" : { "properties" : { "image" : "<partImage>:powered?replace;211e55=00000000;33316c=00000000;4b4d8c=00000000;7887b3=00000000;a0b5d4=00000000;d1d9e3=00000000" } }
+					}
+				}
+			},
 			"base" : {
 				"properties" : { "centered" : false },
 				"partStates" : {
