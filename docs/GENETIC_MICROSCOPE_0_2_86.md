@@ -54,3 +54,6 @@ Entrada superior: controle lógico, desconectado ligado; conectado baixo pausa n
 
 
 O cabeçalho usa título tamanho 7 e moldura estática de 24×24 atrás do ícone; rótulos e slots foram baixados 3 px, mantendo a centralização dos grids. Texto explicativo desceu 2 px. Sem scripting de UI adicional. Conferir título, quadro, encaixe e espaçamento no jogo.
+
+
+A moldura do ícone no cabeçalho usa `/interface/inventory/portrait.png` (22×22), a mesma referência utilizada pelo contêiner no OpenStarbound. O ícone de 16×16 fica centralizado com margem de 3 px. A alteração é estática e não adiciona scripting; conferir aparência no jogo.
