@@ -15,6 +15,8 @@
     ],
     "imagePosition": [0, 0], "spaceScan": 0.1, "anchors": ["bottom"]
   }],
+  "animation": "/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.animation",
+  "animationPosition": [0, 0],
   "scripts": ["/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.lua"],
   "scriptDelta": 30,
   "uiConfig": "/interface/fubeesgenetics/geneticstabilizer/geneticstabilizer.config",

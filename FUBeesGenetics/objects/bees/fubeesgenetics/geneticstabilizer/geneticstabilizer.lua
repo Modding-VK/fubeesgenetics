@@ -6,6 +6,14 @@ local copy, same = fubeesContainer.copy, fubeesContainer.same
 local normalize = fubeesgenetics_beegeneticadapter.normalize
 local input, output = 0, 1
 local candidate, progress
+local working
+
+local function setWorking(value)
+  if working ~= value then
+    animator.setAnimationState("treatment", value and "working" or "idle")
+    working = value
+  end
+end
 
 local function specimen(item)
   item = normalize(item)
@@ -25,11 +33,14 @@ end
 
 function init()
   candidate, progress = nil, 0
+  working = nil
+  setWorking(false)
   script.setUpdateDelta(config.getParameter("scriptDelta", 30))
 end
 
 function update(dt)
   if storage.recoveryEscrow then
+    setWorking(false)
     if not world.containerItemAt(entity.id(), input) then
       local left = fubeesContainer.putExact(entity.id(), storage.recoveryEscrow, input, normalize)
       if not left then storage.recoveryEscrow = nil end
@@ -37,12 +48,14 @@ function update(dt)
     candidate, progress = nil, 0
     return
   end
-  if world.containerItemAt(entity.id(), output) then candidate, progress = nil, 0; return end
+  if world.containerItemAt(entity.id(), output) then setWorking(false); candidate, progress = nil, 0; return end
   local current = specimen(world.containerItemAt(entity.id(), input))
-  if not current then candidate, progress = nil, 0; return end
+  if not current then setWorking(false); candidate, progress = nil, 0; return end
   if not same(candidate, current) then candidate, progress = current, 0 end
+  setWorking(true)
   progress = progress + dt
   if progress < 10 then return end
+  setWorking(false)
   candidate, progress = nil, 0
   local taken = world.containerTakeNumItemsAt(entity.id(), input, 1)
   if not taken then return end
