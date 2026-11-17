@@ -64,6 +64,11 @@ def check_assets(root, fu_root, native_root):
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
     passed('S1 JSON and true three-slot container')
+    microscope_ui = docs[mod/'interface/fubeesgenetics/geneticmicroscope/geneticmicroscope.config']['gui']
+    microscope_grids = {name: widget['slotOffset'] for name, widget in microscope_ui.items()
+                        if isinstance(widget, dict) and widget.get('type') == 'itemgrid'}
+    assert microscope_grids == {'itemGrid': 0, 'itemGrid2': 1}
+
     orientation, = obj['orientations']
     assert obj['printable'] is False and orientation['anchors'] == ['bottom']
     assert orientation['frames'] == 1 and 'image' not in orientation and 'flipImages' not in orientation
