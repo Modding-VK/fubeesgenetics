@@ -59,7 +59,7 @@ def check_assets(root, fu_root, native_root):
         print('PASS '+label)
     docs = {p:asset_json(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation','.item','.monstertype','.monsterpart'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
-    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_overloadlargeapiary", "fubeesgenetics_hybridizer"}
+    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_overloadlargeapiary", "fubeesgenetics_overloadframekeeper", "fubeesgenetics_overloadtriframeapiary", "fubeesgenetics_hybridizer"}
     path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
@@ -142,7 +142,8 @@ def check_assets(root, fu_root, native_root):
     assert nodes[names[2]]['children'] == []
     assert [nodes[name]['unlocks'] for name in names] == [
         [ident,'fubeesgenetics_beeexchange'],
-        ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary'],
+        ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary',
+         'fubeesgenetics_overloadframekeeper','fubeesgenetics_overloadtriframeapiary'],
         ['fubeesgenetics_hybridizer']]
     assert [nodes[name]['price'] for name in names] == [
         [['fuscienceresource',1000],['aichip',1]],
@@ -254,20 +255,36 @@ def check_assets(root, fu_root, native_root):
     passed('S13 native chest layout, visible slots, exact centering and offsets 0-15')
     overload = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadapiary')
     overload_large = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadlargeapiary')
+    framekeeper = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadframekeeper')
+    triframe = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_overloadtriframeapiary')
     hybridizer = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_hybridizer')
-    for obj in [overload, overload_large, hybridizer]:
-        if obj is not overload_large:
-            refs(obj)
-            gui_config = docs.get(mod / obj['uiConfig'].lstrip('/')) or asset_json((fu_root / obj['uiConfig'].lstrip('/')).read_text())
-            refs(gui_config)
+    for obj in [overload, overload_large, framekeeper, triframe, hybridizer]:
+        # Bee animation parts intentionally resolve from FU, while the local
+        # object/UI/recipe paths must still be checked here.
+        obj_refs = copy.deepcopy(obj)
+        obj_refs.pop('animationParts', None)
+        refs(obj_refs)
+        gui_config = docs.get(mod / obj['uiConfig'].lstrip('/')) or asset_json((fu_root / obj['uiConfig'].lstrip('/')).read_text())
+        refs(gui_config)
         assert obj['powertype'] == 'input' and len(obj['inputNodes']) >= 1
         recipes = [d for p, d in docs.items() if p.suffix == '.recipe' and d['output']['item'] == obj['objectName']]
         assert len(recipes) == 1 and 'beestation' in recipes[0]['groups']
-    assert overload['isn_requiredPower'] == overload_large['isn_requiredPower'] == 12 and hybridizer['isn_requiredPower'] == 24
-    assert overload['slotCount'] == 18 and overload_large['slotCount'] == 25 and hybridizer['slotCount'] == 4
+    assert overload['isn_requiredPower'] == overload_large['isn_requiredPower'] == 12
+    assert framekeeper['isn_requiredPower'] == triframe['isn_requiredPower'] == 18 and hybridizer['isn_requiredPower'] == 24
+    assert overload['slotCount'] == 18 and overload_large['slotCount'] == 25
+    assert framekeeper['slotCount'] == 18 and triframe['slotCount'] == 26 and hybridizer['slotCount'] == 4
     assert overload_large['scripts'] == overload['scripts']
+    assert framekeeper['scripts'] == overload['scripts'] and triframe['scripts'] == overload['scripts']
     assert (overload_large['queenSlot'], overload_large['droneSlots'], overload_large['frameSlots'], overload_large['firstInventorySlot']) == (1, [2,3], [4,5], 6)
     assert overload_large['uiConfig'] == '/objects/bees/fubeesgenetics/overloadapiary/largeapiary.config'
+    assert framekeeper.get('preserveFrames') is True
+    assert (framekeeper['queenSlot'], framekeeper['droneSlots'], framekeeper['frameSlots'], framekeeper['firstInventorySlot']) == (1, [2], [3], 4)
+    assert framekeeper['uiConfig'] == '/objects/bees/fubeesgenetics/overloadapiary/smallapiary.config'
+    assert (triframe['queenSlot'], triframe['droneSlots'], triframe['frameSlots'], triframe['firstInventorySlot']) == (1, [2,3], [4,5,6], 7)
+    assert triframe['uiConfig'] == '/objects/bees/fubeesgenetics/overloadapiary/triframeapiary.config'
+    tri_ui = docs[mod / triframe['uiConfig'].lstrip('/')]['gui']
+    assert tri_ui['itemGrid']['dimensions'] == [1, 6] and tri_ui['itemGrid2']['dimensions'] == [4, 5]
+    assert tri_ui['itemGrid2']['slotOffset'] == 6 and png_size(mod / 'objects/bees/fubeesgenetics/overloadapiary/interface/triframebody.png') == (128, 139)
     passed('S14 powered objects, Bee Station recipes and all direct asset references')
     hybrid_ui = docs[mod / hybridizer['uiConfig'].lstrip('/')]
     gui = hybrid_ui['gui']
