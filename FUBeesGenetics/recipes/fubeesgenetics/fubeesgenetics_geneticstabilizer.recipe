@@ -1,5 +1,11 @@
 {
-  "input": [{"item": "xenostationadvnew", "count": 1}, {"item": "aichip", "count": 5}, {"item": "durasteelbar", "count": 10}],
+  "input": [
+    {"item": "aichip", "count": 5},
+    {"item": "durasteelbar", "count": 10},
+    {"item": "cellmatter", "count": 10},
+    {"item": "isogenbar", "count": 5},
+    {"item": "laserdiode", "count": 10}
+  ],
   "output": {"item": "fubeesgenetics_geneticstabilizer", "count": 1},
   "groups": ["mod", "beestation", "tools", "all", "functional"]
 }

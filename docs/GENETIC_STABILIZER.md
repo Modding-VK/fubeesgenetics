@@ -6,8 +6,9 @@ halves the raw mutation gene, rounded to the nearest representable integer
 Each cycle has an independent 30% chance to consume the bee without output.
 An occupied output prevents processing. Replacing the specimen, unloading the
 machine or blocking the output resets the unfinished cycle. It requires no
-power. The Bee Station recipe upgrades an Advanced Xenolab with five AI Chips
-and ten Durasteel Bars; Unethical Genetics unlocks it.
+power. The Bee Station recipe uses five AI Chips, ten Durasteel Bars, ten Cell
+Matter, five Isogen Bars and ten Laser Diodes; Unethical Genetics unlocks it.
+This recipe-only adjustment adds no recurring scripting work.
 
 The world appearance references FU's Advanced Xenolab, using the original
 48×45 frame and light layer with a yellow replacement palette. The standard

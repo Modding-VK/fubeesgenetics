@@ -177,8 +177,8 @@ Durasteel Bars).
 O **Genetic Stabilizer**, desbloqueado em Unethical Genetics, trata uma abelha
 por vez em 10 segundos e reduz sua chance genética de mutação pela metade,
 arredondada ao valor representável mais próximo. Cada tratamento tem 30% de
-chance de destruir a abelha. A receita na Bee Station usa um Advanced Xenolab,
-5 AI Chips e 10 Durasteel Bars. Não requer energia.
+chance de destruir a abelha. A receita na Bee Station usa 5 AI Chips, 10
+Durasteel Bars, 10 Cell Matter, 5 Isogen Bars e 10 Laser Diodes. Não requer energia.
 
 A janela do Hybridizer usa moldura compacta de 270×165 pixels, logo próprio e
 favo de mel discreto no canto inferior direito. O cabeçalho segue o alinhamento
