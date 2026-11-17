@@ -1,0 +1,40 @@
+{
+  "objectName": "fubeesgenetics_geneticmicroscope",
+  "objectType": "container",
+  "colonyTags": ["bees", "research"],
+  "shortdescription": "Bee Genetic Microscope",
+  "description": "Instantly reveals the genetic data of bees without producing research, currency, or other rewards.",
+  "subtitle": "Reveal bee genetics",
+  "race": "generic",
+  "category": "crafting",
+  "rarity": "essential",
+  "price": 1200,
+  "printable": false,
+  "health": 0.1,
+  "slotCount": 2,
+  "hasWindowIcon": false,
+  "inventoryIcon": "/bees/objects/beeexaminer/icon3.png",
+  "autoCloseCooldown": 3600,
+  "frameCooldown": 1,
+  "openSounds": ["/sfx/objects/woodenbox_open.ogg"],
+  "closeSounds": ["/sfx/objects/woodenbox_close.ogg"],
+  "orientations": [
+    {
+      "dualImage": "/bees/objects/beeexaminer/object3.png",
+      "imagePosition": [0, 0],
+      "spaceScan": 0.1,
+      "anchors": ["bottom"]
+    }
+  ],
+  "scripts": ["/objects/bees/fubeesgenetics/geneticmicroscope/geneticmicroscope.lua"],
+  "scriptDelta": 5,
+  "uiConfig": "/interface/fubeesgenetics/geneticmicroscope/geneticmicroscope.config",
+  "humanDescription": "A compact microscope that reveals bee genetics instantly, without turning knowledge into a payout.",
+  "apexDescription": "A focused genetic viewer. It exposes bee data while producing no research or currency.",
+  "avianDescription": "A careful lens for reading the hidden traits of bees. Nothing is extracted except information.",
+  "floranDescription": "Microscope showsss bee genesss. No rewardsss, just knowingss.",
+  "glitchDescription": "Analytical. This instrument reveals a bee's genetic data without generating a material reward.",
+  "hylotlDescription": "A restrained scientific instrument that reveals genetic structure without commodifying the specimen.",
+  "novakidDescription": "A little lens that tells you what a bee is carrying genetically. No payout attached.",
+  "genericDescription": "Reveals the genetic data of bee items instantly and returns the same bee with its original parameters."
+}
