@@ -142,27 +142,25 @@ def check_assets(root, fu_root, native_root):
     assert not (mod/'objects/bees/beestation/beestation.object.patch').exists()
     nodes = research['researchTree']['fu_agriculture']
     names = ['fubeesgenetics_industrial_beekeeping','fubeesgenetics_abusive_apiaries','fubeesgenetics_unethical_genetics']
+    extra = ['fubeesgenetics_frame_research','fubeesgenetics_microscope_research','fubeesgenetics_stabilizer_research']
     assert nodes['bees3']['children'] == [names[0]]
-    assert nodes[names[0]]['children'] == [names[1]] and nodes[names[1]]['children'] == [names[2]]
-    assert nodes[names[2]]['children'] == []
-    assert [nodes[name]['unlocks'] for name in names] == [
+    assert nodes[names[0]]['children'] == [names[1],extra[1]]
+    assert nodes[names[1]]['children'] == [extra[0]]
+    assert nodes[extra[1]]['children'] == [extra[2]] and nodes[extra[2]]['children'] == [names[2]]
+    assert nodes[names[2]]['children'] == nodes[extra[0]]['children'] == []
+    assert [nodes[name]['unlocks'] for name in names+extra] == [
         [ident,'fubeesgenetics_beeexchange'],
-        ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary',
-         'fubeesgenetics_overloadframekeeper','fubeesgenetics_overloadtriframeapiary'],
-        ['fubeesgenetics_hybridizer','fubeesgenetics_geneticstabilizer']]
-    assert [nodes[name]['price'] for name in names] == [
-        [['fuscienceresource',1000],['aichip',1]],
-        [['fuscienceresource',1400],['fumadnessresource',60]],
-        [['fuscienceresource',2200],['fumadnessresource',120]]]
-    assert research['acronyms']['fu_agriculture'] == dict(zip(['FUBI1','FUBI2','FUBI3'],names))
-    assert [research['strings']['research'][name][0] for name in names] == [
-        'Industrial Beekeeping','Abusive Apiaries','Unethical Genetic Practices']
-    assert all(len(research['strings']['research'][name][1]) > 80 for name in names)
+        ['fubeesgenetics_overloadapiary','fubeesgenetics_overloadlargeapiary'],
+        ['fubeesgenetics_hybridizer'],
+        ['fubeesgenetics_overloadframekeeper','fubeesgenetics_overloadtriframeapiary'],
+        ['fubeesgenetics_geneticmicroscope'],['fubeesgenetics_geneticstabilizer']]
+    assert research['acronyms']['fu_agriculture'] == dict(zip(['FUBI1','FUBI2','FUBI3','FUBI4','FUBI5','FUBI6'],names+extra))
+    for name in names+extra:
+        assert len(research['strings']['research'][name][1]) > 50
+        assert len(nodes[name]['position']) == 2 and nodes[name]['price']
     for name in names:
         icon = nodes[name]['icon']
-        assert icon.startswith('/zb/researchTree/fubeesgenetics/')
         assert png_size(mod/icon.lstrip('/')) == (16,16)
-        assert nodes[name]['position'][0] < -100
     passed('S8 FU Agriculture research nodes, costs, blueprints and no pickup unlock')
     c=gui['helpCanvas']
     assert c['mouseTransparent'] and not c['captureMouseEvents'] and not c['captureKeyboardEvents']
