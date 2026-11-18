@@ -1,7 +1,8 @@
 # Bee Abusive Industry
 
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
-(Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
+(Bee Analyzer), Bee Exchange (Auto Refugee), Bee Genetic Microscope,
+Genetic Stabilizer, quatro variantes de Overload Apiary e Genetic Hybridizer.
 
 **Release estável: 3.0.0. Autor: Goblin Man.**
 
@@ -9,17 +10,15 @@ Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
 [Histórico](docs/VERSION_HISTORY.md) · [Estado e validação](docs/IMPLEMENTATION_STATUS.md)
 
-A 0.2.19 aplica o nome **[oSB][FU] Bee Abusive Industry**, autor **Goblin Man**,
-ícone Cybernetic Queen em fundo laranja e link do projeto na lista de mods.
-Os IDs internos permanecem iguais. A interface validada da 0.2.18 está preservada.
-O layout compacto **304×332**, valores centralizados e slots próximos da 0.2.16
-permanecem iguais. A 0.2.42-dev acrescenta o favo ao fundo do Analyzer e
-padroniza seus logos com os do Hybridizer em hexágonos de 20×20 pixels.
-A correção do nome **Auto Refugee** da 0.2.15 está preservada.
+A release 3.0 reúne nove máquinas e seis pesquisas na árvore Agriculture.
+Ela acrescenta o microscópio genético, o estabilizador e as variantes
+Framekeeper e Tri-Frame dos apiários Overload. O nome técnico
+`FUBeesGenetics`, os IDs existentes e os inventários são preservados.
 
-O mantenedor confirmou todas as alterações anteriores validadas e prontas.
-O novo nome/autor/ícone da lista ainda precisa de conferência no jogo.
-A versão 0.2.19 já está em `main`; os recursos novos permanecem em `dev`.
+O mantenedor confirmou que o conteúdo de desenvolvimento está pronto para
+produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.0-dev.
+A página oficial da Steam já existe, e suas atualizações são enviadas pelo
+mantenedor com o Steam Mod Uploader.
 
 ## Direção de arte de máquinas
 
@@ -65,7 +64,7 @@ O item oficial está publicado na [Steam Workshop](https://steamcommunity.com/sh
 
 ## Pesquisa na árvore Agriculture
 
-Os cinco blueprints do addon são aprendidos em três pesquisas ligadas à trilha de
+Os nove blueprints do addon são aprendidos em seis pesquisas ligadas à trilha de
 abelhas do FU. A Bee Station continua sendo a estação de fabricação na aba Functional.
 A coleta da estação não ensina mais as receitas do addon.
 
@@ -77,6 +76,12 @@ A coleta da estação não ensina mais as receitas do addon.
 | Efficient Bee Microscopy | Industrial Beekeeping | 1.200 Research | Bee Genetic Microscope |
 | Genetic Stabilization | Efficient Bee Microscopy | 2.000 Research + 100 Madness + 1 Unknown Gene + 1 Isogen Bar | Genetic Stabilizer |
 | Unethical Genetic Practices | Genetic Stabilization | 2.200 Research + 120 Madness + 1 Red Matter | Genetic Hybridizer |
+
+A disposição forma duas ramificações em favo: Abusive Apiaries leva a
+Advanced Frame Management; Efficient Bee Microscopy leva a Genetic
+Stabilization e depois a Unethical Genetic Practices. O ícone de frames usa
+três quadros de tungstênio sobrepostos; microscópio e estabilizador usam os
+ícones das respectivas máquinas.
 
 Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
 Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).
@@ -116,6 +121,23 @@ exceções em [IMPLEMENTATION_STATUS](docs/IMPLEMENTATION_STATUS.md).
 
 ID para `/spawnitem`: `fubeesgenetics_geneticqueenfilter`.
 
+O **Bee Genetic Microscope** prepara abelhas para a inspeção dos genes. Aceita
+itens com a tag de abelha do FU e devolve uma unidade com os parâmetros
+preservados e `genomeInspected=true`, sem gerar Research, Pixels ou recompensas.
+A análise não tem tempo de experimento nem custo de energia; aguarda o slot
+Analyzed ficar livre. Seus dois slots têm offsets 0 (Input) e 1 (Analyzed).
+
+A entrada lógica superior liga/desliga: sem fio funciona; sinal baixo pausa
+novas análises e alto permite operar. A entrada inferior e a saída usam a rede
+de itens FU/ITD; filtre os slots para inserir abelhas e retirar as analisadas.
+A janela compacta reutiliza a UI do microscópio FU, com ícone em moldura de
+retrato e tanque em âmbar de mel.
+
+Pesquise **Efficient Bee Microscopy** e fabrique na Bee Station com
+1 N. Electron Microscope, 5 A.I. Chips e 20 Laser Diodes. ID para
+`/spawnitem`: `fubeesgenetics_geneticmicroscope`.
+Veja [mecânica e automação](docs/GENETIC_MICROSCOPE_0_2_86.md).
+
 ## Bee Exchange / Auto Refugee
 
 Troca abelhas automaticamente conforme as receitas do Bee Refuge do FU.
@@ -150,7 +172,7 @@ ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
 Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
 atualizar. As versões atuais já usam os mesmos 16 slots.
 
-## Overload Apiary (0.2.86-dev)
+## Overload Apiary
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
 vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
@@ -170,19 +192,35 @@ As novas variantes usam inicialmente as mesmas texturas dos Overload atuais:
 **Overload Framekeeper** conserva os quadros inseridos sem consumir sua
 durabilidade, mantendo os bônus e funções nativas dos quadros; **Overload
 Tri-Frame** usa o corpo grande e oferece três slots de quadro, com desgaste
-normal. Ambas usam 18 W, o bônus de produção de 1,2× e vida útil da rainha de
-0,7×. O Framekeeper é feito a partir do Overload pequeno (2 AI Chips e 10
+normal. O Framekeeper mantém um slot de quadro e 15 saídas; o Tri-Frame tem
+dois slots de drones, três de quadros e 20 saídas. Ambas usam 18 W para o bônus
+de produção de 1,2× e mantêm a vida útil da rainha de 0,7×. Sem energia,
+produzem na velocidade normal; a penalidade de vida continua. O Framekeeper é feito a partir do Overload pequeno (2 AI Chips e 10
 Durasteel Bars); o Tri-Frame parte do Overload Large (3 AI Chips e 15
 Durasteel Bars).
 
-## Genetic Hybridizer e abelhas híbridas (0.2.71-dev)
+As duas variantes são desbloqueadas em **Advanced Frame Management**.
+Os LEDs ciano ficam fullbright quando o apiário recebe energia, sem iluminar
+o ambiente. O Framekeeper preserva os quadros dentro do ciclo nativo do FU,
+sem timer adicional. IDs para `/spawnitem`:
+`fubeesgenetics_overloadframekeeper` e `fubeesgenetics_overloadtriframeapiary`.
+
+## Genetic Hybridizer e abelhas híbridas
 
 O **Genetic Stabilizer**, desbloqueado em Genetic Stabilization, trata uma abelha
 por vez em 10 segundos e reduz sua chance genética de mutação pela metade,
 arredondada ao valor representável mais próximo. Cada tratamento tem 40% de
 chance de destruir a abelha. A receita na Bee Station usa 5 AI Chips, 10
 Durasteel Bars, 10 Cell Matter, 5 Isogen Bars, 5 Lunari Crystals e 5 Unknown
-Genes. Não requer energia.
+Genes (`solaricrystal` é o ID FU dos Lunari Crystals). Não requer energia.
+Aceita abelhas FU ou híbridas com genome válido e preserva os demais genes e
+parâmetros. Saída ocupada impede o tratamento; trocar o exemplar, descarregar
+a máquina ou bloquear a saída reinicia o ciclo incompleto.
+
+Sua janela compacta apresenta Input/Treated, duração e risco. O corpo amarelo
+usa detalhes turquesa e displays/partículas fullbright durante o tratamento.
+ID para `/spawnitem`: `fubeesgenetics_geneticstabilizer`.
+Veja [regras e limites do tratamento](docs/GENETIC_STABILIZER.md).
 
 A janela do Hybridizer usa moldura compacta de 270×165 pixels, logo próprio e
 favo de mel discreto no canto inferior direito. O cabeçalho segue o alinhamento
@@ -223,8 +261,7 @@ Research Disc inserido, 3 indica larva na saída e 4 indica máquina pronta.
   Eles continuam a gerar entidades capturáveis para abelhas nativas, mas não
   tentam gerar entidades híbridas inexistentes.
 - O catálogo contém **595 combinações / 1.190 subespécies** e 595 folhas de
-  sprites. [Prévia visual](artwork/hybrids/preview.png). O reteste da carga
-  antecipada no jogo ainda está pendente.
+  sprites. [Prévia visual](artwork/hybrids/preview.png).
 
 Na 0.2.23-dev, os pares são calculados a partir dos dados das 35 famílias do
 FU. O catálogo detalhado continua na documentação; o PAK carrega apenas as
@@ -261,7 +298,7 @@ O GitHub Actions usa as ferramentas nativas Starbound/OpenStarbound fixadas em
 [pak_toolchain.json](tools/pak_toolchain.json) para gerar novos PAKs.
 
 ```sh
-python3 tools/check_version.py --development
+python3 tools/check_version.py --release  # main; em dev, usar --development
 python3 tools/build_hybrid_sprites.py --check
 python3 tools/build_research_icons.py --check
 python3 tools/run_checks.py --fetch
@@ -269,12 +306,17 @@ python3 tools/run_checks.py --fetch
 python3 tools/run_checks.py --ic-root .cache/improved-containers
 ```
 
-Na 0.2.23 passaram **172 grupos locais básicos e 13 casos opcionais com
-Improved Containers 2.11**. Os casos IC executaram o Lua real do PAK
-fornecido pelo usuário, conferido por hash.
+A release 3.0.0 passou nos [checks MVP](https://github.com/Modding-VK/fubeesgenetics/actions/runs/44217817831)
+e no [build do PAK](https://github.com/Modding-VK/fubeesgenetics/actions/runs/44217817950).
+A suíte confere os nove objetos, receitas, conexões e custos de pesquisa,
+layouts e referências de assets. Os testes do estabilizador cobrem redução
+da mutação, preservação dos parâmetros, risco de perda, saída bloqueada,
+recuperação de inserção e estados de animação.
+
 Bindings de engine, jogador, rede e GUI são simulados; esses testes não equivalem
-à execução dentro do jogo. O PAK foi empacotado e extraído para conferir seus
-**669 arquivos** com bytes idênticos e metadata JSON equivalente.
+à execução dentro do jogo. O build confere o PAK por extração nativa e comparação
+dos arquivos. Os 13 casos opcionais de Improved Containers 2.11 registrados na
+0.2.23 são históricos e não foram repetidos nesta revisão do README.
 
 `--fetch` prepara referências fixadas e verificadas por hash em
 [upstream.json](tools/upstream.json) e [ui_upstream.json](tools/ui_upstream.json).
@@ -284,7 +326,7 @@ FU local, use `--fu-root /caminho/FrackinUniverse`. Caches não são redistribu�
 Geradores atuais: `tools/build_assets.py` (Analyzer),
 `tools/build_beeexchange_work_assets.py` (móvel/animação),
 `tools/build_beeexchange_icon.py` (ícone), `tools/build_research_icons.py`
-(ícones dos três nós) e `tools/build_hybrid_sprites.py`
+(ícones de pesquisa) e `tools/build_hybrid_sprites.py`
 (595 folhas de sprites e prévia). [Roteiro de testes no jogo](docs/IN_GAME_TESTS.md).
 
 ## API e procedência
