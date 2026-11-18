@@ -34,8 +34,8 @@ jobs:
       - name: Install lzip if needed
         run: |
           if ! command -v lzip >/dev/null 2>&1; then
-            sudo apt-get update
-            sudo apt-get install -y lzip
+            timeout 180s sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update
+            timeout 120s sudo apt-get install -y lzip
           fi
       - name: Install verified OpenStarbound tools
         run: python tools/install_pak_tools.py
