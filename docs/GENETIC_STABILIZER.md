@@ -18,11 +18,14 @@ mod's native slot frames. Its two slots, title, icon and risk/cycle text fit in
 the compact window. These are static layout changes with no additional UI
 script or polling. Positioning and text readability still require in-game
 verification.
+The slots, their frames and their labels are positioned three pixels lower;
+the help text and window size are unchanged.
 
 The world appearance references FU's Advanced Xenolab, using the original
-48×45 frame and animated layer, using the blue body and yellow details shown
-in the reference. The same palette is applied to the placement preview and
-all idle/working frames; only the three marked displays are fullbright. The standard
+48×45 frame and animated layer, using the earlier yellow body palette. The
+same palette is applied to the placement preview and all idle/working frames;
+only the three marked displays are fullbright. This uses static image
+directives and adds no recurring scripting work. The standard
 48×45 silhouette and position remain unchanged. The inventory icon currently
 uses the original FU icon. Appearance, placement and interaction in the game
 remain to be checked, including both illumination and orientation.
