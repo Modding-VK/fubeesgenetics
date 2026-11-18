@@ -39,8 +39,9 @@ compare many loaded idle, processing and blocked machines, with UI closed and
 open, and verify the unloaded/reloaded cycle and automation transfers.
 
 During a valid, unblocked cycle the animator draws blue fullbright overlays
-only over the five marked display areas, cropped from FU's three-frame
-Xenolab animation. The remaining body and animation are not fullbright.
+only inside the five marked displays, excluding their surrounding borders,
+cropped from FU's three-frame Xenolab animation. The remaining body and
+animation are not fullbright.
 It returns to idle on completion, invalid input, blocked
 output or recovery. Only transitions call the animator; the existing 30-tick
 update selects the state and the renderer loops the frames without another
