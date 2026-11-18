@@ -48,3 +48,6 @@ update selects the state and the renderer loops the frames without another
 timer or world query. Color, alignment and transitions need an in-game check.
 The screenshot shows the mirrored orientation; the display crops are defined
 in source-frame coordinates and flip together with the machine's animator.
+The marked area above the machine is also fullbright during processing,
+including the moving particles in each existing animation frame. It uses a
+cropped animator layer and adds no new script update or world query.
