@@ -38,8 +38,8 @@ or scripting queue measurements have been made in the engine. For measurement,
 compare many loaded idle, processing and blocked machines, with UI closed and
 open, and verify the unloaded/reloaded cycle and automation transfers.
 
-During a valid, unblocked cycle the animator draws blue fullbright overlays
-only inside the five marked displays, excluding their surrounding borders,
+During a valid, unblocked cycle the animator draws fullbright overlays
+only over pixels covered by green in the latest annotated reference,
 cropped from FU's three-frame Xenolab animation. The remaining body and
 animation are not fullbright.
 It returns to idle on completion, invalid input, blocked
