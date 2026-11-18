@@ -20,7 +20,9 @@ script or polling. Positioning and text readability still require in-game
 verification.
 
 The world appearance references FU's Advanced Xenolab, using the original
-48×45 frame and light layer with a yellow replacement palette. The standard
+48×45 frame and animated layer, using the blue body and yellow details shown
+in the reference. The same palette is applied to the placement preview and
+all idle/working frames; only the three marked displays are fullbright. The standard
 48×45 silhouette and position remain unchanged. The inventory icon currently
 uses the original FU icon. Appearance, placement and interaction in the game
 remain to be checked, including both illumination and orientation.
