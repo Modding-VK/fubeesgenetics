@@ -7,10 +7,10 @@
   "subtitle": "Risky genetic treatment",
   "race": "generic", "category": "crafting", "rarity": "legendary", "price": 1800,
   "printable": false, "health": 0.1, "slotCount": 2, "hasWindowIcon": false,
-  "inventoryIcon": "/objects/crafting/xenostationadvnew/xenostationadvicon.png",
+  "inventoryIcon": "/objects/crafting/xenostationadvnew/xenostationadvicon.png?replace;ea4df2=35dfcc;cc55d2=39bbab",
   "orientations": [{
     "imageLayers": [
-      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnewlit.png:default.0?replace;303030=76580b;555555=a87e0e;808080=d4a51d;b8b8b8=efd05e", "fullbright": false},
+      {"image": "/objects/crafting/xenostationadvnew/xenostationadvnewlit.png:default.0?replace;c92aa4=129a8c;ff37cc=1bdac4;fb9ae4=8ff0e2;ea53f2=3ce4d0;ea50f2=39e2ce;ecc6ef=c0f6eb;ecc5ef=bdf3e9;e37ced=71e7d6;e37aed=6de5d3?replace;303030=76580b;555555=a87e0e;808080=d4a51d;b8b8b8=efd05e", "fullbright": false},
       {"image": "/objects/crafting/xenostationadvnew/xenostationadvnew.png:default.0?replace;303030=76580b;555555=a87e0e;808080=d4a51d;b8b8b8=efd05e"}
     ],
     "imagePosition": [0, 0], "spaceScan": 0.1, "anchors": ["bottom"]

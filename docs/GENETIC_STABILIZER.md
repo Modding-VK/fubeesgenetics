@@ -51,3 +51,7 @@ in source-frame coordinates and flip together with the machine's animator.
 The marked area above the machine is also fullbright during processing,
 including the moving particles in each existing animation frame. It uses a
 cropped animator layer and adds no new script update or world query.
+The pink and purple-pink pixels in the machine, animated effects and icon use
+turquoise replacement colors, including the cropped fullbright layers. These
+are image directives only and introduce no recurring scripting work; the
+resulting appearance still needs visual validation in the game.
