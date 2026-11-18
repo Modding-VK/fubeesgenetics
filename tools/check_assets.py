@@ -155,6 +155,13 @@ def check_assets(root, fu_root, native_root):
         ['fubeesgenetics_overloadframekeeper','fubeesgenetics_overloadtriframeapiary'],
         ['fubeesgenetics_geneticmicroscope'],['fubeesgenetics_geneticstabilizer']]
     assert research['acronyms']['fu_agriculture'] == dict(zip(['FUBI1','FUBI2','FUBI3','FUBI4','FUBI5','FUBI6'],names+extra))
+    assert nodes[extra[0]]['price'] == [['fuscienceresource',1800],['fumadnessresource',60]]
+    assert nodes[extra[2]]['price'] == [['fuscienceresource',2000],['fumadnessresource',100],['unknowngene',1],['isogenbar',1]]
+    assert nodes[names[2]]['price'] == [['fuscienceresource',2200],['fumadnessresource',120],['redmatter',1]]
+    assert png_size(mod/nodes[extra[0]]['icon'].lstrip('/')) == (16,16)
+    for node_name, obj_name in [(extra[1], 'fubeesgenetics_geneticmicroscope'), (extra[2], 'fubeesgenetics_geneticstabilizer')]:
+        machine = next(obj for _, obj in objects if obj['objectName'] == obj_name)
+        assert nodes[node_name]['icon'] == machine['inventoryIcon']
     for name in names+extra:
         assert len(research['strings']['research'][name][1]) > 50
         assert len(nodes[name]['position']) == 2 and nodes[name]['price']

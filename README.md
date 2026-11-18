@@ -73,10 +73,10 @@ A coleta da estação não ensina mais as receitas do addon.
 | --- | --- | --- | --- |
 | Industrial Beekeeping | bees3 (Advanced Beekeeping) | 1.000 Research + 1 A.I. Chip | Genetic Queen Filter, Auto Refugee |
 | Abusive Apiaries | Industrial Beekeeping | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
-| Advanced Frame Management | Abusive Apiaries | 1.800 Research + 80 Madness | Overload Framekeeper, Overload Tri-Frame |
+| Advanced Frame Management | Abusive Apiaries | 1.800 Research + 60 Madness | Overload Framekeeper, Overload Tri-Frame |
 | Efficient Bee Microscopy | Industrial Beekeeping | 1.200 Research | Bee Genetic Microscope |
-| Genetic Stabilization | Efficient Bee Microscopy | 2.000 Research + 100 Madness | Genetic Stabilizer |
-| Unethical Genetic Practices | Genetic Stabilization | 2.200 Research + 120 Madness | Genetic Hybridizer |
+| Genetic Stabilization | Efficient Bee Microscopy | 2.000 Research + 100 Madness + 1 Unknown Gene + 1 Isogen Bar | Genetic Stabilizer |
+| Unethical Genetic Practices | Genetic Stabilization | 2.200 Research + 120 Madness + 1 Red Matter | Genetic Hybridizer |
 
 Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
 Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).
