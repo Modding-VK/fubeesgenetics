@@ -24,7 +24,7 @@ the help text and window size are unchanged.
 The world appearance references FU's Advanced Xenolab, using the original
 48×45 frame and animated layer, using the earlier yellow body palette. The
 same palette is applied to the placement preview and all idle/working frames;
-only the three marked displays are fullbright. This uses static image
+only the marked displays are fullbright. This uses static image
 directives and adds no recurring scripting work. The standard
 48×45 silhouette and position remain unchanged. The inventory icon currently
 uses the original FU icon. Appearance, placement and interaction in the game
@@ -39,9 +39,11 @@ compare many loaded idle, processing and blocked machines, with UI closed and
 open, and verify the unloaded/reloaded cycle and automation transfers.
 
 During a valid, unblocked cycle the animator draws blue fullbright overlays
-only over the three marked display areas, cropped from FU's three-frame
+only over the five marked display areas, cropped from FU's three-frame
 Xenolab animation. The remaining body and animation are not fullbright.
 It returns to idle on completion, invalid input, blocked
 output or recovery. Only transitions call the animator; the existing 30-tick
 update selects the state and the renderer loops the frames without another
 timer or world query. Color, alignment and transitions need an in-game check.
+The screenshot shows the mirrored orientation; the display crops are defined
+in source-frame coordinates and flip together with the machine's animator.
