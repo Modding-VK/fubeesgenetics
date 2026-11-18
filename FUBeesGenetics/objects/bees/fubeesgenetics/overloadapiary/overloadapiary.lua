@@ -6,19 +6,33 @@ require "/scripts/fubeesgenetics/apiaryhybridloader.lua"
 local upstreamInit, upstreamUpdate = init, update2
 local upstreamDroneProduction, upstreamQueenProduction = droneProduction, queenProduction
 local upstreamAgeQueen = ageQueen
+local upstreamGetFrames = getFrames
 local powered = false
 local displayedPowered = false
 local requiredPower
+local preserveFrames = false
 
 function init()
   powered, displayedPowered = false, false
   requiredPower = config.getParameter("isn_requiredPower", 12)
+  preserveFrames = config.getParameter("preserveFrames", false) == true
   fubeesContainer.install()
   upstreamInit()
   power.init()
   -- An unloaded power network cannot pay for production. Discard FU's offline
   -- simulation timestamps, including timestamps from an older saved version.
   storage.lastActive, storage.unfinishedTicks, ticksToSimulate = nil, nil, nil
+end
+
+-- Framekeeper variants retain FU's frame bonuses and special functions while
+-- disabling only the native timed frame consumption. No extra polling or
+-- world query is introduced; the wrapper runs only during FU bee ticks.
+function getFrames(dt)
+  if not preserveFrames then return upstreamGetFrames(dt) end
+  local previousHasDrones = hasDrones
+  hasDrones = false
+  upstreamGetFrames(dt)
+  hasDrones = previousHasDrones
 end
 
 function update(dt)

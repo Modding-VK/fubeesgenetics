@@ -1,8 +1,9 @@
-# Estado atual — 0.2.85-dev
+# Estado atual — 0.2.86-dev
 
 A `dev` contém a produção híbrida ponderada (2/3 para a linhagem predominante e
-1/3 para a recessiva), quatro saídas de status no Genetic Hybridizer e a
-integração do ciclo de drones com as validações nativas do FU. A documentação
+1/3 para a recessiva), quatro saídas de status no Genetic Hybridizer, duas
+variantes adicionais de Overload Apiary e a integração do ciclo de drones com
+as validações nativas do FU. A documentação
 de mecânicas está em [HYBRID_BEES_WIKI](HYBRID_BEES_WIKI.md) e o texto para
 Steam em [HYBRID_BEES_STEAM_DISCUSSION](HYBRID_BEES_STEAM_DISCUSSION.txt).
 Essas alterações ainda precisam de confirmação no OpenStarbound com FU real.

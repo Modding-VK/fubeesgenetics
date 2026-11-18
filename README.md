@@ -3,7 +3,7 @@
 Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 0.2.85. Autor: Goblin Man.**
+**Release estável: 0.2.101. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -53,7 +53,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-0.2.85.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-0.2.101.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -73,7 +73,10 @@ A coleta da estação não ensina mais as receitas do addon.
 | --- | --- | --- | --- |
 | Industrial Beekeeping | bees3 (Advanced Beekeeping) | 1.000 Research + 1 A.I. Chip | Genetic Queen Filter, Auto Refugee |
 | Abusive Apiaries | Industrial Beekeeping | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
-| Unethical Genetic Practices | Abusive Apiaries | 2.200 Research + 120 Madness | Genetic Hybridizer |
+| Advanced Frame Management | Abusive Apiaries | 1.800 Research + 60 Madness | Overload Framekeeper, Overload Tri-Frame |
+| Efficient Bee Microscopy | Industrial Beekeeping | 1.200 Research | Bee Genetic Microscope |
+| Genetic Stabilization | Efficient Bee Microscopy | 2.000 Research + 100 Madness + 1 Unknown Gene + 1 Isogen Bar | Genetic Stabilizer |
+| Unethical Genetic Practices | Genetic Stabilization | 2.200 Research + 120 Madness + 1 Red Matter | Genetic Hybridizer |
 
 Personagens que já aprenderam blueprints por coleta mantêm esse conhecimento.
 Consulte [integração de pesquisa](docs/FU_BEE_RESEARCH_ANALYSIS.md).
@@ -147,7 +150,7 @@ ID para `/spawnitem`: `fubeesgenetics_beeexchange`.
 Ao migrar das antigas versões com 24 slots, esvazie os offsets 16–23 antes de
 atualizar. As versões atuais já usam os mesmos 16 slots.
 
-## Overload Apiary (0.2.73-dev)
+## Overload Apiary (0.2.86-dev)
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
 vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
@@ -163,7 +166,23 @@ de 4, além de dois espaços para drones e dois para quadros. Ambos usam a mesma
 regra de produção e desgaste e consomem 12 W para ativar o bônus. A receita do
 Large na Bee Station é 1 Large Apiary, 1 A.I. Chip e 5 Durasteel Bars.
 
+As novas variantes usam inicialmente as mesmas texturas dos Overload atuais:
+**Overload Framekeeper** conserva os quadros inseridos sem consumir sua
+durabilidade, mantendo os bônus e funções nativas dos quadros; **Overload
+Tri-Frame** usa o corpo grande e oferece três slots de quadro, com desgaste
+normal. Ambas usam 18 W, o bônus de produção de 1,2× e vida útil da rainha de
+0,7×. O Framekeeper é feito a partir do Overload pequeno (2 AI Chips e 10
+Durasteel Bars); o Tri-Frame parte do Overload Large (3 AI Chips e 15
+Durasteel Bars).
+
 ## Genetic Hybridizer e abelhas híbridas (0.2.71-dev)
+
+O **Genetic Stabilizer**, desbloqueado em Genetic Stabilization, trata uma abelha
+por vez em 10 segundos e reduz sua chance genética de mutação pela metade,
+arredondada ao valor representável mais próximo. Cada tratamento tem 40% de
+chance de destruir a abelha. A receita na Bee Station usa 5 AI Chips, 10
+Durasteel Bars, 10 Cell Matter, 5 Isogen Bars, 5 Lunari Crystals e 5 Unknown
+Genes. Não requer energia.
 
 A janela do Hybridizer usa moldura compacta de 270×165 pixels, logo próprio e
 favo de mel discreto no canto inferior direito. O cabeçalho segue o alinhamento

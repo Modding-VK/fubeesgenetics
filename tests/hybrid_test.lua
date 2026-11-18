@@ -627,4 +627,34 @@ test("Large hybrid apiary performs one flower search per production tick",functi
     flowers=0;e.beeTick(1);equal(flowers,1)
   end
 end)
+test("Stabilizer preserves bee data, halves mutation, respects output and failure", function()
+  local e = setup(); e.settings = {slotCount=2, scriptDelta=30}
+  e.require('/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.lua'); e.init()
+  local bee=e.parent('honey','drone'); bee.count=3; bee.parameters.marker={value=42}
+  bee.parameters.genome=e.genelib.modifyGenomeStat(bee.parameters.genome, 'mutationChance', 100-e.genelib.statFromGenomeToDecimal(bee.parameters.genome,'mutationChance'))
+  e.inventory[0]=copy(bee); e.inventory[1]={name='dirtmaterial',count=1,parameters={}}
+  e.roll=.9; e.update(20); equal(e.inventory[0].count,3)
+  e.inventory[1]=nil; e.update(9); equal(e.inventory[0].count,3); e.update(1)
+  equal(e.inventory[0].count,2); equal(e.inventory[1].parameters.marker.value,42)
+  equal(e.genelib.statFromGenomeToDecimal(e.inventory[1].parameters.genome,'mutationChance'),50)
+  e.inventory[1]=nil; e.roll=.39; e.update(10); equal(e.inventory[0].count,1); equal(e.inventory[1],nil)
+  e.roll=.40; e.update(10); equal(e.inventory[0],nil); assert(e.inventory[1])
+end)
+test("Stabilizer recovers a bee when output insertion fails", function()
+  local e=setup(); e.settings={slotCount=2,scriptDelta=30}; e.require('/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.lua'); e.init()
+  local bee=e.parent('honey','drone'); bee.parameters.marker='keep'; e.inventory[0]=copy(bee)
+  e.roll=.9; e.blockInsert=1; e.update(10)
+  assert(same(e.inventory[0],bee)); equal(e.inventory[1],nil); equal(e.storage.recoveryEscrow,nil)
+end)
+test("Stabilizer animates only while treating an eligible bee", function()
+  local e=setup(); e.settings={slotCount=2,scriptDelta=30}; local states={}
+  e.animator.setAnimationState=function(name,state) assert(name=='treatment'); states[#states+1]=state end
+  e.require('/objects/bees/fubeesgenetics/geneticstabilizer/geneticstabilizer.lua'); e.init()
+  equal(states[#states],'idle'); e.update(1); equal(#states,1)
+  e.inventory[0]=e.parent('honey','drone'); e.update(1); equal(states[#states],'working')
+  e.update(1); equal(#states,2)
+  e.inventory[1]={name='dirtmaterial',count=1,parameters={}}; e.update(1); equal(states[#states],'idle')
+  e.inventory[1]=nil; e.update(1); equal(states[#states],'working')
+  e.inventory[0]=nil; e.update(1); equal(states[#states],'idle')
+end)
 print("Hybrids: " .. passed .. " test groups passed (engine bindings mocked).")

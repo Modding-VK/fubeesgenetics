@@ -45,6 +45,28 @@ frame slots. The same overload script gives
 the 1.2 resource and drone bonus when 12 W is available, normal production
 without power, 70% queen lifespan, and no random capturable bee spawns.
 
+## Additional variants (0.2.86-dev)
+
+The first two category variants deliberately reuse the current Overload world
+sprites and animation states.
+
+- **Overload Framekeeper** (`fubeesgenetics_overloadframekeeper`) is based on
+  the small Overload. It keeps one frame slot and 15 output slots, but the
+  inserted frame is never consumed. FU's frame bonuses and special frame
+  functions still run; only the native timed wear step is suppressed. It uses
+  18 W, keeps the 1.2× powered production/drone bonus and 0.7× queen lifespan.
+- **Overload Tri-Frame** (`fubeesgenetics_overloadtriframeapiary`) is based on
+  the large Overload. It adds a third frame slot while retaining the two drone
+  slots and 20 output slots. Frames wear according to FU's normal rules. It
+  uses the same 18 W, 1.2× powered bonus, 0.7× queen lifespan and no-capturable
+  bee behavior.
+
+The Framekeeper recipe upgrades one Overload Apiary with 2 AI Chips and 10
+Durasteel Bars. The Tri-Frame recipe upgrades one Overload Large Apiary with 3
+AI Chips and 15 Durasteel Bars. Both are unlocked together with Abusive
+Apiaries. The Framekeeper's preservation hook runs only inside FU's existing
+bee tick; it adds no timer, world query or recurring polling loop.
+
 ## Native sprite adaptation (0.2.43-dev)
 
 The small object retains FU's **16×24** frame and four named states; the large
@@ -109,6 +131,13 @@ recurring message. In-game verification is still needed to confirm the
 transition and appearance under a connected FU power network.
 
 ### Belt power indicators (0.2.47-dev)
+
+The powered frame has two cyan LED pixels on each size. A separate animator
+part isolates those pixels with an image directive and draws them fullbright
+only in the powered state. The original sheets and placement remain unchanged;
+the existing power transition controls the layer without new scripting or
+polling. Appearance in darkness and power transitions still require an in-game
+check. `fullbright` does not illuminate the surrounding world.
 
 The normal `default` frame now uses a muted Durasteel-blue pixel on the belt;
 the existing `powered` frame retains the cyan pixel. The small apiary has one

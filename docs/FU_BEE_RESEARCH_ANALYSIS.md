@@ -47,9 +47,12 @@ namespaced, siglas únicas, títulos, descrições com tiering laranja (`^orange
 
 | Nó | Pais necessários | Posição | Custo | Blueprints |
 | --- | --- | --- | --- | --- |
-| Industrial Beekeeping | `bees3` (Advanced Beekeeping) | [-155, -50] | 1.000 Research + 1 A.I. Chip | Genetic Queen Filter, Auto Refugee |
-| Abusive Apiaries | Industrial Beekeeping | [-155, -90] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
-| Unethical Genetic Practices | Abusive Apiaries | [-155, -130] | 2.200 Research + 120 Madness | Genetic Hybridizer |
+| Industrial Beekeeping | `bees3` (Advanced Beekeeping) | [-155, -130] | 1.000 Research + 1 A.I. Chip | Genetic Queen Filter, Auto Refugee |
+| Abusive Apiaries | Industrial Beekeeping | [-178, -95] | 1.400 Research + 60 Madness | Overload Apiary, Overload Large Apiary |
+| Advanced Frame Management | Abusive Apiaries | [-220, -95] | 1.800 Research + 60 Madness | Overload Framekeeper, Overload Tri-Frame |
+| Efficient Bee Microscopy | Industrial Beekeeping | [-178, -170] | 1.200 Research | Bee Genetic Microscope |
+| Genetic Stabilization | Efficient Bee Microscopy | [-220, -170] | 2.000 Research + 100 Madness + 1 Unknown Gene + 1 Isogen Bar | Genetic Stabilizer |
+| Unethical Genetic Practices | Genetic Stabilization | [-245, -130] | 2.200 Research + 120 Madness + 1 Red Matter | Genetic Hybridizer |
 
 A cadeia começa depois de `bees3` (Advanced Beekeeping). Os pais são conectados pelo campo `children`. O FU requer que todos os pais
 de um nó estejam pesquisados antes de liberá-lo. As siglas persistidas são

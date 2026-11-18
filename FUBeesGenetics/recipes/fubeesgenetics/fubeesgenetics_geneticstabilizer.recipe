@@ -1,0 +1,12 @@
+{
+  "input": [
+    {"item": "aichip", "count": 5},
+    {"item": "durasteelbar", "count": 10},
+    {"item": "cellmatter", "count": 10},
+    {"item": "isogenbar", "count": 5},
+    {"item": "solaricrystal", "count": 5},
+    {"item": "unknowngene", "count": 5}
+  ],
+  "output": {"item": "fubeesgenetics_geneticstabilizer", "count": 1},
+  "groups": ["mod", "beestation", "tools", "all", "functional"]
+}

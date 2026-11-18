@@ -1,0 +1,27 @@
+{
+  "input": [
+    {
+      "item": "electronmicroscope2",
+      "count": 1
+    },
+    {
+      "item": "aichip",
+      "count": 5
+    },
+    {
+      "item": "laserdiode",
+      "count": 20
+    }
+  ],
+  "output": {
+    "item": "fubeesgenetics_geneticmicroscope",
+    "count": 1
+  },
+  "groups": [
+    "mod",
+    "beestation",
+    "tools",
+    "all",
+    "functional"
+  ]
+}

@@ -25,6 +25,7 @@
   "animation": "/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.animation",
   "animationParts": {
     "base": "small-object.png",
+    "powerLed": "small-object.png",
     "bees": "/bees/objects/apiary/bees.png",
     "loading": "/bees/objects/apiary/loading.png",
     "warning": "/bees/objects/apiary/warning.png"
