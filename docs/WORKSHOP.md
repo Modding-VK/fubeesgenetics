@@ -59,7 +59,7 @@ vincula o perfil Steam. A conta logada no uploader será a proprietária do item
 
 Ícone da lista: metadata.icon referencia a Cybernetic Queen do FU e usa diretivas
 nativas para fundo laranja. Não é a imagem da Workshop nem o ícone dos itens.
-Imagem de apresentação: artwork/branding/workshop-preview.png (512×512).
+Imagem de apresentação para o Mod Uploader: `FUBeesGenetics/_previewimage` (PNG 512×512); arte de referência em `artwork/branding/workshop-cover-hybrid-frame-v2.png`.
 Imagem adicional da galeria: artwork/workshop/hybrid-queens-gallery-1920x1080.png
 (1920×1080, fundo branco, 144 rainhas híbridas distintas). Gerar novamente com
 `python3 tools/build_workshop_queens_gallery.py`.
