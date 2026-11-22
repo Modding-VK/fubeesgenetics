@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_overloadlargeapiary",
   "colonyTags": ["hive", "bees", "insects"],
   "rarity": "rare",
-  "description": "A larger apiary that pushes bees beyond their limits. ^cyan;12W power^reset; boosts resources and drones by 20%; without power, production continues at normal speed. Queen lifespan is reduced to 70%.",
+  "description": "A larger apiary that pushes bees beyond their limits. ^cyan;12W power^reset; boosts resources and drones by 20%; without power, production continues at normal speed. Queen lifespan is reduced to 80%.",
   "shortdescription": "Ov. L. Apiary",
   "race": "generic",
   "subtitle": "Maximum output. Minimum mercy.",
@@ -47,11 +47,11 @@
   "powertype": "input",
   "isn_requiredPower": 12,
   "humanDescription": "This enlarged apiary pushes its colony beyond safe limits. Power raises resource and drone output by 20%, but the queen burns out early either way.",
-  "apexDescription": "An enlarged productivity experiment. Twelve watts increase resource and drone output by 20%, while queen lifespan falls to 70% of normal.",
+  "apexDescription": "An enlarged productivity experiment. Twelve watts increase resource and drone output by 20%, while queen lifespan falls to 80% of normal.",
   "avianDescription": "This broad hive drives bees faster with electricity. The queen's life is shortened even when the current stops.",
   "floranDescription": "Big hive drivesss beesss too hard. Power makesss them faster. Queen still getsss old too soon.",
   "glitchDescription": "Analytical. At 12 watts, resource and drone output gain 20%. Without power, production remains normal while queen aging stays accelerated.",
   "hylotlDescription": "A spacious hive made harsh by its machinery. Electricity hastens its colony's work, while the queen pays with a shorter life even without power.",
   "novakidDescription": "This big rig pushes bees hard. Twelve watts gets 'em moving twenty percent faster, but their queen burns out quick even when the lights go out.",
-  "genericDescription": "Large apiary: 12 W grants 20% more resources and drones. Production continues normally without power; queen lifespan remains 70% of normal."
+  "genericDescription": "Large apiary: 12 W grants 20% more resources and drones. Production continues normally without power; queen lifespan remains 80% of normal."
 }

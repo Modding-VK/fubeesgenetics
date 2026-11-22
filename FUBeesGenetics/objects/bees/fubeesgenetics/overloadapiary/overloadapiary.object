@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_overloadapiary",
   "colonyTags": ["hive", "bees", "insects"],
   "rarity": "rare",
-  "description": "Forces bees to work beyond what their bodies can endure. ^cyan;12W power^reset; boosts resources and drones by 20%; without power, production continues at normal speed. Queen lifespan is reduced to 70%.",
+  "description": "Forces bees to work beyond what their bodies can endure. ^cyan;12W power^reset; boosts resources and drones by 20%; without power, production continues at normal speed. Queen lifespan is reduced to 80%.",
   "shortdescription": "Overload Apiary",
   "race": "generic",
   "subtitle": "Maximum output. Minimum mercy.",
@@ -47,11 +47,11 @@
   "powertype": "input",
   "isn_requiredPower": 12,
   "humanDescription": "This apiary pushes bees to produce resources and drones 20% faster with power. They keep working without it, but the queen still wears out early.",
-  "apexDescription": "An aggressive productivity experiment. Twelve watts increase resource and drone output by 20%; queen lifespan falls to 70% of normal.",
+  "apexDescription": "An aggressive productivity experiment. Twelve watts increase resource and drone output by 20%; queen lifespan falls to 80% of normal.",
   "avianDescription": "The bees labor past their natural limits here. Power hastens their work, while the queen's life grows shorter regardless.",
   "floranDescription": "Beesss work too hard in this hive. Power makesss them faster, but queen getsss old early even without it.",
   "glitchDescription": "Analytical. At 12 watts, resource and drone production gain 20%. Without power, production continues normally; queen aging remains accelerated.",
   "hylotlDescription": "An unsettling apiary that strains its colony for faster production. The queen pays with a shorter life, even when power fails.",
   "novakidDescription": "Hook up twelve watts and these bees work twenty percent faster. Cut the juice and they keep at it, though their queen still burns out quick.",
-  "genericDescription": "Powered by 12 W for 20% more resources and drones. Without power, production continues at normal speed. Queen lifespan is 70% of normal."
+  "genericDescription": "Powered by 12 W for 20% more resources and drones. Without power, production continues at normal speed. Queen lifespan is 80% of normal."
 }

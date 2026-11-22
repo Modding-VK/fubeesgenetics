@@ -76,7 +76,7 @@ function queenProduction()
   boostDroneBreeding = false
 end
 
-function ageQueen(amount) return upstreamAgeQueen((amount or 1) / 0.7) end
+function ageQueen(amount) return upstreamAgeQueen((amount or 1) / 0.8) end
 
 fubeesApiary.deferHybrids(function() return powered and 1.2 or 1 end)
 

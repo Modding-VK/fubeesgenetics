@@ -393,11 +393,14 @@ test("Genetic production changes rates instead of cancelling out", function()
   local improved = e.hybridbees.productionRates(l, e.genelib.modifyGenomeStat(h.parameters.genome, "baseProduction", 1), 0, 1)
   for resource, rate in pairs(rates) do assert(math.abs(improved[resource] - 1.5 * rate) < 1e-9) end
 end)
-test("Native overload multipliers and aging remain 1.2 / 1.2 / 0.7", function()
+test("Native overload multipliers and aging are 1.2 / 1.2 / 0.8", function()
   local e = setup(); e.startApiary(); e.queen = e.parent("honey", "queen")
   e.update(0)
   e.queen.parameters.wild = nil; e.inventory[0] = copy(e.queen); e.hasFrame = true
-  local before = e.queen.parameters.lifespan; e.ageQueen(); equal(e.queen.parameters.lifespan, before - 1 / .7)
+  local before = e.queen.parameters.lifespan; e.ageQueen(); equal(e.queen.parameters.lifespan, before - 1 / .8)
+  e.supply = 0; e.update(1); before = e.queen.parameters.lifespan
+  e.ageQueen(); equal(e.queen.parameters.lifespan, before - 1 / .8)
+  e.supply = 1e9; e.update(0)
   e.frameBonuses.baseProduction = 3; e.frameBonuses.droneBreedRate = 0
   e.droneProgress, e.youngQueenProgress = 0, 0
   local breed = e.genelib.statFromGenomeToValue(e.queen.parameters.genome, "droneBreedRate")
