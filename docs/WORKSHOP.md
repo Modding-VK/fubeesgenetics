@@ -90,7 +90,10 @@ Preparar preview/título/descrição e marcar FU como item requerido na página.
 Declarar explicitamente OpenStarbound e a build testada; requires do metadata
 refere-se a FrackinUniverse e não cria uma dependência entre itens Steam.
 Preservar o `steamContentId`/link e o ID `3822748368` gerados pelo uploader para atualizar o mesmo item.
-A release atual foi validada ingame pelo mantenedor; o item Workshop oficial já está publicado no ID `3822748368`. A imagem de preview do Workshop é separada do ícone de inventário.
+O mantenedor confirmou que a versão de desenvolvimento está pronta para promoção.
+O item Workshop oficial já está publicado no ID `3822748368`; a atualização
+desse item é uma operação separada. A imagem de preview do Workshop é separada
+do ícone de inventário.
 
 ## Gerar novamente
 
