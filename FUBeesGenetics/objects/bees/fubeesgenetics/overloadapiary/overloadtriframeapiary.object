@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_overloadtriframeapiary",
   "colonyTags": ["hive", "bees", "insects"],
   "rarity": "rare",
-  "description": "A large overload apiary with three frame slots. ^cyan;18W power^reset; boosts resources and drones by 20%; frames wear normally and queen lifespan is reduced to 70%.",
+  "description": "A large overload apiary with three frame slots. ^cyan;18W power^reset; boosts resources and drones by 20%; frames wear normally and queen lifespan is reduced to 80%.",
   "shortdescription": "Ov. Tri-Frame",
   "race": "generic",
   "subtitle": "Three frames. Maximum strain.",
@@ -44,12 +44,12 @@
   "inputNodes": [[0, 0]],
   "powertype": "input",
   "isn_requiredPower": 18,
-  "humanDescription": "This large apiary accepts three frames and pushes bees beyond their limits. Eighteen watts boost resources and drones by 20%; queen lifespan falls to 70%.",
+  "humanDescription": "This large apiary accepts three frames and pushes bees beyond their limits. Eighteen watts boost resources and drones by 20%; queen lifespan falls to 80%.",
   "apexDescription": "A three-frame productivity experiment. Power increases output while the queen pays with a shortened life and the frames wear normally.",
   "avianDescription": "Three frames drive this colony past its safe limits. Electricity hastens production, but frames still wear and the queen ages quickly.",
   "floranDescription": "Three frame make beesss work hard. Power makesss more loot; frame breakss and queen getsss old early.",
   "glitchDescription": "Analytical. Three frame slots increase available frame bonuses. Eighteen watts grant 20% more resources and drones; normal frame wear remains.",
   "hylotlDescription": "A spacious but severe apiary that accepts three frames. Its power increases output while the colony and frames endure normal strain.",
   "novakidDescription": "Three frames fit in this big rig. Eighteen watts gets the bees moving faster, but frames wear out and the queen burns out quick.",
-  "genericDescription": "Accepts three frame slots. 18 W grants 20% more resources and drones; frames wear normally and queen lifespan is 70%."
+  "genericDescription": "Accepts three frame slots. 18 W grants 20% more resources and drones; frames wear normally and queen lifespan is 80%."
 }

@@ -2,7 +2,7 @@
   "objectName": "fubeesgenetics_overloadframekeeper",
   "colonyTags": ["hive", "bees", "insects"],
   "rarity": "rare",
-  "description": "Forces bees to work beyond their limits while preserving inserted apiary frames. ^cyan;18W power^reset; boosts resources and drones by 20%; queen lifespan is reduced to 70%.",
+  "description": "Forces bees to work beyond their limits while preserving inserted apiary frames. ^cyan;18W power^reset; boosts resources and drones by 20%; queen lifespan is reduced to 80%.",
   "shortdescription": "Ov. Framekeeper",
   "race": "generic",
   "subtitle": "Frames preserved. Colony strained.",
@@ -45,12 +45,12 @@
   "inputNodes": [[0, 0]],
   "powertype": "input",
   "isn_requiredPower": 18,
-  "humanDescription": "This apiary pushes bees harder while preserving inserted frames. Eighteen watts boost resources and drones by 20%; queen lifespan falls to 70%.",
+  "humanDescription": "This apiary pushes bees harder while preserving inserted frames. Eighteen watts boost resources and drones by 20%; queen lifespan falls to 80%.",
   "apexDescription": "An abusive hive with a frame-preservation chamber. Eighteen watts increase output and drone breeding while the queen burns out early.",
   "avianDescription": "The colony works beyond its limits, but its frame is protected from wear. Power hastens production while the queen's life shortens.",
   "floranDescription": "Beesss work too hard, but frame stay safe. Power makesss more resources; queen getsss old early.",
-  "glitchDescription": "Analytical. Frame wear is disabled. Eighteen watts provide a 20% production and drone bonus; queen lifespan is 70%.",
+  "glitchDescription": "Analytical. Frame wear is disabled. Eighteen watts provide a 20% production and drone bonus; queen lifespan is 80%.",
   "hylotlDescription": "A harsh apiary that spares its valuable frame while exhausting the queen. Power increases the colony's output.",
   "novakidDescription": "The bees work rough, but the frame stays intact. Eighteen watts gets more output while the queen burns out early.",
-  "genericDescription": "Preserves inserted frames. 18 W grants 20% more resources and drones; queen lifespan is 70% of normal."
+  "genericDescription": "Preserves inserted frames. 18 W grants 20% more resources and drones; queen lifespan is 80% of normal."
 }

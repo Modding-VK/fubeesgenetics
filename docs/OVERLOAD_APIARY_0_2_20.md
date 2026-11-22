@@ -1,5 +1,11 @@
 # Overload Apiary — 0.2.20-dev
 
+Current development balance: all four Overload variants use 80% of the
+normal queen lifespan (aging at 1 / 0.8 the normal rate), including when
+unpowered. The 70% values below document earlier versions. This changes only
+the existing aging multiplier, with no new scripting calls or polling; an
+in-game lifespan check is still needed.
+
 The Overload Apiary is a powered variant of the Frackin Universe Apiary. It
 keeps FU's native container, genetics, frames, biome and flower rules, and uses
 the FU power network for a continuous draw of **12 W**.

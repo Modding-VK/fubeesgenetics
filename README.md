@@ -4,7 +4,7 @@ Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Bee Genetic Microscope,
 Genetic Stabilizer, quatro variantes de Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 3.0.0-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 3.0.1-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -16,7 +16,7 @@ Framekeeper e Tri-Frame dos apiários Overload. O nome técnico
 `FUBeesGenetics`, os IDs existentes e os inventários são preservados.
 
 O mantenedor confirmou que o conteúdo de desenvolvimento está pronto para
-produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.0-dev.
+produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.1-dev.
 A página oficial da Steam já existe, e suas atualizações são enviadas pelo
 mantenedor com o Steam Mod Uploader.
 
@@ -52,7 +52,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-3.0.0-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-3.0.1-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -175,7 +175,7 @@ atualizar. As versões atuais já usam os mesmos 16 slots.
 ## Overload Apiary
 
 Apiário alimentado por **12 W**, com produção de recursos e drones **1,2×** e
-vida útil da rainha **0,7×**. Sem energia, continua produzindo na velocidade
+vida útil da rainha **0,8×**. Sem energia, continua produzindo na velocidade
 normal; o desgaste da rainha permanece. A receita usa 1 Normal Apiary, 1 A.I.
 Chip e 5 Durasteel Bars. O blueprint vem de **Abusive Apiaries**.
 Ele não gera abelhas entidades capturáveis aleatórias; Drones e larvas seguem
@@ -194,7 +194,7 @@ durabilidade, mantendo os bônus e funções nativas dos quadros; **Overload
 Tri-Frame** usa o corpo grande e oferece três slots de quadro, com desgaste
 normal. O Framekeeper mantém um slot de quadro e 15 saídas; o Tri-Frame tem
 dois slots de drones, três de quadros e 20 saídas. Ambas usam 18 W para o bônus
-de produção de 1,2× e mantêm a vida útil da rainha de 0,7×. Sem energia,
+de produção de 1,2× e mantêm a vida útil da rainha de 0,8×. Sem energia,
 produzem na velocidade normal; a penalidade de vida continua. O Framekeeper é feito a partir do Overload pequeno (2 AI Chips e 10
 Durasteel Bars); o Tri-Frame parte do Overload Large (3 AI Chips e 15
 Durasteel Bars).
