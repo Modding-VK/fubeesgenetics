@@ -4,7 +4,7 @@ Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Bee Genetic Microscope,
 Genetic Stabilizer, quatro variantes de Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 3.0.2-dev. Autor: Goblin Man.**
+**Release estável: 3.0.2. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -16,7 +16,7 @@ Framekeeper e Tri-Frame dos apiários Overload. O nome técnico
 `FUBeesGenetics`, os IDs existentes e os inventários são preservados.
 
 O mantenedor confirmou que o conteúdo de desenvolvimento está pronto para
-produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.2-dev.
+produção. A `main` contém a versão estável 3.0.2. A `dev` usa 3.0.2-dev.
 A página oficial da Steam já existe, e suas atualizações são enviadas pelo
 mantenedor com o Steam Mod Uploader.
 
@@ -52,7 +52,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-3.0.2-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-3.0.2.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
