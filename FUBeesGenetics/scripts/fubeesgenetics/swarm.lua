@@ -23,7 +23,7 @@ local profiles = {
   shrouded = {"shadow", "7b83d1"}, squash = {"physical", "f69f65"},
   stalwart = {"physical", "a6b4a2"}, stellar = {"cosmic", "9e82f6"},
   sweat = {"physical", "e6cb73"}, tunguskudae = {"radioactive", "cce371"},
-  xenodaemonae = {"bioweapon", "db6c92"}
+  xenodaemonae = {"shadow", "db6c92"}
 }
 local damageNames = {
   physical = "Physical", fire = "Fire", ice = "Ice", hoarfrost = "Hoarfrost",
