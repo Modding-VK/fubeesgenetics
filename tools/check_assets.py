@@ -357,7 +357,8 @@ def check_assets(root, fu_root, native_root):
     frames = asset_json((fu_root / 'bees/bees/default.frames').read_text())['frameGrid']
     assert frames['size'] == [28, 28] and frames['names'] == [['drone', 'queen', 'youngQueen']]
     passed('S16 all 595 unique hybrid sheets, 35 parent sheets and three caste frames resolve')
-    assert not list((mod / 'monsters').rglob('*.monstertype'))
+    monster_types = {d['type'] for p, d in docs.items() if p.suffix == '.monstertype'}
+    assert monster_types == {'fubeesgenetics_swarm'}
     overload_lua = (mod / 'objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua').read_text()
     assert 'function tryBeeSpawn() end' in overload_lua
     passed('S17 powered apiary has no capturable world-bee species')
