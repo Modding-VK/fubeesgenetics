@@ -38,7 +38,11 @@ local function setup(bootstrap, skipHybridBuilder)
       return
     end
     if path == "/scripts/util.lua" or path == "/zb/zb_util.lua" then return end
-    if path == "/scripts/kheAA/transferUtil.lua" then e.transferUtil = {loadSelfContainer = function() end}; return end
+    if path == "/scripts/kheAA/transferUtil.lua" then
+      if e.useRealTransfer then assert(loadfile(fixture.fuRoot .. path, "t", e))()
+      else e.transferUtil = {loadSelfContainer = function() end} end
+      return
+    end
     local prefix = path:find("fubeesgenetics", 1, true) and fixture.repoRoot .. "/FUBeesGenetics" or fixture.fuRoot
     assert(loadfile(prefix .. path, "t", e))()
   end
@@ -628,6 +632,16 @@ test("Large hybrid apiary performs one flower search per production tick",functi
   end
   for i=1,3 do
     flowers=0;e.beeTick(1);equal(flowers,1)
+  end
+end)
+test("Every overload apiary registers its inventory with the FU item network", function()
+  for _, cfg in ipairs(fixture.overloadConfigs) do
+    local e = setup(); e.useRealTransfer = true; e.settings = copy(cfg)
+    e.entity.entityType = function() return "object" end
+    e.require('/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.lua'); e.init(); e.update(0)
+    equal(e.transferUtil.vars.inDataNode, 1); equal(e.transferUtil.vars.outDataNode, 0)
+    assert(e.transferUtil.sendContainerInputs()[42]); assert(e.transferUtil.sendContainerOutputs()[42])
+    assert(same(e.transferUtil.sendContainerInputs()[42], e.entity.position()))
   end
 end)
 test("Stabilizer preserves bee data, halves mutation, respects output and failure", function()

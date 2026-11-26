@@ -157,6 +157,9 @@ def main():
     fixture.update(hybridBeeData=hybrid_data, hybridCatalog=hybrid_catalog, hybridPlants=hybrid_plants,
                    hybridizerConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/hybridizer/hybridizer.object').read_text()),
                    overloadConfig=asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/overloadapiary/overloadapiary.object').read_text()),
+                   overloadConfigs=[asset_json((ROOT / 'FUBeesGenetics/objects/bees/fubeesgenetics/overloadapiary' / name).read_text())
+                                    for name in ['overloadapiary.object', 'overloadlargeapiary.object',
+                                                 'overloadframekeeper.object', 'overloadtriframeapiary.object']],
                    hybridItems={d['itemName']: d for p in (ROOT / 'FUBeesGenetics/bees/bees').glob('hybrid*.item')
                                 for d in [asset_json(p.read_text())]})
     with tempfile.TemporaryDirectory(prefix='hybrid-checks-') as directory:
