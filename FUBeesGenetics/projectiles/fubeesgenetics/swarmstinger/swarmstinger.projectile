@@ -1,0 +1,15 @@
+{
+  "projectileName": "fubeesgenetics_swarmstinger",
+  "image": "/projectiles/activeitems/staff/druidstaff/thornburststinger.png",
+  "frameNumber": 1,
+  "animationCycle": 0.25,
+  "physics": "bullet",
+  "speed": 30,
+  "timeToLive": 0.65,
+  "bounces": 0,
+  "flippable": true,
+  "piercing": false,
+  "pointLight": false,
+  "damageKind": "physical",
+  "damagePoly": [[-4, -1], [4, -1], [4, 1], [-4, 1]]
+}

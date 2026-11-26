@@ -126,3 +126,94 @@ assert(callbacks["fubeesgenetics.swarm.encapsulate"](nil, nil, failedState.previ
 fail.die()
 assert(#drops == 5 and not failedSlots[6])
 print("Swarm Assembler integration checks passed")
+
+local function testStingers(element, count)
+  local env = setmetatable({}, {__index = _G})
+  local shots, baseUpdates, targetReads, sounds = {}, 0, 0, 0
+  local target, blocked, stunned = 7, false, false
+  env.require = function(path)
+    assert(path == "/monsters/monster.lua")
+    env.init = function()
+      env.self = {board = {getEntity = function(_, key)
+        assert(key == "target")
+        targetReads = targetReads + 1
+        return target
+      end}}
+    end
+    env.update = function() baseUpdates = baseUpdates + 1 end
+  end
+  env.math = setmetatable({random = function(low, high)
+    assert(low <= high)
+    return low == 1 and count or low
+  end}, {__index = math})
+  env.animator = {
+    setSoundPool = function() end,
+    playSound = function() sounds = sounds + 1 end
+  }
+  env.config = {getParameter = function(key, default)
+    if key == "touchDamage" then return {damageSourceKind = element, damage = 40} end
+    if key == "scale" then return 1.3 end
+    return default
+  end}
+  env.root = {evalFunction = function(name, level)
+    assert(name == "monsterLevelPowerMultiplier" and level == 2)
+    return 1.5
+  end}
+  env.monster = {level = function() return 2 end}
+  env.entity = {id = function() return 3 end, isValidTarget = function(id) return id == 7 end}
+  env.status = {
+    resourcePositive = function(name) return name == "health" or (name == "stunned" and stunned) end,
+    stat = function(name) assert(name == "powerMultiplier"); return 2 end
+  }
+  env.capturable = {}
+  env.mcontroller = {position = function() return {0, 0} end}
+  env.world = {
+    entityPosition = function(id) assert(id == 7); return {8, 0} end,
+    distance = function(a, b) return {a[1] - b[1], a[2] - b[2]} end,
+    lineTileCollision = function() return blocked end,
+    spawnProjectile = function(projectile, muzzle, owner, velocity, track, parameters)
+      assert(projectile == "fubeesgenetics_swarmstinger" and owner == 3 and not track)
+      assert(parameters.damageKind == element and parameters.processing:match("^%?setcolor="))
+      assert(math.abs(muzzle[1] + velocity[1] - 8) < 0.0001 and muzzle[2] + velocity[2] == 0)
+      shots[#shots + 1] = {muzzle = muzzle, power = parameters.power}
+      return #shots
+    end
+  }
+  assert(loadfile(fixture.repoRoot .. "/FUBeesGenetics/monsters/fubeesgenetics/swarm/swarm.lua", "t", env))()
+  env.init()
+  env.update(3)
+  assert(#shots == 0 and targetReads == 0)
+  env.update(1)
+  assert(baseUpdates == 2)
+  if element == "physical" then
+    assert(#shots == 0 and targetReads == 0)
+    env.update(6)
+    assert(sounds == 1 and targetReads == 0)
+    return
+  end
+  assert(#shots == count and targetReads == 1)
+  for i, shot in ipairs(shots) do
+    assert(math.abs(shot.power * count - 60) < 0.0001)
+    if i > 1 then assert(shot.muzzle[2] > shots[i - 1].muzzle[2]) end
+  end
+  target = 99
+  env.update(4)
+  assert(#shots == count and targetReads == 2)
+  target, blocked = 7, true
+  env.update(1)
+  assert(#shots == count)
+  blocked, stunned = false, true
+  env.update(1)
+  assert(#shots == count and sounds == 1)
+  stunned = false
+  env.capturable.despawnTimer = 0.3
+  env.update(1)
+  assert(#shots == count)
+  env.capturable.despawnTimer = nil
+  env.update(1)
+  assert(#shots == count * 2)
+end
+
+for count, element in ipairs({"fire", "ice", "electric", "shadow"}) do testStingers(element, count) end
+testStingers("physical", 1)
+print("Elemental stinger checks passed")

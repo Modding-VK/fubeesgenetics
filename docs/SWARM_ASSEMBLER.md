@@ -50,6 +50,23 @@ O zumbido avulso usa um intervalo sorteado de 10 a 60 segundos. Cybernetic
 usa os sons do Nanobot Swarm, e as outras espécies usam o zumbido de abelha
 gigante do FU.
 
+### Ferrão elemental
+
+Enxames elementais podem disparar um ferrão adicional sem interromper o
+controlador de mergulho. A rajada sorteia de um a quatro ferrões e usa
+uma formação de lançamento própria para cada quantidade. Cada origem é
+orientada para o alvo e ajustada ao tamanho do enxame. A cor e a fonte de
+dano seguem o elemento gravado na cápsula. O projétil referencia a textura
+Thornburst Stinger do FU.
+
+Balanceamento inicial: 4 a 6 segundos entre rajadas e alcance de 3 a
+18 blocos. A soma do dano bruto dos ferrões é 50% do dano bruto de
+contato, antes da resistência do alvo. O temporizador usa a atualização
+existente do pet. A verificação do alvo e da linha de tiro ocorre somente
+quando o temporizador vence. Se a tentativa for bloqueada, o pet espera
+1 segundo para tentar de novo. O dano real e a leitura visual da rajada
+ainda precisam de teste no OpenStarbound.
+
 ## Arte provisória e scripting
 
 O protótipo monta o corpo e as molduras a partir dos assets do Hybridizer e
