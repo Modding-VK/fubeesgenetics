@@ -50,13 +50,14 @@ O zumbido avulso usa um intervalo sorteado de 10 a 60 segundos. Cybernetic
 usa os sons do Nanobot Swarm, e as outras espécies usam o zumbido de abelha
 gigante do FU.
 
-### Ferrão elemental
+### Disparo de ferrão
 
-Enxames elementais podem disparar um ferrão adicional sem interromper o
+Todos os enxames podem disparar um ferrão adicional sem interromper o
 controlador de mergulho. A rajada sorteia de um a quatro ferrões e usa
 uma formação de lançamento própria para cada quantidade. Cada origem é
 orientada para o alvo e ajustada ao tamanho do enxame. A cor e a fonte de
-dano seguem o elemento gravado na cápsula. O projétil referencia a textura
+dano seguem o tipo gravado na cápsula, incluindo o dano físico. O projétil
+referencia a textura
 Thornburst Stinger do FU.
 
 Balanceamento inicial: 4 a 6 segundos entre rajadas e alcance de 3 a

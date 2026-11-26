@@ -4,6 +4,7 @@ local baseInit, baseUpdate = init, update
 local untilBuzz
 local stingerElement, stingerTint, stingerPower, swarmScale, untilStinger
 local tints = {
+  physical = "eac378",
   fire = "ff7845", ice = "92def8", hoarfrost = "c3f3ff", electric = "f5e76b",
   poison = "9fe85e", bioweapon = "f472a3", shadow = "9c81ef",
   cosmic = "f1a4ff", radioactive = "bcf552"

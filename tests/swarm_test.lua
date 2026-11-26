@@ -185,7 +185,7 @@ local function testStingers(element, count)
   assert(#shots == 0 and targetReads == 0)
   env.update(1)
   assert(baseUpdates == 2)
-  if element == "physical" then
+  if element == "lash" then
     assert(#shots == 0 and targetReads == 0)
     env.update(6)
     assert(sounds == 1 and targetReads == 0)
@@ -215,5 +215,6 @@ local function testStingers(element, count)
 end
 
 for count, element in ipairs({"fire", "ice", "electric", "shadow"}) do testStingers(element, count) end
-testStingers("physical", 1)
-print("Elemental stinger checks passed")
+testStingers("physical", 3)
+testStingers("lash", 1)
+print("Swarm stinger checks passed")
