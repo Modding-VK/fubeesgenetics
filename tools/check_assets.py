@@ -59,7 +59,7 @@ def check_assets(root, fu_root, native_root):
         print('PASS '+label)
     docs = {p:asset_json(p.read_text()) for p in mod.rglob('*') if p.suffix in {'.object','.config','.recipe','.patch','.animation','.item','.monstertype','.monsterpart'}}
     objects = [(p,d) for p,d in docs.items() if p.suffix == '.object']
-    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_geneticmicroscope", "fubeesgenetics_geneticstabilizer", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_overloadlargeapiary", "fubeesgenetics_overloadframekeeper", "fubeesgenetics_overloadtriframeapiary", "fubeesgenetics_hybridizer"}
+    assert {d["objectName"] for _,d in objects} == {"fubeesgenetics_geneticqueenfilter", "fubeesgenetics_geneticmicroscope", "fubeesgenetics_geneticstabilizer", "fubeesgenetics_beeexchange", "fubeesgenetics_overloadapiary", "fubeesgenetics_overloadlargeapiary", "fubeesgenetics_overloadframekeeper", "fubeesgenetics_overloadtriframeapiary", "fubeesgenetics_hybridizer", "fubeesgenetics_swarmassembler"}
     path,obj = next((p,d) for p,d in objects if d["objectName"] == "fubeesgenetics_geneticqueenfilter")
     ident = 'fubeesgenetics_geneticqueenfilter'
     assert obj['objectName'] == ident and obj['objectType'] == 'container' and obj['slotCount'] == 3
@@ -68,6 +68,15 @@ def check_assets(root, fu_root, native_root):
     microscope_grids = {name: widget['slotOffset'] for name, widget in microscope_ui.items()
                         if isinstance(widget, dict) and widget.get('type') == 'itemgrid'}
     assert microscope_grids == {'itemGrid': 0, 'itemGrid2': 1}
+    swarm_object = next(d for _, d in objects if d['objectName'] == 'fubeesgenetics_swarmassembler')
+    swarm_ui = docs[mod / swarm_object['uiConfig'].lstrip('/')]['gui']
+    swarm_grids = {name: (widget['slotOffset'], widget['dimensions']) for name, widget in swarm_ui.items()
+                   if isinstance(widget, dict) and widget.get('type') == 'itemgrid'}
+    assert swarm_object['slotCount'] == 7
+    assert swarm_grids == {'itemGrid': (0, [4, 1]), 'itemGrid2': (4, [2, 1]), 'outputItemGrid': (6, [1, 1])}
+    swarm_art = docs[mod / swarm_object['animation'].lstrip('/')]['animatedParts']['parts']
+    assert all(swarm_art[part]['properties']['fullbright']
+               for part in ['queenGlow', 'ledGlow', 'droneGlow1', 'droneGlow2', 'droneGlow3'])
 
     orientation, = obj['orientations']
     assert obj['printable'] is False and orientation['anchors'] == ['bottom']
