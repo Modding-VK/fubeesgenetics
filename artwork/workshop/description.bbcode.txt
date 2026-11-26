@@ -1,22 +1,64 @@
 [h1]Bee Abusive Industry[/h1]
-Genetic queen filtering and automated bee trading for your industrial apiary.
+An industrial bee-processing addon for [b]Frackin' Universe[/b] on [b]OpenStarbound[/b].
+
+This mod grew from my difficulties automating beekeeping. In the age of AI, its name plays on “Bee A.I.” and “Abusive Industry” — and AI Chips are part of the equipment recipes.
+
+Want to know how everything works? Check out the Workshop discussion:
+
+[url=https://steamcommunity.com/workshop/filedetails/discussion/3822748368/573805072991229995/]Learn more about the mod's mechanics[/url]
+
 By Goblin Man.
 
-[b]Requires OpenStarbound and Frackin Universe.[/b]
-This addon uses OpenStarbound's scripted container interfaces. The vanilla Starbound executable is not supported.
+[h2]Requirements[/h2]
+Requires OpenStarbound and Frackin' Universe. The vanilla Starbound executable is not supported.
+
+Haven't heard of OpenStarbound? Give it a look — it's worth it! :)
 
 [h2]Genetic Queen Filter[/h2]
-Sort inspected Queens and Young Queens using six genetic traits. Choose Equal or higher, Equal or lower or Indifferent per trait. The compact interface keeps the reference profile visible; Approved and Rejected outputs support FU item networks and ITD.
+Sort inspected Queens and Young Queens using six genetic traits. Choose Equal or higher, Equal or lower, Indifferent, Equal, or Within range for each trait.
+
+The interface keeps the reference profile visible, and the Approved and Rejected outputs support FU item networks and ITD.
 
 [h2]Auto Refugee[/h2]
-Trade bees automatically using the Bee Refuge rewards from FU. Sixteen shared slots support Queens, Young Queens and batches of five drones of the same species. Includes readable directional sprites, teleport animation, an on/off logic input and FU/ITD item connections. Improved Containers 2.11 integration is optional.
+Automate bee trading using the rewards from the FU Bee Refuge. Sixteen shared slots accept Queens, Young Queens, and batches of five drones of the same species.
+
+Hybrid bees cannot be traded here.
+
+[h2]Genetic Hybridizer[/h2]
+Breed a Queen and a Drone from different species to create new hybrid races. With 35 base species, the system allows up to 595 unique hybrid combinations.
+
+Each hybrid combines traits from its parents and can produce resources associated with both species. Research Discs can improve the chance of a successful experiment.
+
+[h2]Overload Apiaries[/h2]
+Put your bees to work harder and increase resource and drone production — by making them suffer, of course.
+
+The mod includes four models:
+
+[list]
+[*]Overload Apiary: a compact option for your colonies.
+[*]Overload Large Apiary: more room for a larger operation.
+[*]Ov. Framekeeper: boosts production while protecting the inserted frame from wear.
+[*]Ov. Tri-Frame: supports three frames for more frame bonuses.
+[/list]
+
+Powered Overload Apiaries produce 20% more resources and drones. They keep working at normal speed without power, but the Queen's lifespan remains reduced to 80% of normal.
+
+[h2]Bee Genetic Microscope[/h2]
+Instantly reveal a bee's genetic data without producing Research, Pixels, or other rewards. It also supports item networks for automation.
+
+[h2]Genetic Stabilizer[/h2]
+Reduce a bee's mutation chance by half with each treatment. There's a catch: every treatment has a 40% chance of destroying the bee.
 
 [h2]Crafting and updates[/h2]
-Pick up a Bee Station to learn the recipes. Craft both machines at the Bee Station, Functional tab. Use only one copy of this addon. When updating manually, replace the old PAK with the game closed; existing machine IDs and Filter profiles are preserved.
+Learn the recipes in the Frackin' Universe Research Tree!
+
+[h2]Compatibility[/h2]
+Compatible and validated with:
+[list]
+[*]Improved Containers
+[/list]
 
 [h2]Credits[/h2]
-Cybernetic Queen texture, bee definitions and systems: Frackin Universe team, sayterdarkwynd and contributors. The Queen icon is cropped/scaled with nearest-neighbor on an orange background. FU material is credited under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
-Source: https://github.com/sayterdarkwynd/FrackinUniverse/tree/17868d86c9bb7bc00f92038fb78b48cebd1b41b8
-Starbound/Terramart assets belong to Chucklefish and their respective contributors. This addon does not imply endorsement by FU or Chucklefish.
+Bee sprites, definitions, and systems: Frackin' Universe team, sayterdarkwynd, and contributors. FU material is credited under [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url]. Starbound/Terramart assets belong to Chucklefish and their respective contributors. This addon does not imply endorsement by FU or Chucklefish.
 
-Project: https://github.com/Modding-VK/fubeesgenetics
+Almost everything in this mod was vibe coded, but tested, planned and validated by me.

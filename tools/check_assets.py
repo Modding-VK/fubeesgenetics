@@ -285,6 +285,11 @@ def check_assets(root, fu_root, native_root):
     assert framekeeper['slotCount'] == 18 and triframe['slotCount'] == 26 and hybridizer['slotCount'] == 4
     assert overload_large['scripts'] == overload['scripts']
     assert framekeeper['scripts'] == overload['scripts'] and triframe['scripts'] == overload['scripts']
+    for obj, output_node in [(overload, [1, 0]), (framekeeper, [1, 0]),
+                             (overload_large, [4, 0]), (triframe, [4, 0])]:
+        assert obj['inputNodes'] == [[0, 0], [0, 1]] and obj['outputNodes'] == [output_node]
+        assert (obj['kheAA_inDataNode'], obj['kheAA_outDataNode']) == (1, 0)
+        assert 'kheAA_logicNode' not in obj
     assert (overload_large['queenSlot'], overload_large['droneSlots'], overload_large['frameSlots'], overload_large['firstInventorySlot']) == (1, [2,3], [4,5], 6)
     assert overload_large['uiConfig'] == '/objects/bees/fubeesgenetics/overloadapiary/largeapiary.config'
     assert framekeeper.get('preserveFrames') is True

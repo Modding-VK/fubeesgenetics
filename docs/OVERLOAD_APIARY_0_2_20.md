@@ -1,5 +1,19 @@
 # Overload Apiary — 0.2.20-dev
 
+## Item network nodes (3.0.2-dev)
+
+All four Overload variants expose the existing shared container to FU item
+networks through an upper item input (input index 1) and an item output
+(output index 0). The original lower input (index 0) remains in place for
+power. FU's existing apiary update registers the container through
+`transferUtil.loadSelfContainer`; no additional timer or polling is added.
+The nodes expose the whole container, not automatic bee/frame slot routing:
+external automation must choose appropriate slots and extraction filters.
+FU power scans connected nodes generically; real power and item networks
+connected simultaneously still require testing in game. The added connections
+can cause FU's existing network discovery to traverse more connected entities;
+no engine performance measurement has been made.
+
 Current development balance: all four Overload variants use 80% of the
 normal queen lifespan (aging at 1 / 0.8 the normal rate), including when
 unpowered. The 70% values below document earlier versions. This changes only
