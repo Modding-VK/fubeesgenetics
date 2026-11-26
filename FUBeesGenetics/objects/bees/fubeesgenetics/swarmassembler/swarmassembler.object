@@ -1,0 +1,46 @@
+{
+  "objectName": "fubeesgenetics_swarmassembler",
+  "shortdescription": "Swarm Assembler",
+  "description": "Encapsulates matching bees in a Capture Pod in 60 seconds.",
+  "objectType": "container",
+  "category": "crafting",
+  "rarity": "essential",
+  "race": "generic",
+  "printable": false,
+  "price": 7200,
+  "slotCount": 7,
+  "smashOnBreak": true,
+  "inventoryIcon": "/objects/bees/fubeesgenetics/hybridizer/hybridizericon.png",
+  "hasWindowIcon": false,
+  "orientations": [
+    {
+      "dualImage": "/objects/bees/fubeesgenetics/hybridizer/hybridizer.png",
+      "imagePosition": [
+        0,
+        0
+      ],
+      "spaceScan": 0.1,
+      "anchors": [
+        "bottom"
+      ]
+    }
+  ],
+  "animation": "/objects/bees/fubeesgenetics/swarmassembler/swarmassembler.animation",
+  "animationPosition": [
+    0,
+    0
+  ],
+  "scripts": [
+    "/objects/bees/fubeesgenetics/swarmassembler/swarmassembler.lua"
+  ],
+  "scriptDelta": 60,
+  "uiConfig": "/interface/fubeesgenetics/swarmassembler/swarmassembler.config",
+  "humanDescription": "A Queen and one to three thousand matching Drones go in. A capsule-bound swarm comes out.",
+  "apexDescription": "It synchronizes a colony with an A.I. Chip. The specimens must share species and genome.",
+  "avianDescription": "One Queen guides a thousand wings. Here, the whole swarm fits in a single capsule.",
+  "floranDescription": "Machine packsss same beesss into little ball. Bigger swarm, more sting.",
+  "glitchDescription": "Analytical. Compares species and genome before a sixty-second encapsulation cycle.",
+  "hylotlDescription": "One minute to bind an entire colony to a capsule. A troubling use of precision engineering.",
+  "novakidDescription": "Round up a matchin' Queen and her kind. This rig puts a thousand or more in a pod.",
+  "genericDescription": "Uses an adult Queen, 1,000 to 3,000 genetically identical Drones of the same species, a Capture Pod and an A.I. Chip."
+}

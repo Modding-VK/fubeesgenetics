@@ -1,0 +1,31 @@
+{
+  "input": [
+    {
+      "item": "aichip",
+      "count": 3
+    },
+    {
+      "item": "durasteelbar",
+      "count": 8
+    },
+    {
+      "item": "laserdiode",
+      "count": 5
+    },
+    {
+      "item": "skathreinforcedglass",
+      "count": 4
+    }
+  ],
+  "output": {
+    "item": "fubeesgenetics_swarmassembler",
+    "count": 1
+  },
+  "groups": [
+    "mod",
+    "beestation",
+    "tools",
+    "all",
+    "functional"
+  ]
+}

@@ -4,7 +4,7 @@ Addon de **Frackin Universe para OpenStarbound**, com Genetic Queen Filter
 (Bee Analyzer), Bee Exchange (Auto Refugee), Bee Genetic Microscope,
 Genetic Stabilizer, quatro variantes de Overload Apiary e Genetic Hybridizer.
 
-**Versão de desenvolvimento: 3.0.2-dev. Autor: Goblin Man.**
+**Versão de desenvolvimento: 3.0.3-dev. Autor: Goblin Man.**
 
 [Baixar o PAK atual pela Action](https://github.com/Modding-VK/fubeesgenetics/actions/workflows/build-pak.yml) · [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3822748368) ·
 [Identidade e prontidão da release](docs/RELEASE_READINESS.md) ·
@@ -16,7 +16,7 @@ Framekeeper e Tri-Frame dos apiários Overload. O nome técnico
 `FUBeesGenetics`, os IDs existentes e os inventários são preservados.
 
 O mantenedor confirmou que o conteúdo de desenvolvimento está pronto para
-produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.2-dev.
+produção. A `main` contém a versão estável 3.0.0; a `dev` usa 3.0.3-dev.
 A página oficial da Steam já existe, e suas atualizações são enviadas pelo
 mantenedor com o Steam Mod Uploader.
 
@@ -52,7 +52,7 @@ limitados. Ver [comportamento, migração e validação](docs/FILTER_TARGETS_AND
 
 1. Instale Frackin Universe e execute OpenStarbound.
 2. Com o jogo fechado, substitua o PAK anterior em `Starbound/mods` por
-   `bee-abusive-industry-3.0.2-dev.pak` do artefato da Action. Mantenha apenas
+   `bee-abusive-industry-3.0.3-dev.pak` do artefato da Action. Mantenha apenas
    uma cópia do addon.
 3. Abra novamente o jogo. A atualização conserva IDs e inventários; não precisa
    refazer as máquinas nem resetar o perfil do Analyzer.
@@ -64,7 +64,7 @@ O item oficial está publicado na [Steam Workshop](https://steamcommunity.com/sh
 
 ## Pesquisa na árvore Agriculture
 
-Os nove blueprints do addon são aprendidos em seis pesquisas ligadas à trilha de
+Os dez blueprints do addon são aprendidos em sete pesquisas ligadas à trilha de
 abelhas do FU. A Bee Station continua sendo a estação de fabricação na aba Functional.
 A coleta da estação não ensina mais as receitas do addon.
 
@@ -76,6 +76,7 @@ A coleta da estação não ensina mais as receitas do addon.
 | Efficient Bee Microscopy | Industrial Beekeeping | 1.200 Research | Bee Genetic Microscope |
 | Genetic Stabilization | Efficient Bee Microscopy | 2.000 Research + 100 Madness + 1 Unknown Gene + 1 Isogen Bar | Genetic Stabilizer |
 | Unethical Genetic Practices | Genetic Stabilization | 2.200 Research + 120 Madness + 1 Red Matter | Genetic Hybridizer |
+| Swarm Encapsulation | Genetic Stabilization | 1.800 Research + 80 Madness | Swarm Assembler |
 
 A disposição forma duas ramificações em favo: Abusive Apiaries leva a
 Advanced Frame Management; Efficient Bee Microscopy leva a Genetic
@@ -275,6 +276,13 @@ quando recebem uma híbrida. O construtor visual dos itens também deixou de
 carregar a lógica de produção.
 
 ID para `/spawnitem`: `fubeesgenetics_hybridizer`.
+
+## Swarm Assembler (protótipo)
+
+Fabrique na Bee Station após pesquisar **Swarm Encapsulation**. Use uma Queen
+adulta, 1.000, 2.000 ou 3.000 Drones da mesma espécie e genoma, uma Capture Pod
+e um A.I. Chip. A prévia mostra os atributos base antes do ciclo de 60 segundos.
+Consulte [mecânica e roteiro de validação](docs/SWARM_ASSEMBLER.md).
 
 ## Desenvolvimento e GitHub
 

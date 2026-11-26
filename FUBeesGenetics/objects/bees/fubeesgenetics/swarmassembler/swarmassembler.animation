@@ -1,0 +1,419 @@
+{
+  "animatedParts": {
+    "stateTypes": {
+      "queen": {
+        "default": "off",
+        "states": {
+          "off": {
+            "frames": 1
+          },
+          "on": {
+            "frames": 1
+          }
+        }
+      },
+      "gauge": {
+        "default": "level0",
+        "states": {
+          "level0": {
+            "frames": 1
+          },
+          "level1": {
+            "frames": 1
+          },
+          "level2": {
+            "frames": 1
+          },
+          "level3": {
+            "frames": 1
+          }
+        }
+      },
+      "led": {
+        "default": "off",
+        "states": {
+          "off": {
+            "frames": 1
+          },
+          "green": {
+            "frames": 1
+          },
+          "amber": {
+            "frames": 1
+          }
+        }
+      },
+      "pod": {
+        "default": "off",
+        "states": {
+          "off": {
+            "frames": 1
+          },
+          "on": {
+            "frames": 1
+          }
+        }
+      },
+      "chip": {
+        "default": "off",
+        "states": {
+          "off": {
+            "frames": 1
+          },
+          "on": {
+            "frames": 1
+          }
+        }
+      },
+      "output": {
+        "default": "off",
+        "states": {
+          "off": {
+            "frames": 1
+          },
+          "on": {
+            "frames": 1
+          }
+        }
+      }
+    },
+    "parts": {
+      "shell": {
+        "properties": {
+          "image": "/objects/bees/fubeesgenetics/hybridizer/hybridizer.png",
+          "centered": false
+        }
+      },
+      "queenRim": {
+        "properties": {
+          "offset": [
+            1.9,
+            1.8
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 1
+        },
+        "partStates": {
+          "queen": {
+            "off": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=c49449?scalenearest=0.6"
+              }
+            },
+            "on": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=c49449?scalenearest=0.6"
+              }
+            }
+          }
+        }
+      },
+      "queenCell": {
+        "properties": {
+          "offset": [
+            2.025,
+            1.925
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 2
+        },
+        "partStates": {
+          "queen": {
+            "off": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=282028?scalenearest=0.5"
+              }
+            }
+          }
+        }
+      },
+      "queenGlow": {
+        "properties": {
+          "offset": [
+            2.025,
+            1.925
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 2
+        },
+        "partStates": {
+          "queen": {
+            "on": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffcf67?scalenearest=0.5"
+              }
+            }
+          }
+        }
+      },
+      "droneCell1": {
+        "properties": {
+          "offset": [
+            3.8,
+            1.1
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 1
+        },
+        "partStates": {
+          "gauge": {
+            "level0": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level1": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level2": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "droneGlow1": {
+        "properties": {
+          "offset": [
+            3.8,
+            1.1
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 2
+        },
+        "partStates": {
+          "gauge": {
+            "level1": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            },
+            "level2": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            },
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "droneCell2": {
+        "properties": {
+          "offset": [
+            3.8,
+            2.1
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 1
+        },
+        "partStates": {
+          "gauge": {
+            "level0": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level1": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level2": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "droneGlow2": {
+        "properties": {
+          "offset": [
+            3.8,
+            2.1
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 2
+        },
+        "partStates": {
+          "gauge": {
+            "level2": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            },
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "droneCell3": {
+        "properties": {
+          "offset": [
+            3.8,
+            3.1
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 1
+        },
+        "partStates": {
+          "gauge": {
+            "level0": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level1": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level2": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            },
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=172021?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "droneGlow3": {
+        "properties": {
+          "offset": [
+            3.8,
+            3.1
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 2
+        },
+        "partStates": {
+          "gauge": {
+            "level3": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffc457?scalenearest=0.35"
+              }
+            }
+          }
+        }
+      },
+      "ledGlow": {
+        "properties": {
+          "offset": [
+            0.6,
+            0.9
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 1
+        },
+        "partStates": {
+          "led": {
+            "green": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=69ff8d?scalenearest=0.2"
+              }
+            },
+            "amber": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=ffb14a?scalenearest=0.2"
+              }
+            }
+          }
+        }
+      },
+      "podDisplay": {
+        "properties": {
+          "offset": [
+            1.2,
+            0.65
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 2
+        },
+        "partStates": {
+          "pod": {
+            "on": {
+              "properties": {
+                "image": "/items/throwables/capturepod.png?scalenearest=0.4"
+              }
+            }
+          }
+        }
+      },
+      "chipGlow": {
+        "properties": {
+          "offset": [
+            0.65,
+            1.55
+          ],
+          "centered": false,
+          "fullbright": true,
+          "zLevel": 2
+        },
+        "partStates": {
+          "chip": {
+            "on": {
+              "properties": {
+                "image": "/interface/fubeesgenetics/hybridizer/icon.png?setcolor=95bfff?scalenearest=0.15"
+              }
+            }
+          }
+        }
+      },
+      "outputDisplay": {
+        "properties": {
+          "offset": [
+            2.55,
+            0.55
+          ],
+          "centered": false,
+          "fullbright": false,
+          "zLevel": 2
+        },
+        "partStates": {
+          "output": {
+            "on": {
+              "properties": {
+                "image": "/items/active/unsorted/filledcapturepod/filledcapturepodicon.png?scalenearest=0.4"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
